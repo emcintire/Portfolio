@@ -1,0 +1,30 @@
+#nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: black;
+}
+
+#about {
+    background-color: #252525;
+}
+
+.menu-item {
+    /* margin-top: 40px;
+    margin-bottom: 40px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
+
+.navbar {
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: 100vh;
+}
