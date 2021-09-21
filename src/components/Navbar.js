@@ -6,87 +6,70 @@ import { Link } from 'react-router-dom';
 // import 'react-awesome-button/dist/styles.css';
 import './Navbar.css';
 import { IconContext } from 'react-icons/lib';
+import $ from 'jquery'
 // import github from '../images/github.png';
 // import linkedin from '../images/linkedin.png';
 // import resume_logo from '../images/resume_logo.png';
 // import resume from '../images/resume.pdf';
 
 function Navbar() {
-    const [click, setClick] = useState(true);
-    const [button, setButton] = useState(true);
-    const [dropdown, setDropdown] = useState(false);
+    const [mobile, setMobile] = useState(true);
+    const [styles, setStyles] = useState({})
 
-    const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false);
-
-    const showButton = () => {
-        if (window.innerWidth <= 960) {
-            setButton(false);
-        } else {
-            setButton(true);
-        }
-    };
 
     const onMouseEnter = () => {
-        if (window.innerWidth <= 960) {
-            setDropdown(false);
-        } else {
-            setDropdown(true);
-        }
-    };
+        setStyles({
+            "width": "400px",
+        })
+    }
 
     const onMouseLeave = () => {
-        if (window.innerWidth <= 960) {
-            setDropdown(false);
-        } else {
-            setDropdown(false);
-        }
-    };
+        setStyles({})
+    }
 
-    useEffect(() => {
-        showButton();
-    }, []);
-
-    window.addEventListener('resize', showButton);
-
+    $(".menu-item").on("click", function(){
+        $("#nav").find(".active").removeClass("active");
+        $(this).addClass("active");
+     });
+    
     return (
         <>
             <IconContext.Provider value={{ color: 'white' }}>
-                <nav className="navbar">
+                <nav className="navbar" id="navbar">
                     <ul className={'navbar-nav'} id={'nav'}>
-                        <li className="nav-item active menu-item" id="home">
-                            {button ? (
-                                <Link to="/">Home</Link>
+                        <li className="nav-item menu-item active" id="home" style={styles} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
+                            {mobile ? (
+                                <Link className="link" to="/">Home</Link>
                             ) : (
-                                <Link to="/">Home</Link>
+                                <Link className="link" to="/">Home</Link>
                             )}
                         </li>
-                        <li className="nav-item menu-item" id="about">
-                            {button ? (
-                                <Link to="/about">About</Link>
+                        <li className="nav-item menu-item" id="about" style={styles} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                            {mobile ? (
+                                <Link className="link" to="/about">About</Link>
                             ) : (
-                                <Link to="/about">About</Link>
+                                <Link className="link" to="/about">About</Link>
                             )}
                         </li>
-                        <li className="nav-item menu-item" id="projects">
-                            {button ? (
-                                <Link to="/projects">Projects</Link>
+                        <li className="nav-item menu-item" id="projects" style={styles} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                            {mobile ? (
+                                <Link className="link" to="/projects">Projects</Link>
                             ) : (
-                                <Link to="/projects">Projects</Link>
+                                <Link className="link" to="/projects">Projects</Link>
                             )}
                         </li>
-                        <li className="nav-item menu-item" id="pictures">
-                            {button ? (
-                                <Link to="/pictures">Pictures</Link>
+                        <li className="nav-item menu-item" id="pictures" style={styles} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                            {mobile ? (
+                                <Link className="link" to="/pictures">Pictures</Link>
                             ) : (
-                                <Link to="/pictures">Pictures</Link>
+                                <Link className="link" to="/pictures">Pictures</Link>
                             )}
                         </li>
-                        <li className="nav-item menu-item" id="games">
-                            {button ? (
-                                <Link to="/pictures">Games</Link>
+                        <li className="nav-item menu-item" id="games" style={styles} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                            {mobile ? (
+                                <Link className="link" to="/pictures">Games</Link>
                             ) : (
-                                <Link to="/pictures">Games</Link>
+                                <Link className="link" to="/pictures">Games</Link>
                             )}
                         </li>
                     </ul>

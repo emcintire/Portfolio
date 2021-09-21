@@ -7,24 +7,61 @@
     background-color: black;
 }
 
-#about {
-    background-color: #252525;
+#navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 6969;
 }
 
 .menu-item {
-    /* margin-top: 40px;
-    margin-bottom: 40px; */
+    height: 150px;
+    width: 100px;
+    transition-duration: 0.5s;
+}
+
+.link {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: white;
+    opacity: 0.5;
+    transition-duration: 0.5s;
 }
 
-.navbar {
-    flex-direction: column !important;
-    align-items: flex-end !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    height: 100vh;
+.active .link {
+    opacity: 1;
+}
+
+
+.link:hover {
+    color: white;
+    opacity: 1;
+    font-size: 50px
+}
+
+#home {
+    background-color: #264653;
+}
+
+#about {
+    background-color: #2a9d8f;
+}
+
+#projects {
+    background-color: #e9c46a;
+}
+
+#pictures {
+    background-color: #f4a261;
+}
+
+#games {
+    background-color: #e76f51;
 }

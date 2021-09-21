@@ -1,0 +1,10 @@
+#home-container {
+    background-color: #264653;
+    height: 100vh;
+}
+
+#home-bg {
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.1;
+}
