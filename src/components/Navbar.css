@@ -18,8 +18,8 @@
 }
 
 .menu-item {
-    height: 150px;
-    width: 100px;
+    height: 200px;
+    width: 120px;
     transition-duration: 0.5s;
 }
 
@@ -39,7 +39,6 @@
     opacity: 1;
 }
 
-
 .link:hover {
     color: white;
     opacity: 1;
@@ -50,18 +49,14 @@
     background-color: #264653;
 }
 
-#about {
+#projects {
     background-color: #2a9d8f;
 }
 
-#projects {
+#pictures {
     background-color: #e9c46a;
 }
 
-#pictures {
-    background-color: #f4a261;
-}
-
 #games {
-    background-color: #e76f51;
+    background-color: #f4a261;
 }

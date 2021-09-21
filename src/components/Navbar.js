@@ -44,13 +44,6 @@ function Navbar() {
                                 <Link className="link" to="/">Home</Link>
                             )}
                         </li>
-                        <li className="nav-item menu-item" id="about" style={styles} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                            {mobile ? (
-                                <Link className="link" to="/about">About</Link>
-                            ) : (
-                                <Link className="link" to="/about">About</Link>
-                            )}
-                        </li>
                         <li className="nav-item menu-item" id="projects" style={styles} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                             {mobile ? (
                                 <Link className="link" to="/projects">Projects</Link>
@@ -60,16 +53,16 @@ function Navbar() {
                         </li>
                         <li className="nav-item menu-item" id="pictures" style={styles} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                             {mobile ? (
-                                <Link className="link" to="/pictures">Pictures</Link>
+                                <Link className="link" to="/photography">Photography</Link>
                             ) : (
-                                <Link className="link" to="/pictures">Pictures</Link>
+                                <Link className="link" to="/photography">Photography</Link>
                             )}
                         </li>
                         <li className="nav-item menu-item" id="games" style={styles} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                             {mobile ? (
-                                <Link className="link" to="/pictures">Games</Link>
+                                <Link className="link" to="/games">Games</Link>
                             ) : (
-                                <Link className="link" to="/pictures">Games</Link>
+                                <Link className="link" to="/games">Games</Link>
                             )}
                         </li>
                     </ul>
