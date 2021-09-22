@@ -3,18 +3,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    background-color: black;
-}
-
-#navbar {
-    padding-top: 0;
-    padding-bottom: 0;
-    position: absolute;
-    right: 0;
     height: 100vh;
-    overflow: hidden;
+    width: auto;
+    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    position: fixed;
+    left: 0;
     z-index: 6969;
+    padding: 0;
 }
 
 .menu-item {
