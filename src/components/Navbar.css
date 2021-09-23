@@ -17,7 +17,7 @@
 .menu-item {
     height: 200px;
     width: 120px;
-    transition-duration: 0.5s;
+    transition-duration: 0.4s;
 }
 
 .link {
@@ -28,8 +28,8 @@
     height: 100%;
     text-decoration: none;
     color: white;
-    opacity: 0.5;
-    transition-duration: 0.5s;
+    opacity: 0.6;
+    transition-duration: 0.4s;
 }
 
 .active .link {

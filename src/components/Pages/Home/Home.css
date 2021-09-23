@@ -1,31 +1,31 @@
 #home-page {
     font-family: 'Montserrat', sans-serif;
+    width: 100%;
 }
 
 .home-container {
     background-color: #264653;
     height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-#img-container {
-    width: 100%;
+#name-container {
+    width: calc(100% - 120px);
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     z-index: 696;
+    margin-left: 120px;
 }
 
 #name {
-    right: 15%;
-    position: absolute;
     width: 60%;
     background-color: transparent;
-}
-
-#skills-header {
-    color: #e9c46a;
 }
 
 #contact-info {
@@ -34,42 +34,70 @@
 }
 
 #bio-container {
-    position: absolute;
-    margin-top: 120px;
-    left: 230px;
-    width: 30%;
+    padding-left: 200px;
+}
+
+#bio-card {
+    width: 375px;
     z-index: 696;
     background-color: #264653;
     border-color: white;
 }
 
-.bio-body {
+#bio-body {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 #bio {
-    font-size: 20px;
+    font-size: 16px;
     color: white;
 }
 
-.skills-container {
-    position: absolute;
-    right: 80px;
+#skills-container {
     z-index: 696;
     width: 400px;
-    padding-top: 80px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.skills-icon {
-    height: 50px;
+#skills-list {
+    padding: 0 0 0 30px;
+    columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+#skills-header {
+    color: #e9c46a;
+    padding-bottom: 10px;
+}
+
+.skill-container {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.skill-icon {
+    height: 60px;
     width: auto;
 }
 
-.particles-bg-canvas-self {
+.skill-label {
+    color: white;
+    padding-left: 20px;
+}
+
+#emoji {
+    height: 30px;
+    width: auto;
+    padding-right: 15px;
+}
+
+.home-container .particles-bg-canvas-self {
     position: absolute;
     opacity: 0.3;
 }
@@ -77,4 +105,66 @@
 .header {
     font-weight: 800;
     font-size: 60px;
+}
+
+
+/* 
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: black;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e9c46a;
+    border-radius: 25px;
+} */
+
+
+@media (max-width: 1200px) {
+    #profile-container {
+        flex-direction: column;
+        height: 200vh;
+    }
+
+    .skill-label {
+        font-size: 22px;
+    }
+
+    .skill-icon {
+        height: 65px;
+    }
+
+    .skill-container {
+        padding: 20px 20px 10px 60px;
+    }
+
+    #skills-container {
+        margin-top: 60px;
+        padding-left: 60px;
+    }
+
+    #skills-header {
+        font-size: 60px;
+        padding-top: 15px;
+    }
+
+    #bio-card {
+        width: 450px;
+        padding: 0;
+    }
+
+    #bio {
+        font-size: 18px;
+    }
+
+    #bio-container {
+        padding-left: 100px;
+    }
+
+    .particles-bg-canvas-self {
+        height: 200vh !important;
+    }
 }

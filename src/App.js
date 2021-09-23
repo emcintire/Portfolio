@@ -10,14 +10,14 @@ import Games from './components/Pages/Games/Games';
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/projects' exact component={Projects} />
-        <Route path='/photography' exact component={Photography} />
-        <Route path='/games' exact component={Games} />
-      </Switch>
-      {/* <Footer /> */}
+        <Navbar />
+        <Switch>
+            <Route path='/' exact component={Home} className="home-scrollbar" />
+            <Route path='/projects' exact component={Projects} />
+            <Route path='/photography' exact component={Photography} />
+            <Route path='/games' exact component={Games} />
+        </Switch>
+        {/* <Footer /> */}
     </Router>   
   );
 }
