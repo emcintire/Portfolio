@@ -23,6 +23,11 @@ import mongo from "../../../images/mongo.svg"
 import post from "../../../images/post.svg"
 import ps from "../../../images/ps.svg"
 import ai from "../../../images/ai.svg"
+import resumeLogo from "../../../images/resume.svg"
+import linkedin from "../../../images/linkedin.svg"
+import resume from "../../../images/resume.pdf"
+
+
 
 function Home() {
     const [showContact, setShowContact] = useState(false)
@@ -37,13 +42,26 @@ function Home() {
         }
     }
     
+    const resizeBg = () => {
+        const height = $("#profile-container").height()
+        $("#profile-container .particles-bg-canvas-self").height(height)
+    }
+    
+    useEffect(() => {
+        setTimeout(() => {
+            resizeBg()
+        }, 5)
+    })
+
+    $(window).on("resize", resizeBg)
+    
     return (
         <div id="home-page">
             <div className="home-container">
                 <div id="name-container">
                     <Image src={name} alt="Everett McIntire" id="name"/>
                 </div>
-                <ParticlesBg type="cobweb" bg={false} color="#FFFFFF" id="particles" />
+                <ParticlesBg type="cobweb" bg={false} color="#FFFFFF"  />
             </div>
             <div className="home-container" id="profile-container">
                 <div id="bio-container">
@@ -59,13 +77,21 @@ function Home() {
                                 hiking and then regretting going hiking, and playing
                                 in my Guitar Hero band, "Gnome Saying." 
                             </p>
-                            {showContact ? (
-                                <div id="contact-info">
-                                    <AwesomeButton className="aws-btn" type="primary" onPress={clickContact}>everettgmcintire@gmail.com</AwesomeButton>
-                                </div>
-                            ) : (
-                                <AwesomeButton className="aws-btn" type="primary" onPress={clickContact}>Contact</AwesomeButton>
-                            )}
+                            <div id="bio-btns">
+                                <a href={resume} target="_blank" rel="noreferrer">
+                                    <Image src={resumeLogo} alt="resume logo" className="logos"/>
+                                </a>
+                                <a href="https://www.linkedin.com/in/everettgsm" target="_blank" rel="noreferrer">
+                                    <Image src={linkedin} alt="linkedin logo" className="logos"/>
+                                </a>
+                                {showContact ? (
+                                    <div id="contact-info">
+                                        <AwesomeButton className="aws-btn" type="primary" onPress={clickContact}>everettgmcintire@gmail.com</AwesomeButton>
+                                    </div>
+                                ) : (
+                                    <AwesomeButton className="aws-btn" type="primary" onPress={clickContact}>Contact</AwesomeButton>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

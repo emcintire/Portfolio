@@ -1,5 +1,71 @@
-#projects-container {
+#projects-page {
     background-color: #2a9d8f;
-    height: 120vh;
+    height: auto;
+    font-family: 'Montserrat', sans-serif;
 }
 
+#projects-page .particles-bg-canvas-self {
+    position: absolute;
+    opacity: 0.3;
+}
+
+#projects-container {
+    display: flex;
+    justify-content: space-around;    
+    flex-direction: column;
+    align-items: center;
+}
+
+#projects-list {
+    z-index: 696;
+    margin-left: 100px;
+    columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+#projects-header {
+    color: white;
+    padding: 30px 0 80px 120px;
+}
+
+.project-cards {
+    width: 380px;
+    height: 500px;
+    margin: 0px 3vw 150px 3vw;
+}
+
+.project-title {
+    font-weight: 800;
+}
+
+.project-desc {
+    font-size: 16px;
+    height: 200px;
+}
+
+#eye-btn {
+    height: 30px;
+}
+
+#card-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+
+
+@media (max-width: 1050px) {
+    #projects-list {
+        z-index: 696;
+        margin-left: 100px;
+        columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1;
+    }
+
+}

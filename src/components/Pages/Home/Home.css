@@ -5,7 +5,7 @@
 
 .home-container {
     background-color: #264653;
-    height: 100vh;
+    height: 110vh;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -38,7 +38,7 @@
 }
 
 #bio-card {
-    width: 375px;
+    width: 400px;
     z-index: 696;
     background-color: #264653;
     border-color: white;
@@ -107,6 +107,18 @@
     font-size: 60px;
 }
 
+.logos {
+    height: 40px;
+    width: auto;
+}
+
+#bio-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 
 /* 
 ::-webkit-scrollbar {
@@ -126,7 +138,7 @@
 @media (max-width: 1200px) {
     #profile-container {
         flex-direction: column;
-        height: 200vh;
+        height: auto;
     }
 
     .skill-label {
@@ -144,11 +156,7 @@
     #skills-container {
         margin-top: 60px;
         padding-left: 60px;
-    }
-
-    #skills-header {
-        font-size: 60px;
-        padding-top: 15px;
+        padding-bottom: 30px;
     }
 
     #bio-card {
@@ -164,7 +172,7 @@
         padding-left: 100px;
     }
 
-    .particles-bg-canvas-self {
-        height: 200vh !important;
-    }
+    /* #profile-container .particles-bg-canvas-self {
+        height: 220vh !important;
+    } */
 }
