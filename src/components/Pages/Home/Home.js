@@ -78,7 +78,7 @@ function Home() {
                                 in my Guitar Hero band, "Gnome Saying." 
                             </p>
                             <div id="bio-btns">
-                                <a href={resume} target="_blank" rel="noreferrer">
+                                <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire">
                                     <Image src={resumeLogo} alt="resume logo" className="logos"/>
                                 </a>
                                 <a href="https://www.linkedin.com/in/everettgsm" target="_blank" rel="noreferrer">
