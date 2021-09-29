@@ -58,11 +58,25 @@ function Navbar() {
                         onMouseLeave={onMouseLeave}
                     >
                         {mobile ? (
-                            <Link className="link" to="/">
+                            <Link
+                                className="link"
+                                to="/"
+                                onClick={() => {
+                                    window.localStorage.removeItem("category");
+                                    window.localStorage.removeItem("album");
+                                }}
+                            >
                                 Home
                             </Link>
                         ) : (
-                            <Link className="link" to="/">
+                            <Link
+                                className="link"
+                                to="/"
+                                onClick={() => {
+                                    window.localStorage.removeItem("category");
+                                    window.localStorage.removeItem("album");
+                                }}
+                            >
                                 Home
                             </Link>
                         )}
@@ -75,11 +89,25 @@ function Navbar() {
                         onMouseLeave={onMouseLeave}
                     >
                         {mobile ? (
-                            <Link className="link" to="/projects">
+                            <Link
+                                className="link"
+                                to="/projects"
+                                onClick={() => {
+                                    window.localStorage.removeItem("category");
+                                    window.localStorage.removeItem("album");
+                                }}
+                            >
                                 Projects
                             </Link>
                         ) : (
-                            <Link className="link" to="/projects">
+                            <Link
+                                className="link"
+                                to="/projects"
+                                onClick={() => {
+                                    window.localStorage.removeItem("category");
+                                    window.localStorage.removeItem("album");
+                                }}
+                            >
                                 Projects
                             </Link>
                         )}
@@ -109,11 +137,25 @@ function Navbar() {
                         onMouseLeave={onMouseLeave}
                     >
                         {mobile ? (
-                            <Link className="link" to="/games">
+                            <Link
+                                className="link"
+                                to="/games"
+                                onClick={() => {
+                                    window.localStorage.removeItem("category");
+                                    window.localStorage.removeItem("album");
+                                }}
+                            >
                                 Games
                             </Link>
                         ) : (
-                            <Link className="link" to="/games">
+                            <Link
+                                className="link"
+                                to="/games"
+                                onClick={() => {
+                                    window.localStorage.removeItem("category");
+                                    window.localStorage.removeItem("album");
+                                }}
+                            >
                                 Games
                             </Link>
                         )}

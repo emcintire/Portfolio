@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Photography.scss";
 import "../../Navbar";
 
 function Photography() {
+    const storeLocation = (id) => {
+        window.localStorage.removeItem("category");
+        window.localStorage.removeItem("album");
+        window.localStorage.setItem("category", id);
+    };
+
+    useEffect(() => {
+        if (window.localStorage.getItem("category")) {
+            document
+                .getElementById(window.localStorage.getItem("category"))
+                .scrollIntoView();
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, []);
+
     return (
         <>
             <div id="photography-container">
@@ -12,6 +28,7 @@ function Photography() {
                         <Link
                             className="category-link"
                             to="/photography/landscape"
+                            onClick={() => storeLocation("landscape")}
                         >
                             Landscape
                         </Link>
@@ -20,6 +37,7 @@ function Photography() {
                         <Link
                             className="category-link"
                             to="/photography/portraits"
+                            onClick={() => storeLocation("portraits")}
                         >
                             Portraits
                         </Link>
@@ -28,6 +46,7 @@ function Photography() {
                         <Link
                             className="category-link"
                             to="/photography/animals"
+                            onClick={() => storeLocation("animals")}
                         >
                             Animals
                         </Link>
@@ -36,6 +55,7 @@ function Photography() {
                         <Link
                             className="category-link"
                             to="/photography/miscellaneous"
+                            onClick={() => storeLocation("misc")}
                         >
                             Miscellaneous
                         </Link>

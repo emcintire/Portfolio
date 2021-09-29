@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Animals.css";
 import "../../../../Navbar";
 
 function Animals() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <>
             <div id="animals-container">
@@ -17,7 +21,6 @@ function Animals() {
                         src="https://i.imgur.com/lJU5X3rh.jpg"
                         alt="Elk in field"
                     />
-
                     <img src="https://imgur.com/hPs33zZh.jpg" alt="" />
                     <img
                         src="https://i.imgur.com/OUlKrXKh.jpg"

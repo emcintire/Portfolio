@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Portraits.css";
 import "../../../../Navbar";
 import { Link } from "react-router-dom";
 
 function Portraits() {
+    const storeLocation = (id) => {
+        window.localStorage.removeItem("album");
+        window.localStorage.setItem("album", id);
+    };
+
+    useEffect(() => {
+        if (window.localStorage.getItem("album")) {
+            if (
+                !document.getElementById(window.localStorage.getItem("album"))
+            ) {
+                window.localStorage.removeItem("album");
+                window.scrollTo(0, 0);
+            } else {
+                document
+                    .getElementById(window.localStorage.getItem("album"))
+                    .scrollIntoView();
+            }
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, []);
+
     return (
         <>
             <div id="portraits-container">
@@ -12,6 +34,7 @@ function Portraits() {
                         <Link
                             className="category-link"
                             to="/photography/portraits/teddy12m"
+                            onClick={() => storeLocation("teddy-12m")}
                         >
                             Teddy One Year
                             <br />
@@ -22,6 +45,7 @@ function Portraits() {
                         <Link
                             className="category-link"
                             to="/photography/portraits/teddy18m"
+                            onClick={() => storeLocation("teddy-18m")}
                         >
                             Teddy Year and a Half
                             <br />
@@ -32,6 +56,7 @@ function Portraits() {
                         <Link
                             className="category-link"
                             to="/photography/portraits/TrudyBeachMat"
+                            onClick={() => storeLocation("beach")}
                         >
                             Trudy Beach Maternity
                             <br />
@@ -42,6 +67,7 @@ function Portraits() {
                         <Link
                             className="category-link"
                             to="/photography/portraits/TrudySnowMat"
+                            onClick={() => storeLocation("snow")}
                         >
                             Trudy Snow Maternity
                             <br />
@@ -52,6 +78,7 @@ function Portraits() {
                         <Link
                             className="category-link"
                             to="/photography/portraits/rio3m"
+                            onClick={() => storeLocation("rio-3m")}
                         >
                             Rio Three Months
                             <br />
@@ -62,6 +89,7 @@ function Portraits() {
                         <Link
                             className="category-link"
                             to="/photography/portraits/rio8m"
+                            onClick={() => storeLocation("rio-8m")}
                         >
                             Rio Eight Months
                             <br />
@@ -72,6 +100,7 @@ function Portraits() {
                         <Link
                             className="category-link"
                             to="/photography/portraits/rio15m"
+                            onClick={() => storeLocation("rio-15m")}
                         >
                             Rio Fifteen Months
                             <br />
