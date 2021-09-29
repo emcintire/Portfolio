@@ -1,0 +1,131 @@
+#photography-container {
+    font-family: "Montserrat", sans-serif;
+    background-color: #e9c46a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#category-list {
+    z-index: 696;
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.category-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#photos {
+    padding-left: 130px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    line-height: 0;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 10px;
+    -moz-column-count: 3;
+    -moz-column-gap: 10px;
+    column-count: 3;
+    column-gap: 10px;
+    width: 100%;
+}
+
+#photos img {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100% !important;
+    height: auto !important;
+}
+
+@media (max-width: 1000px) {
+    #photos {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    #photos {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+}
+
+#landscape {
+    background-image: url("../../../images/landscape.JPG");
+}
+
+#portraits {
+    background-image: url("../../../images/portraits.JPG");
+}
+
+#animals {
+    background-image: url("../../../images/animals.png");
+}
+
+#misc {
+    background-image: url("../../../images/misc.jpeg");
+}
+
+.category-link:hover {
+    color: white;
+    transition-duration: 0.4s;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.category-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 80px;
+    font-size: 50px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    box-sizing: border-box;
+    position: relative;
+    padding: 0.75em;
+    &::before,
+    &::after {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transform-origin: center;
+    }
+
+    &::before {
+        border-top: 0.05em solid white;
+        border-bottom: 0.05em solid white;
+        transform: scale3d(0, 1, 1);
+    }
+
+    &::after {
+        border-left: 0.05em solid white;
+        border-right: 0.06em solid white;
+        transform: scale3d(1, 0, 1);
+    }
+
+    &:hover::before,
+    &:hover::after {
+        transform: scale3d(1, 1, 1);
+        transition: transform 900ms;
+    }
+}

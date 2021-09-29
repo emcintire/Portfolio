@@ -1,0 +1,44 @@
+#landscape-container {
+    background-color: #e9c46a;
+}
+
+.cat-year {
+    font-weight: 100;
+    font-size: 30px;
+}
+
+#alaska2018 {
+    background-image: url("../../../../../images/alaska2018.jpg");
+}
+
+#alaska2020 {
+    background-image: url("../../../../../images/alaska2020.jpg");
+}
+
+#malabar {
+    background-image: url("../../../../../images/malabar.jpg");
+}
+
+#mammoth {
+    background-image: url("../../../../../images/mammoth.jpg");
+}
+
+#roadtrip {
+    background-image: url("../../../../../images/roadtrip.jpg");
+}
+
+#summer {
+    background-image: url("../../../../../images/summer.jpg");
+}
+
+#tetons {
+    background-image: url("../../../../../images/tetons.jpg");
+}
+
+#yellowstone {
+    background-image: url("../../../../../images/yellowstone.png");
+}
+
+#yosemite {
+    background-image: url("../../../../../images/yosemite.jpg");
+}

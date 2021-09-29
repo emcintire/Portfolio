@@ -6,7 +6,7 @@
     height: 100vh;
     width: auto;
     background-color: black;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     position: fixed;
     left: 0;
@@ -28,7 +28,7 @@
     height: 100%;
     text-decoration: none;
     color: white;
-    opacity: 0.6;
+    opacity: 0.4;
     transition-duration: 0.4s;
 }
 
@@ -39,7 +39,7 @@
 .link:hover {
     color: white;
     opacity: 1;
-    font-size: 50px
+    font-size: 50px;
 }
 
 #home {
@@ -50,7 +50,7 @@
     background-color: #2a9d8f;
 }
 
-#pictures {
+#photography {
     background-color: #e9c46a;
 }
 

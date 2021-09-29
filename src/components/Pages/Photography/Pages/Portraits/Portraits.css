@@ -1,0 +1,31 @@
+#portraits-container {
+    background-color: #e9c46a;
+}
+
+#teddy-12m {
+    background-image: url("../../../../../images/ted1.JPG");
+}
+
+#teddy-18m {
+    background-image: url("../../../../../images/ted2.JPG");
+}
+
+#beach {
+    background-image: url("../../../../../images/beach.jpg");
+}
+
+#snow {
+    background-image: url("../../../../../images/snow.jpg");
+}
+
+#rio-3m {
+    background-image: url("../../../../../images/rio1.jpg");
+}
+
+#rio-8m {
+    background-image: url("../../../../../images/rio2.jpg");
+}
+
+#rio-15m {
+    background-image: url("../../../../../images/rio3.jpg");
+}
