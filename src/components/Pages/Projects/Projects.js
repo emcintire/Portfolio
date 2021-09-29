@@ -19,7 +19,7 @@ function Projects() {
     useEffect(() => {
         setTimeout(() => {
             resizeBg();
-        }, 5);
+        }, 15);
     });
 
     $(window).on("resize", resizeBg);
