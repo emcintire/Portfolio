@@ -21,7 +21,7 @@ function Projects() {
     useEffect(() => {
         setTimeout(() => {
             resizeBg();
-        }, 20);
+        }, 50);
     });
 
     $(window).on("resize", resizeBg);

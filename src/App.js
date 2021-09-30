@@ -2,6 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./components/Pages/Home/Home";
 import Projects from "./components/Pages/Projects/Projects";
 import Photography from "./components/Pages/Photography/Photography";
@@ -133,7 +134,7 @@ function App() {
                 />
                 <Route path="/games" exact component={Games} />
             </Switch>
-            {/* <Footer /> */}
+            <Footer />
         </Router>
     );
 }
