@@ -3,13 +3,15 @@ import "./Home.css";
 import "../../Navbar";
 import $ from "jquery";
 import { Image } from "react-bootstrap";
+import { useMediaQuery } from "react-responsive";
 import ParticlesBg from "particles-bg";
 import { AwesomeButton } from "react-awesome-button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../aws-btn.css";
 import emoji from "../../../images/emoji.png";
-import name from "../../../images/name.svg";
+import name from "../../../images/name2.svg";
+import mobile_name from "../../../images/mobile_name.svg";
 import profilePic from "../../../images/pp.jpg";
 import python from "../../../images/python.svg";
 import asp from "../../../images/asp.svg";
@@ -30,6 +32,8 @@ import resume from "../../../images/resume.pdf";
 function Home() {
     const [showContact, setShowContact] = useState(false);
 
+    const isMobile = useMediaQuery({ query: `(max-width: 600px)` });
+
     const clickContact = () => {
         if (!showContact) {
             navigator.clipboard.writeText("everettgmcintire@gmail.com");
@@ -47,13 +51,15 @@ function Home() {
 
     const resizeBg = () => {
         const height = $("#profile-container").height();
+        const width = $("#home-page").width();
         $("#profile-container .particles-bg-canvas-self").height(height);
+        $(".particles-bg-canvas-self").width(width);
     };
 
     useEffect(() => {
         setTimeout(() => {
             resizeBg();
-        }, 5);
+        }, 10);
     });
 
     $(window).on("resize", resizeBg);
@@ -62,9 +68,22 @@ function Home() {
         <div id="home-page">
             <div className="home-container">
                 <div id="name-container">
-                    <Image src={name} alt="Everett McIntire" id="name" />
+                    {isMobile ? (
+                        <Image
+                            src={mobile_name}
+                            alt="Everett McIntire"
+                            id="name"
+                        />
+                    ) : (
+                        <Image src={name} alt="Everett McIntire" id="name" />
+                    )}
                 </div>
-                <ParticlesBg type="cobweb" bg={false} color="#FFFFFF" />
+                <ParticlesBg
+                    type="cobweb"
+                    num={50}
+                    bg={false}
+                    color="#ffffff"
+                />
             </div>
             <div className="home-container" id="profile-container">
                 <div id="bio-container">
@@ -81,33 +100,35 @@ function Home() {
                                 passion for full stack development.
                                 <br />
                                 <br />I spend my time watching Nicolas Cage
-                                movies, taking pictures of nature, and playing
-                                in my Guitar Hero band, "Gnome Saying."
+                                movies, taking pictures of stuff, and playing in
+                                my Guitar Hero band, "Gnome Saying."
                             </p>
                             <div id="bio-btns">
-                                <a
-                                    href={resume}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    download="EverettMcIntire"
-                                >
-                                    <Image
-                                        src={resumeLogo}
-                                        alt="resume logo"
-                                        className="logos"
-                                    />
-                                </a>
-                                <a
-                                    href="https://www.linkedin.com/in/everettgsm"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <Image
-                                        src={linkedin}
-                                        alt="linkedin logo"
-                                        className="logos"
-                                    />
-                                </a>
+                                <div className="resume-btns">
+                                    <a
+                                        href={resume}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        download="EverettMcIntire"
+                                    >
+                                        <Image
+                                            src={resumeLogo}
+                                            alt="resume logo"
+                                            className="logos"
+                                        />
+                                    </a>
+                                    <a
+                                        href="https://www.linkedin.com/in/everettgsm"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <Image
+                                            src={linkedin}
+                                            alt="linkedin logo"
+                                            className="logos"
+                                        />
+                                    </a>
+                                </div>
                                 {showContact ? (
                                     <div id="contact-info">
                                         <AwesomeButton
@@ -188,8 +209,9 @@ function Home() {
                 </div>
                 <ParticlesBg
                     type="cobweb"
+                    num={50}
                     bg={false}
-                    color="#FFFFFF"
+                    color="#ffffff"
                     id="particles"
                 />
                 <ToastContainer theme="dark" />

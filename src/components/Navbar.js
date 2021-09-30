@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
-import "./Navbar.css";
 import { IconContext } from "react-icons/lib";
+import { useMediaQuery } from "react-responsive";
+import "material-icons/iconfont/round.css";
+import "./Navbar.css";
 import $ from "jquery";
+import Burger from "./Burger.js";
 
 function Navbar() {
-    // eslint-disable-next-line
-    const [mobile, setMobile] = useState(true);
-    const [styles, setStyles] = useState({});
-
-    const onMouseEnter = () => {
-        setStyles({
-            width: "400px",
-        });
-    };
-
-    const onMouseLeave = () => {
-        setStyles({});
-    };
+    const isMobile = useMediaQuery({ query: `(max-width: 600px)` });
+    const navStyles = { transform: "translateX(0)" };
+    const [open, setOpen] = useState(false);
 
     let location = useLocation();
 
@@ -49,116 +42,71 @@ function Navbar() {
     return (
         <>
             <IconContext.Provider value={{ color: "white" }}>
-                <ul className={"navbar-nav"} id={"nav"}>
-                    <li
-                        className="nav-item menu-item"
-                        id="home"
-                        style={styles}
-                        onMouseEnter={onMouseEnter}
-                        onMouseLeave={onMouseLeave}
-                    >
-                        {mobile ? (
-                            <Link
-                                className="link"
-                                to="/"
-                                onClick={() => {
-                                    window.localStorage.removeItem("category");
-                                    window.localStorage.removeItem("album");
-                                }}
+                {isMobile ? <Burger open={open} setOpen={setOpen} /> : null}
+                <ul
+                    className={"navbar-nav"}
+                    id={"nav"}
+                    style={open ? navStyles : null}
+                >
+                    <li className="nav-item menu-item" id="home" title="Home">
+                        <Link
+                            className="link"
+                            to="/"
+                            onClick={() => {
+                                setOpen(!open);
+                                window.localStorage.removeItem("category");
+                                window.localStorage.removeItem("album");
+                            }}
+                        >
+                            <i
+                                className="material-icons-round nav-icons"
+                                aria-hidden="true"
                             >
-                                Home
-                            </Link>
-                        ) : (
-                            <Link
-                                className="link"
-                                to="/"
-                                onClick={() => {
-                                    window.localStorage.removeItem("category");
-                                    window.localStorage.removeItem("album");
-                                }}
-                            >
-                                Home
-                            </Link>
-                        )}
+                                home
+                            </i>
+                        </Link>
                     </li>
                     <li
                         className="nav-item menu-item"
                         id="projects"
-                        style={styles}
-                        onMouseEnter={onMouseEnter}
-                        onMouseLeave={onMouseLeave}
+                        title="Projects"
                     >
-                        {mobile ? (
-                            <Link
-                                className="link"
-                                to="/projects"
-                                onClick={() => {
-                                    window.localStorage.removeItem("category");
-                                    window.localStorage.removeItem("album");
-                                }}
+                        <Link
+                            className="link"
+                            to="/projects"
+                            onClick={() => {
+                                setOpen(!open);
+                                window.localStorage.removeItem("category");
+                                window.localStorage.removeItem("album");
+                            }}
+                        >
+                            <i
+                                className="material-icons-round nav-icons"
+                                aria-hidden="true"
                             >
-                                Projects
-                            </Link>
-                        ) : (
-                            <Link
-                                className="link"
-                                to="/projects"
-                                onClick={() => {
-                                    window.localStorage.removeItem("category");
-                                    window.localStorage.removeItem("album");
-                                }}
-                            >
-                                Projects
-                            </Link>
-                        )}
+                                code
+                            </i>
+                        </Link>
                     </li>
                     <li
                         className="nav-item menu-item"
                         id="photography"
-                        style={styles}
-                        onMouseEnter={onMouseEnter}
-                        onMouseLeave={onMouseLeave}
+                        title="Photography Portfolio"
                     >
-                        {mobile ? (
-                            <Link className="link" to="/photography">
-                                Photos
-                            </Link>
-                        ) : (
-                            <Link className="link" to="/photography">
-                                Photos
-                            </Link>
-                        )}
-                    </li>
-                    <li
-                        className="nav-item menu-item"
-                        id="games"
-                        style={styles}
-                        onMouseEnter={onMouseEnter}
-                        onMouseLeave={onMouseLeave}
-                    >
-                        {mobile ? (
-                            <Link
-                                className="link"
-                                to="/games"
-                                onClick={() => {
-                                    window.localStorage.removeItem("category");
-                                    window.localStorage.removeItem("album");
-                                }}
+                        <Link
+                            className="link"
+                            to="/photography"
+                            onClick={() => {
+                                setOpen(!open);
+                            }}
+                        >
+                            <i
+                                className="material-icons-round nav-icons"
+                                aria-hidden="true"
                             >
-                                Games
-                            </Link>
-                        ) : (
-                            <Link
-                                className="link"
-                                to="/games"
-                                onClick={() => {
-                                    window.localStorage.removeItem("category");
-                                    window.localStorage.removeItem("album");
-                                }}
-                            >
-                                Games
-                            </Link>
-                        )}
+                                photo_library
+                            </i>
+                        </Link>
                     </li>
                 </ul>
             </IconContext.Provider>

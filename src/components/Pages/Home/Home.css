@@ -1,10 +1,11 @@
 #home-page {
     font-family: "Montserrat", sans-serif;
-    width: 100%;
+    width: calc(100% - 90px);
+    margin-left: 90px;
 }
 
 .home-container {
-    background-color: #264653;
+    background-color: #282f41;
     height: 110vh;
     width: 100%;
     display: flex;
@@ -13,35 +14,25 @@
 }
 
 #name-container {
-    width: calc(100% - 120px);
+    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
     z-index: 696;
-    margin-left: 120px;
 }
 
 #name {
     width: 60%;
+    margin-bottom: 10vh;
     background-color: transparent;
-}
-
-#contact-info {
-    font-weight: 500;
-    color: #e9c46a;
-}
-
-#bio-container {
-    padding-left: 200px;
 }
 
 #bio-card {
     width: 400px;
     z-index: 696;
-    background-color: #264653;
-    border-color: white;
+    background-color: #282f41;
+    border-color: #63c299;
 }
 
 #bio-body {
@@ -71,7 +62,7 @@
 }
 
 #skills-header {
-    color: #e9c46a;
+    color: #63c299;
     padding-bottom: 10px;
 }
 
@@ -110,6 +101,7 @@
 .logos {
     height: 40px;
     width: auto;
+    margin: 5px;
 }
 
 #bio-btns {
@@ -117,6 +109,17 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.resume-btns {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+}
+
+.aws-btn {
+    flex: 1 !important;
 }
 
 /* 
@@ -153,8 +156,11 @@
 
     #skills-container {
         margin-top: 60px;
-        padding-left: 60px;
         padding-bottom: 30px;
+    }
+
+    #skills-list {
+        padding: 0;
     }
 
     #bio-card {
@@ -165,8 +171,74 @@
     #bio {
         font-size: 18px;
     }
+}
+
+@media (max-width: 600px) {
+    #home-page {
+        width: 100%;
+        margin: 0;
+    }
 
     #bio-container {
-        padding-left: 100px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #bio-card {
+        width: 90%;
+        padding: 0;
+    }
+
+    #bio {
+        font-size: 14px;
+    }
+
+    #skills-container {
+        width: 100%;
+    }
+
+    #skills-list {
+        columns: 1;
+        -webkit-columns: 1;
+        -moz-columns: 1;
+    }
+
+    #skills-header {
+        font-size: 50px;
+    }
+
+    .skill-label {
+        font-size: 20px;
+    }
+
+    .skill-container {
+        padding: 15px 0 15px 0px;
+    }
+
+    .skill-icon {
+        height: 55px;
+    }
+
+    .resume-btns {
+        margin-top: auto;
+    }
+
+    #contact-info {
+        margin-top: 15px;
+    }
+
+    .aws-btn {
+        max-width: 220px !important;
+    }
+
+    .aws-btn__wrapper {
+        font-size: 14px !important;
+    }
+
+    .Toastify__toast-container {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        flex-direction: column !important;
     }
 }

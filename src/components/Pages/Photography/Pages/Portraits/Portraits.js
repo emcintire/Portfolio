@@ -47,7 +47,8 @@ function Portraits() {
                             to="/photography/portraits/teddy18m"
                             onClick={() => storeLocation("teddy-18m")}
                         >
-                            Teddy Year and a Half
+                            Teddy Year <br />
+                            and a Half
                             <br />
                             <span className="cat-year">2018</span>
                         </Link>
@@ -58,7 +59,7 @@ function Portraits() {
                             to="/photography/portraits/TrudyBeachMat"
                             onClick={() => storeLocation("beach")}
                         >
-                            Trudy Beach Maternity
+                            Trudy Beach <br /> Maternity
                             <br />
                             <span className="cat-year">2019</span>
                         </Link>
@@ -69,7 +70,7 @@ function Portraits() {
                             to="/photography/portraits/TrudySnowMat"
                             onClick={() => storeLocation("snow")}
                         >
-                            Trudy Snow Maternity
+                            Trudy Snow <br /> Maternity
                             <br />
                             <span className="cat-year">2019</span>
                         </Link>
@@ -80,7 +81,7 @@ function Portraits() {
                             to="/photography/portraits/rio3m"
                             onClick={() => storeLocation("rio-3m")}
                         >
-                            Rio Three Months
+                            Rio Three <br /> Months
                             <br />
                             <span className="cat-year">2019</span>
                         </Link>
@@ -91,7 +92,7 @@ function Portraits() {
                             to="/photography/portraits/rio8m"
                             onClick={() => storeLocation("rio-8m")}
                         >
-                            Rio Eight Months
+                            Rio Eight <br /> Months
                             <br />
                             <span className="cat-year">2019</span>
                         </Link>
@@ -102,7 +103,8 @@ function Portraits() {
                             to="/photography/portraits/rio15m"
                             onClick={() => storeLocation("rio-15m")}
                         >
-                            Rio Fifteen Months
+                            Rio Fifteen
+                            <br /> Months
                             <br />
                             <span className="cat-year">2020</span>
                         </Link>

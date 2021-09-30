@@ -57,7 +57,7 @@ function Photography() {
                             to="/photography/miscellaneous"
                             onClick={() => storeLocation("misc")}
                         >
-                            Miscellaneous
+                            Misc
                         </Link>
                     </div>
                 </ul>

@@ -4,8 +4,8 @@ import { Image } from "react-bootstrap";
 import $ from "jquery";
 import "./Projects.css";
 import roomeo from "../../../images/roomeo.svg";
-import github from "../../../images/github.svg";
-import eye from "../../../images/eye.svg";
+import github from "../../../images/github2.svg";
+import eye from "../../../images/eye2.svg";
 import flappy_frank from "../../../images/flappy_frank.png";
 import slackr from "../../../images/slackr.png";
 import unCaged from "../../../images/unCaged.jpg";
@@ -13,13 +13,15 @@ import unCaged from "../../../images/unCaged.jpg";
 function Projects() {
     const resizeBg = () => {
         const height = $("#projects-page").height();
+        const width = $("#projects-page").width();
         $("#projects-page .particles-bg-canvas-self").height(height);
+        $("#projects-page .particles-bg-canvas-self").width(width);
     };
 
     useEffect(() => {
         setTimeout(() => {
             resizeBg();
-        }, 15);
+        }, 20);
     });
 
     $(window).on("resize", resizeBg);
@@ -208,10 +210,11 @@ function Projects() {
                         </div>
                     </ul>
                     <ParticlesBg
-                        type="square"
+                        type="cobweb"
                         bg={false}
-                        color="#FFFFFF"
+                        color="#ffffff"
                         id="particles"
+                        num={200}
                     />
                 </div>
             </div>
