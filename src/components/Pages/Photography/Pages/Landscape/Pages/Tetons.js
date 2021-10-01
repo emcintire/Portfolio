@@ -1,9 +1,12 @@
 import React from "react";
+import BackArrow from "../../../../../Buttons/BackArrow";
 
 function Tetons() {
     return (
         <>
-            <div id="tetons-container">
+            <div id="landscape-container">
+                <BackArrow />
+                <h1 className="photos-header">Grand Tetons</h1>
                 <section id="photos">
                     <img src="https://imgur.com/CBNzG0mh.jpg" alt="" />
                     <img src="https://imgur.com/oJalWGRh.jpg" alt="" />

@@ -1,9 +1,12 @@
 import React from "react";
+import BackArrow from "../../../../../Buttons/BackArrow";
 
 function Summer2017() {
     return (
         <>
-            <div id="summer2017-container">
+            <div id="landscape-container">
+                <BackArrow />
+                <h1 className="photos-header">Summer 2017</h1>
                 <section id="photos">
                     <img
                         src="https://i.imgur.com/2nvi3DRh.jpg"

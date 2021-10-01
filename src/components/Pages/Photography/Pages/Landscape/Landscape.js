@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import "./Landscape.css";
-import "../../../../Navbar";
 import { Link } from "react-router-dom";
+import "./Landscape.css";
 
 function Landscape() {
     const storeLocation = (id) => {

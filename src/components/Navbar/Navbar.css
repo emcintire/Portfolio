@@ -1,0 +1,128 @@
+#nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+    position: absolute;
+    right: 2rem;
+    top: 85px;
+    z-index: 6969;
+    padding: 0;
+}
+
+#home {
+    transform: translateY(-250%);
+    transition-duration: 0.7s;
+}
+
+#projects {
+    transform: translateX(-150vw);
+    transition-duration: 0.7s;
+}
+
+#photography {
+    transform: translate(200%, 200vh);
+    transition-duration: 0.7s;
+}
+
+#nav.open #home {
+    transform: translate(0);
+    transition-duration: 0.7s;
+}
+#nav.open #projects {
+    transform: translate(0);
+    transition-duration: 0.7s;
+}
+#nav.open #photography {
+    transform: translate(0);
+    transition-duration: 0.7s;
+}
+
+.nav-icons {
+    font-size: 50px;
+}
+
+.menu-item {
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background: var(--dark);
+    border-radius: 50%;
+    color: rgb(122, 122, 122);
+    transition: 0.5s;
+}
+
+.link:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background: var(--light);
+    transition: 0.5s;
+    transform: scale(0.9);
+    z-index: -1;
+}
+
+.link:hover:before {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px var(--light);
+    filter: blur(3px);
+}
+
+.link:hover {
+    color: var(--light);
+    box-shadow: 0 0 25px var(--light);
+    text-shadow: 0 0 25px var(--light);
+}
+
+.active .link {
+    color: var(--light);
+    box-shadow: 0 0 25px var(--light);
+    text-shadow: 0 0 25px var(--light);
+}
+
+.menu-btn {
+    position: absolute;
+    right: 0;
+    z-index: 696969;
+}
+
+.link-label {
+    font-weight: 700;
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    .link {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+    }
+
+    .menu-item {
+        height: auto;
+        width: auto;
+    }
+
+    .nav-icons {
+        font-size: 50px;
+    }
+}

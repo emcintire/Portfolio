@@ -1,10 +1,42 @@
+:root {
+    --light: #7fe0b5;
+
+    --darkerLight: #42675b;
+
+    --dark: #282f41;
+
+    --text: #ffffff;
+}
+
 .App {
     text-align: center;
+}
+
+body {
+    overflow-x: hidden;
 }
 
 .App-logo {
     height: 40vmin;
     pointer-events: none;
+}
+
+#cover {
+    display: flex;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    transition: background-color 0.5s linear;
+    transition-duration: 0.5s;
+    z-index: -1;
+}
+
+#cover.covering {
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: background-color 0.5s linear;
+    transition-duration: 0.5s;
+    z-index: 6968;
 }
 
 @media (prefers-reduced-motion: no-preference) {

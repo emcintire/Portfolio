@@ -1,9 +1,12 @@
 import React from "react";
+import BackArrow from "../../../../../Buttons/BackArrow";
 
 function Yellowstone() {
     return (
         <>
-            <div id="yellowstone-container">
+            <div id="landscape-container">
+                <BackArrow />
+                <h1 className="photos-header">Yellowstone</h1>
                 <section id="photos">
                     <img src="https://imgur.com/gK7Se9vh.jpg" alt="" />
                     <img src="https://imgur.com/AvfHwJyh.jpg" alt="" />

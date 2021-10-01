@@ -1,9 +1,12 @@
 import React from "react";
+import BackArrow from "../../../../../Buttons/BackArrow";
 
 function Alaska2020() {
     return (
         <>
-            <div id="alaska2020-container">
+            <div id="landscape-container">
+                <BackArrow />
+                <h1 className="photos-header">Alaska 2020</h1>
                 <section id="photos">
                     <img src="https://imgur.com/iTVZnoZh.jpg" alt="" />
                     <img src="https://imgur.com/oKa75pHh.jpg" alt="" />

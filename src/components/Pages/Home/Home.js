@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import "../../Navbar";
 import $ from "jquery";
 import { Image } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
@@ -8,7 +7,7 @@ import ParticlesBg from "particles-bg";
 import { AwesomeButton } from "react-awesome-button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../../aws-btn.css";
+import "../../Buttons/aws-btn.css";
 import emoji from "../../../images/emoji.png";
 import name from "../../../images/name2.svg";
 import mobile_name from "../../../images/mobile_name.svg";

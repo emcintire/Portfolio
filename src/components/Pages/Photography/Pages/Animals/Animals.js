@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./Animals.css";
-import "../../../../Navbar";
 
 function Animals() {
     useEffect(() => {

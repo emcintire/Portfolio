@@ -1,5 +1,5 @@
 #portraits-container {
-    background-color: #282f41;
+    background-color: var(--dark);
 }
 
 #teddy-12m {

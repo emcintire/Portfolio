@@ -1,15 +1,15 @@
 #home-page {
     font-family: "Montserrat", sans-serif;
-    width: calc(100% - 90px);
-    margin-left: 90px;
+    width: 100%;
+    margin: 0;
 }
 
 .home-container {
-    background-color: #282f41;
+    background-color: var(--dark);
     height: 110vh;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -31,8 +31,8 @@
 #bio-card {
     width: 400px;
     z-index: 696;
-    background-color: #282f41;
-    border-color: #63c299;
+    background-color: var(--dark);
+    border-color: white;
 }
 
 #bio-body {
@@ -43,7 +43,7 @@
 
 #bio {
     font-size: 16px;
-    color: white;
+    color: var(--text);
 }
 
 #skills-container {
@@ -62,7 +62,7 @@
 }
 
 #skills-header {
-    color: #63c299;
+    color: var(--light);
     padding-bottom: 10px;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .skill-label {
-    color: white;
+    color: var(--text);
     padding-left: 20px;
 }
 
@@ -94,6 +94,7 @@
 }
 
 .header {
+    color: var(--text);
     font-weight: 800;
     font-size: 60px;
 }
@@ -122,19 +123,13 @@
     flex: 1 !important;
 }
 
-/* 
-::-webkit-scrollbar {
-    width: 8px;
+.Toastify {
+    z-index: 6969696969;
 }
 
-::-webkit-scrollbar-track {
-    background: black;
+.Toastify__progress-bar {
+    background: var(--light) !important;
 }
-
-::-webkit-scrollbar-thumb {
-    background: #e9c46a;
-    border-radius: 25px;
-} */
 
 @media (max-width: 1200px) {
     #profile-container {

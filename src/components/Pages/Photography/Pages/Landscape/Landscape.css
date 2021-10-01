@@ -1,5 +1,5 @@
 #landscape-container {
-    background-color: #282f41;
+    background-color: var(--dark);
 }
 
 .cat-year {

@@ -1,10 +1,12 @@
 #photography-container {
     font-family: "Montserrat", sans-serif;
-    background-color: #282f41;
+    background-color: var(--dark);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 #category-list {
@@ -13,7 +15,8 @@
     -webkit-columns: 1;
     -moz-columns: 1;
     width: 100%;
-    margin-bottom: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .category-container {
@@ -26,8 +29,18 @@
     background-size: cover;
 }
 
+.photos-header {
+    color: var(--text);
+    font-weight: 800;
+    font-size: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #photos {
-    padding-left: 100px;
+    padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -46,6 +59,16 @@
     padding-bottom: 5px;
     width: 100% !important;
     height: auto !important;
+}
+
+.back-arrow {
+    color: white;
+    transition-duration: 0.3s;
+}
+
+.back-arrow:hover {
+    transition-duration: 0.3s;
+    color: rgb(170, 170, 170);
 }
 
 @media (max-width: 1000px) {
@@ -73,7 +96,7 @@
 }
 
 .category-link:hover {
-    color: white;
+    color: var(--text);
     transition-duration: 0.4s;
     background-color: rgba(0, 0, 0, 0.6);
 }
@@ -83,10 +106,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 80px;
     font-size: 50px;
     font-weight: 700;
-    color: white;
+    color: var(--text);
     text-decoration: none;
     box-sizing: border-box;
     position: relative;
@@ -141,5 +163,11 @@
 
     #photos {
         padding-left: 10px;
+    }
+
+    .photos-header {
+        height: 2em;
+        font-size: 30px;
+        padding-top: 20px;
     }
 }

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./Miscellaneous.css";
-import "../../../../Navbar";
 
 function Miscellaneous() {
     useEffect(() => {

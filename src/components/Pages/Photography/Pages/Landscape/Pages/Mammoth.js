@@ -1,9 +1,12 @@
 import React from "react";
+import BackArrow from "../../../../../Buttons/BackArrow";
 
 function Mammoth() {
     return (
         <>
-            <div id="mammoth-container">
+            <div id="landscape-container">
+                <BackArrow />
+                <h1 className="photos-header">Mammoth</h1>
                 <section id="photos">
                     <img src="https://imgur.com/1utq2yqh.jpg" alt="" />
                     <img src="https://imgur.com/T7MjBdsh.jpg" alt="" />

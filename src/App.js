@@ -1,8 +1,8 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import Home from "./components/Pages/Home/Home";
 import Projects from "./components/Pages/Projects/Projects";
 import Photography from "./components/Pages/Photography/Photography";
@@ -32,6 +32,8 @@ function App() {
     return (
         <Router>
             <Navbar />
+            <div id="cover"></div>
+
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/projects" exact component={Projects} />

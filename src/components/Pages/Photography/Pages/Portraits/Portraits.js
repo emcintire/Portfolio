@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./Portraits.css";
-import "../../../../Navbar";
 import { Link } from "react-router-dom";
 
 function Portraits() {
