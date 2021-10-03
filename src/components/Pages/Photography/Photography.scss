@@ -1,5 +1,5 @@
 #photography-container {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: var(--dark);
     display: flex;
     justify-content: center;
@@ -30,6 +30,7 @@
 }
 
 .photos-header {
+    padding-top: 10px;
     color: var(--text);
     font-weight: 800;
     font-size: 60px;
@@ -64,6 +65,7 @@
 .back-arrow {
     color: white;
     transition-duration: 0.3s;
+    font-size: 28px;
 }
 
 .back-arrow:hover {
@@ -80,19 +82,19 @@
 }
 
 #landscape {
-    background-image: url("../../../images/landscape.jpg");
+    background-image: url('../../../images/landscape.jpg');
 }
 
 #portraits {
-    background-image: url("../../../images/portraits.JPG");
+    background-image: url('../../../images/portraits.JPG');
 }
 
 #animals {
-    background-image: url("../../../images/animals.png");
+    background-image: url('../../../images/animals.png');
 }
 
 #misc {
-    background-image: url("../../../images/misc.jpeg");
+    background-image: url('../../../images/misc.jpeg');
 }
 
 .category-link:hover {
@@ -102,20 +104,23 @@
 }
 
 .category-link {
+    text-transform: uppercase;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 50px;
-    font-weight: 700;
+    font-weight: 900;
     color: var(--text);
     text-decoration: none;
     box-sizing: border-box;
     position: relative;
     padding: 0.75em;
+    transition-duration: 900ms;
     &::before,
     &::after {
-        content: "";
+        content: '';
         box-sizing: border-box;
         position: absolute;
         top: 0;
@@ -123,18 +128,21 @@
         height: 100%;
         width: 100%;
         transform-origin: center;
+        transition-duration: 900ms;
     }
 
     &::before {
-        border-top: 0.05em solid white;
-        border-bottom: 0.05em solid white;
+        border-top: 0.1em solid white;
+        border-bottom: 0.1em solid white;
         transform: scale3d(0, 1, 1);
+        transition-duration: 900ms;
     }
 
     &::after {
-        border-left: 0.05em solid white;
-        border-right: 0.06em solid white;
+        border-left: 0.1em solid white;
+        border-right: 0.1em solid white;
         transform: scale3d(1, 0, 1);
+        transition-duration: 900ms;
     }
 
     &:hover::before,
@@ -166,8 +174,11 @@
     }
 
     .photos-header {
-        height: 2em;
         font-size: 30px;
-        padding-top: 20px;
+        padding-top: 25px;
+    }
+
+    #portraits-container .photos-header {
+        font-size: 26px;
     }
 }

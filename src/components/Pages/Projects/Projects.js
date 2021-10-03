@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
-import ParticlesBg from "particles-bg";
-import { Image } from "react-bootstrap";
-import $ from "jquery";
-import "./Projects.css";
-import roomeo from "../../../images/roomeo.svg";
-import github from "../../../images/github2.svg";
-import eye from "../../../images/eye2.svg";
-import flappy_frank from "../../../images/flappy_frank.png";
-import slackr from "../../../images/slackr.png";
-import unCaged from "../../../images/unCaged.jpg";
+import React, { useEffect } from 'react';
+import ParticlesBg from 'particles-bg';
+import { Image } from 'react-bootstrap';
+import $ from 'jquery';
+import './Projects.css';
+import roomeo from '../../../images/roomeo.svg';
+import github from '../../../images/github.svg';
+import eye from '../../../images/eye.svg';
+import flappy_frank from '../../../images/flappy_frank.png';
+import slackr from '../../../images/slackr.png';
+import unCaged from '../../../images/unCaged.jpg';
 
 function Projects() {
     const resizeBg = () => {
-        const height = $("#projects-page").height();
-        const width = $("#projects-page").width();
-        $("#projects-page .particles-bg-canvas-self").height(height);
-        $("#projects-page .particles-bg-canvas-self").width(width);
+        const height = $('#projects-page').height();
+        const width = $('#projects-page').width();
+        $('#projects-page .particles-bg-canvas-self').height(height);
+        $('#projects-page .particles-bg-canvas-self').width(width);
     };
 
     useEffect(() => {
@@ -25,7 +25,7 @@ function Projects() {
         }, 100);
     }, []);
 
-    $(window).on("resize", resizeBg);
+    $(window).on('resize', resizeBg);
 
     return (
         <>
@@ -37,7 +37,7 @@ function Projects() {
                     <ul id="projects-list">
                         <div id="uncaged-card" className="card project-cards">
                             <Image src={unCaged} className="card-img-top" />
-                            <div className="card-body" id="">
+                            <div className="card-body">
                                 <h3 className="card-title project-title">
                                     unCaged
                                 </h3>
@@ -56,6 +56,7 @@ function Projects() {
                                         <Image
                                             src={github}
                                             alt="github logo"
+                                            title="Source code"
                                             className="logos"
                                         />
                                     </a>
@@ -67,6 +68,7 @@ function Projects() {
                                         <Image
                                             src={eye}
                                             alt="eye icon"
+                                            title="Demo"
                                             className="logos"
                                             id="eye-btn"
                                         />
@@ -76,7 +78,7 @@ function Projects() {
                         </div>
                         <div id="roomeo-card" className="card project-cards">
                             <Image src={roomeo} className="card-img-top" />
-                            <div className="card-body" id="">
+                            <div className="card-body">
                                 <h3 className="card-title project-title">
                                     Roomeo
                                 </h3>
@@ -101,6 +103,7 @@ function Projects() {
                                         <Image
                                             src={github}
                                             alt="github logo"
+                                            title="Source code"
                                             className="logos"
                                         />
                                     </a>
@@ -112,6 +115,7 @@ function Projects() {
                                         <Image
                                             src={eye}
                                             alt="eye icon"
+                                            title="Demo"
                                             className="logos"
                                             id="eye-btn"
                                         />
@@ -121,7 +125,7 @@ function Projects() {
                         </div>
                         <div id="slackr-card" className="card project-cards">
                             <Image src={slackr} className="card-img-top" />
-                            <div className="card-body" id="">
+                            <div className="card-body">
                                 <h3 className="card-title project-title">
                                     Slackr Messaging App
                                 </h3>
@@ -145,6 +149,7 @@ function Projects() {
                                         <Image
                                             src={github}
                                             alt="github logo"
+                                            title="Source code"
                                             className="logos"
                                         />
                                     </a>
@@ -156,6 +161,7 @@ function Projects() {
                                         <Image
                                             src={eye}
                                             alt="eye icon"
+                                            title="Demo"
                                             className="logos"
                                             id="eye-btn"
                                         />
@@ -168,7 +174,7 @@ function Projects() {
                                 src={flappy_frank}
                                 className="card-img-top"
                             />
-                            <div className="card-body" id="">
+                            <div className="card-body">
                                 <h3 className="card-title project-title">
                                     Flappy Frank
                                 </h3>
@@ -191,6 +197,7 @@ function Projects() {
                                         <Image
                                             src={github}
                                             alt="github logo"
+                                            title="Source code"
                                             className="logos"
                                         />
                                     </a>
@@ -202,6 +209,7 @@ function Projects() {
                                         <Image
                                             src={eye}
                                             alt="eye icon"
+                                            title="Demo"
                                             className="logos"
                                             id="eye-btn"
                                         />
@@ -215,7 +223,6 @@ function Projects() {
                         bg={false}
                         color="#ffffff"
                         id="particles"
-                        num={200}
                     />
                 </div>
             </div>

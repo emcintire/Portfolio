@@ -33,7 +33,7 @@ body {
 }
 
 #cover.covering {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
     transition: background-color 0.5s linear;
     transition-duration: 0.5s;
     z-index: 6968;

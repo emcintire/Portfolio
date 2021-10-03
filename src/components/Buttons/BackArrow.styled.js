@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BackArrowStyled = styled.button`
     position: absolute;
@@ -10,7 +10,7 @@ export const BackArrowStyled = styled.button`
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 696969;
+    z-index: 69;
 
     @media (max-width: 600px) {
         top: 1.8rem;

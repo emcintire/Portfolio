@@ -6,36 +6,15 @@
     height: auto;
     width: auto;
     position: absolute;
-    right: 2rem;
-    top: 85px;
+    right: 3rem;
     z-index: 6969;
     padding: 0;
+    transform: translateY(-200%);
+    transition-duration: 0.7s;
+    height: 100vh;
 }
 
-#home {
-    transform: translateY(-250%);
-    transition-duration: 0.7s;
-}
-
-#projects {
-    transform: translateX(-150vw);
-    transition-duration: 0.7s;
-}
-
-#photography {
-    transform: translate(200%, 200vh);
-    transition-duration: 0.7s;
-}
-
-#nav.open #home {
-    transform: translate(0);
-    transition-duration: 0.7s;
-}
-#nav.open #projects {
-    transform: translate(0);
-    transition-duration: 0.7s;
-}
-#nav.open #photography {
+#nav.open {
     transform: translate(0);
     transition-duration: 0.7s;
 }
@@ -50,7 +29,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .link {
@@ -70,7 +50,7 @@
 }
 
 .link:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;

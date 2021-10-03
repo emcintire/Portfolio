@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
+import BackArrow from '../../../../../Buttons/BackArrow';
 
 function TrudySnowMat() {
     useEffect(() => {
@@ -7,7 +8,10 @@ function TrudySnowMat() {
 
     return (
         <>
-            <div id="TrudySnowMat-container">
+            <div id="portraits-container">
+                <BackArrow />
+                <h1 className="photos-header">Snow Maternity</h1>
+
                 <section id="photos">
                     <img
                         src="https://i.imgur.com/GXljzuEh.jpg"

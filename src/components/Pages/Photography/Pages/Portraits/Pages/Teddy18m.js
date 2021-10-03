@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
+import BackArrow from '../../../../../Buttons/BackArrow';
 
 function Teddy18m() {
     useEffect(() => {
@@ -7,7 +8,10 @@ function Teddy18m() {
 
     return (
         <>
-            <div id="Teddy18m-container">
+            <div id="portraits-container">
+                <BackArrow />
+                <h1 className="photos-header">Teddy 18 months</h1>
+
                 <section id="photos">
                     <img
                         src="https://i.imgur.com/GTHUQ2Fh.jpg"
