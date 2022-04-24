@@ -8,7 +8,7 @@ import github from '../../../images/github.svg';
 import eye from '../../../images/eye.svg';
 import flappy_frank from '../../../images/flappy_frank.png';
 import slackr from '../../../images/slackr.png';
-import unCaged from '../../../images/unCaged.jpg';
+import unCaged from '../../../images/unCaged.png';
 
 function Projects() {
     const resizeBg = () => {
@@ -42,14 +42,13 @@ function Projects() {
                                     unCaged
                                 </h3>
                                 <p className="card-text project-desc">
-                                    - My current side project is crafting a
-                                    Nicolas Cage movie suggesting app <br />
-                                    - Engineering the frontend with React native
-                                    and the backend with Node.js <br />
+                                    - A Nicolas Cage movie suggesting app I made that is
+                                    available on both the iOS and Google Play stores.<br />
+                                    - Created with React Native, Node.js, and MongoDB, and hosted on Heroku.<br />
                                 </p>
                                 <div id="card-btns">
                                     <a
-                                        href="https://github.com/emcintire/"
+                                        href="https://github.com/emcintire/unCaged"
                                         target="_blank"
                                         rel="noreferrer"
                                     >
@@ -61,7 +60,7 @@ function Projects() {
                                         />
                                     </a>
                                     <a
-                                        href="https://youtu.be/NFsc-Adl50w"
+                                        href="https://apps.apple.com/us/app/uncaged/id1593978532"
                                         target="_blank"
                                         rel="noreferrer"
                                     >
