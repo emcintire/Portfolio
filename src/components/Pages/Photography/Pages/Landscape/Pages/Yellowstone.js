@@ -3,7 +3,7 @@ import BackArrow from "../../../../../Buttons/BackArrow";
 
 function Yellowstone() {
     return (
-        <>
+        <> 
             <div id="landscape-container">
                 <BackArrow />
                 <h1 className="photos-header">Yellowstone</h1>

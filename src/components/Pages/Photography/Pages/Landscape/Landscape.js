@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import BackArrow from '../../../../Buttons/BackArrow';
 import "./Landscape.css";
 
 function Landscape() {
@@ -21,7 +22,19 @@ function Landscape() {
     return (
         <>
             <div id="landscape-container">
+                <BackArrow />
                 <ul id="category-list">
+                    <div className="category-container" id="roadtrip2022">
+                        <Link
+                            className="category-link"
+                            to="/photography/landscape/roadtrip2022"
+                            onClick={() => storeLocation("roadtrip2022")}
+                        >
+                            Roadtrip
+                            <br />
+                            <span className="cat-year">2022</span>
+                        </Link>
+                    </div>
                     <div className="category-container" id="yellowstone">
                         <Link
                             className="category-link"

@@ -13,6 +13,43 @@
     align-items: center;
 }
 
+@keyframes bounce {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(0, 200px, 0);
+    }
+}
+@-webkit-keyframes bounce {
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        -webkit-transform: translate3d(0, 200px, 0);
+        transform: translate3d(0, 200px, 0);
+    }
+}
+
+#down-arrow {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    bottom: 50px;
+    animation: bounce 0.5s;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+    animation-iteration-count: infinite;
+    animation-name: bounce;
+    animation-duration: 0.5s;
+    -webkit-animation-name: bounce;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+    -webkit-animation-iteration-count: infinite;
+}
+
 #name-container {
     width: 100%;
     height: 100%;

@@ -16,6 +16,7 @@ import Alaska2020 from "./components/Pages/Photography/Pages/Landscape/Pages/Ala
 import Malabar from "./components/Pages/Photography/Pages/Landscape/Pages/Malabar";
 import Mammoth from "./components/Pages/Photography/Pages/Landscape/Pages/Mammoth";
 import Roadtrip from "./components/Pages/Photography/Pages/Landscape/Pages/Roadtrip";
+import RoadTrip2022 from "./components/Pages/Photography/Pages/Landscape/Pages/RoadTrip2022";
 import Summer2017 from "./components/Pages/Photography/Pages/Landscape/Pages/Summer2017";
 import Tetons from "./components/Pages/Photography/Pages/Landscape/Pages/Tetons";
 import Yellowstone from "./components/Pages/Photography/Pages/Landscape/Pages/Yellowstone";
@@ -77,6 +78,11 @@ function App() {
                     path="/photography/landscape/tetons"
                     exact
                     component={Tetons}
+                />
+                <Route
+                    path="/photography/landscape/roadtrip2022"
+                    exact
+                    component={RoadTrip2022}
                 />
                 <Route
                     path="/photography/landscape/yellowstone"

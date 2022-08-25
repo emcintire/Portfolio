@@ -9,6 +9,7 @@ import eye from '../../../images/eye.svg';
 import flappy_frank from '../../../images/flappy_frank.png';
 import slackr from '../../../images/slackr.png';
 import unCaged from '../../../images/unCaged.png';
+import downAarrow from "../../../images/down-arrow.png";
 
 function Projects() {
     const resizeBg = () => {
@@ -34,6 +35,12 @@ function Projects() {
                     <h1 className="header" id="projects-header">
                         Projects
                     </h1>
+                    <Image
+                        src={downAarrow}
+                        alt="Down Arrows"
+                        id="down-arrow"
+                        className="bounce"
+                    />
                     <ul id="projects-list">
                         <div id="uncaged-card" className="card project-cards">
                             <Image src={unCaged} className="card-img-top" />

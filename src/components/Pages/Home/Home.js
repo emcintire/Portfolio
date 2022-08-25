@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import $ from "jquery";
 import { Image } from "react-bootstrap";
@@ -8,34 +8,36 @@ import { AwesomeButton } from "react-awesome-button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../Buttons/aws-btn.css";
-import emoji from "../../../images/emoji.png";
-import name from "../../../images/name2.svg";
-import mobile_name from "../../../images/mobile_name.svg";
-import profilePic from "../../../images/pp.jpg";
-import python from "../../../images/python.svg";
+import ai from "../../../images/ai.svg";
 import asp from "../../../images/asp.svg";
 import c from "../../../images/c.svg";
-import flask from "../../../images/flask.svg";
-import node from "../../../images/node.svg";
-import js from "../../../images/js.svg";
-import html from "../../../images/html.svg";
 import css from "../../../images/css.svg";
-import mongo from "../../../images/mongo.svg";
-import post from "../../../images/post.svg";
-import ps from "../../../images/ps.svg";
-import ai from "../../../images/ai.svg";
-import resumeLogo from "../../../images/resume.svg";
+import downAarrow from "../../../images/down-arrow.png";
+import emoji from "../../../images/emoji.png";
+import flask from "../../../images/flask.svg";
+import js from "../../../images/js.svg";
 import linkedin from "../../../images/linkedin.svg";
+import mobile_name from "../../../images/mobile_name.svg";
+import mongo from "../../../images/mongo.svg";
+import name from "../../../images/name2.svg";
+import node from "../../../images/node.svg";
+import post from "../../../images/post.svg";
+import profilePic from "../../../images/pp.jpg";
+import ps from "../../../images/ps.svg";
+import python from "../../../images/python.svg";
 import resume from "../../../images/resume.pdf";
+import resumeLogo from "../../../images/resume.svg";
 
 function Home() {
     const [showContact, setShowContact] = useState(false);
+    const textAreaRef = useRef(null);
 
     const isMobile = useMediaQuery({ query: `(max-width: 600px)` });
 
     const clickContact = () => {
         if (!showContact) {
-            navigator.clipboard.writeText("everettgmcintire@gmail.com");
+            textAreaRef.current.select();
+            document.execCommand('copy');
             setShowContact(!showContact);
             toast(
                 <div>
@@ -67,16 +69,18 @@ function Home() {
         <div id="home-page">
             <div className="home-container">
                 <div id="name-container">
-                    {isMobile ? (
-                        <Image
-                            src={mobile_name}
-                            alt="Everett McIntire"
-                            id="name"
-                        />
-                    ) : (
-                        <Image src={name} alt="Everett McIntire" id="name" />
-                    )}
+                    <Image
+                        src={isMobile ? mobile_name : name}
+                        alt="Everett McIntire"
+                        id="name"
+                    />
                 </div>
+                <Image
+                    src={downAarrow}
+                    alt="Down Arrows"
+                    id="down-arrow"
+                    className="bounce"
+                />
                 <ParticlesBg
                     type="cobweb"
                     num={50}
@@ -99,9 +103,14 @@ function Home() {
                                 passion for full stack development.
                                 <br />
                                 <br />I spend my time watching Nicolas Cage
-                                movies, taking pictures of stuff, and playing in
-                                my Guitar Hero band, "Gnome Saying."
+                                movies, taking pictures of stuff, and playing
+                                Guitar Hero.
                             </p>
+                            <textarea
+                                style={{ position: 'absolute', left: '-500px' }}
+                                ref={textAreaRef}
+                                value='everettgmcintire@gmail.com'
+                            />
                             <div id="bio-btns">
                                 <div className="resume-btns">
                                     <a
@@ -157,12 +166,12 @@ function Home() {
                     </h1>
                     <ul id="skills-list">
                         <div className="skill-container">
-                            <Image className="skill-icon" src={python} />
-                            <h4 className="skill-label">Python</h4>
+                            <Image className="skill-icon" src={js} />
+                            <h4 className="skill-label">Javascript</h4>
                         </div>
                         <div className="skill-container">
-                            <Image className="skill-icon" src={flask} />
-                            <h4 className="skill-label">Flask</h4>
+                            <Image className="skill-icon" src={node} />
+                            <h4 className="skill-label">Node.js</h4>
                         </div>
                         <div className="skill-container">
                             <Image className="skill-icon" src={c} />
@@ -173,16 +182,12 @@ function Home() {
                             <h4 className="skill-label">ASP.Net</h4>
                         </div>
                         <div className="skill-container">
-                            <Image className="skill-icon" src={js} />
-                            <h4 className="skill-label">React.js</h4>
+                            <Image className="skill-icon" src={python} />
+                            <h4 className="skill-label">Python</h4>
                         </div>
                         <div className="skill-container">
-                            <Image className="skill-icon" src={node} />
-                            <h4 className="skill-label">Node.js</h4>
-                        </div>
-                        <div className="skill-container">
-                            <Image className="skill-icon" src={html} />
-                            <h4 className="skill-label">HTML</h4>
+                            <Image className="skill-icon" src={flask} />
+                            <h4 className="skill-label">Flask</h4>
                         </div>
                         <div className="skill-container">
                             <Image className="skill-icon" src={css} />
@@ -194,7 +199,7 @@ function Home() {
                         </div>
                         <div className="skill-container">
                             <Image className="skill-icon" src={post} />
-                            <h4 className="skill-label">PostgreSQL</h4>
+                            <h4 className="skill-label">SQL</h4>
                         </div>
                         <div className="skill-container">
                             <Image className="skill-icon" src={ps} />

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import BackArrow from "../../../../Buttons/BackArrow";
 import "./Animals.css";
 
 function Animals() {
@@ -9,6 +10,8 @@ function Animals() {
     return (
         <>
             <div id="animals-container">
+                <BackArrow />
+                <h1 className="photos-header">Animals</h1>
                 <section id="photos">
                     <img src="https://imgur.com/AvfHwJyh.jpg" alt="" />
                     <img src="https://imgur.com/pyXZg9Xh.jpg" alt="" />

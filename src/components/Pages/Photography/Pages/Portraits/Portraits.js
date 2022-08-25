@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./Portraits.css";
 import { Link } from "react-router-dom";
+import BackArrow from '../../../../Buttons/BackArrow';
 
 function Portraits() {
     const storeLocation = (id) => {
@@ -28,6 +29,7 @@ function Portraits() {
     return (
         <>
             <div id="portraits-container">
+                <BackArrow />
                 <ul id="category-list">
                     <div className="category-container" id="teddy-12m">
                         <Link

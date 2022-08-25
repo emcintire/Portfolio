@@ -1,5 +1,5 @@
 #misc-container {
-    background-color: white;
+    background-color: var(--dark);
 }
 
 #misc-container #photos {
