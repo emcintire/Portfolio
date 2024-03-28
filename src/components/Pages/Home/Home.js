@@ -13,7 +13,6 @@ import asp from "../../../images/asp.svg";
 import c from "../../../images/c.svg";
 import css from "../../../images/css.svg";
 import downAarrow from "../../../images/down-arrow.png";
-import emoji from "../../../images/emoji.png";
 import flask from "../../../images/flask.svg";
 import ts from "../../../images/ts.svg";
 import linkedin from "../../../images/linkedin.svg";
@@ -27,6 +26,7 @@ import ps from "../../../images/ps.svg";
 import python from "../../../images/python.svg";
 import resume from "../../../images/resume.pdf";
 import resumeLogo from "../../../images/resume.svg";
+import reactLogo from "../../../images/react.svg";
 
 function Home() {
     const [showContact, setShowContact] = useState(false);
@@ -39,12 +39,7 @@ function Home() {
             textAreaRef.current.select();
             document.execCommand('copy');
             setShowContact(!showContact);
-            toast(
-                <div>
-                    <img src={emoji} alt="weary face" id="emoji" />
-                    Copied to Clipboard!
-                </div>
-            );
+            toast('Copied to Clipboard!', { type: 'success' });
         } else {
             setShowContact(!showContact);
         }
@@ -98,14 +93,14 @@ function Home() {
                         <div className="card-body" id="bio-body">
                             <p className="card-text" id="bio">
                                 Hi how are ya, I am a full stack software
-                                developer, specializing in React/Typescript, and C#/.NET.
+                                developer, specializing in React/Typescript, and .NET/C#.
                                 I have a Bachelor's Degree in Computer
                                 Science, a minor in Graphic Design, and a
-                                passion for full stack development.
+                                passion for development.
                                 <br />
-                                <br />I spend my time watching Nicolas Cage
-                                movies, taking pictures of stuff, and playing
-                                Guitar Hero.
+                                <br />I spend my free time watching movies,
+                                working on side projects, taking pictures of stuff,
+                                and spending time in nature.
                             </p>
                             <textarea
                                 style={{ position: 'absolute', left: '-5000px' }}
@@ -167,7 +162,11 @@ function Home() {
                     </h1>
                     <ul id="skills-list">
                         <div className="skill-container">
-                            <Image height="auto" width="69px" src={ts} />
+                            <Image className="skill-icon" src={reactLogo} />
+                            <h4 className="skill-label">React</h4>
+                        </div>
+                        <div className="skill-container">
+                            <Image className="skill-icon" src={ts} />
                             <h4 className="skill-label">Typescript</h4>
                         </div>
                         <div className="skill-container">
