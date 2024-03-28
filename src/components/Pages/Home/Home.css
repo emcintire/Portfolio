@@ -33,6 +33,7 @@
 }
 
 #down-arrow {
+    display: none;
     position: absolute;
     height: 50px;
     width: 50px;
@@ -273,4 +274,7 @@
         justify-content: center !important;
         flex-direction: column !important;
     }
+    #down-arrow {
+        display: unset;
+    }    
 }

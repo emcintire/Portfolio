@@ -9,7 +9,7 @@ import eye from '../../../images/eye.svg';
 import flappy_frank from '../../../images/flappy_frank.png';
 import slackr from '../../../images/slackr.png';
 import unCaged from '../../../images/unCaged.png';
-import downAarrow from "../../../images/down-arrow.png";
+import downArrow from "../../../images/down-arrow.png";
 
 function Projects() {
     const resizeBg = () => {
@@ -36,7 +36,7 @@ function Projects() {
                         Projects
                     </h1>
                     <Image
-                        src={downAarrow}
+                        src={downArrow}
                         alt="Down Arrows"
                         id="down-arrow"
                         className="bounce"

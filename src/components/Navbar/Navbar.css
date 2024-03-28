@@ -5,7 +5,7 @@
     align-items: center;
     height: auto;
     width: auto;
-    position: absolute;
+    position: fixed;
     right: 3rem;
     z-index: 6969;
     padding: 0;

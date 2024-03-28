@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BackArrowStyled = styled.button`
-    position: absolute;
+    position: fixed;
     top: 2rem;
     left: 2rem;
     width: 2rem;

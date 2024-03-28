@@ -30,7 +30,9 @@
 }
 
 .photos-header {
-    padding-top: 10px;
+    background-color: var(--dark);
+    position: fixed;
+    height: 100px;
     color: var(--text);
     font-weight: 800;
     font-size: 60px;
@@ -43,7 +45,7 @@
 #photos {
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 5px;
+    padding-top: 100px;
     padding-bottom: 5px;
     line-height: 0;
     -webkit-column-count: 3;

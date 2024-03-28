@@ -15,7 +15,7 @@ import css from "../../../images/css.svg";
 import downAarrow from "../../../images/down-arrow.png";
 import emoji from "../../../images/emoji.png";
 import flask from "../../../images/flask.svg";
-import js from "../../../images/js.svg";
+import ts from "../../../images/ts.svg";
 import linkedin from "../../../images/linkedin.svg";
 import mobile_name from "../../../images/mobile_name.svg";
 import mongo from "../../../images/mongo.svg";
@@ -97,8 +97,9 @@ function Home() {
                         />
                         <div className="card-body" id="bio-body">
                             <p className="card-text" id="bio">
-                                Hi how are ya, I am a junior level software
-                                devloper. I have a Bachelor's Degree in Computer
+                                Hi how are ya, I am a full stack software
+                                developer, specializing in React/Typescript, and C#/.NET.
+                                I have a Bachelor's Degree in Computer
                                 Science, a minor in Graphic Design, and a
                                 passion for full stack development.
                                 <br />
@@ -107,7 +108,7 @@ function Home() {
                                 Guitar Hero.
                             </p>
                             <textarea
-                                style={{ position: 'absolute', left: '-500px' }}
+                                style={{ position: 'absolute', left: '-5000px' }}
                                 ref={textAreaRef}
                                 value='everettgmcintire@gmail.com'
                             />
@@ -166,8 +167,8 @@ function Home() {
                     </h1>
                     <ul id="skills-list">
                         <div className="skill-container">
-                            <Image className="skill-icon" src={js} />
-                            <h4 className="skill-label">Javascript</h4>
+                            <Image height="auto" width="69px" src={ts} />
+                            <h4 className="skill-label">Typescript</h4>
                         </div>
                         <div className="skill-container">
                             <Image className="skill-icon" src={node} />
@@ -175,7 +176,7 @@ function Home() {
                         </div>
                         <div className="skill-container">
                             <Image className="skill-icon" src={c} />
-                            <h4 className="skill-label">C# / F#</h4>
+                            <h4 className="skill-label">C#</h4>
                         </div>
                         <div className="skill-container">
                             <Image className="skill-icon" src={asp} />
