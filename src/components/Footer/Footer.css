@@ -1,0 +1,10 @@
+#footer {
+    font-family: "Montserrat", sans-serif;
+    height: 80px;
+    background-color: var(--dark);
+    color: var(--text);
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

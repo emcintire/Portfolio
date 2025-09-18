@@ -1,0 +1,280 @@
+#home-page {
+    font-family: "Montserrat", sans-serif;
+    width: 100%;
+    margin: 0;
+}
+
+.home-container {
+    background-color: var(--dark);
+    height: 110vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+@keyframes bounce {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(0, 200px, 0);
+    }
+}
+@-webkit-keyframes bounce {
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        -webkit-transform: translate3d(0, 200px, 0);
+        transform: translate3d(0, 200px, 0);
+    }
+}
+
+#down-arrow {
+    display: none;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    bottom: 50px;
+    animation: bounce 0.5s;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+    animation-iteration-count: infinite;
+    animation-name: bounce;
+    animation-duration: 0.5s;
+    -webkit-animation-name: bounce;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+    -webkit-animation-iteration-count: infinite;
+}
+
+#name-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 696;
+}
+
+#name {
+    width: 60%;
+    margin-bottom: 10vh;
+    background-color: transparent;
+}
+
+#bio-card {
+    width: 400px;
+    z-index: 696;
+    background-color: var(--dark);
+    border-color: white;
+}
+
+#bio-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#bio {
+    font-size: 16px;
+    color: var(--text);
+}
+
+#skills-container {
+    z-index: 696;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#skills-list {
+    padding: 0 0 0 30px;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+#skills-header {
+    color: var(--light);
+    padding-bottom: 10px;
+}
+
+.skill-container {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.skill-icon {
+    height: 60px;
+    width: auto;
+}
+
+.skill-label {
+    color: var(--text);
+    padding-left: 20px;
+}
+
+#emoji {
+    height: 30px;
+    width: auto;
+    padding-right: 15px;
+}
+
+.home-container .particles-bg-canvas-self {
+    position: absolute;
+    opacity: 0.3;
+}
+
+.header {
+    color: var(--text);
+    font-weight: 800;
+    font-size: 60px;
+}
+
+.logos {
+    height: 40px;
+    width: auto;
+    margin: 5px;
+}
+
+#bio-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.resume-btns {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+}
+
+.aws-btn {
+    flex: 1 !important;
+}
+
+.Toastify {
+    z-index: 6969696969;
+}
+
+.Toastify__progress-bar {
+    background: var(--light) !important;
+}
+
+@media (max-width: 1200px) {
+    #profile-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .skill-label {
+        font-size: 22px;
+    }
+
+    .skill-icon {
+        height: 65px;
+    }
+
+    .skill-container {
+        padding: 20px 20px 10px 60px;
+    }
+
+    #skills-container {
+        margin-top: 60px;
+        padding-bottom: 30px;
+    }
+
+    #skills-list {
+        padding: 0;
+    }
+
+    #bio-card {
+        width: 450px;
+        padding: 0;
+    }
+
+    #bio {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    #home-page {
+        width: 100%;
+        margin: 0;
+    }
+
+    #bio-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    #bio-card {
+        width: 90%;
+        padding: 0;
+    }
+
+    #bio {
+        font-size: 14px;
+    }
+
+    #skills-container {
+        width: 100%;
+    }
+
+    #skills-list {
+        columns: 1;
+        -webkit-columns: 1;
+        -moz-columns: 1;
+    }
+
+    #skills-header {
+        font-size: 50px;
+    }
+
+    .skill-label {
+        font-size: 20px;
+    }
+
+    .skill-container {
+        padding: 15px 0 15px 0px;
+    }
+
+    .skill-icon {
+        height: 55px;
+    }
+
+    .resume-btns {
+        margin-top: auto;
+    }
+
+    #contact-info {
+        margin-top: 15px;
+    }
+
+    .aws-btn {
+        max-width: 220px !important;
+    }
+
+    .aws-btn__wrapper {
+        font-size: 14px !important;
+    }
+
+    .Toastify__toast-container {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+    }
+    #down-arrow {
+        display: unset;
+    }    
+}
