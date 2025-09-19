@@ -1,8 +1,9 @@
 import './Portraits.css';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { BackArrow } from '../../../../Buttons/BackArrow.tsx';
-import { map } from 'lodash';
+import { endsWith, map } from 'lodash';
+import { storeLocation } from '../../../../../helpers/storeLocation.ts';
 
 const links = [
   { id: 'teddy-12m', name: 'Teddy One Year', year: '2017', path: 'teddy12m' },
@@ -15,10 +16,7 @@ const links = [
 ];
 
 export function Portraits() {
-  const storeLocation = (id: string) => {
-    window.localStorage.removeItem('album');
-    window.localStorage.setItem('album', id);
-  };
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const album = window.localStorage.getItem('album');
@@ -36,23 +34,26 @@ export function Portraits() {
 
   return (
     <>
-      <div id='portraits-container'>
-        <BackArrow />
-        <ul id='category-list'>
-          {map(links, (link) => (
-            <div className='category-container' id={link.id} key={link.id}>
-              <Link
-                className='category-link'
-                to={`/photography/portraits/${link.path}`}
-                onClick={() => storeLocation(link.id)}>
-                {link.name}
-                <br />
-                <span className='cat-year'>{link.year}</span>
-              </Link>
-            </div>
-          ))}
-        </ul>
-      </div>
+      {endsWith(pathname, 'portraits') && (
+        <div id='portraits-container'>
+          <BackArrow />
+          <ul id='category-list'>
+            {map(links, (link) => (
+              <div className='category-container' id={link.id} key={link.id}>
+                <Link
+                  className='category-link'
+                  to={link.path}
+                  onClick={storeLocation('album', link.id, 'album')}>
+                  {link.name}
+                  <br />
+                  <span className='cat-year'>{link.year}</span>
+                </Link>
+              </div>
+            ))}
+          </ul>
+        </div>
+      )}
+      <Outlet />
     </>
   );
 }

@@ -16,15 +16,14 @@ export function LandscapeRoutes() {
     <Routes>
       <Route path="alaska2018" element={<Alaska2018 />} />
       <Route path="alaska2020" element={<Alaska2020 />} />
-      <Route path="malabar" element={<Malabar2019 />} />
-      <Route path="mammoth" element={<Mammoth2020 />} />
-      <Route path="mammoth" element={<Mammoth2020 />} />
-      <Route path="roadtrip" element={<Roadtrip2018 />} />
+      <Route path="malabar2019" element={<Malabar2019 />} />
+      <Route path="mammoth2020" element={<Mammoth2020 />} />
+      <Route path="roadtrip2018" element={<Roadtrip2018 />} />
       <Route path="roadtrip2022" element={<Roadtrip2022 />} />
       <Route path="summer2017" element={<Summer2017 />} />
-      <Route path="tetons" element={<Tetons2021 />} />
-      <Route path="yellowstone" element={<Yellowstone2021 />} />
-      <Route path="yosemite" element={<Yosemite2019 />} />
+      <Route path="tetons2021" element={<Tetons2021 />} />
+      <Route path="yellowstone2021" element={<Yellowstone2021 />} />
+      <Route path="yosemite2019" element={<Yosemite2019 />} />
     </Routes>
   )
 }

@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { BackArrow } from '../../../../Buttons/BackArrow.tsx';
 import "./Landscape.css";
-import { map } from 'lodash';
+import { endsWith, map } from 'lodash';
 import { LandscapeRoutes } from './LandscapeRoutes';
+import { storeLocation } from '../../../../../helpers/storeLocation.ts';
 
 const links = [
   { id: "adirondacks2025", name: "Adirondacks", year: "2025" },
@@ -20,10 +21,7 @@ const links = [
 ]
 
 export function Landscape() {
-  const storeLocation = (id: string) => {
-    window.localStorage.removeItem("album");
-    window.localStorage.setItem("album", id);
-  };
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const album = window.localStorage.getItem("album");
@@ -36,25 +34,27 @@ export function Landscape() {
 
   return (
     <>
-      <div id="landscape-container">
-        <BackArrow />
-        <ul id="category-list">
-          {map(links, (link) => (
-            <div className="category-container" id={link.id} key={link.id}>
-              <Link
-                className="category-link"
-                to={`/photography/landscape/${link.id}`}
-                onClick={() => storeLocation(link.id)}
-              >
-                {link.name}
-                <br />
-                <span className="cat-year">{link.year}</span>
-              </Link>
-            </div>
-          ))}
-        </ul>
-      </div>
-      <LandscapeRoutes />
+      {endsWith(pathname, 'landscape') && (
+        <div id="landscape-container">
+          <BackArrow />
+          <ul id="category-list">
+            {map(links, (link) => (
+              <div className="category-container" id={link.id} key={link.id}>
+                <Link
+                  className="category-link"
+                  to={link.id}
+                  onClick={storeLocation('album', link.id, 'album')}
+                >
+                  {link.name}
+                  <br />
+                  <span className="cat-year">{link.year}</span>
+                </Link>
+              </div>
+            ))}
+          </ul>
+        </div>
+      )}
+      <Outlet />
     </>
   );
 }

@@ -6,7 +6,7 @@
 
 .home-container {
     background-color: var(--dark);
-    height: 110vh;
+    /* height: 110vh; */
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -278,3 +278,48 @@
         display: unset;
     }    
 }
+
+
+
+.home-wrap {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: radial-gradient(1200px 800px at 50% 50%, #121522 0%, #0a0c16 70%);
+  color: white;
+}
+
+.float-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #e8ecff;
+  text-decoration: none;
+  height: 200px;
+  width: 200px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  will-change: transform;
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease, scale 120ms ease;
+  transform: translate(-50%, -50%); /* center on (x,y), we’ll add (x,y) inline */
+}
+
+.float-link:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  scale: 1.04;
+}
+
+

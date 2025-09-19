@@ -1,11 +1,11 @@
 import { Image } from 'react-bootstrap';
 import './Projects.css';
-import github from '../../../images/github.svg';
-import eye from '../../../images/eye.svg';
-import flappy_frank from '../../../images/flappy_frank.png';
-import tatertap from '../../../images/tatertap.gif';
-import unCaged from '../../../images/unCaged.png';
-import downArrow from '../../../images/down-arrow.png';
+import github from '../../../assets/github.svg';
+import eye from '../../../assets/eye.svg';
+import flappy_frank from '../../../assets/flappy_frank.png';
+import tatertap from '../../../assets/tatertap.gif';
+import unCaged from '../../../assets/unCaged.png';
+import downArrow from '../../../assets/down-arrow.png';
 
 const projects = [
   {

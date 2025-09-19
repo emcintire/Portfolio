@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { map } from 'lodash';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { endsWith, map } from 'lodash';
 import './Photography.scss';
-import { PhotographyRoutes } from './PhotographyRoutes';
+import { storeLocation } from '../../../helpers';
 
 const links = [
   { id: 'landscape', name: 'Landscape' },
@@ -11,12 +11,8 @@ const links = [
   { id: 'misc', name: 'Miscellaneous' },
 ];
 
-export default function Photography() {
-  const storeLocation = (id: string) => {
-    window.localStorage.removeItem('category');
-    window.localStorage.removeItem('album');
-    window.localStorage.setItem('category', id);
-  };
+export function Photography() {
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const category = window.localStorage.getItem('category');
@@ -29,22 +25,24 @@ export default function Photography() {
 
   return (
     <>
-      <div id="photography-container">
-        <ul id="category-list">
-          {map(links, (link) => (
-            <div className="category-container" id={link.id} key={link.id}>
-              <Link
-                className="category-link"
-                to={`/photography/${link.id}`}
-                onClick={() => storeLocation(link.id)}
-              >
-                {link.name}
-              </Link>
-            </div>
-          ))}
-        </ul>
-      </div>
-      <PhotographyRoutes />
+      {endsWith(pathname, 'photography') && (
+        <div id="photography-container">
+          <ul id="category-list">
+            {map(links, (link) => (
+              <div className="category-container" id={link.id} key={link.id}>
+                <Link
+                  className="category-link"
+                  to={link.id}
+                  onClick={storeLocation('category', link.id, ['album', 'category'])}
+                >
+                  {link.name}
+                </Link>
+              </div>
+            ))}
+          </ul>
+        </div>
+      )}
+      <Outlet />
     </>
   );
 }

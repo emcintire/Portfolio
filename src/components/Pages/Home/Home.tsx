@@ -2,29 +2,29 @@ import { useRef, useState } from 'react';
 import './Home.css';
 import { Image } from 'react-bootstrap';
 import { useMediaQuery } from 'react-responsive';
-import { AwesomeButton } from 'react-awesome-button';
+// import { AwesomeButton } from 'react-awesome-button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../Buttons/aws-btn.css';
-import ai from '../../../images/ai.svg';
-import asp from '../../../images/asp.svg';
-import c from '../../../images/c.svg';
-import css from '../../../images/css.svg';
-import downAarrow from '../../../images/down-arrow.png';
-import flask from '../../../images/flask.svg';
-import ts from '../../../images/ts.svg';
-import linkedin from '../../../images/linkedin.svg';
-import mobile_name from '../../../images/mobile_name.svg';
-import mongo from '../../../images/mongo.svg';
-import name from '../../../images/name2.svg';
-import node from '../../../images/node.svg';
-import post from '../../../images/post.svg';
-import profilePic from '../../../images/pp.jpg';
-import ps from '../../../images/ps.svg';
-import python from '../../../images/python.svg';
-import resume from '../../../images/resume.pdf';
-import resumeLogo from '../../../images/resume.svg';
-import reactLogo from '../../../images/react.svg';
+import ai from '../../../assets/ai.svg';
+import asp from '../../../assets/asp.svg';
+import c from '../../../assets/c.svg';
+import css from '../../../assets/css.svg';
+import downAarrow from '../../../assets/down-arrow.png';
+import flask from '../../../assets/flask.svg';
+import ts from '../../../assets/ts.svg';
+import linkedin from '../../../assets/linkedin.svg';
+import mobile_name from '../../../assets/mobile_name.svg';
+import mongo from '../../../assets/mongo.svg';
+import name from '../../../assets/name2.svg';
+import node from '../../../assets/node.svg';
+import post from '../../../assets/post.svg';
+import profilePic from '../../../assets/pp.jpg';
+import ps from '../../../assets/ps.svg';
+import python from '../../../assets/python.svg';
+import resume from '../../../assets/resume.pdf';
+import resumeLogo from '../../../assets/resume.svg';
+import reactLogo from '../../../assets/react.svg';
 
 export function Home() {
   const [showContact, setShowContact] = useState(false);
@@ -100,14 +100,14 @@ export function Home() {
                 </div>
                 {showContact ? (
                   <div id='contact-info'>
-                    <AwesomeButton className='aws-btn' type='primary' onPress={clickContact}>
+                    {/* <AwesomeButton className='aws-btn' type='primary' onPress={clickContact}> */}
                       everettgmcintire@gmail.com
-                    </AwesomeButton>
+                    {/* </AwesomeButton> */}
                   </div>
                 ) : (
-                  <AwesomeButton className='aws-btn' type='primary' onPress={clickContact}>
-                    Contact
-                  </AwesomeButton>
+                  // <AwesomeButton className='aws-btn' type='primary' onPress={clickContact}>
+                    'Contact'
+                  // </AwesomeButton>
                 )}
               </div>
             </div>

@@ -1,14 +1,15 @@
-import { BackArrowStyled } from './BackArrow.styled.ts';
-import 'material-icons/iconfont/round.css';
+import { useNavigate } from 'react-router-dom';
+import { ArrowBack } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 
 export function BackArrow() {
+  const navigate = useNavigate();
+
+  const goBack = () => navigate(-1);
+
   return (
-    <BackArrowStyled
-      id='back-arrow-btn'
-      onClick={() => {
-        window.history.back();
-      }}>
-      <i className='material-icons-round back-arrow'>arrow_back_ios_new</i>
-    </BackArrowStyled>
+    <IconButton onClick={goBack}>
+      <ArrowBack />
+    </IconButton>
   );
-};
+}
