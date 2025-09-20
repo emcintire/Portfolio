@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { BackArrow } from '../../../../Buttons/BackArrow.tsx';
 import "./Landscape.css";
 import { endsWith, map } from 'lodash';
-import { LandscapeRoutes } from './LandscapeRoutes';
 import { storeLocation } from '../../../../../helpers/storeLocation.ts';
 
 const links = [
@@ -36,7 +34,6 @@ export function Landscape() {
     <>
       {endsWith(pathname, 'landscape') && (
         <div id="landscape-container">
-          <BackArrow />
           <ul id="category-list">
             {map(links, (link) => (
               <div className="category-container" id={link.id} key={link.id}>

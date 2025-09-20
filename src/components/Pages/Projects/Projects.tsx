@@ -5,9 +5,17 @@ import eye from '../../../assets/eye.svg';
 import flappy_frank from '../../../assets/flappy_frank.png';
 import tatertap from '../../../assets/tatertap.gif';
 import unCaged from '../../../assets/unCaged.png';
-import downArrow from '../../../assets/down-arrow.png';
+import { map, toLower } from 'lodash';
 
 const projects = [
+  {
+    descriptions: [
+      `- My most ambitious side project to date, a Unity based, 3D, mall cop simulator PC game.`,
+      `- Hitting steam sometime in 2026, stay tuned!`,
+    ],
+    img: tatertap,
+    name: 'Serve & Protect',
+  },
   {
     descriptions: [
       `- A fast-paced mobile tapping game where players catch falling potatoes and compete on global leaderboards.`,
@@ -48,15 +56,14 @@ export function Projects() {
           <h1 className='header' id='projects-header'>
             Projects
           </h1>
-          <Image src={downArrow} alt='Down Arrows' id='down-arrow' className='bounce' />
           <ul id='projects-list'>
-            {projects.map((project, index) => (
-              <div key={index} id={`${project.name.toLowerCase()}-card`} className='card project-cards'>
-                <Image src={project.img} className='card-img-top' />
+            {map(projects, (project, index) => (
+              <div key={index} id={`${toLower(project.name)}-card`} className='card project-cards'>
+                <Image src={project.img} className='card-img-top' width="100%" />
                 <div className='card-body'>
                   <h3 className='card-title project-title'>{project.name}</h3>
                   <p className='card-text project-desc'>
-                    {project.descriptions.map((desc) => (
+                    {map(project.descriptions, (desc) => (
                       <span key={desc}>
                         {desc}
                         <br />
@@ -79,12 +86,6 @@ export function Projects() {
               </div>
             ))}
           </ul>
-          {/* <ParticlesBg
-                        type="cobweb"
-                        bg={false}
-                        color="#ffffff"
-                        id="particles"
-                    /> */}
         </div>
       </div>
     </>

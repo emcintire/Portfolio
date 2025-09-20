@@ -1,10 +1,11 @@
-import { Menu } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
+import { StyledBurger } from './Burger.styled.ts';
 
-export function Burger({ open, setOpen }: { open: boolean; setOpen(open: boolean): void }) {
+export const Burger = ({ open, setOpen }: { open: boolean; setOpen(open: boolean): void }) => {
   return (
-    <IconButton onClick={() => setOpen(!open)}>
-      <Menu /> 
-    </IconButton>
+    <StyledBurger open={open} id='burger' onClick={() => setOpen(!open)}>
+      <div />
+      <div />
+      <div />
+    </StyledBurger>
   );
-};
+}

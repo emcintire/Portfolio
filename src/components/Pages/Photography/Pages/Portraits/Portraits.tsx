@@ -1,15 +1,14 @@
 import './Portraits.css';
 import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { BackArrow } from '../../../../Buttons/BackArrow.tsx';
 import { endsWith, map } from 'lodash';
 import { storeLocation } from '../../../../../helpers/storeLocation.ts';
 
 const links = [
   { id: 'teddy-12m', name: 'Teddy One Year', year: '2017', path: 'teddy12m' },
   { id: 'teddy-18m', name: 'Teddy Year and a Half', year: '2018', path: 'teddy18m' },
-  { id: 'beach', name: 'Trudy Beach Maternity', year: '2019', path: 'TrudyBeachMat' },
-  { id: 'snow', name: 'Trudy Snow Maternity', year: '2019', path: 'TrudySnowMat' },
+  { id: 'beach', name: 'Trudy Beach Maternity', year: '2019', path: 'trudybeachmaternity' },
+  { id: 'snow', name: 'Trudy Snow Maternity', year: '2019', path: 'trudysnowmaternity' },
   { id: 'rio-3m', name: 'Rio Three Months', year: '2019', path: 'rio3m' },
   { id: 'rio-8m', name: 'Rio Eight Months', year: '2019', path: 'rio8m' },
   { id: 'rio-15m', name: 'Rio Fifteen Months', year: '2020', path: 'rio15m' },
@@ -36,7 +35,6 @@ export function Portraits() {
     <>
       {endsWith(pathname, 'portraits') && (
         <div id='portraits-container'>
-          <BackArrow />
           <ul id='category-list'>
             {map(links, (link) => (
               <div className='category-container' id={link.id} key={link.id}>

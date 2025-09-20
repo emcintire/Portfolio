@@ -1,91 +1,46 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import 'material-icons/iconfont/round.css';
 import './Navbar.css';
-// import Burger from "../Buttons/Burger";
+import { useMemo, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Burger } from '../Buttons/Burger';
+import { includes, map, split } from 'lodash';
+import { Code, Home, Person, PhotoCamera } from '@mui/icons-material';
+
+const handleClickLink = (setOpen: (open: boolean) => void, id: string) => () => {
+  if (includes(['home', 'about', 'projects'], id)) {
+    window.localStorage.removeItem('category');
+    window.localStorage.removeItem('album');
+  }
+  setOpen(false);
+}
+
+const links = [
+  { id: 'home', to: '/', icon: Home, title: 'Home' },
+  { id: 'about', to: '/about', icon: Person, title: 'About' },
+  { id: 'projects', to: '/projects', icon: Code, title: 'Projects' },
+  { id: 'photography', to: '/photography', icon: PhotoCamera, title: 'Photography Portfolio' },
+];
 
 export function Navbar() {
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
 
-  // const location = useLocation();
-
-  // useEffect(() => {
-  //     const pName = location.pathname.split("/", 2)[1];
-
-  //     if (open) {
-  //         document.getElementById("cover").classList.toggle("covering");
-  //         document.getElementById("nav").classList.toggle("open");
-  //     } else {
-  //         document.getElementById("cover").classList.remove("covering");
-  //         document.getElementById("nav").classList.remove("open");
-  //     }
-
-  //     switch (pName) {
-  //         case "":
-  //             $("#nav").find(".active").removeClass("active");
-  //             $("#home").addClass("active");
-  //             break;
-  //         case "projects":
-  //             $("#nav").find(".active").removeClass("active");
-  //             $("#projects").addClass("active");
-  //             break;
-  //         case "photography":
-  //             $("#nav").find(".active").removeClass("active");
-  //             $("#photography").addClass("active");
-  //             break;
-  //         case "games":
-  //             $("#nav").find(".active").removeClass("active");
-  //             $("#games").addClass("active");
-  //             break;
-  //         default:
-  //             break;
-  //     }
-  // });
+  const activeLink = useMemo(() => split(pathname, '/')[1] || 'home', [pathname]);
 
   return (
     <>
-      {/* <Burger open={open} setOpen={setOpen} /> */}
-      <ul className={'navbar-nav'} id={'nav'}>
-        <li className='nav-item menu-item' id='home' title='Home'>
-          <Link
-            className='link'
-            to='/'
-            onClick={() => {
-              setOpen(!open);
-              window.localStorage.removeItem('category');
-              window.localStorage.removeItem('album');
-            }}>
-            <i className='material-icons-round nav-icons' aria-hidden='true'>
-              home
-            </i>
-          </Link>
-        </li>
-        <li className='nav-item menu-item' id='projects' title='Projects'>
-          <Link
-            className='link'
-            to='/projects'
-            onClick={() => {
-              setOpen(!open);
-              window.localStorage.removeItem('category');
-              window.localStorage.removeItem('album');
-            }}>
-            <i className='material-icons-round nav-icons' aria-hidden='true'>
-              code
-            </i>
-          </Link>
-        </li>
-        <li className='nav-item menu-item' id='photography' title='Photography Portfolio'>
-          <Link
-            className='link'
-            to='/photography'
-            onClick={() => {
-              setOpen(!open);
-            }}>
-            <i className='material-icons-round nav-icons' aria-hidden='true'>
-              photo_library
-            </i>
-          </Link>
-        </li>
+      <div id='cover' className={open ? 'covering' : ''} />
+      <Burger open={open} setOpen={setOpen} />
+      <ul className={`navbar-nav ${open ? 'open' : ''}`} id="nav">
+        {map(links, (link) => (
+          <li className={`nav-item menu-item ${activeLink === link.id ? 'active' : ''}`} id={link.id} title={link.title}>
+            <Link
+              className='link'
+              to={link.to}
+              onClick={handleClickLink(setOpen, link.id)}>
+                <link.icon />
+            </Link>
+          </li>
+        ))}
       </ul>
     </>
   );
