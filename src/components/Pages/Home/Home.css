@@ -20,20 +20,22 @@
   z-index: 999;
 
   &.about {
-    background-image: url("../../../assets/about.svg");
+    background-image: url("../../../assets/images/about.svg");
     background-repeat: no-repeat;
     height: 300px;
     width: 300px;
   }
 
   &.projects {
-    background-image: url("../../../assets/projects.svg");
+    background-image: url("../../../assets/images/projects.svg");
     background-repeat: no-repeat;
+    border-radius: 100%;
   }
 
   &.photography {
-    background-image: url("../../../assets/photography.svg");
+    background-image: url("../../../assets/images/photography.svg");
     background-repeat: no-repeat;
+    border-radius: 100%;
   }
 }
 

@@ -9,7 +9,7 @@ export function BackArrow() {
 
   return (
     <IconButton onClick={goBack}>
-      <ArrowBack />
+      <ArrowBack htmlColor="white" fontSize="large" />
     </IconButton>
   );
 }

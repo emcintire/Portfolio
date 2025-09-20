@@ -6,22 +6,22 @@ import { useMediaQuery } from 'react-responsive';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../Buttons/aws-btn.css';
-import ai from '../../../assets/ai.svg';
-import asp from '../../../assets/asp.svg';
-import c from '../../../assets/c.svg';
-import css from '../../../assets/css.svg';
-import flask from '../../../assets/flask.svg';
-import ts from '../../../assets/ts.svg';
-import linkedin from '../../../assets/linkedin.svg';
-import mongo from '../../../assets/mongo.svg';
-import node from '../../../assets/node.svg';
-import post from '../../../assets/post.svg';
-import profilePic from '../../../assets/pp.jpg';
-import ps from '../../../assets/ps.svg';
-import python from '../../../assets/python.svg';
-import resume from '../../../assets/resume.pdf';
-import resumeLogo from '../../../assets/resume.svg';
-import reactLogo from '../../../assets/react.svg';
+import ai from '../../../assets/images/ai.svg';
+import asp from '../../../assets/images/asp.svg';
+import c from '../../../assets/images/c.svg';
+import css from '../../../assets/images/css.svg';
+import flask from '../../../assets/images/flask.svg';
+import ts from '../../../assets/images/ts.svg';
+import linkedin from '../../../assets/images/linkedin.svg';
+import mongo from '../../../assets/images/mongo.svg';
+import node from '../../../assets/images/node.svg';
+import post from '../../../assets/images/post.svg';
+import profilePic from '../../../assets/images/pp.jpg';
+import ps from '../../../assets/images/ps.svg';
+import python from '../../../assets/images/python.svg';
+import resume from '../../../assets/images/resume.pdf';
+import resumeLogo from '../../../assets/images/resume.svg';
+import reactLogo from '../../../assets/images/react.svg';
 import { map } from 'lodash';
 
 const skills = [
@@ -57,14 +57,14 @@ export function About() {
   };
 
   return (
-    <div id='home-page'>
-      <div className='home-container' id='profile-container'>
+    <div id='about-page'>
+      <div className='about-container' id='profile-container'>
         <div id='bio-container'>
           <div id='bio-card' className='card'>
             <Image src={profilePic} className='card-img-top profile-pic' />
             <div className='card-body' id='bio-body'>
               <p className='card-text' id='bio'>
-                Hi how are ya, I am a full stack software developer, specializing in React/Typescript, and .NET/C#. I
+                Hello! I am a full stack software developer, specializing in React/Typescript, and .NET/C#. I
                 have a Bachelor's Degree in Computer Science, a minor in Graphic Design, and a passion for development.
                 <br />
                 <br />I spend my free time watching movies, working on side projects, taking pictures of stuff, and

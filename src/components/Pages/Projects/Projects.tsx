@@ -1,19 +1,20 @@
 import { Image } from 'react-bootstrap';
 import './Projects.css';
-import github from '../../../assets/github.svg';
-import eye from '../../../assets/eye.svg';
-import flappy_frank from '../../../assets/flappy_frank.png';
-import tatertap from '../../../assets/tatertap.gif';
-import unCaged from '../../../assets/unCaged.png';
+import flappy_frank from '../../../assets/images/flappy_frank.gif';
+import tatertap from '../../../assets/images/tatertap.gif';
+import unCaged from '../../../assets/images/unCaged.png';
+import construction from '../../../assets/images/underConstruction.png';
 import { map, toLower } from 'lodash';
+import { GitHub, VisibilityRounded } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 
 const projects = [
   {
     descriptions: [
-      `- My most ambitious side project to date, a Unity based, 3D, mall cop simulator PC game.`,
-      `- Hitting steam sometime in 2026, stay tuned!`,
+      `- My biggest side project so far: a 3D mall cop simulator made in Unity. Patrol the chaos. Keep the peace.`,
+      `- Coming to Steam in 2026 — follow for updates!`,
     ],
-    img: tatertap,
+    img: construction,
     name: 'Serve & Protect',
   },
   {
@@ -31,7 +32,6 @@ const projects = [
       `- An app for discovering, bookmarking, and rating the entirety of Nicolas Cage’s vast and illustrious filmography.`,
       `- Built the frontend with React Native, the backend with Node.js, and managed data storage with MongoDB.`,
     ],
-    githubLink: 'https://github.com/emcintire/unCaged',
     img: unCaged,
     name: 'unCaged',
     viewLink: 'https://apps.apple.com/us/app/uncaged/id1593978532',
@@ -53,9 +53,6 @@ export function Projects() {
     <>
       <div id='projects-page'>
         <div id='projects-container'>
-          <h1 className='header' id='projects-header'>
-            Projects
-          </h1>
           <ul id='projects-list'>
             {map(projects, (project, index) => (
               <div key={index} id={`${toLower(project.name)}-card`} className='card project-cards'>
@@ -73,12 +70,16 @@ export function Projects() {
                   <div id='card-btns'>
                     {project.githubLink && (
                       <a href={project.githubLink} target='_blank' rel='noreferrer'>
-                        <Image src={github} alt='github logo' title='Source code' className='logos' />
+                        <IconButton>
+                          <GitHub className="logos" />
+                        </IconButton>
                       </a>
                     )}
                     {project.viewLink && (
                       <a href={project.viewLink} target='_blank' rel='noreferrer'>
-                        <Image src={eye} alt='eye icon' title='Demo' className='logos' id='eye-btn' />
+                        <IconButton>
+                          <VisibilityRounded className="logos" />
+                        </IconButton>
                       </a>
                     )}
                   </div>

@@ -1,9 +1,9 @@
 #projects-page {
-  background-color: #ffecb4;
   height: auto;
-  width: 100vw;
+  width: 100%;
   font-family: "Montserrat", sans-serif;
   padding: 0;
+  padding-top: 120px;
   margin: 0;
 }
 
@@ -27,17 +27,14 @@
   -moz-columns: 1;
 }
 
-#projects-header {
-  color: var(--light);
-  padding: 50px 0 80px 0px;
-}
-
 .project-cards {
   width: 500px;
-  margin-bottom: 100px;
+  margin-bottom: 75px;
   box-shadow: 5px 3px 30px rgba(0, 0, 0, 0.4);
-  border: 2px solid white;
+  border: 25px solid rgb(255, 106, 26);
+  border-radius: 50px;
   color: var(--dark);
+  background-color: white;
 }
 
 .project-title {
@@ -47,6 +44,17 @@
 .project-desc {
   font-size: 16px;
   height: auto;
+  text-align: start;
+}
+
+.card-img-top {
+  width: 100%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.card-body {
+  padding: 10px 2em;
 }
 
 #eye-btn {
@@ -58,6 +66,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  .logos {
+    color: #a0b662;
+    height: 75px;
+    width: auto;
+    border-radius: 100%;
+  }
 }
 
 @media (max-width: 700px) {
@@ -89,11 +104,7 @@
   }
 
   #projects-header {
-    z-index: 696;
     font-size: 50px;
-    height: 100vh;
-    display: flex;
-    align-items: center;
   }
 
   #projects-list {

@@ -33,7 +33,7 @@
   background-color: var(--dark);
   position: fixed;
   height: 100px;
-  color: var(--text);
+  color: white;
   font-weight: 800;
   font-size: 60px;
   width: 100%;
@@ -84,25 +84,25 @@
 }
 
 #landscape {
-  background-image: url("../../../assets/landscape.jpg");
+  background-image: url("../../../assets/images/landscape.jpg");
 }
 
 #portraits {
-  background-image: url("../../../assets/portraits.JPG");
+  background-image: url("../../../assets/images/portraits.JPG");
 }
 
 #animals {
-  background-image: url("../../../assets/animals.png");
+  background-image: url("../../../assets/images/animals.png");
 }
 
 #misc {
-  background-image: url("../../../assets/misc.jpeg");
+  background-image: url("../../../assets/images/misc.jpeg");
 }
 
 .category-link:hover {
-  color: var(--text);
   transition-duration: 0.4s;
   background-color: rgba(0, 0, 0, 0.6);
+  color: white;
 }
 
 .category-link {
@@ -114,11 +114,12 @@
   align-items: center;
   font-size: 50px;
   font-weight: 900;
-  color: var(--text);
   text-decoration: none;
   box-sizing: border-box;
   position: relative;
   padding: 0.75em;
+  color: white;
+  font-family: var(--allenoire-font);
   transition-duration: 900ms;
   &::before,
   &::after {

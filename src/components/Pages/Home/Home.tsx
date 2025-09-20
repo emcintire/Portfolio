@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { map } from 'lodash';
 import './Home.css';
-import name from '../../../assets/everett.svg';
+import name from '../../../assets/images/everett.svg';
 
 type Node = {
   id: string;
@@ -109,16 +109,14 @@ export function Home() {
         const next = map(curr, (n) => ({ ...n }));
 
         const rect = wrapRef.current!.getBoundingClientRect();
+        const minX = radius + 8;
+        const maxX = rect.width - (radius + 8);
+        const minY = radius + 8;
+        const maxY = rect.height - (radius + 8);
 
         // 1) Integrate forces per node (skip if frozen)
         for (const n of next) {
           if (n.frozen) continue;
-
-          const adjustedRadius = n.id === 'about' ? 150 : radius;
-          const minX = adjustedRadius + 8;
-          const maxX = rect.width - (adjustedRadius + 8);
-          const minY = adjustedRadius + 8;
-          const maxY = rect.height - (adjustedRadius + 8);
 
           // initialize acceleration
           let ax = 0;

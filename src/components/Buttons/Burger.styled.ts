@@ -11,6 +11,7 @@ export const StyledBurger = styled.button<{ open: boolean }>`
     height: 2rem;
     background: transparent;
     border: none;
+    color: black;
     cursor: pointer;
     padding: 0;
     z-index: 696969;
@@ -18,7 +19,7 @@ export const StyledBurger = styled.button<{ open: boolean }>`
     &:hover {
         div {
             transition-duration: 0.3s;
-            background: rgb(170, 170, 170);
+            background: rgba(212, 212, 212, 1);
         }
     }
 
@@ -34,18 +35,19 @@ export const StyledBurger = styled.button<{ open: boolean }>`
         transition: all 0.3s linear;
         position: relative;
         transform-origin: 1px;
+        pointer-events: none;
 
-        :first-child {
+        &:first-child {
             transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
         }
 
-        :nth-child(2) {
+        &:nth-child(2) {
             opacity: ${({ open }) => (open ? '0' : '1')};
             transform: ${({ open }) =>
                 open ? 'translateX(20px)' : 'translateX(0)'};
         }
 
-        :nth-child(3) {
+        &:nth-child(3) {
             transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
         }
     }

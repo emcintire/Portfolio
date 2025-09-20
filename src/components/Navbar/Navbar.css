@@ -19,6 +19,19 @@
   transition-duration: 0.7s;
 }
 
+.navbar {
+  background-color: #a0b662;
+  z-index: 6969;
+  height: 100px;
+  color: white;
+}
+
+.navbar-header {
+  color: white;
+  font-family: var(--allenoire-font);
+  font-size: 60px;
+}
+
 .nav-icons {
   font-size: 50px;
 }
