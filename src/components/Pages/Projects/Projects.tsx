@@ -5,7 +5,6 @@ import eye from '../../../assets/eye.svg';
 import flappy_frank from '../../../assets/flappy_frank.png';
 import tatertap from '../../../assets/tatertap.gif';
 import unCaged from '../../../assets/unCaged.png';
-import downArrow from '../../../assets/down-arrow.png';
 
 const projects = [
   {
@@ -48,7 +47,6 @@ export function Projects() {
           <h1 className='header' id='projects-header'>
             Projects
           </h1>
-          <Image src={downArrow} alt='Down Arrows' id='down-arrow' className='bounce' />
           <ul id='projects-list'>
             {projects.map((project, index) => (
               <div key={index} id={`${project.name.toLowerCase()}-card`} className='card project-cards'>

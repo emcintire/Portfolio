@@ -3,7 +3,6 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { BackArrow } from '../../../../Buttons/BackArrow.tsx';
 import "./Landscape.css";
 import { endsWith, map } from 'lodash';
-import { LandscapeRoutes } from './LandscapeRoutes';
 import { storeLocation } from '../../../../../helpers/storeLocation.ts';
 
 const links = [

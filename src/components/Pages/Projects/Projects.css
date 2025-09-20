@@ -1,112 +1,112 @@
 #projects-page {
-    background-color: var(--dark);
-    height: auto;
-    width: 100%;
-    font-family: 'Montserrat', sans-serif;
-    padding: 0;
-    margin: 0;
+  background-color: #ffecb4;
+  height: auto;
+  width: 100vw;
+  font-family: "Montserrat", sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
 #projects-page .particles-bg-canvas-self {
-    position: absolute;
-    opacity: 0.3;
+  position: absolute;
+  opacity: 0.3;
 }
 
 #projects-container {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
 }
 
 #projects-list {
-    padding: 0;
-    z-index: 696;
-    columns: 1;
-    -webkit-columns: 1;
-    -moz-columns: 1;
+  padding: 0;
+  z-index: 696;
+  columns: 1;
+  -webkit-columns: 1;
+  -moz-columns: 1;
 }
 
 #projects-header {
-    color: var(--light);
-    padding: 50px 0 80px 0px;
+  color: var(--light);
+  padding: 50px 0 80px 0px;
 }
 
 .project-cards {
-    width: 500px;
-    margin-bottom: 100px;
-    box-shadow: 5px 3px 30px rgba(0, 0, 0, 0.4);
-    border: 2px solid white;
-    color: var(--dark);
+  width: 500px;
+  margin-bottom: 100px;
+  box-shadow: 5px 3px 30px rgba(0, 0, 0, 0.4);
+  border: 2px solid white;
+  color: var(--dark);
 }
 
 .project-title {
-    font-weight: 800;
+  font-weight: 800;
 }
 
 .project-desc {
-    font-size: 16px;
-    height: auto;
+  font-size: 16px;
+  height: auto;
 }
 
 #eye-btn {
-    height: 30px;
+  height: 30px;
 }
 
 #card-btns {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 @media (max-width: 700px) {
-    .project-cards {
-        width: 300px;
-    }
+  .project-cards {
+    width: 300px;
+  }
 
-    .project-title {
-        font-size: 22px;
-    }
+  .project-title {
+    font-size: 22px;
+  }
 
-    .project-desc {
-        font-size: 12px;
-    }
+  .project-desc {
+    font-size: 12px;
+  }
 
-    #projects-page .logos {
-        height: 30px;
-    }
+  #projects-page .logos {
+    height: 30px;
+  }
 
-    #eye-btn {
-        height: 25px !important;
-    }
+  #eye-btn {
+    height: 25px !important;
+  }
 }
 
 @media (max-width: 600px) {
-    #projects-page {
-        width: 100%;
-        margin: 0;
-    }
+  #projects-page {
+    width: 100%;
+    margin: 0;
+  }
 
-    #projects-header {
-        z-index: 696;
-        font-size: 50px;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-    }
+  #projects-header {
+    z-index: 696;
+    font-size: 50px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
 
-    #projects-list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  #projects-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .project-cards {
-        width: 85%;
-    }
+  .project-cards {
+    width: 85%;
+  }
 
-    #name {
-        width: 80%;
-    }
+  #name {
+    width: 80%;
+  }
 }

@@ -25,13 +25,12 @@ import { Rio8m } from './components/Pages/Photography/Pages/Portraits/Pages/Rio8
 import { Rio15m } from './components/Pages/Photography/Pages/Portraits/Pages/Rio15m.tsx';
 import { TrudyBeachMat } from './components/Pages/Photography/Pages/Portraits/Pages/TrudyBeachMat.tsx';
 import { TrudySnowMat } from './components/Pages/Photography/Pages/Portraits/Pages/TrudySnowMat.tsx';
-import HomeV2 from './components/Pages/Home/HomeV2.tsx'
 
 export function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomeV2 />} />
+        <Route path="/" element={<Home />} />
         <Route path="projects" element={<Projects />} />
         <Route path="photography" element={<Photography />}>
 
