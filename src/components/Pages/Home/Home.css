@@ -4,6 +4,7 @@
   width: 100vw;
   height: 100dvh;
   overflow: hidden;
+  background-color: #ffecb4;
   color: white;
 }
 
@@ -11,31 +12,49 @@
   position: absolute;
   left: 0;
   top: 0;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
-  border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #e8ecff;
-  text-decoration: none;
-  height: 200px;
-  width: 200px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-  will-change: transform;
-  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease, scale 120ms ease;
-  transform: translate(-50%, -50%); /* center on (x,y), we’ll add (x,y) inline */
+  height: 350px;
+  width: 350px;
+  z-index: 999;
+
+  &.about {
+    background-image: url("../../../assets/about.svg");
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 300px;
+  }
+
+  &.projects {
+    background-image: url("../../../assets/projects.svg");
+    background-repeat: no-repeat;
+  }
+
+  &.photography {
+    background-image: url("../../../assets/photography.svg");
+    background-repeat: no-repeat;
+  }
 }
 
 .float-link:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: white;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
-  scale: 1.04;
+  height: 370px;
+  width: 370px;
+
+  &.about {
+    height: 320px;
+    width: 320px;
+  }
 }
 
+.name-container {
+  z-index: 1;
+}
 
+.name {
+  height: auto;
+  width: 25%;
+  top: 20px;
+  right: 5%;
+  position: fixed;
+}

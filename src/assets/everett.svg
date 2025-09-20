@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.94 224.13">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-2 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-3 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-4 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-5 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        fill: #ffecb4;
+        font-family: Allenoire-Regular, 'Allenoire ';
+        font-size: 112px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <text class="cls-7" transform="translate(85.79 95.2)"><tspan class="cls-4" x="0" y="0">E</tspan><tspan class="cls-3" x="64.29" y="0">v</tspan><tspan x="124.66" y="0">e</tspan><tspan class="cls-2" x="185.92" y="0">r</tspan><tspan class="cls-4" x="246.73" y="0">e</tspan><tspan x="305.42" y="0">tt</tspan><tspan class="cls-5" x="-85.79" y="96">M</tspan><tspan class="cls-6" x="4.82" y="96">cI</tspan><tspan class="cls-3" x="102.71" y="96">n</tspan><tspan x="173.71" y="96">ti</tspan><tspan class="cls-1" x="247.07" y="96">r</tspan><tspan x="307.89" y="96">e</tspan></text>
+  </g>
+</svg>

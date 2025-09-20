@@ -1,44 +1,55 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { map } from 'lodash';
 import './Home.css';
+import name from '../../../assets/everett.svg';
 
 type Node = {
   id: string;
-  label: string;
   to: string;
   x: number;
   y: number;
   vx: number;
   vy: number;
-  wobble: number;
   frozen: boolean;
 };
 
-const START: Omit<Node, 'x' | 'y' | 'vx' | 'vy' | 'wobble' | 'frozen'>[] = [
-  { id: 'about',   label: 'About',   to: '/about' },
-  { id: 'photography', label: 'Photography', to: '/photography' },
-  { id: 'projects',    label: 'Projects',    to: '/projects' },
+const START: Omit<Node, 'x' | 'y' | 'vx' | 'vy' | 'frozen'>[] = [
+  { id: 'about', to: '/about' },
+  { id: 'photography', to: '/photography' },
+  { id: 'projects', to: '/projects' },
+];
+
+const layers = [
+  { transform: `translate(-1350, 45) scale(2.35) skewX(22.5)`, fill: "rgb(1, 28, 81)" },
+  { transform: `translate(-1200, 40) scale(2.2) skewX(20)`, fill: "rgb(0, 107, 149)" },
+  { transform: `translate(-1050, 35) scale(2.05) skewX(17.5)`, fill: "rgb(1, 138, 156)" },
+  { transform: `translate(-900, 30) scale(1.9) skewX(15)`, fill: "rgb(109, 177, 164)" },
+  { transform: `translate(-750, 25) scale(1.75) skewX(12.5)`, fill: "rgb(255, 233, 183)" },
+  { transform: `translate(-600, 20) scale(1.6) skewX(10)`, fill: "rgba(255, 191, 134, 1)" },
+  { transform: `translate(-450, 15) scale(1.45) skewX(7.5)`, fill: "rgb(254, 170, 97)" },
+  { transform: `translate(-300, 10) scale(1.3) skewX(5)`, fill: "rgba(255, 129, 61, 1)" },
+  { transform: `translate(-150, 5) scale(1.15) skewX(2.5)`, fill: "rgb(255, 106, 26)" },
 ];
 
 export function Home() {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef(0);
   const [nodes, setNodes] = useState<Node[]>([]);
+  const [isLaunching, setIsLaunching] = useState(true);
   const mouse = useRef({ x: 0, y: 0, inside: false });
 
-  const radius = 100;            // interaction radius ~ pill half-size
-  const friction = 0.96;        // higher drag so they slow quickly
-  const maxSpeed = 300;         // px/sec cap
-  const wallBounce = 0.5;       // energy kept after wall hit
-  const nudgeRadius = 500;      // px; mouse proximity to repel
-  const nudgeStrength = 2000;   // impulse near mouse
-  const wanderAmp = 60;         // random wander accel
-  const wanderFreq = 1.4;       // Hz
-  const restCutoff = 2.5;       // px/sec
-  // collisions
-  const restitution = 0.7;      // 0=sticky, 1=bouncy
-  const correctionPercent = 0.9;// positional correction aggressiveness
-  const slop = 0.5;             // allowed tiny overlap before correction
+  const radius = 175;
+  const friction = isLaunching ? 0.99 : 0.96;
+  const maxSpeed = isLaunching ? 5000 : 300;
+  const wallBounce = isLaunching ? 0.9 : 0.5;
+  const nudgeRadius = 500;
+  const nudgeStrength = 2000;
+  const restCutoff = 2.5;
+
+  const restitution = 0.7;
+  const correctionPercent = 0.9
+  const slop = 0.5;
 
   useEffect(() => {
     const el = wrapRef.current!;
@@ -49,16 +60,22 @@ export function Home() {
 
     setNodes(START.map((s, i) => {
       const ang = (i / START.length) * Math.PI * 2;
+      // Add random initial velocity for momentum effect
+      const launchSpeed = 5000 + Math.random() * 300; // 200-500 px/sec
+      const launchAngle = Math.random() * Math.PI * 2;
       return {
         ...s,
         x: cx + Math.cos(ang) * r,
         y: cy + Math.sin(ang) * r,
-        vx: 0,
-        vy: 0,
-        wobble: Math.random() * 1000,
+        vx: Math.cos(launchAngle) * launchSpeed,
+        vy: Math.sin(launchAngle) * launchSpeed,
         frozen: false,
       };
     }));
+
+    // Turn off launch mode after initial chaos settles
+    const timer = setTimeout(() => setIsLaunching(false), 2000);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -89,23 +106,23 @@ export function Home() {
 
       setNodes((curr) => {
         if (!curr.length) return curr;
-        const next = curr.map((n) => ({ ...n }));
+        const next = map(curr, (n) => ({ ...n }));
 
         const rect = wrapRef.current!.getBoundingClientRect();
-        const minX = radius + 8;
-        const maxX = rect.width - (radius + 8);
-        const minY = radius + 8;
-        const maxY = rect.height - (radius + 8);
 
         // 1) Integrate forces per node (skip if frozen)
         for (const n of next) {
           if (n.frozen) continue;
 
-          // smooth wander
-          n.wobble += dt;
-          const phase = n.wobble * wanderFreq * Math.PI * 2;
-          let ax = Math.sin(phase + n.x * 0.001) * wanderAmp;
-          let ay = Math.cos(phase + n.y * 0.001) * wanderAmp;
+          const adjustedRadius = n.id === 'about' ? 150 : radius;
+          const minX = adjustedRadius + 8;
+          const maxX = rect.width - (adjustedRadius + 8);
+          const minY = adjustedRadius + 8;
+          const maxY = rect.height - (adjustedRadius + 8);
+
+          // initialize acceleration
+          let ax = 0;
+          let ay = 0;
 
           // mouse nudge (repel)
           if (mouse.current.inside) {
@@ -204,13 +221,13 @@ export function Home() {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
-  const onEnter = (id: string) =>
-    setNodes(ns => ns.map(n =>
-      n.id === id ? { ...n, frozen: true, vx: 0, vy: 0 } : n));
+  const onEnter = (id: string) => setNodes(ns => map(ns, ((n) => n.id === id
+    ? { ...n, frozen: true, vx: 0, vy: 0 }
+    : n)));
 
-  const onLeave = (id: string) =>
-    setNodes(ns => ns.map(n =>
-      n.id === id ? { ...n, frozen: false } : n));
+  const onLeave = (id: string) => setNodes(ns => map(ns, ((n) => n.id === id
+    ? { ...n, frozen: false }
+    : n)));
 
   return (
     <div ref={wrapRef} className="home-wrap" aria-label="Home navigation">
@@ -218,14 +235,30 @@ export function Home() {
         <Link
           key={n.id}
           to={n.to}
-          className="float-link"
+          className={`float-link ${n.id}`}
           style={{ transform: `translate(-50%, -50%) translate(${n.x}px, ${n.y}px)` }}
           onMouseEnter={() => onEnter(n.id)}
           onMouseLeave={() => onLeave(n.id)}
-        >
-          {n.label}
-        </Link>
+        />
       ))}
+      <svg
+        className="topography-shape"
+        width="100%"
+        height="auto"
+        viewBox='0 0 1200 700'
+        xmlns="http://www.w3.org/2000/svg">
+        {map(layers, (layer, index) => (
+          <path
+            key={index}
+            d="M734.567 34.372c-28.692 61.724-23.266 100.422 16.275 116.094 59.313 23.508 200.347 32.911 259.299 83.906 58.95 50.994 238.697 11.572 269.438-75.95C1310.32 70.9 1365.669-64 1073.808-64c-194.576 0-307.654 32.79-339.24 98.372h-.001z"
+            fill={layer.fill}
+            fillRule="nonzero"
+            transform={layer.transform}
+            style={{ position: "relative", zIndex: index }}
+          />
+        ))}
+      </svg>
+      <img src={name} className="name" />
     </div>
   );
 }
