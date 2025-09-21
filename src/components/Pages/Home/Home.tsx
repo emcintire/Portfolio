@@ -60,7 +60,7 @@ export function Home() {
   }, []);
 
   return (
-    <div id="home">
+    <div id="home-page">
       <FloatingLinks />
       <svg
         ref={svgRef}

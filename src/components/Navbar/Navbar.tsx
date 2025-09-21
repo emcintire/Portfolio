@@ -79,7 +79,7 @@ export function Navbar() {
 
   const goBack = () => {
     setOpen(false);
-    navigate('..');
+    navigate(-1);
   }
 
   if (activeLink === '') { return null; }
@@ -95,9 +95,9 @@ export function Navbar() {
         top={0}
         width="100%"
       >
-        <Grid size={1} display="flex" justifyContent="center" alignItems="center">
-          <IconButton onClick={goBack}>
-            <ArrowBack htmlColor="white" fontSize="large" />
+        <Grid size={1} display="flex" paddingLeft={3} justifyContent="center" alignItems="center">
+          <IconButton className="back-btn" onClick={goBack}>
+            <ArrowBack className="back-icon" fontSize="large" />
           </IconButton>
         </Grid>
         <Grid size={10} display="flex" justifyContent="center" alignItems="center">

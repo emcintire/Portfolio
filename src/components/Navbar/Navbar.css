@@ -20,13 +20,30 @@
   }
 
   .navbar-header {
-    color: white;
+    color: var(--background);
     font-family: var(--allenoire-font);
-    font-size: 60px;
+    font-size: 3rem;
   }
 
   .nav-icons {
     font-size: 50px;
+  }
+
+  .back-btn {
+    &:hover {
+      background-color: transparent;
+      border: none;
+    }
+
+    .back-icon {
+      color: var(--background);
+      transition: all 0.3s linear;
+  
+      &:hover {
+        transition-duration: 0.3s;
+        color: #dbca98ff;
+      }
+    }
   }
 
   .menu-item {
@@ -96,6 +113,12 @@
     color: #666;
   }
 
+  @media (max-width: 900px) {
+    .navbar-header {
+      font-size: 2rem;
+    }
+  }
+
   @media (max-width: 700px) {
     .link {
       width: 70px;
@@ -117,7 +140,7 @@
     }
 
     .navbar-header {
-      font-size: 40px;
+      font-size: 1.125rem;
     }
 
     #nav {

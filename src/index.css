@@ -47,7 +47,7 @@ h1 {
 }
 
 .header {
-  color: black;
+  color: var(--background);
   padding: 50px 0 80px 0px;
   font-family: var(--allenoire-font);
   font-size: 75px ;

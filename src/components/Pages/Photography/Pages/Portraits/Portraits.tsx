@@ -32,26 +32,24 @@ export function Portraits() {
   }, []);
 
   return (
-    <>
+    <div id='portraits-page'>
       {endsWith(pathname, 'portraits') && (
-        <div id='portraits-container'>
-          <ul id='category-list'>
-            {map(links, (link) => (
-              <div className='category-container' id={link.id} key={link.id}>
-                <Link
-                  className='category-link'
-                  to={link.path}
-                  onClick={storeLocation('album', link.id, 'album')}>
-                  {link.name}
-                  <br />
-                  <span className='cat-year'>{link.year}</span>
-                </Link>
-              </div>
-            ))}
-          </ul>
-        </div>
+        <ul className='category-list'>
+          {map(links, (link) => (
+            <div className='category-container' id={link.id} key={link.id}>
+              <Link
+                className='category-link'
+                to={link.path}
+                onClick={storeLocation('album', link.id, 'album')}>
+                {link.name}
+                <br />
+                <span className='cat-year'>{link.year}</span>
+              </Link>
+            </div>
+          ))}
+        </ul>
       )}
       <Outlet />
-    </>
+    </div>
   );
 }

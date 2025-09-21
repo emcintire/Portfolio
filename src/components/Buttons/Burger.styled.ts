@@ -11,7 +11,6 @@ export const StyledBurger = styled.button<{ open: boolean }>`
     height: 2rem;
     background: transparent;
     border: none;
-    color: black;
     cursor: pointer;
     padding: 0;
     z-index: 696969;
@@ -19,7 +18,7 @@ export const StyledBurger = styled.button<{ open: boolean }>`
     &:hover {
         div {
             transition-duration: 0.3s;
-            background: rgba(212, 212, 212, 1);
+            background: #dbca98ff;
         }
     }
 
@@ -30,7 +29,7 @@ export const StyledBurger = styled.button<{ open: boolean }>`
     div {
         width: 2rem;
         height: 0.25rem;
-        background: white;
+        background: var(--background);
         border-radius: 10px;
         transition: all 0.3s linear;
         position: relative;
@@ -52,7 +51,7 @@ export const StyledBurger = styled.button<{ open: boolean }>`
         }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
         top: 1.8rem;
         right: 1.8rem;
         width: auto;

@@ -50,45 +50,43 @@ const projects = [
 
 export function Projects() {
   return (
-    <>
-      <div id='projects-page'>
-        <div id='projects-container'>
-          <ul id='projects-list'>
-            {map(projects, (project, index) => (
-              <div key={index} id={`${toLower(project.name)}-card`} className='card project-cards'>
-                <Image src={project.img} className='card-img' width="100%" />
-                <div className='card-body'>
-                  <h3 className='card-title project-title'>{project.name}</h3>
-                  <p className='card-text project-desc'>
-                    {map(project.descriptions, (desc) => (
-                      <span key={desc}>
-                        {desc}
-                        <br />
-                      </span>
-                    ))}
-                  </p>
-                  <div id='card-btns'>
-                    {project.githubLink && (
-                      <a href={project.githubLink} target='_blank' rel='noreferrer'>
-                        <IconButton>
-                          <GitHub className="logos" />
-                        </IconButton>
-                      </a>
-                    )}
-                    {project.viewLink && (
-                      <a href={project.viewLink} target='_blank' rel='noreferrer'>
-                        <IconButton>
-                          <VisibilityRounded className="logos" />
-                        </IconButton>
-                      </a>
-                    )}
-                  </div>
+    <div id='projects-page'>
+      <div className='projects-container'>
+        <ul className='projects-list'>
+          {map(projects, (project, index) => (
+            <div key={index} id={`${toLower(project.name)}-card`} className='card project-cards'>
+              <Image src={project.img} className='card-img' width="100%" />
+              <div className='card-body'>
+                <h3 className='card-title project-title'>{project.name}</h3>
+                <p className='card-text project-desc'>
+                  {map(project.descriptions, (desc) => (
+                    <span key={desc}>
+                      {desc}
+                      <br />
+                    </span>
+                  ))}
+                </p>
+                <div className='card-btns'>
+                  {project.githubLink && (
+                    <a href={project.githubLink} target='_blank' rel='noreferrer'>
+                      <IconButton>
+                        <GitHub className="logos" />
+                      </IconButton>
+                    </a>
+                  )}
+                  {project.viewLink && (
+                    <a href={project.viewLink} target='_blank' rel='noreferrer'>
+                      <IconButton>
+                        <VisibilityRounded className="logos" />
+                      </IconButton>
+                    </a>
+                  )}
                 </div>
               </div>
-            ))}
-          </ul>
-        </div>
+            </div>
+          ))}
+        </ul>
       </div>
-    </>
+    </div>
   );
 }

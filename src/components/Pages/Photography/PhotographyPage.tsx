@@ -13,8 +13,8 @@ export function PhotographyPage() {
   );
 
   return (
-    <div id='photo-container'>
-      <section id='photos'>
+    <div className='photo-container'>
+      <section className='photos'>
         {map(images, (image) => (
           <img key={image.src} src={image.src} alt={image.alt} />
         ))}

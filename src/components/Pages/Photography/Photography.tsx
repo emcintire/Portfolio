@@ -24,25 +24,23 @@ export function Photography() {
   }, []);
 
   return (
-    <>
+    <div id="photography-page">
       {endsWith(pathname, 'photography') && (
-        <div id="photography-container">
-          <ul id="category-list">
-            {map(links, (link) => (
-              <div className="category-container" id={link.id} key={link.id}>
-                <Link
-                  className="category-link"
-                  to={link.id}
-                  onClick={storeLocation('category', link.id, ['album', 'category'])}
-                >
-                  {link.name}
-                </Link>
-              </div>
-            ))}
-          </ul>
-        </div>
+        <ul className="category-list">
+          {map(links, (link) => (
+            <div className="category-container" id={link.id} key={link.id}>
+              <Link
+                className="category-link"
+                to={link.id}
+                onClick={storeLocation('category', link.id, ['album', 'category'])}
+              >
+                {link.name}
+              </Link>
+            </div>
+          ))}
+        </ul>
       )}
       <Outlet />
-    </>
+    </div>
   );
 }

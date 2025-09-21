@@ -1,48 +1,50 @@
-#landscape-container {
-    background-color: var(--dark);
-}
+#landscape-page {
+  width: 100%;
+  padding: 0;
+  margin: 0;
 
-.cat-year {
+  .cat-year {
     font-weight: 100;
     font-size: 30px;
-}
+  }
 
-#roadtrip2022 {
+  #roadtrip2022 {
     background-image: url("https://i.imgur.com/C5F5r4u.jpg");
-}
+  }
 
-#alaska2018 {
+  #alaska2018 {
     background-image: url("../../../../../assets/images/alaska2018.jpg");
-}
+  }
 
-#alaska2020 {
+  #alaska2020 {
     background-image: url("../../../../../assets/images/alaska2020.jpg");
-}
+  }
 
-#malabar2019 {
+  #malabar2019 {
     background-image: url("../../../../../assets/images/malabar.jpg");
-}
+  }
 
-#mammoth2020 {
+  #mammoth2020 {
     background-image: url("../../../../../assets/images/mammoth.jpg");
-}
+  }
 
-#roadtrip2018 {
+  #roadtrip2018 {
     background-image: url("../../../../../assets/images/roadtrip.jpg");
-}
+  }
 
-#summer2017 {
+  #summer2017 {
     background-image: url("../../../../../assets/images/summer.jpg");
-}
+  }
 
-#tetons2021 {
+  #tetons2021 {
     background-image: url("../../../../../assets/images/tetons.jpg");
-}
+  }
 
-#yellowstone2021 {
+  #yellowstone2021 {
     background-image: url("../../../../../assets/images/yellowstone.png");
-}
+  }
 
-#yosemite2019 {
+  #yosemite2019 {
     background-image: url("../../../../../assets/images/yosemite.jpg");
+  }
 }

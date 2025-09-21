@@ -13,13 +13,14 @@ import linkedin from '../../../assets/images/linkedin.svg';
 import mongo from '../../../assets/images/mongo.svg';
 import node from '../../../assets/images/node.svg';
 import post from '../../../assets/images/post.svg';
-import profilePic from '../../../assets/images/pp.jpg';
+import profilePic from '../../../assets/images/pp.png';
 import ps from '../../../assets/images/ps.svg';
 import python from '../../../assets/images/python.svg';
 import resume from '../../../assets/images/resume.pdf';
 import resumeLogo from '../../../assets/images/resume.svg';
 import reactLogo from '../../../assets/images/react.svg';
 import { map } from 'lodash';
+import { Grid } from '@mui/material';
 
 const skills = [
   { name: 'React', img: reactLogo },
@@ -55,6 +56,14 @@ export function About() {
 
   return (
     <div id='about-page'>
+      <Grid container>
+        <Grid>
+
+        </Grid>
+        <Grid>
+          
+        </Grid>
+      </Grid>
       <div className='about-container' id='profile-container'>
         <div id='bio-container'>
           <div id='bio-card' className='card'>
@@ -97,7 +106,7 @@ export function About() {
           </div>
         </div>
         <div id='skills-container'>
-          <h1 className='header' id='skills-header'>
+          <h1 id='skills-header'>
             Skills
           </h1>
           <ul id='skills-list'>
