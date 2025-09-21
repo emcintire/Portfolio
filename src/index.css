@@ -12,13 +12,17 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #ffecb4;
+  background-color: var(--background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --allenoire-font: "Allenoire", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  --light: #ffffff;
+  --background: #ffecb4;
+  --red: #e2611d;
 }
 
 a {

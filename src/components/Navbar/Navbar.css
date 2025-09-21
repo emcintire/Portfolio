@@ -24,6 +24,15 @@
   z-index: 6969;
   height: 100px;
   color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
+}
+
+.navbar.visible {
+  transform: translateY(0);
 }
 
 .navbar-header {
@@ -56,10 +65,15 @@
   height: 100px;
   line-height: 100px;
   text-align: center;
-  background: var(--dark);
   border-radius: 50%;
   color: rgb(122, 122, 122);
   transition: 0.5s;
+  padding: 50px;
+
+  img {
+    height: 150px;
+    width: 150px;
+  }
 }
 
 .link:before {
@@ -68,7 +82,6 @@
   top: 0;
   left: 0;
   border-radius: 50%;
-  background: var(--light);
   transition: 0.5s;
   transform: scale(0.9);
   z-index: -1;
@@ -81,15 +94,12 @@
 }
 
 .link:hover {
-  color: var(--light);
-  box-shadow: 0 0 25px var(--light);
-  text-shadow: 0 0 25px var(--light);
+  background-color: #0000002f;
 }
 
 .active .link {
-  color: var(--light);
-  box-shadow: 0 0 25px var(--light);
-  text-shadow: 0 0 25px var(--light);
+  background-color: var(--background);
+  border: 10px solid var(--red);
 }
 
 .menu-btn {

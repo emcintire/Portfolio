@@ -31,7 +31,7 @@
   width: 500px;
   margin-bottom: 75px;
   box-shadow: 5px 3px 30px rgba(0, 0, 0, 0.4);
-  border: 25px solid rgb(255, 106, 26);
+  border: 25px solid var(--red);
   border-radius: 50px;
   color: var(--dark);
   background-color: white;

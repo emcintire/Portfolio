@@ -1,11 +1,13 @@
 import './Navbar.css';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Burger } from '../Buttons/Burger';
 import { includes, last, map, split } from 'lodash';
-import { Code, Home, Person, PhotoCamera } from '@mui/icons-material';
 import { Grid } from '@mui/material';
 import { BackArrow } from '../Buttons/BackArrow';
+import about from '../../assets/images/about.svg';
+import projects from '../../assets/images/projects.svg';
+import photography from '../../assets/images/photography.svg';
 
 const handleClickLink = (setOpen: (open: boolean) => void, id: string) => () => {
   if (includes(['home', 'about', 'projects'], id)) {
@@ -16,10 +18,9 @@ const handleClickLink = (setOpen: (open: boolean) => void, id: string) => () => 
 }
 
 const links = [
-  { id: 'home', to: '/', icon: Home, title: 'Home' },
-  { id: 'about', to: '/about', icon: Person, title: 'About' },
-  { id: 'projects', to: '/projects', icon: Code, title: 'Projects' },
-  { id: 'photography', to: '/photography', icon: PhotoCamera, title: 'Photography' },
+  { id: 'about', to: '/about', src: about, title: 'About' },
+  { id: 'projects', to: '/projects', src: projects, title: 'Projects' },
+  { id: 'photography', to: '/photography', src: photography, title: 'Photography' },
 ];
 
 const titles = {
@@ -54,17 +55,41 @@ const titles = {
 export function Navbar() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   const activeLink = useMemo(() => last(split(pathname, '/')), [pathname]);
 
   const title = useMemo(() => titles[activeLink as keyof typeof titles], [activeLink]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show navbar when at top of page
+      if (currentScrollY === 0) {
+        setIsVisible(true);
+      }
+      // Hide when scrolling down, show when scrolling up
+      else if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        setIsVisible(true);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (activeLink === '') { return null; }
 
   return (
     <>
       <div id='cover' className={open ? 'covering' : ''} />
-      <Grid container position="fixed" width="100%" top={0} className="navbar">
+      <Grid container position="fixed" width="100%" top={0} className={`navbar ${isVisible ? 'visible' : 'hidden'}`}>
         <Grid size={1} display="flex" justifyContent="center" alignItems="center">
           <BackArrow />
         </Grid>
@@ -88,7 +113,7 @@ export function Navbar() {
               to={link.to}
               onClick={handleClickLink(setOpen, link.id)}
             >
-              <link.icon />
+              <img src={link.src} alt={link.title} />
             </Link>
           </li>
         ))}
