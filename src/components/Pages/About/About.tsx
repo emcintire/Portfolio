@@ -3,7 +3,6 @@ import { useRef, useState } from 'react';
 import { Image } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../../Buttons/aws-btn.css';
 import ai from '../../../assets/images/ai.svg';
 import asp from '../../../assets/images/asp.svg';
 import c from '../../../assets/images/c.svg';

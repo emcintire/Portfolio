@@ -1,0 +1,55 @@
+.links-wrap {
+  position: fixed;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  color: white;
+  z-index: 6969;
+  bottom: 0;
+}
+
+.float-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  width: 350px;
+  z-index: 99999;
+
+  &.about {
+    background-image: url("../../assets/images/about.svg");
+    background-repeat: no-repeat;
+  }
+
+  &.projects {
+    background-image: url("../../assets/images/projects.svg");
+    background-repeat: no-repeat;
+    border-radius: 100%;
+  }
+
+  &.photography {
+    background-image: url("../../assets/images/photography.svg");
+    background-repeat: no-repeat;
+    border-radius: 100%;
+  }
+}
+
+.float-link:hover {
+  height: 370px;
+  width: 370px;
+}
+
+@media (max-width: 700px) {
+  .float-link {
+    height: 175px;
+    width: 175px;
+  }
+
+  .float-link:hover {
+    height: 200px;
+    width: 200px;
+  }
+}

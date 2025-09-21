@@ -1,62 +1,19 @@
-.home-wrap {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100dvh;
-  overflow: hidden;
-  background-color: #ffecb4;
-  color: white;
-}
+#home {
+  overflow: hidden !important;
 
-.float-link {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 350px;
-  width: 350px;
-  z-index: 999;
-
-  &.about {
-    background-image: url("../../../assets/images/about.svg");
-    background-repeat: no-repeat;
-    height: 300px;
-    width: 300px;
+  .name {
+    position: fixed;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  &.projects {
-    background-image: url("../../../assets/images/projects.svg");
-    background-repeat: no-repeat;
-    border-radius: 100%;
+  .name span {
+    font-family: var(--allenoire-font);
+    color: var(--background);
+    line-height: 0.9;
+    white-space: nowrap;
+    text-align: end;
   }
-
-  &.photography {
-    background-image: url("../../../assets/images/photography.svg");
-    background-repeat: no-repeat;
-    border-radius: 100%;
-  }
-}
-
-.float-link:hover {
-  height: 370px;
-  width: 370px;
-
-  &.about {
-    height: 320px;
-    width: 320px;
-  }
-}
-
-.name-container {
-  z-index: 1;
-}
-
-.name {
-  height: auto;
-  width: 25%;
-  top: 20px;
-  right: 5%;
-  position: fixed;
 }

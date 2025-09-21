@@ -5,7 +5,7 @@ import { IconButton } from '@mui/material';
 export function BackArrow() {
   const navigate = useNavigate();
 
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate('..');
 
   return (
     <IconButton onClick={goBack}>

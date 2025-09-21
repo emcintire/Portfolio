@@ -11,7 +11,7 @@ import { IconButton } from '@mui/material';
 const projects = [
   {
     descriptions: [
-      `- My biggest side project so far: a 3D mall cop simulator made in Unity. Patrol the chaos. Keep the peace.`,
+      `- My most ambitious side project to date, a 3D mall cop simulator made in Unity. Patrol the chaos. Keep the peace.`,
       `- Coming to Steam in 2026 — follow for updates!`,
     ],
     img: construction,

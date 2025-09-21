@@ -1,27 +1,11 @@
 import './Navbar.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Burger } from '../Buttons/Burger';
-import { includes, last, map, split } from 'lodash';
-import { Grid } from '@mui/material';
-import { BackArrow } from '../Buttons/BackArrow';
-import about from '../../assets/images/about.svg';
-import projects from '../../assets/images/projects.svg';
-import photography from '../../assets/images/photography.svg';
-
-const handleClickLink = (setOpen: (open: boolean) => void, id: string) => () => {
-  if (includes(['home', 'about', 'projects'], id)) {
-    window.localStorage.removeItem('category');
-    window.localStorage.removeItem('album');
-  }
-  setOpen(false);
-}
-
-const links = [
-  { id: 'about', to: '/about', src: about, title: 'About' },
-  { id: 'projects', to: '/projects', src: projects, title: 'Projects' },
-  { id: 'photography', to: '/photography', src: photography, title: 'Photography' },
-];
+import { useLocation, useNavigate } from 'react-router-dom';
+import { includes, last, split } from 'lodash';
+import { Grid, IconButton } from '@mui/material';
+import { ArrowBack } from '@mui/icons-material';
+import { FloatingLinks } from './FloatingLinks.tsx';
+import { Burger } from '../Buttons/Burger.tsx';
 
 const titles = {
   '/': 'Home',
@@ -53,6 +37,7 @@ const titles = {
 };
 
 export function Navbar() {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -84,14 +69,36 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleClickLink = (id: string) => {
+    if (includes(['home', 'about', 'projects'], id)) {
+      window.localStorage.removeItem('category');
+      window.localStorage.removeItem('album');
+    }
+    setOpen(false);
+  }
+
+  const goBack = () => {
+    setOpen(false);
+    navigate('..');
+  }
+
   if (activeLink === '') { return null; }
 
   return (
-    <>
+    <div id="nav">
+      {open && <FloatingLinks onClickLink={handleClickLink} />}
       <div id='cover' className={open ? 'covering' : ''} />
-      <Grid container position="fixed" width="100%" top={0} className={`navbar ${isVisible ? 'visible' : 'hidden'}`}>
+      <Grid
+        className={`navbar ${(isVisible || open) ? 'visible' : 'hidden'}`}
+        container
+        position="fixed"
+        top={0}
+        width="100%"
+      >
         <Grid size={1} display="flex" justifyContent="center" alignItems="center">
-          <BackArrow />
+          <IconButton onClick={goBack}>
+            <ArrowBack htmlColor="white" fontSize="large" />
+          </IconButton>
         </Grid>
         <Grid size={10} display="flex" justifyContent="center" alignItems="center">
           <span className="navbar-header">{title}</span>
@@ -100,24 +107,6 @@ export function Navbar() {
           <Burger open={open} setOpen={setOpen} />
         </Grid>
       </Grid>
-      <ul className={`navbar-nav ${open ? 'open' : ''}`} id="nav">
-        {map(links, (link) => (
-          <li
-            key={link.id}
-            className={`nav-item menu-item ${activeLink === link.id ? 'active' : ''}`}
-            id={link.id}
-            title={link.title}
-          >
-            <Link
-              className='link'
-              to={link.to}
-              onClick={handleClickLink(setOpen, link.id)}
-            >
-              <img src={link.src} alt={link.title} />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </>
+    </div>
   );
 }
