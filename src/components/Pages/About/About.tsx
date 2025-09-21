@@ -41,7 +41,7 @@ export function About() {
   const [showContact, setShowContact] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  // const isMobile = useMediaQuery({ query: `(max-width: 600px)` });
+  // const isMobile = useMediaQuery({ query: `(max-width: 700px)` });
 
   const clickContact = () => {
     if (!showContact && textAreaRef.current) {

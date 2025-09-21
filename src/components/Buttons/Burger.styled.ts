@@ -52,7 +52,7 @@ export const StyledBurger = styled.button<{ open: boolean }>`
     }
 
     @media (max-width: 700px) {
-        top: 1.8rem;
+        top: 1rem;
         right: 1.8rem;
         width: auto;
         height: 1.6rem;

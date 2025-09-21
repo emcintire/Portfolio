@@ -4,7 +4,7 @@
   }
 
   .navbar {
-    background-color: #a0b662;
+    background-color: var(--green);
     z-index: 6969;
     height: 100px;
     color: white;
@@ -136,18 +136,15 @@
     }
 
     .navbar {
-      height: 80px;
+      height: 60px;
     }
 
     .navbar-header {
-      font-size: 1.125rem;
+      font-size: 1.25rem;
     }
 
-    #nav {
-      .links-wrap {
-        height: calc(100vh - 80px) !important;
-      }
-
+    .links-wrap {
+      height: calc(100vh - 60px) !important;
     }
   }
 

@@ -56,7 +56,8 @@
     width: 100%;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
-    border-bottom: 5px solid black;
+    border-bottom: 10px solid var(--red);
+
   }
   
   .card-body {

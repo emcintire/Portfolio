@@ -95,7 +95,7 @@ export function Navbar() {
         top={0}
         width="100%"
       >
-        <Grid size={1} display="flex" paddingLeft={3} justifyContent="center" alignItems="center">
+        <Grid size={1} display="flex" justifyContent="start" alignItems="center" paddingLeft={2}>
           <IconButton className="back-btn" onClick={goBack}>
             <ArrowBack className="back-icon" fontSize="large" />
           </IconButton>

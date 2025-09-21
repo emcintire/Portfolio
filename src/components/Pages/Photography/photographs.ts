@@ -1,6 +1,39 @@
+import type { Photograph } from '../../../types';
+
 // LANDSCAPE
 
-import type { Photograph } from '../../../types';
+const adirondacks2025 = [
+  { alt: 'Mountain Peak', src: 'https://i.imgur.com/9dbpXidh.jpg' },
+  { alt: 'Night Sky', src: 'https://i.imgur.com/EuZ9XEuh.jpg' },
+  { alt: 'Babbling brook', src: 'https://i.imgur.com/pSY0fwOh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/iOpbW0fh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/xjtvk7th.jpg' },
+  { alt: 'Night Sky', src: 'https://i.imgur.com/5AdZqUOh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/f1DJjmZh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/GkQwQZrh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/n8oXwoOh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/KToTV0uh.jpg' },
+  { alt: 'Cairn', src: 'https://i.imgur.com/UkXx6E8h.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/a4QW7CGh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/gEUV2qNh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/qslXcWyh.jpg' },
+  { alt: 'Night Sky', src: 'https://i.imgur.com/UFFEX41h.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/Ye0iJqah.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/MrV4sRqh.jpg' },
+  { alt: 'Night Sky', src: 'https://i.imgur.com/EUaGBJYh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/3T7PKtUh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/cFQOnBWh.jpg' },
+  { alt: 'Mountain Peak', src: 'https://i.imgur.com/CMq0qSRh.jpg' },
+  { alt: 'Night Sky', src: 'https://i.imgur.com/xd1hkMrh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/vCNm0k0h.jpg' },
+  { alt: 'Night Sky', src: 'https://i.imgur.com/OzTzG8kh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/X0xdsx0h.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/CMRxEzdh.jpg' },
+  { alt: 'Night Sky', src: 'https://i.imgur.com/EuZ9XEuh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/QSx9mGCh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/8RuZLEJh.jpg' },
+  { alt: 'Night Sky', src: 'https://i.imgur.com/7twR6MKh.jpg' },
+]
 
 const alaska2018 = [
   { alt: 'Field with mountain peak in back', src: 'https://i.imgur.com/yol64gjh.jpg' },
@@ -646,6 +679,7 @@ const misc = [
 ];
 
 export const photographs: Record<string, Array<Photograph>> = {
+  adirondacks2025,
   alaska2018,
   alaska2020,
   animals,

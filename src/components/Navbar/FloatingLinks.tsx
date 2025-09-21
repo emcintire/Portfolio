@@ -33,7 +33,7 @@ export function FloatingLinks({ onClickLink = noop }: { onClickLink?(id: string)
   const friction = isLaunching ? 0.99 : 0.96;
   const maxSpeed = isLaunching ? 5000 : 300;
   const wallBounce = isLaunching ? 0.9 : 0.5;
-  const nudgeRadius = isMobile ? 250 : 500;
+  const nudgeRadius = isMobile ? 200 : 400;
   const nudgeStrength = 2000;
   const restCutoff = 2.5;
 
@@ -51,7 +51,7 @@ export function FloatingLinks({ onClickLink = noop }: { onClickLink?(id: string)
     setNodes(START.map((s, i) => {
       const ang = (i / START.length) * Math.PI * 2;
       // Add random initial velocity for momentum effect
-      const launchSpeed = 5000 + Math.random() * 300; // 200-500 px/sec
+      const launchSpeed = 3000 + Math.random() * 300;
       const launchAngle = Math.random() * Math.PI * 2;
       return {
         ...s,

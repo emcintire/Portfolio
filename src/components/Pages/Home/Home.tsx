@@ -2,6 +2,8 @@ import './Home.css';
 import { map } from 'lodash';
 import { FloatingLinks } from '../../Navbar/FloatingLinks';
 import { useLayoutEffect, useRef, useState } from 'react';
+import { Logo } from '../../Logo';
+import { Box } from '@mui/material';
 
 const layers = [
   { transform: `translate(-1350, 45) scale(2.35) skewX(22.5)`, fill: "rgb(1, 28, 81)" },
@@ -62,44 +64,7 @@ export function Home() {
   return (
     <div id="home-page">
       <FloatingLinks />
-      <svg
-        ref={svgRef}
-        className="topography-shape"
-        width="100%"
-        height="auto"
-        viewBox="0 0 1200 700"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden
-      >
-        {map(layers, (layer, index) => {
-          const isSmallest = index === layers.length - 1;
-          return (
-            <path
-              key={index}
-              ref={isSmallest ? smallestRef : undefined}
-              d="M734.567 34.372c-28.692 61.724-23.266 100.422 16.275 116.094 59.313 23.508 200.347 32.911 259.299 83.906 58.95 50.994 238.697 11.572 269.438-75.95C1310.32 70.9 1365.669-64 1073.808-64c-194.576 0-307.654 32.79-339.24 98.372h-.001z"
-              fill={layer.fill}
-              fillRule="nonzero"
-              transform={layer.transform}
-              style={{ position: 'relative', zIndex: index }}
-            />
-          );
-        })}
-      </svg>
-      {nameBox && (
-        <div
-          ref={nameRef}
-          className="name"
-          style={{
-            left: `${nameBox.left}px`,
-            top: `${nameBox.top}px`,
-            width: `${nameBox.width}px`,
-            height: `${nameBox.height}px`,
-          }}
-        >
-          <span style={{ fontSize: `${fontPx}px` }}>Everett <br /> McIntire</span>
-        </div>
-      )}
+      <Logo />
     </div>
   );
 }
