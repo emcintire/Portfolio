@@ -1,8 +1,6 @@
 import './About.css';
 import { useRef, useState } from 'react';
 import { Image } from 'react-bootstrap';
-import { useMediaQuery } from 'react-responsive';
-// import { AwesomeButton } from 'react-awesome-button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../Buttons/aws-btn.css';
@@ -43,7 +41,7 @@ export function About() {
   const [showContact, setShowContact] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  const isMobile = useMediaQuery({ query: `(max-width: 600px)` });
+  // const isMobile = useMediaQuery({ query: `(max-width: 600px)` });
 
   const clickContact = () => {
     if (!showContact && textAreaRef.current) {
@@ -86,14 +84,14 @@ export function About() {
                 </div>
                 {showContact ? (
                   <div id='contact-info'>
-                    {/* <AwesomeButton className='aws-btn' type='primary' onPress={clickContact}> */}
+                    <button className='aws-btn' onClick={clickContact}>
                       everettgmcintire@gmail.com
-                    {/* </AwesomeButton> */}
+                    </button>
                   </div>
                 ) : (
-                  // <AwesomeButton className='aws-btn' type='primary' onPress={clickContact}>
-                    'Contact'
-                  // </AwesomeButton>
+                  <button className='aws-btn' onClick={clickContact}>
+                    Contact
+                  </button>
                 )}
               </div>
             </div>

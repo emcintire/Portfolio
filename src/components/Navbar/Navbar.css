@@ -94,12 +94,11 @@
 }
 
 .link:hover {
-  background-color: #0000002f;
+  background-color: #00000052;
 }
 
 .active .link {
-  background-color: var(--background);
-  border: 10px solid var(--red);
+  background-color: #00000052;
 }
 
 .menu-btn {

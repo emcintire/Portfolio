@@ -3,7 +3,7 @@
   width: 100%;
   font-family: "Montserrat", sans-serif;
   padding: 0;
-  padding-top: 120px;
+  padding-top: 150px;
   margin: 0;
 }
 
@@ -29,16 +29,21 @@
 
 .project-cards {
   width: 500px;
-  margin-bottom: 75px;
-  box-shadow: 5px 3px 30px rgba(0, 0, 0, 0.4);
-  border: 25px solid var(--red);
+  margin-bottom: 125px;
+  border: 10px solid var(--red);
+  box-shadow: 
+    0 0 0 10px rgb(255, 140, 78),
+    0 0 0 20px rgb(254, 170, 97),
+    0 0 0 30px rgb(109, 177, 164),
+    0 0 0 40px rgb(0, 107, 149);
   border-radius: 50px;
-  color: var(--dark);
   background-color: white;
 }
 
 .project-title {
-  font-weight: 800;
+  font-size: 30px;
+  font-family: var(--allenoire-font);
+  margin-top: 12px;
 }
 
 .project-desc {
@@ -47,10 +52,10 @@
   text-align: start;
 }
 
-.card-img-top {
+.card-img {
   width: 100%;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
 }
 
 .card-body {
@@ -80,10 +85,6 @@
     width: 300px;
   }
 
-  .project-title {
-    font-size: 22px;
-  }
-
   .project-desc {
     font-size: 12px;
   }
@@ -94,30 +95,5 @@
 
   #eye-btn {
     height: 25px !important;
-  }
-}
-
-@media (max-width: 600px) {
-  #projects-page {
-    width: 100%;
-    margin: 0;
-  }
-
-  #projects-header {
-    font-size: 50px;
-  }
-
-  #projects-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .project-cards {
-    width: 85%;
-  }
-
-  #name {
-    width: 80%;
   }
 }

@@ -56,7 +56,7 @@ export function Projects() {
           <ul id='projects-list'>
             {map(projects, (project, index) => (
               <div key={index} id={`${toLower(project.name)}-card`} className='card project-cards'>
-                <Image src={project.img} className='card-img-top' width="100%" />
+                <Image src={project.img} className='card-img' width="100%" />
                 <div className='card-body'>
                   <h3 className='card-title project-title'>{project.name}</h3>
                   <p className='card-text project-desc'>
