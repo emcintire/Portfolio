@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { endsWith, map } from 'lodash';
 import { storeLocation } from '../../../../../helpers/storeLocation.ts';
-import ted1Img from '../../../../../assets/images/ted1.jpg';
-import ted2Img from '../../../../../assets/images/ted2.jpg';
-import beachImg from '../../../../../assets/images/beach.jpg';
-import snowImg from '../../../../../assets/images/snow.jpg';
-import rio1Img from '../../../../../assets/images/rio1.jpg';
-import rio2Img from '../../../../../assets/images/rio2.jpg';
-import rio3Img from '../../../../../assets/images/rio3.jpg';
+import ted1Img from '../../../../../assets/images/ted1.jpg?url';
+import ted2Img from '../../../../../assets/images/ted2.jpg?url';
+import beachImg from '../../../../../assets/images/beach.jpg?url';
+import snowImg from '../../../../../assets/images/snow.jpg?url';
+import rio1Img from '../../../../../assets/images/rio1.jpg?url';
+import rio2Img from '../../../../../assets/images/rio2.jpg?url';
+import rio3Img from '../../../../../assets/images/rio3.jpg?url';
 
 const links = [
   { id: 'teddy-12m', name: 'Teddy One Year', year: '2017', path: 'teddy12m', backgroundImage: ted1Img },

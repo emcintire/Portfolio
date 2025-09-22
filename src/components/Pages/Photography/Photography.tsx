@@ -3,10 +3,10 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { endsWith, map } from 'lodash';
 import './Photography.scss';
 import { storeLocation } from '../../../helpers';
-import landscapeImg from '../../../assets/images/landscape.jpg';
-import portraitsImg from '../../../assets/images/portraits.jpg';
-import animalsImg from '../../../assets/images/animals.png';
-import miscImg from '../../../assets/images/misc.jpg';
+import landscapeImg from '../../../assets/images/landscape.jpg?url';
+import portraitsImg from '../../../assets/images/portraits.jpg?url';
+import animalsImg from '../../../assets/images/animals.png?url';
+import miscImg from '../../../assets/images/misc.jpg?url';
 
 const links = [
   { id: 'landscape', name: 'Landscape', backgroundImage: landscapeImg },
