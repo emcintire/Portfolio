@@ -3,11 +3,10 @@
   width: 100%;
   margin: 0;
   height: 100vh;
-  padding-top: 125px;
+  padding-top: 200px;
 
   .about-container {
     background-color: var(--dark);
-    /* height: 110vh; */
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -33,32 +32,40 @@
     }
   }
   
-  #name {
-    width: 60%;
-    margin-bottom: 10vh;
-    background-color: transparent;
-  }
-  
-  #bio-card {
+  .bio-card {
     width: 400px;
     z-index: 696;
     background-color: var(--dark);
     border-color: white;
   }
   
-  #bio-body {
+  .bio-body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
   }
   
-  #bio {
+  .bio {
     font-size: 16px;
     color: var(--text);
     text-align: start;
   }
+
+  .profile-pic {
+    margin-bottom: 30px;
+    width: 100%;
+    height: auto;
+    border: 10px solid var(--red);
+    box-shadow: 
+      0 0 0 10px rgb(255, 140, 78),
+      0 0 0 20px rgb(254, 170, 97),
+      0 0 0 30px rgb(109, 177, 164),
+      0 0 0 40px rgb(0, 107, 149);
+    border-radius: 50px;
+  }
   
-  #skills-container {
+  .skills-container {
     z-index: 696;
     width: 400px;
     display: flex;
@@ -66,18 +73,18 @@
     align-items: center;
   }
   
-  #skills-list {
+  .skills-list {
     padding: 0 0 0 30px;
     columns: 2;
     -webkit-columns: 2;
     -moz-columns: 2;
   }
   
-  #skills-header {
-    color: var(--light);
-    padding-bottom: 10px;
-    font-size: 60px;
+  .skills-header {
+    color: var(--green);
+    font-size: 50px;
     font-family: var(--allenoire-font);
+    margin: 0 0 10px 0;
   }
   
   .skill-container {
@@ -92,8 +99,9 @@
   }
   
   .skill-label {
-    color: var(--text);
+    color: black;
     padding-left: 20px;
+    font-weight: 600;
   }
   
   #emoji {
@@ -102,18 +110,13 @@
     padding-right: 15px;
   }
   
-  .home-container .particles-bg-canvas-self {
-    position: absolute;
-    opacity: 0.3;
-  }
-  
   .logos {
     height: 40px;
     width: auto;
     margin: 5px;
   }
   
-  #bio-btns {
+  .bio-btns {
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -127,10 +130,6 @@
     justify-content: space-around;
   }
   
-  .aws-btn {
-    flex: 1 !important;
-  }
-  
   .Toastify {
     z-index: 6969696969;
   }
@@ -140,7 +139,7 @@
   }
   
   @media (max-width: 1200px) {
-    #profile-container {
+    .profile-container {
       flex-direction: column;
       height: auto;
     }
@@ -157,56 +156,56 @@
       padding: 20px 20px 10px 60px;
     }
   
-    #skills-container {
+    .skills-container {
       margin-top: 60px;
       padding-bottom: 30px;
     }
   
-    #skills-list {
+    .skills-list {
       padding: 0;
     }
   
-    #bio-card {
+    .bio-card {
       width: 450px;
       padding: 0;
     }
   
-    #bio {
+    .bio {
       font-size: 18px;
     }
   }
   
   @media (max-width: 700px) {
-    #home-page {
+    .home-page {
       width: 100%;
       margin: 0;
     }
   
-    #bio-container {
+    .bio-container {
       display: flex;
       justify-content: center;
     }
   
-    #bio-card {
+    .bio-card {
       width: 90%;
       padding: 0;
     }
   
-    #bio {
+    .bio {
       font-size: 14px;
     }
   
-    #skills-container {
+    .skills-container {
       width: 100%;
     }
   
-    #skills-list {
+    .skills-list {
       columns: 1;
       -webkit-columns: 1;
       -moz-columns: 1;
     }
   
-    #skills-header {
+    .skills-header {
       font-size: 50px;
     }
   
@@ -226,16 +225,8 @@
       margin-top: auto;
     }
   
-    #contact-info {
+    .contact-info {
       margin-top: 15px;
-    }
-  
-    .aws-btn {
-      max-width: 220px !important;
-    }
-  
-    .aws-btn__wrapper {
-      font-size: 14px !important;
     }
   
     .Toastify__toast-container {
@@ -243,9 +234,6 @@
       display: flex !important;
       justify-content: center !important;
       flex-direction: column !important;
-    }
-    #down-arrow {
-      display: unset;
     }
   }
 }

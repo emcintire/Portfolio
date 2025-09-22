@@ -20,7 +20,6 @@ import resume from '../../../assets/images/resume.pdf';
 import resumeLogo from '../../../assets/images/resume.svg';
 import reactLogo from '../../../assets/images/react.svg';
 import { map } from 'lodash';
-import { Grid } from '@mui/material';
 
 const skills = [
   { name: 'React', img: reactLogo },
@@ -56,20 +55,12 @@ export function About() {
 
   return (
     <div id='about-page'>
-      <Grid container>
-        <Grid>
-
-        </Grid>
-        <Grid>
-          
-        </Grid>
-      </Grid>
-      <div className='about-container' id='profile-container'>
-        <div id='bio-container'>
-          <div id='bio-card' className='card'>
-            <Image src={profilePic} className='card-img-top profile-pic' />
-            <div className='card-body' id='bio-body'>
-              <p className='card-text' id='bio'>
+      <div className="about-container profile-container">
+        <div className="bio-container">
+          <div className="bio-card card">
+            <Image src={profilePic} className="card-img-top profile-pic" />
+            <div className="card-body bio-body">
+              <p className="card-text bio">
                 Hello! I am a full stack software developer, specializing in React/Typescript, and .NET/C#. I
                 have a Bachelor's Degree in Computer Science, a minor in Graphic Design, and a passion for development.
                 <br />
@@ -81,7 +72,7 @@ export function About() {
                 ref={textAreaRef}
                 value='everettgmcintire@gmail.com'
               />
-              <div id='bio-btns'>
+              <div className='bio-btns'>
                 <div className='resume-btns'>
                   <a href={resume} target='_blank' rel='noreferrer' download='EverettMcIntire'>
                     <Image src={resumeLogo} alt='resume logo' className='logos' />
@@ -91,27 +82,21 @@ export function About() {
                   </a>
                 </div>
                 {showContact ? (
-                  <div id='contact-info'>
-                    <button className='aws-btn' onClick={clickContact}>
-                      everettgmcintire@gmail.com
-                    </button>
+                  <div className='contact-info'>
+                    <button onClick={clickContact}>everettgmcintire@gmail.com</button>
                   </div>
                 ) : (
-                  <button className='aws-btn' onClick={clickContact}>
-                    Contact
-                  </button>
+                  <button onClick={clickContact}>Contact</button>
                 )}
               </div>
             </div>
           </div>
         </div>
-        <div id='skills-container'>
-          <h1 id='skills-header'>
-            Skills
-          </h1>
-          <ul id='skills-list'>
+        <div className='skills-container'>
+          <h1 className='skills-header'>Skills</h1>
+          <ul className='skills-list'>
             {map(skills, (skill) => (
-                <div className='skill-container'>
+              <div className='skill-container'>
                 <Image className='skill-icon' src={skill.img} />
                 <h4 className='skill-label'>{skill.name}</h4>
               </div>
