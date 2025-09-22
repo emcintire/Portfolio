@@ -132,6 +132,14 @@
   
   @media (max-width: 700px) {
     margin-top: 140px;
+    margin-left: 40px;
+    margin-right: 40px;
+    width: calc(100% - 80px);
+
+    .profile-pic {
+      max-height: 250px;
+      max-width: 250px;
+    }
 
     .bio-container {
       display: flex;

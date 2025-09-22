@@ -74,21 +74,21 @@ export function About() {
               value='everettgmcintire@gmail.com'
             />
             <Grid container spacing={2} display="flex" alignItems="center">
-              <Grid size={{ xs: 6, md: 4 }}>
+              <Grid size={{ xs: 6, md: 3 }}>
                 <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire">
                   <IconButton className="btn">
                     <ContactPage className="icon" fontSize="large" />
                   </IconButton>
                 </a>
               </Grid>
-              <Grid size={{ xs: 6, md: 4 }}>
+              <Grid size={{ xs: 6, md: 3 }}>
                 <a href="https://www.linkedin.com/in/everettgsm" target="_blank" rel="noreferrer">
                   <IconButton className="btn">
                     <LinkedIn className="icon" fontSize="large" />
                   </IconButton>
                 </a>
               </Grid>
-              <Grid size={{ xs: 12, md: 4 }}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Button className="contact-btn" variant="contained" onClick={clickContact}>
                   {showContact ? 'everettgmcintire@gmail.com' : 'Contact'}
                 </Button>
