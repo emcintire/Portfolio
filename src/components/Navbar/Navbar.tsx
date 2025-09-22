@@ -1,7 +1,7 @@
 import './Navbar.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { includes, last, split } from 'lodash';
+import { includes, join, last, remove, split } from 'lodash';
 import { Grid, IconButton } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { FloatingLinks } from './FloatingLinks.tsx';
@@ -79,7 +79,8 @@ export function Navbar() {
 
   const goBack = () => {
     setOpen(false);
-    navigate(-1);
+    const oneLevelUp = join(remove(split(pathname, '/'), (_, index, array) => array.length - 1 !== index), '/');
+    navigate(oneLevelUp);
   }
 
   if (activeLink === '') { return null; }

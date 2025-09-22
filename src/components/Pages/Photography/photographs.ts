@@ -29,7 +29,6 @@ const adirondacks2025 = [
   { alt: 'Night Sky', src: 'https://i.imgur.com/OzTzG8kh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/X0xdsx0h.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/CMRxEzdh.jpg' },
-  { alt: 'Night Sky', src: 'https://i.imgur.com/EuZ9XEuh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/QSx9mGCh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/8RuZLEJh.jpg' },
   { alt: 'Night Sky', src: 'https://i.imgur.com/7twR6MKh.jpg' },

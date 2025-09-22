@@ -100,7 +100,7 @@ export function About() {
           <h1 className="skills-header">Skills</h1>
           <ul className="skills-list">
             {map(skills, (skill) => (
-              <div className="skill-container">
+              <div className="skill-container" key={skill.name}>
                 <Image className="skill-icon" src={skill.img} />
                 <h4 className="skill-label">{skill.name}</h4>
               </div>
