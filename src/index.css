@@ -23,7 +23,8 @@
   --light: #ffffff;
   --background: #ffecb4;
   --red: #e2611d;
-  --green: #a0b662
+  --green: #a0b662;
+  --blue: rgb(0, 107, 149);
 }
 
 a {

@@ -9,7 +9,6 @@ import c from '../../../assets/images/c.svg';
 import css from '../../../assets/images/css.svg';
 import flask from '../../../assets/images/flask.svg';
 import ts from '../../../assets/images/ts.svg';
-import linkedin from '../../../assets/images/linkedin.svg';
 import mongo from '../../../assets/images/mongo.svg';
 import node from '../../../assets/images/node.svg';
 import post from '../../../assets/images/post.svg';
@@ -17,9 +16,12 @@ import profilePic from '../../../assets/images/pp.png';
 import ps from '../../../assets/images/ps.svg';
 import python from '../../../assets/images/python.svg';
 import resume from '../../../assets/images/resume.pdf';
-import resumeLogo from '../../../assets/images/resume.svg';
 import reactLogo from '../../../assets/images/react.svg';
 import { map } from 'lodash';
+import { Button, Grid, IconButton, Stack } from '@mui/material';
+import { ContactPage, LinkedIn } from '@mui/icons-material';
+
+const gridSize = { xs: 12, sm: 12, md: 12, lg: 4 };
 
 const skills = [
   { name: 'React', img: reactLogo },
@@ -55,56 +57,58 @@ export function About() {
 
   return (
     <div id='about-page'>
-      <div className="about-container profile-container">
-        <div className="bio-container">
-          <div className="bio-card card">
-            <Image src={profilePic} className="card-img-top profile-pic" />
-            <div className="card-body bio-body">
-              <p className="card-text bio">
-                Hello! I am a full stack software developer, specializing in React/Typescript, and .NET/C#. I
-                have a Bachelor's Degree in Computer Science, a minor in Graphic Design, and a passion for development.
-                <br />
-                <br />I spend my free time watching movies, working on side projects, taking pictures of stuff, and
-                spending time in nature.
-              </p>
-              <textarea
-                style={{ position: 'absolute', left: '-5000px' }}
-                ref={textAreaRef}
-                value='everettgmcintire@gmail.com'
-              />
-              <div className='bio-btns'>
-                <div className='resume-btns'>
-                  <a href={resume} target='_blank' rel='noreferrer' download='EverettMcIntire'>
-                    <Image src={resumeLogo} alt='resume logo' className='logos' />
-                  </a>
-                  <a href='https://www.linkedin.com/in/everettgsm' target='_blank' rel='noreferrer'>
-                    <Image src={linkedin} alt='linkedin logo' className='logos' />
-                  </a>
-                </div>
-                {showContact ? (
-                  <div className='contact-info'>
-                    <button onClick={clickContact}>everettgmcintire@gmail.com</button>
-                  </div>
-                ) : (
-                  <button onClick={clickContact}>Contact</button>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='skills-container'>
-          <h1 className='skills-header'>Skills</h1>
-          <ul className='skills-list'>
+      <Grid container className="about-container" display="flex" justifyContent="space-evenly" spacing={4}>
+        <Grid size={gridSize} maxWidth="650px">
+          <Image src={profilePic} className="profile-pic" />
+          <Stack width="100%" direction="column">
+            <p className="card-text bio">
+              Hello! I am a full stack software developer, specializing in React/Typescript, and .NET/C#. I
+              have a Bachelor's Degree in Computer Science, a minor in Graphic Design, and a passion for development.
+              <br />
+              <br />I spend my free time watching movies, working on side projects, taking pictures of stuff, and
+              spending time in nature.
+            </p>
+            <textarea
+              style={{ position: 'absolute', left: '-5000px' }}
+              ref={textAreaRef}
+              value='everettgmcintire@gmail.com'
+            />
+            <Grid container spacing={2} display="flex" alignItems="center">
+              <Grid size={{ xs: 6, md: 4 }}>
+                <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire">
+                  <IconButton className="btn">
+                    <ContactPage className="icon" fontSize="large" />
+                  </IconButton>
+                </a>
+              </Grid>
+              <Grid size={{ xs: 6, md: 4 }}>
+                <a href="https://www.linkedin.com/in/everettgsm" target="_blank" rel="noreferrer">
+                  <IconButton className="btn">
+                    <LinkedIn className="icon" fontSize="large" />
+                  </IconButton>
+                </a>
+              </Grid>
+              <Grid size={{ xs: 12, md: 4 }}>
+                <Button className="contact-btn" variant="contained" onClick={clickContact}>
+                  {showContact ? 'everettgmcintire@gmail.com' : 'Contact'}
+                </Button>
+              </Grid>
+            </Grid>
+          </Stack>
+        </Grid>
+        <Grid size={gridSize} display="flex" alignItems="center" flexDirection="column">
+          <h1 className="skills-header">Skills</h1>
+          <ul className="skills-list">
             {map(skills, (skill) => (
-              <div className='skill-container'>
-                <Image className='skill-icon' src={skill.img} />
-                <h4 className='skill-label'>{skill.name}</h4>
+              <div className="skill-container">
+                <Image className="skill-icon" src={skill.img} />
+                <h4 className="skill-label">{skill.name}</h4>
               </div>
             ))}
           </ul>
-        </div>
-        <ToastContainer theme='dark' />
-      </div>
+        </Grid>
+      </Grid>
+      <ToastContainer theme="dark" />
     </div>
   );
 }

@@ -89,9 +89,11 @@
     .project-title {
       font-size: 20px;
     }
-  
-    .logos {
-      height: 30px;
+
+    .card-btns {
+      .logos {
+        height: 40px;
+      }
     }
   }
 }
