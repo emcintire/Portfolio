@@ -78,6 +78,8 @@
   }
   
   @media (max-width: 700px) {
+    padding-top: 125px;
+
     .project-cards {
       width: 250px;
     }

@@ -58,7 +58,7 @@ export function About() {
   return (
     <div id='about-page'>
       <Grid container className="about-container" display="flex" justifyContent="space-evenly" spacing={4}>
-        <Grid size={gridSize} maxWidth="650px">
+        <Grid size={gridSize} maxWidth="650px" display="flex" alignItems="center" flexDirection="column">
           <Image src={profilePic} className="profile-pic" />
           <Stack width="100%" direction="column">
             <p className="card-text bio">
