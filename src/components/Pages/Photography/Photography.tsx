@@ -3,16 +3,12 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { endsWith, map } from 'lodash';
 import './Photography.scss';
 import { storeLocation } from '../../../helpers';
-import landscapeImg from '../../../assets/images/landscape.jpg?url';
-import portraitsImg from '../../../assets/images/portraits.jpg?url';
-import animalsImg from '../../../assets/images/animals.png?url';
-import miscImg from '../../../assets/images/misc.jpg?url';
 
 const links = [
-  { id: 'landscape', name: 'Landscape', backgroundImage: landscapeImg },
-  { id: 'portraits', name: 'Portraits', backgroundImage: portraitsImg },
-  { id: 'animals', name: 'Animals', backgroundImage: animalsImg },
-  { id: 'misc', name: 'Miscellaneous', backgroundImage: miscImg },
+  { id: 'landscape', name: 'Landscape' },
+  { id: 'portraits', name: 'Portraits' },
+  { id: 'animals', name: 'Animals' },
+  { id: 'misc', name: 'Miscellaneous' },
 ];
 
 export function Photography() {
@@ -32,12 +28,7 @@ export function Photography() {
       {endsWith(pathname, 'photography') && (
         <ul className="category-list">
           {map(links, (link) => (
-            <div 
-              className="category-container" 
-              id={link.id} 
-              key={link.id}
-              style={{ backgroundImage: `url(${link.backgroundImage})` }}
-            >
+            <div className="category-container" id={link.id} key={link.id}>
               <Link
                 className="category-link"
                 to={link.id}

@@ -66,6 +66,22 @@
     }
   }
 
+  #landscape {
+    background-image: url("../../../assets/images/landscape.jpg");
+  }
+
+  #portraits {
+    background-image: url("../../../assets/images/portraits.jpg");
+  }
+
+  #animals {
+    background-image: url("../../../assets/images/animals.png");
+  }
+
+  #misc {
+    background-image: url("../../../assets/images/misc.jpg");
+  }
+
   .category-link:hover {
     transition-duration: 0.4s;
     background-color: rgba(0, 0, 0, 0.6);
