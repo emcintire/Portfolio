@@ -1,25 +1,25 @@
 import './About.css';
 import { useRef, useState } from 'react';
 import { Image } from 'react-bootstrap';
+import { ContactPage, LinkedIn } from '@mui/icons-material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ai from '../../../assets/images/ai.svg';
-import asp from '../../../assets/images/asp.svg';
-import c from '../../../assets/images/c.svg';
-import css from '../../../assets/images/css.svg';
-import flask from '../../../assets/images/flask.svg';
-import ts from '../../../assets/images/ts.svg';
-import mongo from '../../../assets/images/mongo.svg';
-import node from '../../../assets/images/node.svg';
-import post from '../../../assets/images/post.svg';
-import profilePic from '../../../assets/images/pp.png';
-import ps from '../../../assets/images/ps.svg';
-import python from '../../../assets/images/python.svg';
-import resume from '../../../assets/images/resume.pdf';
-import reactLogo from '../../../assets/images/react.svg';
+import ai from '@/assets/images/ai.svg';
+import asp from '@/assets/images/asp.svg';
+import c from '@/assets/images/c.svg';
+import css from '@/assets/images/css.svg';
+import flask from '@/assets/images/flask.svg';
+import ts from '@/assets/images/ts.svg';
+import mongo from '@/assets/images/mongo.svg';
+import node from '@/assets/images/node.svg';
+import post from '@/assets/images/post.svg';
+import profilePic from '@/assets/images/pp.png';
+import ps from '@/assets/images/ps.svg';
+import python from '@/assets/images/python.svg';
+import resume from '@/assets/images/resume.pdf';
+import reactLogo from '@/assets/images/react.svg';
 import { map } from 'lodash';
 import { Button, Grid, IconButton, Stack } from '@mui/material';
-import { ContactPage, LinkedIn } from '@mui/icons-material';
 
 const gridSize = { xs: 12, sm: 12, md: 12, lg: 4 };
 
@@ -41,8 +41,6 @@ const skills = [
 export function About() {
   const [showContact, setShowContact] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
-  // const isMobile = useMediaQuery({ query: `(max-width: 700px)` });
 
   const clickContact = () => {
     if (!showContact && textAreaRef.current) {

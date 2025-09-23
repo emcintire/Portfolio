@@ -1,12 +1,12 @@
-import { Image } from 'react-bootstrap';
 import './Projects.css';
-import flappy_frank from '../../../assets/images/flappy_frank.gif';
-import tatertap from '../../../assets/images/tatertap.gif';
-import unCaged from '../../../assets/images/unCaged.png';
-import construction from '../../../assets/images/underConstruction.png';
+import { Image } from 'react-bootstrap';
 import { map, toLower } from 'lodash';
 import { GitHub, VisibilityRounded } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
+import flappy_frank from '@/assets/images/flappy_frank.gif';
+import tatertap from '@/assets/images/tatertap.gif';
+import unCaged from '@/assets/images/unCaged.png';
+import construction from '@/assets/images/underConstruction.png';
 
 const projects = [
   {

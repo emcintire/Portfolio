@@ -67,19 +67,19 @@
   }
 
   #landscape {
-    background-image: url("../../../assets/images/landscape.jpg");
+    background-image: url("@/assets/images/landscape.jpg");
   }
 
   #portraits {
-    background-image: url("../../../assets/images/portraits.jpg");
+    background-image: url("@/assets/images/portraits.jpg");
   }
 
   #animals {
-    background-image: url("../../../assets/images/animals.png");
+    background-image: url("@/assets/images/animals.png");
   }
 
   #misc {
-    background-image: url("../../../assets/images/misc.jpg");
+    background-image: url("@/assets/images/misc.jpg");
   }
 
   .category-link:hover {

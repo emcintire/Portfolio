@@ -20,18 +20,18 @@
   z-index: 99999;
 
   &.about {
-    background-image: url("../../assets/images/about.svg");
+    background-image: url("@/assets/images/about.svg");
     background-repeat: no-repeat;
   }
 
   &.projects {
-    background-image: url("../../assets/images/projects.svg");
+    background-image: url("@/assets/images/projects.svg");
     background-repeat: no-repeat;
     border-radius: 100%;
   }
 
   &.photography {
-    background-image: url("../../assets/images/photography.svg");
+    background-image: url("@/assets/images/photography.svg");
     background-repeat: no-repeat;
     border-radius: 100%;
   }
