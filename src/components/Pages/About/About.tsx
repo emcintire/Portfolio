@@ -73,14 +73,14 @@ export function About() {
             />
             <Grid container spacing={2} display="flex" alignItems="center">
               <Grid size={{ xs: 6, md: 3 }}>
-                <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire">
+                <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire" aria-label="Resume">
                   <IconButton className="btn">
                     <ContactPage className="icon" fontSize="large" />
                   </IconButton>
                 </a>
               </Grid>
               <Grid size={{ xs: 6, md: 3 }}>
-                <a href="https://www.linkedin.com/in/everettgsm" target="_blank" rel="noreferrer">
+                <a href="https://www.linkedin.com/in/everettgsm" target="_blank" rel="noreferrer" aria-label="LinkedIn">
                   <IconButton className="btn">
                     <LinkedIn className="icon" fontSize="large" />
                   </IconButton>

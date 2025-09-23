@@ -6,7 +6,7 @@ import { storeLocation } from '../../../../../helpers/storeLocation.ts';
 
 const links = [
   { id: 'teddy-12m', name: 'Teddy One Year', year: '2017', path: 'teddy12m' },
-  { id: 'teddy-18m', name: 'Teddy Year and a Half', year: '2018', path: 'teddy18m' },
+  { id: 'teddy-18m', name: 'Teddy Eighteen Months', year: '2018', path: 'teddy18m' },
   { id: 'beach', name: 'Trudy Beach Maternity', year: '2019', path: 'trudybeachmaternity' },
   { id: 'snow', name: 'Trudy Snow Maternity', year: '2019', path: 'trudysnowmaternity' },
   { id: 'rio-3m', name: 'Rio Three Months', year: '2019', path: 'rio3m' },

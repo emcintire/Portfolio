@@ -38,6 +38,7 @@
     .back-icon {
       color: var(--background);
       transition: all 0.3s linear;
+      font-size: 40px;
   
       &:hover {
         transition-duration: 0.3s;
@@ -115,7 +116,7 @@
 
   @media (max-width: 1000px) {
     .navbar-header {
-      font-size: 2rem;
+      font-size: clamp(2rem, 10vw, 3rem);
     }
   }
 
@@ -145,6 +146,10 @@
 
     .links-wrap {
       height: calc(100vh - 60px) !important;
+    }
+
+    .back-btn .back-icon {
+      font-size: 30px;
     }
   }
 

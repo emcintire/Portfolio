@@ -28,7 +28,7 @@ const titles = {
   yellowstone2021: 'Yellowstone 2021',
   yosemite2019: 'Yosemite 2019',
   teddy12m: 'Teddy - One Year',
-  teddy18m: 'Teddy - Year and a Half',
+  teddy18m: 'Teddy - Eighteen Months',
   trudybeachmaternity: 'Trudy Beach Maternity',
   trudysnowmaternity: 'Trudy Snow Maternity',
   rio3m: 'Rio - Three Months',
@@ -98,7 +98,7 @@ export function Navbar() {
       >
         <Grid size={1} display="flex" justifyContent="start" alignItems="center" paddingLeft={2}>
           <IconButton className="back-btn" onClick={goBack}>
-            <ArrowBack className="back-icon" fontSize="large" />
+            <ArrowBack className="back-icon" />
           </IconButton>
         </Grid>
         <Grid size={10} display="flex" justifyContent="center" alignItems="center">
