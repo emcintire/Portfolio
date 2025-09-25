@@ -16,7 +16,6 @@ import post from '@/assets/images/post.svg';
 import profilePic from '@/assets/images/pp.png';
 import ps from '@/assets/images/ps.svg';
 import python from '@/assets/images/python.svg';
-import resume from '@/assets/images/resume.pdf';
 import reactLogo from '@/assets/images/react.svg';
 import { map } from 'lodash';
 import { Button, Grid, IconButton, Stack } from '@mui/material';
@@ -73,7 +72,7 @@ export function About() {
             />
             <Grid container spacing={2} display="flex" alignItems="center">
               <Grid size={{ xs: 6, md: 3 }}>
-                <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire" aria-label="Resume">
+                <a href="/resume.pdf" target="_blank" rel="noreferrer" download="EverettMcIntire.pdf" aria-label="Resume">
                   <IconButton className="btn">
                     <ContactPage className="icon" fontSize="large" />
                   </IconButton>
