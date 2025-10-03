@@ -1,5 +1,5 @@
 import './Home.css';
-import { FloatingLinks } from '../../Navbar/FloatingLinks.tsx';
+import { FloatingLinks } from '../../FloatingLinks/FloatingLinks.tsx';
 import { Logo } from '../../Logo/Logo.tsx';
 
 export function Home() {

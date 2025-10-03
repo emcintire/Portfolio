@@ -11,17 +11,17 @@ import construction from '@/assets/images/underConstruction.png';
 const projects = [
   {
     descriptions: [
-      `- My most ambitious side project to date, a 3D mall cop simulator made in Unity. Patrol the chaos. Keep the peace.`,
-      `- Coming to Steam in 2026 — follow for updates!`,
+      '- My most ambitious side project to date, a 3D mall cop simulator made in Unity. Patrol the chaos. Keep the peace.',
+      '- Coming to Steam in 2026 — follow for updates!',
     ],
     img: construction,
     name: 'Serve & Protect',
   },
   {
     descriptions: [
-      `- A fast-paced mobile tapping game where players catch falling potatoes and compete on global leaderboards.`,
-      `- Built using Unity with integrated in-app purchases, advertisements, an in-game economy, and player account management.`,
-      `- Managed end-to-end development, from gameplay design and asset creation to backend integration with Unity Services and platform deployment on iOS and Android.`,
+      '- A fast-paced mobile tapping game where players catch falling potatoes and compete on global leaderboards.',
+      '- Built using Unity with integrated in-app purchases, advertisements, an in-game economy, and player account management.',
+      '- Managed end-to-end development, from gameplay design and asset creation to backend integration with Unity Services and platform deployment on iOS and Android.',
     ],
     img: tatertap,
     name: 'Tater Tap',
@@ -29,8 +29,8 @@ const projects = [
   },
   {
     descriptions: [
-      `- An app for discovering, bookmarking, and rating the entirety of Nicolas Cage’s vast and illustrious filmography.`,
-      `- Built the frontend with React Native, the backend with Node.js, and managed data storage with MongoDB.`,
+      '- An app for discovering, bookmarking, and rating the entirety of Nicolas Cage’s vast and illustrious filmography.',
+      '- Built the frontend with React Native, the backend with Node.js, managed data storage with MongoDB, and hosted on Heroku.',
     ],
     img: unCaged,
     name: 'unCaged',
@@ -38,8 +38,9 @@ const projects = [
   },
   {
     descriptions: [
-      `- A simple Flappy Bird clone built with Pygame for the mechanics and Illustrator for all of the graphics.`,
-      `- Features include scoring, obstacles, and a responsive design.`,
+      '- An "It’s Always Sunny in Philadelphia" Flappy Bird clone built with Python and Pygame.',
+      '- Created every graphic in Adobe Illustrator and Photoshop.',
+      '- Features include scoring, obstacles, and a responsive design.',
     ],
     githubLink: 'https://github.com/emcintire/FlappyFrank',
     img: flappy_frank,

@@ -15,12 +15,16 @@ export const StyledBurger = styled.button<{ open: boolean }>`
     padding: 0;
     z-index: 696969;
 
-    &:hover {
-        div {
-            transition-duration: 0.3s;
-            background: #dbca98ff;
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            div {
+                transition-duration: 0.3s;
+                background: #ead8a3ff;
+            }
         }
     }
+
+    touch-action: manipulation;
 
     &:focus {
         outline: none;

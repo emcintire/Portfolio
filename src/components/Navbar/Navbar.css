@@ -30,20 +30,31 @@
   }
 
   .back-btn {
-    &:hover {
-      background-color: transparent;
-      border: none;
+    touch-action: manipulation;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: transparent;
+        border: none;
+      }
+      .back-icon:hover {
+        transition-duration: 0.3s;
+        color: #ead8a3ff;
+      }
+    }
+    @media (hover: none) {
+      &:hover {
+        background-color: transparent !important;
+        border: none !important;
+      }
+      .back-icon:hover {
+        color: var(--background) !important;
+      }
     }
 
     .back-icon {
       color: var(--background);
       transition: all 0.3s linear;
       font-size: 40px;
-  
-      &:hover {
-        transition-duration: 0.3s;
-        color: #dbca98ff;
-      }
     }
   }
 

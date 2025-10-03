@@ -4,8 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { includes, join, last, remove, split } from 'lodash';
 import { Grid, IconButton } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
-import { FloatingLinks } from './FloatingLinks.tsx';
-import { Burger } from '../Buttons/Burger.tsx';
+import { FloatingLinks } from '../FloatingLinks/FloatingLinks.tsx';
+import { Burger } from '../Burger/Burger.tsx';
 
 const titles = {
   '/': 'Home',
