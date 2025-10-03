@@ -1,8 +1,8 @@
 import { get, map, toLower } from 'lodash';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { photographs } from './photographs';
 import type { Photograph } from '../../../types';
+import { photographs } from './Photographs';
 
 export function PhotographyPage() {
   const { album } = useParams();
