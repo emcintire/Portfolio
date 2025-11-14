@@ -60,8 +60,10 @@ export function About() {
           <Image src={profilePic} className="profile-pic" />
           <Stack width="100%" direction="column">
             <p className="card-text bio">
-              Hello! I am a full stack software developer, specializing in React/Typescript, and .NET/C#. I
-              have a Bachelor's Degree in Computer Science, a minor in Graphic Design, and a passion for development.
+              Hello! I am a Full stack engineer with experience designing and delivering end-to-end
+              features across React, React Native, Node.js, and .NET. I’ve led small development teams,
+              contributed to long-running enterprise systems, and independently launched
+              multiple mobile apps on both major app stores.
               <br />
               <br />I spend my free time watching movies, working on side projects, taking pictures of stuff, and
               spending time in nature.
