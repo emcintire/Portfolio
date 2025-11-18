@@ -53,6 +53,7 @@
     font-weight: 800;
     border: 5px solid var(--red);
     border-radius: 15px;
+    font-size: 12px;
 
     &:hover {
       background-color: var(--red);

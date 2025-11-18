@@ -1,8 +1,10 @@
 import './About.css';
 import { useRef, useState } from 'react';
 import { Image } from 'react-bootstrap';
-import { ContactPage, LinkedIn } from '@mui/icons-material';
-import { ToastContainer, toast } from 'react-toastify';
+import { map } from 'lodash';
+import { Button, Grid, IconButton, Stack } from '@mui/material';
+import { ContactPage, GitHub, LinkedIn } from '@mui/icons-material';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ai from '@/assets/images/ai.svg';
 import asp from '@/assets/images/asp.svg';
@@ -13,13 +15,11 @@ import ts from '@/assets/images/ts.svg';
 import mongo from '@/assets/images/mongo.svg';
 import node from '@/assets/images/node.svg';
 import post from '@/assets/images/post.svg';
-import profilePic from '@/assets/images/pp.png';
+import profilePic from '@/assets/images/pp.jpg';
 import ps from '@/assets/images/ps.svg';
 import python from '@/assets/images/python.svg';
 import reactLogo from '@/assets/images/react.svg';
 import resume from '@/assets/images/resume.pdf';
-import { map } from 'lodash';
-import { Button, Grid, IconButton, Stack } from '@mui/material';
 
 const gridSize = { xs: 12, sm: 12, md: 12, lg: 4 };
 
@@ -37,6 +37,20 @@ const skills = [
   { name: 'Photoshop', img: ps },
   { name: 'Illustrator', img: ai },
 ];
+
+const links = [{
+  icon: ContactPage,
+  name: 'Resume',
+  url: resume,
+}, {
+  icon: LinkedIn,
+  name: 'LinkedIn',
+  url: 'https://www.linkedin.com/in/everettgsm',
+}, {
+  icon: GitHub,
+  name: 'Github',
+  url: 'https://github.com/emcintire',
+}];
 
 export function About() {
   const [showContact, setShowContact] = useState(false);
@@ -74,20 +88,15 @@ export function About() {
               value='everettgmcintire@gmail.com'
             />
             <Grid container spacing={2} display="flex" alignItems="center">
-              <Grid size={{ xs: 6, md: 3 }}>
-                <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire.pdf" aria-label="Resume">
-                  <IconButton className="btn">
-                    <ContactPage className="icon" fontSize="large" />
-                  </IconButton>
-                </a>
-              </Grid>
-              <Grid size={{ xs: 6, md: 3 }}>
-                <a href="https://www.linkedin.com/in/everettgsm" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                  <IconButton className="btn">
-                    <LinkedIn className="icon" fontSize="large" />
-                  </IconButton>
-                </a>
-              </Grid>
+              {map(links, (link) => (
+                <Grid size={{ xs: 4, md: 2 }}>
+                  <a href={link.url} target="_blank" rel="noreferrer" download="EverettMcIntire.pdf" aria-label={link.name}>
+                    <IconButton className="btn">
+                      <link.icon className="icon" fontSize="large" />
+                    </IconButton>
+                  </a>
+                </Grid>
+              ))}
               <Grid size={{ xs: 12, md: 6 }}>
                 <Button className="contact-btn" variant="contained" onClick={clickContact}>
                   {showContact ? 'everettgmcintire@gmail.com' : 'Contact'}
@@ -108,7 +117,6 @@ export function About() {
           </ul>
         </Grid>
       </Grid>
-      <ToastContainer theme="dark" />
     </div>
   );
 }
