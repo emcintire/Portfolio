@@ -20,8 +20,9 @@ const projects = [
   {
     descriptions: [
       '- A fast-paced mobile tapping game where players catch falling potatoes and compete on global leaderboards.',
-      '- Built using Unity and C# with integrated in-app purchases, advertisements, an in-game economy, and player account management.',
-      '- Managed end-to-end development, from gameplay design and asset creation to backend integration with Unity Services and platform deployment on iOS and Android.',
+      '- Built the game with Unity/C#, with integrated systems for in-app purchases, in-game economy, third party authentication (Google, Meta, Apple), and advertisements.',
+      '- Optimized gameplay performance, implemented polished UX, created assets in Adobe Illustrator, and ensured a stable experience across iOS and Android environments.',
+      '- Managed all publishing workflows, including app store deployment, compliance, and release management. ',
     ],
     img: tatertap,
     name: 'Tater Tap',
@@ -30,9 +31,9 @@ const projects = [
   {
     descriptions: [
       '- An app for discovering, bookmarking, and rating the entirety of Nicolas Cage’s vast and illustrious filmography.',
-      '- Built the frontend with React Native and Typescript.',
-      '- Created a REST API client with end-to-end typesafety using Zodios and Zod.',
-      '- Handled server-side data and state management with Tanstack Query (React Query).',
+      '- Built with the MERN stack (MongoDB, Express, React Native, Node.js) and hosted on Heroku.',
+      '- Defined a REST API client with end-to-end typesafety using Zodios and Zod.',
+      '- Handled server-side data and state management/caching with Tanstack Query (React Query).',
       '- Utilized Formik and Yup for robust form handling and validation.',
     ],
     img: unCaged,
