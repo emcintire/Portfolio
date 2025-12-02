@@ -6,6 +6,7 @@ import { storeLocation } from '../../../../../helpers/storeLocation.ts';
 
 const links = [
   { id: "adirondacks2025", name: "Adirondacks", year: "2025" },
+  { id: "rockies2024", name: "Rockies", year: "2024" },
   { id: "roadtrip2022", name: "Roadtrip", year: "2022" },
   { id: "yellowstone2021", name: "Yellowstone", year: "2021" },
   { id: "tetons2021", name: "Grand Tetons", year: "2021" },

@@ -28,7 +28,36 @@ export const adirondacks2025 = [
   { alt: 'Mountain Range', src: 'https://i.imgur.com/QSx9mGCh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/8RuZLEJh.jpg' },
   { alt: 'Night Sky', src: 'https://i.imgur.com/7twR6MKh.jpg' },
-]
+];
+
+export const rockies2024 = [
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/N91KdBLh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/PfWIiXmh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/hq1sbELh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/RBGzIPch.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/Mq0VZtyh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/QStghsTh.jpg' },
+  { alt: 'Valley', src: 'https://i.imgur.com/GdAMRTdh.jpg' },
+  { alt: 'Marker', src: 'https://i.imgur.com/O8DeHHhh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/De6Bpmeh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/K58d4Vfh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/DRTy0UCh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/iMmN2J1h.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/RH3PGF6h.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/dhN7OyOh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/kr5MMHqh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/qn4AuhKh.jpg' },
+  { alt: 'Mountain Peak', src: 'https://i.imgur.com/BYIVikNh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/cczn9lsh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/RDXRexBh.jpg' },
+  { alt: 'Mountain Peak', src: 'https://i.imgur.com/ZPeJeyDh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/d7hITOwh.jpg' },
+  { alt: 'Mountain and Lake', src: 'https://i.imgur.com/fcFwEY7h.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/9EeODjQh.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/Jc2SFT0h.jpg' },
+  { alt: 'Mountain Range', src: 'https://i.imgur.com/mLOGSyfh.jpg' },
+  { alt: 'Hawk Flying', src: 'https://i.imgur.com/3qpaiPmh.jpg' },
+];
 
 export const alaska2018 = [
   { alt: 'Field with mountain peak in back', src: 'https://i.imgur.com/yol64gjh.jpg' },
