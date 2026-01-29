@@ -27,43 +27,39 @@ export function About() {
   return (
     <div id='about-page'>
       <Grid container className="about-container" display="flex" alignItems="center" flexDirection="column" spacing={8}>
-        <Grid size={gridSize} display="flex" alignItems="center" flexDirection="column">
-          <Stack width="100%" direction="column" alignItems="center" spacing={3}>
-            <div className="header-container">
-              <h1>
-                Hi, I'm Everett McIntire!
-              </h1>
-              <h3>Full Stack Software Engineer</h3>
-            </div>
-            <Image src={profilePic} className="profile-pic" />
-            <textarea
-              style={{ position: 'absolute', left: '-5000px' }}
-              ref={textAreaRef}
-              value='everettgmcintire@gmail.com'
-            />
-            <Stack direction="row" spacing={2} marginTop={2}>
-              <Button className="contact-btn" variant="contained" onClick={clickContact}>
-                Contact Me
-                <NearMe className="btn-icon" />
-              </Button>
-              <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire.pdf">
-                <Button className="contact-btn" variant="contained">
-                  Resume
-                  <Download className="btn-icon" />
-                </Button>
+        <div className="header-container">
+          <h1>
+            Hi, I'm Everett McIntire!
+          </h1>
+          <h3>Full Stack Software Engineer</h3>
+        </div>
+        <Stack direction="row" spacing={2} paddingBottom={4}>
+          <Button className="contact-btn" variant="contained" onClick={clickContact}>
+            Contact Me
+            <NearMe className="btn-icon" />
+          </Button>
+          <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire.pdf">
+            <Button className="contact-btn" variant="contained">
+              Resume
+              <Download className="btn-icon" />
+            </Button>
+          </a>
+          {/* {map(links, (link) => (
+            <Grid size={{ xs: 4, md: 2 }}>
+              <a href={link.url} target="_blank" rel="noreferrer" download="EverettMcIntire.pdf" aria-label={link.name}>
+                <IconButton className="btn">
+                  <link.icon className="icon" fontSize="large" />
+                </IconButton>
               </a>
-              {/* {map(links, (link) => (
-                <Grid size={{ xs: 4, md: 2 }}>
-                  <a href={link.url} target="_blank" rel="noreferrer" download="EverettMcIntire.pdf" aria-label={link.name}>
-                    <IconButton className="btn">
-                      <link.icon className="icon" fontSize="large" />
-                    </IconButton>
-                  </a>
-                </Grid>
-              ))} */}
-            </Stack>
-          </Stack>
-        </Grid>
+            </Grid>
+          ))} */}
+        </Stack>
+        <Image src={profilePic} className="profile-pic" />
+        <textarea
+          style={{ position: 'absolute', left: '-5000px' }}
+          ref={textAreaRef}
+          value='everettgmcintire@gmail.com'
+        />
         <Grid size={gridSize} display="flex" alignItems="center" flexDirection="column">
           <Experience />
         </Grid>

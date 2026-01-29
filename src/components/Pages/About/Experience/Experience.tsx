@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Avatar, Box, Paper, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Paper, Stack } from '@mui/material';
 import './Experience.css';
 
 const experiences = [  {
@@ -42,7 +42,6 @@ export default function Experience() {
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const rowRefs = useRef<Array<HTMLDivElement | null>>([]);
 	const firstLogoRef = useRef<HTMLDivElement | null>(null);
-	const lastLogoRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		if (!sectionRef.current) return;
@@ -51,23 +50,6 @@ export default function Experience() {
 			const el = sectionRef.current;
 			if (!el) return;
 			const viewportH = window.innerHeight || 1;
-
-			// Prefer progress between the first and last logos so the line keeps growing
-			// as you scroll down through the experiences (even when cards are tall).
-			const firstEl = firstLogoRef.current;
-			const lastEl = lastLogoRef.current;
-			if (firstEl && lastEl) {
-				const triggerY = viewportH * 0.78;
-				const firstRect = firstEl.getBoundingClientRect();
-				const lastRect = lastEl.getBoundingClientRect();
-				const firstCenterY = firstRect.top + firstRect.height / 2;
-				const lastCenterY = lastRect.top + lastRect.height / 2;
-				const denom = Math.max(1, lastCenterY - firstCenterY);
-				const progress = clamp01((triggerY - firstCenterY) / denom);
-				el.style.setProperty('--line-progress', String(progress));
-				return;
-			}
-
 			const rect = el.getBoundingClientRect();
 
 			// 0 when the section hits the bottom of the viewport, 1 when it fully scrolls past.
@@ -78,21 +60,17 @@ export default function Experience() {
 		const updateLineBounds = () => {
 			const timelineEl = sectionRef.current;
 			const firstEl = firstLogoRef.current;
-			const lastEl = lastLogoRef.current;
-			if (!timelineEl || !firstEl || !lastEl) return;
+			if (!timelineEl || !firstEl) return;
 
 			const timelineRect = timelineEl.getBoundingClientRect();
 			const firstRect = firstEl.getBoundingClientRect();
-			const lastRect = lastEl.getBoundingClientRect();
 
 			const firstCenterY = firstRect.top + firstRect.height / 2;
-			const lastCenterY = lastRect.top + lastRect.height / 2;
 
 			const topPx = Math.max(0, firstCenterY - timelineRect.top);
-			const bottomPx = Math.max(0, timelineRect.bottom - lastCenterY);
 
 			timelineEl.style.setProperty('--line-top', `${topPx}px`);
-			timelineEl.style.setProperty('--line-bottom', `${bottomPx}px`);
+			timelineEl.style.setProperty('--line-bottom', '0px');
 		};
 
 		let rafId = 0;
@@ -152,15 +130,12 @@ export default function Experience() {
 			<Box className="experienceInner">
 				<Stack spacing={2} width="100%" alignItems="center">
 					<h1 className="skills-header">Experience</h1>
-
 					<Box ref={sectionRef} className="timeline">
 						{experiences.map((exp, index) => (
 							<Box
 								key={`${exp.company}-${exp.role}-${index}`}
 								className={`timelineRow ${visibleMap[index] ? 'isVisible' : ''}`}
-								ref={(el: HTMLDivElement | null) => {
-									rowRefs.current[index] = el;
-								}}
+								ref={(el: HTMLDivElement | null) => { rowRefs.current[index] = el; }}
 								data-index={index}
 							>
                 <Box className="timelineRail">
@@ -171,35 +146,23 @@ export default function Experience() {
 										ref={
 											index === 0
 												? (firstLogoRef as unknown as React.Ref<HTMLDivElement>)
-												: index === experiences.length - 1
-													? (lastLogoRef as unknown as React.Ref<HTMLDivElement>)
-													: undefined
+												: undefined
 										}
-									>
-										{exp.company.slice(0, 1)}
-									</Avatar>
+									/>
 								</Box>
-
 								<Box className="timelineMeta">
 									<span className="dateText">
 										{exp.startDate} - {exp.endDate}
 									</span>
 								</Box>
-
 								<Paper className="timelineCard" elevation={0}>
 									<Box padding={{ xs: 2, sm: 2.5 }}>
-										<Typography
-											variant="h5"
-											className="roleText"
-											sx={{ color: 'color-mix(in srgb, var(--light, #fff) 92%, transparent)' }}
-										>
+										<h1 className="roleText">
 											{exp.role}
-										</Typography>
-
-										<Typography variant="subtitle1" className="companyText">
+										</h1>
+										<span className="companyText">
 											{exp.company}
-										</Typography>
-
+										</span>
 										<ul className="bullets">
 											{exp.description.map((line) => (
 												<li key={line}>{line}</li>
