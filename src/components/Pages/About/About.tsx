@@ -1,94 +1,58 @@
 import './About.css';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Image } from 'react-bootstrap';
-import { map } from 'lodash';
-import { Button, Grid, IconButton, Stack } from '@mui/material';
-import { ContactPage, GitHub, LinkedIn } from '@mui/icons-material';
+import { Button, Grid, Stack } from '@mui/material';
+import { Download, NearMe } from '@mui/icons-material';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ai from '@/assets/images/ai.svg';
-import asp from '@/assets/images/asp.svg';
-import c from '@/assets/images/c.svg';
-import css from '@/assets/images/css.svg';
-import flask from '@/assets/images/flask.svg';
-import ts from '@/assets/images/ts.svg';
-import mongo from '@/assets/images/mongo.svg';
-import node from '@/assets/images/node.svg';
-import post from '@/assets/images/post.svg';
 import profilePic from '@/assets/images/pp.jpg';
-import ps from '@/assets/images/ps.svg';
-import python from '@/assets/images/python.svg';
-import reactLogo from '@/assets/images/react.svg';
 import resume from '@/assets/images/resume.pdf';
+import Skills from './Skills/Skills';
+import Experience from './Experience/Experience';
 
-const gridSize = { xs: 12, sm: 12, md: 12, lg: 4 };
-
-const skills = [
-  { name: 'React', img: reactLogo },
-  { name: 'Typescript', img: ts },
-  { name: 'Node.js', img: node },
-  { name: 'C#', img: c },
-  { name: 'ASP.Net', img: asp },
-  { name: 'Python', img: python },
-  { name: 'Flask', img: flask },
-  { name: 'CSS', img: css },
-  { name: 'MongoDB', img: mongo },
-  { name: 'SQL', img: post },
-  { name: 'Photoshop', img: ps },
-  { name: 'Illustrator', img: ai },
-];
-
-const links = [{
-  icon: ContactPage,
-  name: 'Resume',
-  url: resume,
-}, {
-  icon: LinkedIn,
-  name: 'LinkedIn',
-  url: 'https://www.linkedin.com/in/everettgsm',
-}, {
-  icon: GitHub,
-  name: 'Github',
-  url: 'https://github.com/emcintire',
-}];
+const gridSize = { xs: 12, sm: 12, md: 12, lg: 10 };
 
 export function About() {
-  const [showContact, setShowContact] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const clickContact = () => {
-    if (!showContact && textAreaRef.current) {
-      textAreaRef.current.select();
-      document.execCommand('copy');
-      setShowContact(!showContact);
-      toast('Copied to Clipboard!', { type: 'success' });
-    } else {
-      setShowContact(!showContact);
+    if (!textAreaRef.current) {
+      return;
     }
+    textAreaRef.current.select();
+    document.execCommand('copy');
+    toast('everettgmcintire@gmail.com copied to your clipboard!', { type: 'success' });
   };
 
   return (
     <div id='about-page'>
-      <Grid container className="about-container" display="flex" justifyContent="space-evenly" spacing={4}>
-        <Grid size={gridSize} maxWidth="650px" display="flex" alignItems="center" flexDirection="column">
-          <Image src={profilePic} className="profile-pic" />
-          <Stack width="100%" direction="column">
-            <p className="card-text bio">
-              Hello! I am a Full stack engineer with experience designing and delivering end-to-end
-              features across React, React Native, Node.js, and .NET. I’ve led small development teams,
-              contributed to long-running enterprise systems, and independently launched
-              multiple mobile apps on both major app stores.
-              <br />
-              <br />I spend my free time watching movies, working on side projects, taking pictures of stuff, and
-              spending time in nature.
-            </p>
+      <Grid container className="about-container" display="flex" alignItems="center" flexDirection="column" spacing={8}>
+        <Grid size={gridSize} display="flex" alignItems="center" flexDirection="column">
+          <Stack width="100%" direction="column" alignItems="center" spacing={3}>
+            <div className="header-container">
+              <h1>
+                Hi, I'm Everett McIntire!
+              </h1>
+              <h3>Full Stack Software Engineer</h3>
+            </div>
+            <Image src={profilePic} className="profile-pic" />
             <textarea
               style={{ position: 'absolute', left: '-5000px' }}
               ref={textAreaRef}
               value='everettgmcintire@gmail.com'
             />
-            <Grid container spacing={2} display="flex" alignItems="center">
-              {map(links, (link) => (
+            <Stack direction="row" spacing={2} marginTop={2}>
+              <Button className="contact-btn" variant="contained" onClick={clickContact}>
+                Contact Me
+                <NearMe className="btn-icon" />
+              </Button>
+              <a href={resume} target="_blank" rel="noreferrer" download="EverettMcIntire.pdf">
+                <Button className="contact-btn" variant="contained">
+                  Resume
+                  <Download className="btn-icon" />
+                </Button>
+              </a>
+              {/* {map(links, (link) => (
                 <Grid size={{ xs: 4, md: 2 }}>
                   <a href={link.url} target="_blank" rel="noreferrer" download="EverettMcIntire.pdf" aria-label={link.name}>
                     <IconButton className="btn">
@@ -96,25 +60,15 @@ export function About() {
                     </IconButton>
                   </a>
                 </Grid>
-              ))}
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Button className="contact-btn" variant="contained" onClick={clickContact}>
-                  {showContact ? 'everettgmcintire@gmail.com' : 'Contact'}
-                </Button>
-              </Grid>
-            </Grid>
+              ))} */}
+            </Stack>
           </Stack>
         </Grid>
         <Grid size={gridSize} display="flex" alignItems="center" flexDirection="column">
-          <h1 className="skills-header">Skills</h1>
-          <ul className="skills-list">
-            {map(skills, (skill) => (
-              <div className="skill-container" key={skill.name}>
-                <Image className="skill-icon" src={skill.img} />
-                <h4 className="skill-label">{skill.name}</h4>
-              </div>
-            ))}
-          </ul>
+          <Experience />
+        </Grid>
+        <Grid size={gridSize} display="flex" alignItems="center" flexDirection="column">
+          <Skills />
         </Grid>
       </Grid>
     </div>
