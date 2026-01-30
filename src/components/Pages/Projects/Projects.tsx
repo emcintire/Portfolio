@@ -1,7 +1,7 @@
 import './Projects.css';
 import { Image } from 'react-bootstrap';
 import { map, toLower } from 'lodash';
-import { GitHub, VisibilityRounded } from '@mui/icons-material';
+import { Android, Apple, GitHub, YouTube } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import flappy_frank from '@/assets/images/flappy_frank.gif';
 import tatertap from '@/assets/images/tatertap.gif';
@@ -16,8 +16,7 @@ const projects = [
     ],
     img: construction,
     name: 'Serve & Protect',
-  },
-  {
+  }, {
     descriptions: [
       '- A fast-paced mobile tapping game where players catch falling potatoes and compete on global leaderboards.',
       '- Built the game with Unity/C#, with integrated systems for in-app purchases, in-game economy, third party authentication (Google, Meta, Apple), and advertisements.',
@@ -26,9 +25,17 @@ const projects = [
     ],
     img: tatertap,
     name: 'Tater Tap',
-    viewLink: 'https://apps.apple.com/us/app/tater-tap/id6742767053',
-  },
-  {
+    links: [{
+      icon: Apple,
+      url: 'https://apps.apple.com/us/app/tater-tap/id6742767053',
+    }, {
+      icon: Android,
+      url: 'https://play.google.com/store/apps/details?id=com.greasyfingers.tatertap&pcampaignid=web_share',
+    }, {
+      icon: GitHub,
+      url: 'https://github.com/emcintire/TaterTap',
+    }],
+  }, {
     descriptions: [
       '- An app for discovering, bookmarking, and rating the entirety of Nicolas Cage’s vast and illustrious filmography.',
       '- Built with the MERN stack (MongoDB, Express, React Native, Node.js) and hosted on Heroku.',
@@ -38,18 +45,31 @@ const projects = [
     ],
     img: unCaged,
     name: 'unCaged',
-    viewLink: 'https://apps.apple.com/us/app/uncaged/id1593978532',
-  },
-  {
+    links: [{
+      icon: Apple,
+      url: 'https://apps.apple.com/us/app/uncaged/id1593978532',
+    }, {
+      icon: Android,
+      url: 'https://play.google.com/store/apps/details?id=uncaged.app&pcampaignid=web_share',
+    }, {
+      icon: GitHub,
+      url: 'https://github.com/emcintire/unCaged-server',
+    }],
+  }, {
     descriptions: [
       '- An "It’s Always Sunny in Philadelphia" Flappy Bird clone built with Python and Pygame.',
       '- Created every graphic in Adobe Illustrator and Photoshop.',
       '- Features include scoring, obstacles, and a responsive design.',
     ],
-    githubLink: 'https://github.com/emcintire/FlappyFrank',
     img: flappy_frank,
     name: 'Flappy Frank',
-    viewLink: 'https://youtu.be/8NHuylK6O78',
+    links: [{
+      icon: YouTube,
+      url: 'https://youtu.be/8NHuylK6O78',
+    }, {
+      icon: GitHub,
+      url: 'https://github.com/emcintire/FlappyFrank',
+    }],
   },
 ];
 
@@ -71,22 +91,17 @@ export function Projects() {
                     </span>
                   ))}
                 </p>
-                <div className='card-btns'>
-                  {project.githubLink && (
-                    <a href={project.githubLink} target='_blank' rel='noreferrer'>
-                      <IconButton>
-                        <GitHub className="logos" />
-                      </IconButton>
-                    </a>
-                  )}
-                  {project.viewLink && (
-                    <a href={project.viewLink} target='_blank' rel='noreferrer'>
-                      <IconButton>
-                        <VisibilityRounded className="logos" />
-                      </IconButton>
-                    </a>
-                  )}
-                </div>
+                {project.links && (
+                  <div className='card-btns'>
+                    {map(project.links, (link) => (
+                      <a href={link.url} target='_blank' rel='noreferrer'>
+                        <IconButton>
+                          <link.icon className="logos" />
+                        </IconButton>
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           ))}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Avatar, Box, Paper, Stack } from '@mui/material';
 import './Experience.css';
+import { map } from 'lodash';
 
 const experiences = [  {
   startDate: 'Nov 2021',
@@ -25,7 +26,7 @@ const experiences = [  {
   startDate: 'Jun 2021',
   endDate: 'Nov 2021',
   company: 'Materiality/Datapoint Labs',
-  role: 'Full Stack Software Engineer Intern',
+  role: 'Full Stack Software Engineer',
   description: [
 		'Built and enhanced production features using React, TypeScript, ASP.NET/C#/F#, working closely with materials engineers to translate scientific workflows into intuitive software tools.',
 		'Worked extensively with large material-testing datasets, implementing performant interfaces and visualizations using jQuery and jqPlot to help labs analyze mechanical, thermal, and structural properties.',
@@ -131,7 +132,7 @@ export default function Experience() {
 				<Stack spacing={2} width="100%" alignItems="center">
 					<h1 className="skills-header">Experience</h1>
 					<Box ref={sectionRef} className="timeline">
-						{experiences.map((exp, index) => (
+						{map(experiences, (exp, index) => (
 							<Box
 								key={`${exp.company}-${exp.role}-${index}`}
 								className={`timelineRow ${visibleMap[index] ? 'isVisible' : ''}`}

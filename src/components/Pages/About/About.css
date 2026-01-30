@@ -24,10 +24,11 @@
       padding-top: 0;
       padding-bottom: 10px;
       margin: 0;
+      font-family: var(--allenoire-font);
     }
 
     h3 {
-      font-size: 30px;
+      font-size: 24px;
       font-weight: 800;
       color: var(--red);
       padding-top: 0;
@@ -35,12 +36,9 @@
     }
   }
 
-  .profile-pic {
+  .profile-card {
+    width: 600px;
     margin-bottom: 50px;
-    width: 100%;
-    height: auto;
-    max-height: 400px;
-    max-width: 400px;
     border: 10px solid var(--red);
     box-shadow: 
       0 0 0 10px rgb(255, 140, 78),
@@ -48,12 +46,33 @@
       0 0 0 30px rgb(109, 177, 164),
       0 0 0 40px rgb(0, 107, 149);
     border-radius: 50px;
+    background-color: transparent;
+  }
+
+  .profile-pic {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom: 10px solid var(--red);
+  }
+
+  .profile-body {
+    padding: 20px 2em;
+  }
+
+  .profile-desc {
+    font-size: 16px;
+    font-weight: 400;
+    height: auto;
+    text-align: start;
+    margin: 0;
   }
 
   .btn {
     .icon {
-      color: var(--red);
-      font-size: 3rem;
+      color: var(--green);
+      font-size: 4rem;
     }
   }
 
@@ -108,13 +127,20 @@
   
   @media (max-width: 700px) {
     margin-top: 140px;
-    margin-left: 40px;
-    margin-right: 40px;
-    width: calc(100% - 80px);
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(100% - 20px);
 
-    .profile-pic {
-      max-height: 250px;
-      max-width: 250px;
+    .profile-card {
+      width: 250px;
+    }
+
+    .profile-body {
+      padding: 5px 1em 15px 1em;
+    }
+
+    .profile-desc {
+      font-size: 16px;
     }
 
     .bio-container {
@@ -146,7 +172,7 @@
       }
 
       h3 {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
   
