@@ -61,12 +61,23 @@
     padding: 20px 2em;
   }
 
+  .profile-header {
+    color: var(--red);
+    font-size: 40px;
+    font-family: var(--allenoire-font);
+    margin: 0;
+    padding-bottom: 20px;
+  }
+
   .profile-desc {
     font-size: 16px;
     font-weight: 400;
     height: auto;
     text-align: start;
     margin: 0;
+    padding-bottom: 30px;
+    border-bottom: 4px solid;
+    border-image: linear-gradient(to right, transparent 0%, var(--red) 35%, var(--red) 65%, transparent 100%) 1;
   }
 
   .btn {
@@ -137,6 +148,10 @@
 
     .profile-body {
       padding: 5px 1em 15px 1em;
+    }
+
+    .profile-header {
+      margin-top: 10px;
     }
 
     .profile-desc {

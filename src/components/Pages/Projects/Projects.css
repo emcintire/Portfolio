@@ -40,14 +40,11 @@
   }
   
   .project-title {
-    font-size: 30px;
+    font-size: 36px;
     font-family: var(--allenoire-font);
     margin-top: 8px;
     color: var(--red);
     margin-bottom: 0;
-    /* border-bottom: 4px solid;
-    border-image: linear-gradient(to right, transparent 0%, var(--red) 35%, var(--red) 65%, transparent 100%) 1; */
-
   }
   
   .project-desc {
@@ -97,8 +94,12 @@
     }
   
     .project-title {
-      font-size: 26px;
+      font-size: 28px;
       margin-top: 0px;
+    }
+
+    .project-desc {
+      margin-top: 10px;
     }
 
     .card-body {

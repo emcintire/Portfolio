@@ -83,7 +83,7 @@ export default function Skills() {
   };
 
   return (
-    <Stack spacing={2} width="100%" alignItems="center">
+    <Stack spacing={2} width="100%" alignItems="center" paddingBottom="100px">
       <h1 className="skills-header">Skills</h1>
       <div className='carousel-wrapper'>
         <div className='carousel' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={carouselRef}>

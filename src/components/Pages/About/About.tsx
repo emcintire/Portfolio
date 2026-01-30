@@ -59,11 +59,14 @@ export function About() {
         <div className="profile-card">
           <Image src={profilePic} className="profile-pic" />
           <div className="profile-body">
+            <h1 className="profile-header">
+              About Me
+            </h1>
             <p className="profile-desc">
-              I am a full-stack engineer with experience designing and delivering end-to-end features across React,
+              I am a full stack software engineer with experience designing and delivering end-to-end features across React,
               React Native, Node.js, and .NET. I’ve led small development efforts, contributed to large, long-running
               enterprise systems, and independently launched mobile applications on both major app stores. My work typically
-              spans the full lifecycle—from translating product requirements into scalable backend services and intuitive
+              spans the full lifecycle, from translating product requirements into scalable backend services and intuitive
               front-end experiences to deploying, monitoring, and iterating based on real user feedback.
               <br />
               <br />
@@ -74,11 +77,12 @@ export function About() {
               impact for users.
               <br />
               <br />
-              I spend my free time working on side projects, watching films, listening to music, taking photos, snowboarding in the winter, and hiking in the summer.
+              I spend my free time working on side projects, watching films, listening to music, taking photos,
+              snowboarding in the winter, and hiking in the summer.
             </p>
             <Grid container spacing={2} display="flex" alignItems="center" justifyContent="space-evenly" paddingTop={2}>
               {map(links, (link) => (
-                <Grid size={{ xs: 4, md: 2 }}>
+                <Grid size={{ xs: 4, md: 2 }} display="flex" justifyContent="center">
                   <a href={link.url} target="_blank" rel="noreferrer" aria-label={link.name}>
                     <IconButton className="btn">
                       <link.icon className="icon" fontSize="large" />
@@ -88,12 +92,12 @@ export function About() {
               ))}
             </Grid>
           </div>
+          <textarea
+            style={{ position: 'absolute', left: '-5000px' }}
+            ref={textAreaRef}
+            value='everettgmcintire@gmail.com'
+          />
         </div>
-        <textarea
-          style={{ position: 'absolute', left: '-5000px' }}
-          ref={textAreaRef}
-          value='everettgmcintire@gmail.com'
-        />
         <Grid size={gridSize} display="flex" alignItems="center" flexDirection="column">
           <Experience />
         </Grid>

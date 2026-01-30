@@ -1,9 +1,11 @@
+import './Experience.css';
 import { useEffect, useRef, useState } from 'react';
 import { Avatar, Box, Paper, Stack } from '@mui/material';
-import './Experience.css';
 import { map } from 'lodash';
+import genesis from '@/assets/images/genesis.jpg';
+import materiality from '@/assets/images/materiality.jpg';
 
-const experiences = [  {
+const experiences = [{
   startDate: 'Nov 2021',
   endDate: 'Dec 2025',
   company: 'Center for Applied Management Practices',
@@ -20,7 +22,7 @@ const experiences = [  {
 		'Implemented client-side data caching with tools like Redux and TanStack Query for faster, more efficient data retrieval.',
 		'Used Zodios and Zod to define frontend API clients with end-to-end typesafety and schema validation.',
   ],
-  logo: '',
+  logo: genesis,
 },
 {
   startDate: 'Jun 2021',
@@ -33,7 +35,7 @@ const experiences = [  {
 		'Contributed to backend development by adding new API endpoints, performing database migrations, and improving data access patterns for reliability and clarity.',
 		'Collaborated across engineering and scientific teams to refine requirements, validate results, and ensure accurate representation of domain-specific data.',
   ],
-  logo: '',
+  logo: materiality,
 }];
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
