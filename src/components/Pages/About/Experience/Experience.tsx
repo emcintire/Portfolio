@@ -131,7 +131,7 @@ export default function Experience() {
 	return (
 		<Box className="experienceSection">
 			<Box className="experienceInner">
-				<Stack spacing={2} width="100%" alignItems="center">
+				<Stack width="100%" alignItems="center">
 					<h1 className="skills-header">Experience</h1>
 					<Box ref={sectionRef} className="timeline">
 						{map(experiences, (exp, index) => (
