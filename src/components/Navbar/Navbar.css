@@ -152,7 +152,7 @@
     }
 
     .navbar-header {
-      font-size: clamp(1rem, 5vw, 2rem);
+      font-size: 2rem;
     }
 
     .links-wrap {

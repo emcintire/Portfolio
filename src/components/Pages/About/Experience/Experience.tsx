@@ -1,9 +1,10 @@
 import './Experience.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Avatar, Box, Paper, Stack } from '@mui/material';
 import { map } from 'lodash';
 import genesis from '@/assets/images/genesis.jpg';
 import materiality from '@/assets/images/materiality.jpg';
+import { useRevealOnIntersect } from '../../../../helpers';
 
 const experiences = [{
   startDate: 'Nov 2021',
@@ -41,10 +42,9 @@ const experiences = [{
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
 
 export default function Experience() {
-	const [visibleMap, setVisibleMap] = useState<Record<number, boolean>>({});
 	const sectionRef = useRef<HTMLDivElement>(null);
-	const rowRefs = useRef<Array<HTMLDivElement | null>>([]);
 	const firstLogoRef = useRef<HTMLDivElement | null>(null);
+	const getRevealRef = useRevealOnIntersect({ threshold: 0.22 });
 
 	useEffect(() => {
 		if (!sectionRef.current) return;
@@ -96,38 +96,6 @@ export default function Experience() {
 		};
 	}, []);
 
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				setVisibleMap((prev) => {
-					let changed = false;
-					const next: Record<number, boolean> = { ...prev };
-
-					for (const entry of entries) {
-						const indexAttr = entry.target.getAttribute('data-index');
-						if (!indexAttr) continue;
-						const index = Number(indexAttr);
-						if (Number.isNaN(index)) continue;
-
-						if (entry.isIntersecting && !next[index]) {
-							next[index] = true;
-							changed = true;
-						}
-					}
-
-					return changed ? next : prev;
-				});
-			},
-			{ threshold: 0.22 },
-		);
-
-		for (const el of rowRefs.current) {
-			if (el) observer.observe(el);
-		}
-
-		return () => observer.disconnect();
-	}, [experiences.length]);
-
 	return (
 		<Box className="experienceSection">
 			<Box className="experienceInner">
@@ -137,9 +105,8 @@ export default function Experience() {
 						{map(experiences, (exp, index) => (
 							<Box
 								key={`${exp.company}-${exp.role}-${index}`}
-								className={`timelineRow ${visibleMap[index] ? 'isVisible' : ''}`}
-								ref={(el: HTMLDivElement | null) => { rowRefs.current[index] = el; }}
-								data-index={index}
+								className="timelineRow"
+								ref={getRevealRef(index)}
 							>
                 <Box className="timelineRail">
 									<Avatar

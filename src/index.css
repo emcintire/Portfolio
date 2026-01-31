@@ -86,3 +86,15 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms ease, transform 500ms ease;
+  will-change: opacity, transform;
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

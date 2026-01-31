@@ -10,6 +10,7 @@ import resume from '@/assets/images/resume.pdf';
 import Skills from './Skills/Skills';
 import Experience from './Experience/Experience';
 import { map } from 'lodash';
+import { useRevealOnIntersect } from '../../../helpers';
 
 const gridSize = { xs: 12, sm: 12, md: 12, lg: 10 };
 
@@ -25,6 +26,7 @@ const links = [{
 
 export function About() {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const getRevealRef = useRevealOnIntersect({ threshold: 0.2 });
 
   const clickContact = () => {
     if (!textAreaRef.current) {
@@ -37,14 +39,23 @@ export function About() {
 
   return (
     <div id='about-page'>
-      <Grid container className="about-container" display="flex" alignItems="center" flexDirection="column" spacing={8}>
-        <div className="header-container">
+      <Grid container className="about-container" display="flex" alignItems="center" flexDirection="column" spacing={10}>
+        <div
+          className="header-container reveal-item"
+          ref={getRevealRef(0)}
+        >
           <h1>
             Hi, I'm Everett McIntire!
           </h1>
           <h3>Full Stack Software Engineer</h3>
         </div>
-        <Stack direction="row" spacing={2} paddingBottom={4}>
+        <Stack
+          direction="row"
+          spacing={2}
+          paddingBottom={4}
+          className="reveal-item"
+          ref={getRevealRef(1)}
+        >
           <Button className="contact-btn" variant="contained" onClick={clickContact}>
             Contact Me
             <NearMe className="btn-icon" />
@@ -56,7 +67,10 @@ export function About() {
             </Button>
           </a>
         </Stack>
-        <div className="profile-card">
+        <div
+          className="profile-card reveal-item"
+          ref={getRevealRef(2)}
+        >
           <Image src={profilePic} className="profile-pic" />
           <div className="profile-body">
             <h1 className="profile-header">
@@ -98,10 +112,24 @@ export function About() {
             value='everettgmcintire@gmail.com'
           />
         </div>
-        <Grid size={gridSize} display="flex" alignItems="center" flexDirection="column">
+        <Grid
+          size={gridSize}
+          display="flex"
+          alignItems="center"
+          flexDirection="column"
+          className="reveal-item"
+          ref={getRevealRef(3)}
+        >
           <Experience />
         </Grid>
-        <Grid size={gridSize} display="flex" alignItems="center" flexDirection="column">
+        <Grid
+          size={gridSize}
+          display="flex"
+          alignItems="center"
+          flexDirection="column"
+          className="reveal-item"
+          ref={getRevealRef(4)}
+        >
           <Skills />
         </Grid>
       </Grid>

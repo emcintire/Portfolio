@@ -28,7 +28,7 @@
   
   .project-cards {
     width: 500px;
-    margin-bottom: 125px;
+    margin-bottom: 150px;
     border: 10px solid var(--red);
     box-shadow: 
       0 0 0 10px rgb(255, 140, 78),
@@ -42,15 +42,22 @@
   .project-title {
     font-size: 36px;
     font-family: var(--allenoire-font);
-    margin-top: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px !important;
     color: var(--red);
     margin-bottom: 0;
   }
   
   .project-desc {
     font-size: 16px;
-    height: auto;
-    text-align: start;
+    text-align: left;
+    padding-left: 15px;
+    padding-bottom: 30px;
+    list-style-type: disc; 
+
+    li {
+      color: black;
+    }
   }
   
   .card-img {
@@ -62,10 +69,6 @@
   
   .card-body {
     padding: 10px 2em;
-  }
-
-  .card-text {
-    padding-bottom: 10px;
   }
   
   .card-btns {
@@ -91,6 +94,7 @@
 
     .project-cards {
       width: 250px;
+      margin-bottom: 125px;
     }
   
     .project-title {
@@ -100,6 +104,8 @@
 
     .project-desc {
       margin-top: 10px;
+      padding-bottom: 20px;
+      padding-left: 10px;
     }
 
     .card-body {

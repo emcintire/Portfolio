@@ -135,6 +135,13 @@
   .Toastify__progress-bar {
     background: var(--light) !important;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-item {
+      transition: none;
+      transform: none;
+    }
+  }
   
   @media (max-width: 700px) {
     margin-top: 140px;
