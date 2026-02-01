@@ -115,7 +115,7 @@
 .timelineCard {
   border: 8px solid var(--green);
   border-radius: 25px !important;
-  background-color: #fff8e1 !important;
+  background-color: var(--lt-background) !important;
   font-family: 'Montserrat', sans-serif !important;
 }
 

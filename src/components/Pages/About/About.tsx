@@ -39,7 +39,7 @@ export function About() {
 
   return (
     <div id='about-page'>
-      <Grid container className="about-container" display="flex" alignItems="center" flexDirection="column" spacing={10}>
+      <Grid container className="about-container" display="flex" alignItems="center" flexDirection="column" spacing={8}>
         <div
           className="header-container reveal-item"
           ref={getRevealRef(0)}
