@@ -1,0 +1,78 @@
+.burger {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 696969;
+  touch-action: manipulation;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .burger:hover div {
+    transition-duration: 0.3s;
+    background: #ead8a3ff;
+  }
+}
+
+.burger:focus {
+  outline: none;
+}
+
+.burger div {
+  width: 2rem;
+  height: 0.25rem;
+  background: var(--background);
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+  pointer-events: none;
+}
+
+.burger div:first-child {
+  transform: rotate(0);
+}
+
+.burger.open div:first-child {
+  transform: rotate(45deg);
+}
+
+.burger div:nth-child(2) {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.burger.open div:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.burger div:nth-child(3) {
+  transform: rotate(0);
+}
+
+.burger.open div:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 700px) {
+  .burger {
+    top: 1rem;
+    right: 1.8rem;
+    width: auto;
+    height: 1.6rem;
+  }
+
+  .burger div {
+    width: 1.6rem;
+    height: 0.25rem;
+  }
+}

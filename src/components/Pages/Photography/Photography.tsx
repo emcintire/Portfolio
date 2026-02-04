@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { endsWith, map } from 'lodash';
-import './Photography.scss';
-import { storeLocation } from '../../../helpers';
+import './Photography.css';
 
 const links = [
   { id: 'landscape', name: 'Landscape' },
@@ -15,7 +14,7 @@ export function Photography() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const category = window.localStorage.getItem('category');
+    const category = sessionStorage.getItem('category');
     if (category) {
       document.getElementById(category)?.scrollIntoView();
     } else {
@@ -32,7 +31,10 @@ export function Photography() {
               <Link
                 className="category-link"
                 to={link.id}
-                onClick={storeLocation('category', link.id, ['album', 'category'])}
+                onClick={() => {
+                  sessionStorage.removeItem('album');
+                  sessionStorage.setItem('category', link.id);
+                }}
               >
                 {link.name}
               </Link>

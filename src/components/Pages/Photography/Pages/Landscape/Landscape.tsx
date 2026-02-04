@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import "./Landscape.css";
 import { endsWith, map } from 'lodash';
-import { storeLocation } from '../../../../../helpers/storeLocation.ts';
 
 const links = [
   { id: "adirondacks2025", name: "Adirondacks", year: "2025" },
@@ -23,7 +22,7 @@ export function Landscape() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const album = window.localStorage.getItem("album");
+    const album = sessionStorage.getItem("album");
     if (album) {
       document.getElementById(album)?.scrollIntoView();
     } else {
@@ -40,7 +39,7 @@ export function Landscape() {
               <Link
                 className="category-link"
                 to={link.id}
-                onClick={storeLocation('album', link.id, 'album')}
+                onClick={() => sessionStorage.setItem('album', link.id)}
               >
                 {link.name}
                 <br />

@@ -2,7 +2,7 @@ import { get, map, toLower } from 'lodash';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import type { Photograph } from '../../../types';
-import { photographs } from './Photographs';
+import { photographs } from '../../../data/photos';
 
 export function PhotographyPage() {
   const { album } = useParams();

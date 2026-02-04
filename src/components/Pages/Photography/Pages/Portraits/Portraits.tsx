@@ -2,7 +2,6 @@ import './Portraits.css';
 import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { endsWith, map } from 'lodash';
-import { storeLocation } from '../../../../../helpers/storeLocation.ts';
 
 const links = [
   { id: 'teddy-12m', name: 'Teddy One Year', year: '2017', path: 'teddy12m' },
@@ -18,10 +17,10 @@ export function Portraits() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const album = window.localStorage.getItem('album');
+    const album = sessionStorage.getItem('album');
     if (album) {
       if (!document.getElementById(album)) {
-        window.localStorage.removeItem('album');
+        sessionStorage.removeItem('album');
         window.scrollTo(0, 0);
       } else {
         document.getElementById(album)?.scrollIntoView();
@@ -40,7 +39,7 @@ export function Portraits() {
               <Link
                 className='category-link'
                 to={link.path}
-                onClick={storeLocation('album', link.id, 'album')}>
+                onClick={() => sessionStorage.setItem('album', link.id)}>
                 {link.name}
                 <br />
                 <span className='cat-year'>{link.year}</span>

@@ -1,4 +1,4 @@
-import type { Photograph } from '../../../../types';
+import type { Photograph } from '../../types';
 import { animals } from './animalsPhotos';
 import {
   adirondacks2025, alaska2018, alaska2020, malabar2019, mammoth2020, roadtrip2018, roadtrip2022, rockies2024, summer2017,

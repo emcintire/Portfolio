@@ -1,11 +1,11 @@
-import { StyledBurger } from './Burger.styled.ts';
+import './Burger.css';
 
 export const Burger = ({ open, setOpen }: { open: boolean; setOpen(open: boolean): void }) => {
   return (
-    <StyledBurger open={open} id='burger' onClick={() => setOpen(!open)}>
+    <button className={`burger${open ? ' open' : ''}`} id='burger' onClick={() => setOpen(!open)}>
       <div />
       <div />
       <div />
-    </StyledBurger>
+    </button>
   );
 }

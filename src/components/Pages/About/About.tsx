@@ -1,6 +1,5 @@
 import './About.css';
 import { useRef } from 'react';
-import { Image } from 'react-bootstrap';
 import { Button, Grid, IconButton, Stack } from '@mui/material';
 import { Download, GitHub, LinkedIn, NearMe } from '@mui/icons-material';
 import { toast } from 'react-toastify';
@@ -26,7 +25,7 @@ const links = [{
 
 export function About() {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const getRevealRef = useRevealOnIntersect({ threshold: 0.2 });
+  const revealRef = useRevealOnIntersect();
 
   const clickContact = () => {
     if (!textAreaRef.current) {
@@ -42,7 +41,7 @@ export function About() {
       <Grid container className="about-container" display="flex" alignItems="center" flexDirection="column" spacing={8}>
         <div
           className="header-container reveal-item"
-          ref={getRevealRef(0)}
+          ref={revealRef}
         >
           <h1>
             Hi, I'm Everett McIntire!
@@ -54,7 +53,7 @@ export function About() {
           spacing={2}
           paddingBottom={4}
           className="reveal-item"
-          ref={getRevealRef(1)}
+          ref={revealRef}
         >
           <Button className="contact-btn" variant="contained" onClick={clickContact}>
             Contact Me
@@ -69,9 +68,9 @@ export function About() {
         </Stack>
         <div
           className="profile-card reveal-item"
-          ref={getRevealRef(2)}
+          ref={revealRef}
         >
-          <Image src={profilePic} className="profile-pic" />
+          <img src={profilePic} className="profile-pic" alt="Profile" />
           <div className="profile-body">
             <h1 className="profile-header">
               About Me
@@ -118,7 +117,7 @@ export function About() {
           alignItems="center"
           flexDirection="column"
           className="reveal-item"
-          ref={getRevealRef(3)}
+          ref={revealRef}
         >
           <Experience />
         </Grid>
@@ -128,7 +127,7 @@ export function About() {
           alignItems="center"
           flexDirection="column"
           className="reveal-item"
-          ref={getRevealRef(4)}
+          ref={revealRef}
         >
           <Skills />
         </Grid>
