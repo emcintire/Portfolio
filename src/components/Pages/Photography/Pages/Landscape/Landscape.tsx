@@ -1,6 +1,6 @@
+import "./Landscape.css";
 import { useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import "./Landscape.css";
 import { endsWith, map } from 'lodash';
 
 const links = [
@@ -22,13 +22,14 @@ export function Landscape() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const album = sessionStorage.getItem("album");
+    if (!endsWith(pathname, 'landscape')) return;
+    const album = sessionStorage.getItem('album');
     if (album) {
       document.getElementById(album)?.scrollIntoView();
     } else {
       window.scrollTo(0, 0);
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <div id="landscape-page">

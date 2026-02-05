@@ -1,5 +1,5 @@
 import './Navbar.css';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { includes, join, last, remove, split } from 'lodash';
 import { Grid, IconButton } from '@mui/material';
@@ -47,6 +47,33 @@ export function Navbar() {
   const activeLink = useMemo(() => last(split(pathname, '/')), [pathname]);
 
   const title = useMemo(() => titles[activeLink as keyof typeof titles], [activeLink]);
+
+  const titleRef = useRef<HTMLSpanElement>(null);
+
+  const adjustTitleFontSize = useCallback(() => {
+    const el = titleRef.current;
+    if (!el) return;
+
+    const parent = el.parentElement;
+    if (!parent) return;
+
+    // Reset to CSS default to measure natural size
+    el.style.fontSize = '';
+
+    const parentWidth = parent.clientWidth;
+    const textWidth = el.scrollWidth;
+
+    if (textWidth > parentWidth) {
+      const currentSize = parseFloat(getComputedStyle(el).fontSize);
+      el.style.fontSize = `${(currentSize * parentWidth) / textWidth * 0.85}px`;
+    }
+  }, []);
+
+  useEffect(() => {
+    adjustTitleFontSize();
+    window.addEventListener('resize', adjustTitleFontSize);
+    return () => window.removeEventListener('resize', adjustTitleFontSize);
+  }, [title, adjustTitleFontSize]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,15 +124,15 @@ export function Navbar() {
         top={0}
         width="100%"
       >
-        <Grid size={1} display="flex" justifyContent="start" alignItems="center" paddingLeft={2}>
+        <Grid size={2} display="flex" justifyContent="start" alignItems="center" paddingLeft={2}>
           <IconButton className="back-btn" onClick={goBack}>
             <ArrowBack className="back-icon" />
           </IconButton>
         </Grid>
-        <Grid size={10} display="flex" justifyContent="center" alignItems="center">
-          <span className="navbar-header">{title}</span>
+        <Grid size={8} display="flex" justifyContent="center" alignItems="center">
+          <span ref={titleRef} className="navbar-header">{title}</span>
         </Grid>
-        <Grid size={1}>
+        <Grid size={2}>
           <Burger open={open} setOpen={setOpen} />
         </Grid>
       </Grid>

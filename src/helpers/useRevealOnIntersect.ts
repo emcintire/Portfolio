@@ -27,7 +27,7 @@ export const useRevealOnIntersect = (options: IntersectionObserverInit = { thres
     };
   }, []);
 
-  return useCallback((el: HTMLElement | null) => {
-    if (el) getObserver().observe(el);
+  return useCallback((element: HTMLElement | null) => {
+    if (element) getObserver().observe(element);
   }, []);
 };

@@ -1,11 +1,15 @@
 import { get, map, toLower } from 'lodash';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import type { Photograph } from '../../../types';
 import { photographs } from '../../../data/photos';
 
 export function PhotographyPage() {
   const { album } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [album]);
 
   const images = useMemo<Array<Photograph>>(
     () => get(photographs, toLower(album), []),

@@ -14,13 +14,14 @@ export function Photography() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    if (!endsWith(pathname, 'photography')) return;
     const category = sessionStorage.getItem('category');
     if (category) {
       document.getElementById(category)?.scrollIntoView();
     } else {
       window.scrollTo(0, 0);
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <div id="photography-page">

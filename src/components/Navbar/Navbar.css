@@ -23,6 +23,7 @@
     color: var(--background);
     font-family: var(--allenoire-font);
     font-size: 3rem;
+    white-space: nowrap;
   }
 
   .nav-icons {

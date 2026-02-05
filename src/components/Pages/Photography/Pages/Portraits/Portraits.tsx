@@ -17,6 +17,7 @@ export function Portraits() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    if (!endsWith(pathname, 'portraits')) return;
     const album = sessionStorage.getItem('album');
     if (album) {
       if (!document.getElementById(album)) {
@@ -28,7 +29,7 @@ export function Portraits() {
     } else {
       window.scrollTo(0, 0);
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <div id='portraits-page'>
