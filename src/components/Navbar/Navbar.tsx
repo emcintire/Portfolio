@@ -47,7 +47,7 @@ export function Navbar() {
 
   const title = useMemo(() => titles[activeLink as keyof typeof titles], [activeLink]);
 
-  const titleRef = useRef<HTMLSpanElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   const adjustTitleFontSize = useCallback(() => {
     const el = titleRef.current;
@@ -125,12 +125,12 @@ export function Navbar() {
         width="100%"
       >
         <Grid size={2} display="flex" justifyContent="start" alignItems="center" paddingLeft={2}>
-          <IconButton className="back-btn" onClick={goBack}>
+          <IconButton className="back-btn" onClick={goBack} aria-label="Go back">
             <ArrowBack className="back-icon" />
           </IconButton>
         </Grid>
         <Grid size={8} display="flex" justifyContent="center" alignItems="center">
-          <span ref={titleRef} className="navbar-header">{title}</span>
+          <h1 ref={titleRef} className="navbar-header">{title}</h1>
         </Grid>
         <Grid size={2}>
           <Burger open={open} setOpen={setOpen} />

@@ -56,10 +56,10 @@ export default function Skills() {
   };
 
   return (
-    <Stack spacing={2} width="100%" alignItems="center" paddingBottom="100px">
+    <Stack spacing={2} width="100%" alignItems="center" paddingBottom="100px" role="region" aria-label="Skills">
       <h1 className="skills-header">Skills</h1>
       <div className='carousel-wrapper'>
-        <div className='carousel' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={carouselRef}>
+        <div className='carousel' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={carouselRef} aria-roledescription="carousel">
           {duplicatedSkills.map((skill, index) => (
             <div className='skill-box' key={index}>
               <img src={skill.img} alt={skill.name} />

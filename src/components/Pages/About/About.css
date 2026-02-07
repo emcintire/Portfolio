@@ -6,7 +6,14 @@
   margin-top: 150px;
   margin-left: 80px;
   margin-right: 80px;
-  
+
+  .about-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
   .bio-body {
     display: flex;
     flex-direction: column;
@@ -14,106 +21,12 @@
     margin-top: 10px;
   }
 
-  .header-container {
-    padding-top: 20px;
-  
-    h1 {
-      font-size: 60px;
-      font-weight: 800;
-      color: var(--red);
-      padding-top: 0;
-      padding-bottom: 10px;
-      margin: 0;
-      font-family: var(--allenoire-font);
-    }
-
-    h3 {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--red);
-      padding-top: 0;
-      margin: 0;
-    }
-  }
-
-  .profile-card {
-    width: 600px;
-    margin-bottom: 50px;
-    border: 10px solid var(--red);
-    box-shadow: 
-      0 0 0 10px rgb(255, 140, 78),
-      0 0 0 20px rgb(254, 170, 97),
-      0 0 0 30px rgb(109, 177, 164),
-      0 0 0 40px rgb(0, 107, 149);
-    border-radius: 50px;
-    background-color: var(--lt-background);
-  }
-
-  .profile-pic {
-    width: 100%;
-    height: auto;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    border-bottom: 10px solid var(--red);
-  }
-
-  .profile-body {
-    padding: 20px 2em;
-  }
-
-  .profile-header {
-    color: var(--red);
-    font-size: 40px;
-    font-family: var(--allenoire-font);
-    margin: 0;
-    padding-bottom: 20px;
-  }
-
-  .profile-desc {
-    font-size: 16px;
-    font-weight: 400;
-    height: auto;
-    text-align: start;
-    margin: 0;
-    padding-bottom: 30px;
-    border-bottom: 4px solid;
-    border-image: linear-gradient(to right, transparent 0%, var(--red) 35%, var(--red) 65%, transparent 100%) 1;
-  }
-
-  .btn {
-    .icon {
-      color: var(--green);
-      font-size: 4rem;
-    }
-  }
-
-  .contact-btn {
-    box-shadow: none;
-    background-color: var(--lt-background);
-    color: var(--red);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    border: 5px solid var(--green);
-    border-radius: 15px;
-    font-size: 1rem;
-    width: 200px;
-
-    &:hover {
-      background-color: var(--red);
-      color: var(--lt-background);
-    }
-
-    .btn-icon {
-      margin-left: 10px;
-    }
-  }
-  
   .logos {
     height: 40px;
     width: auto;
     margin: 5px;
   }
-  
+
   .bio-btns {
     width: 100%;
     display: flex;
@@ -121,19 +34,17 @@
     align-items: center;
     flex-wrap: wrap;
   }
-  
+
   .resume-btns {
     flex: 1;
     display: flex;
     justify-content: space-around;
   }
-  
-  .Toastify {
-    z-index: 6969696969;
-  }
-  
-  .Toastify__progress-bar {
-    background: var(--light) !important;
+
+  @media (min-width: 1200px) {
+    .about-section {
+      width: 83.33%;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -142,76 +53,29 @@
       transform: none;
     }
   }
-  
+
   @media (max-width: 700px) {
     margin-top: 140px;
     margin-left: 10px;
     margin-right: 10px;
     width: calc(100% - 20px);
 
-    .profile-card {
-      width: 250px;
-    }
-
-    .profile-body {
-      padding: 5px 1em 15px 1em;
-    }
-
-    .profile-header {
-      margin-top: 10px;
-    }
-
-    .profile-desc {
-      font-size: 16px;
-    }
-
     .bio-container {
       display: flex;
       justify-content: center;
     }
-  
+
     .bio-card {
       width: 90%;
       padding: 0;
     }
 
-    .contact-btn {
-      font-size: 0.7rem;
-      width: 150px;
-
-      .btn-icon {
-        font-size: 18px;
-        margin-left: 5px;
-      }
-    }
-
-    .header-container {
-      padding-top: 0;
-      padding-bottom: 0px;
-    
-      h1 {
-        font-size: 40px;
-      }
-
-      h3 {
-        font-size: 18px;
-      }
-    }
-  
     .resume-btns {
       margin-top: auto;
     }
-  
+
     .contact-info {
       margin-top: 15px;
     }
-  
-    .Toastify__toast-container {
-      width: 100% !important;
-      display: flex !important;
-      justify-content: center !important;
-      flex-direction: column !important;
-    }
   }
 }
-

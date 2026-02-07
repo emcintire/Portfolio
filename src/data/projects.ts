@@ -24,12 +24,15 @@ export const projects = [
     name: 'Tater Tap',
     links: [{
       icon: Apple,
+      name: 'App Store',
       url: 'https://apps.apple.com/us/app/tater-tap/id6742767053',
     }, {
       icon: Android,
+      name: 'Google Play',
       url: 'https://play.google.com/store/apps/details?id=com.greasyfingers.tatertap&pcampaignid=web_share',
     }, {
       icon: GitHub,
+      name: 'GitHub',
       url: 'https://github.com/emcintire/TaterTap',
     }],
   }, {
@@ -45,12 +48,15 @@ export const projects = [
     name: 'unCaged',
     links: [{
       icon: Apple,
+      name: 'App Store',
       url: 'https://apps.apple.com/us/app/uncaged/id1593978532',
     }, {
       icon: Android,
+      name: 'Google Play',
       url: 'https://play.google.com/store/apps/details?id=uncaged.app&pcampaignid=web_share',
     }, {
       icon: GitHub,
+      name: 'GitHub',
       url: 'https://github.com/emcintire/unCaged-server',
     }],
   }, {
@@ -63,9 +69,11 @@ export const projects = [
     name: 'Flappy Frank',
     links: [{
       icon: YouTube,
+      name: 'YouTube',
       url: 'https://youtu.be/8NHuylK6O78',
     }, {
       icon: GitHub,
+      name: 'GitHub',
       url: 'https://github.com/emcintire/FlappyFrank',
     }],
   },

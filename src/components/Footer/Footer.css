@@ -1,10 +1,30 @@
 #footer {
   align-items: center;
-  background-color: var(--dark);
-  color: var(--text);
+  background-color: var(--background);
+  color: #1e1e1e;
   display: flex;
+  flex-direction: column;
   font-family: "Montserrat", sans-serif;
   font-size: 12px;
-  height: 80px;
+  gap: 6px;
   justify-content: center;
+  padding: 20px 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-icon {
+  color: var(--red);
+  font-size: 1.4rem;
+}
+
+.footer-icon:hover {
+  color: #1e1e1e;
+}
+
+.footer-copy {
+  color: #1e1e1e;
 }

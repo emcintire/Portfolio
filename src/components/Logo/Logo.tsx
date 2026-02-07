@@ -58,7 +58,7 @@ export function Logo() {
   }, []);
 
   return (
-    <div id="logo">
+    <div id="logo" aria-hidden="true">
       <svg
         ref={svgRef}
         className="topography-shape"
@@ -66,7 +66,7 @@ export function Logo() {
         height="auto"
         viewBox="0 0 1200 700"
         xmlns="http://www.w3.org/2000/svg"
-        aria-hidden
+        aria-hidden="true"
       >
         {layers.map((layer, index) => {
           const isSmallest = index === layers.length - 1;

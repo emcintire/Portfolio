@@ -14,7 +14,9 @@ import { ToastContainer } from 'react-toastify'
 export function App() {
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <Navbar />
+      <main id="main-content">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
@@ -32,6 +34,7 @@ export function App() {
           <Route path=":album" element={<PhotographyPage />} />
         </Route>
       </Routes>
+      </main>
       <ToastContainer theme="dark" />
       <Footer />
     </>

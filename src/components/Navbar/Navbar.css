@@ -23,6 +23,8 @@
     color: var(--background);
     font-family: var(--allenoire-font);
     font-size: 3rem;
+    font-weight: inherit;
+    margin: 0;
     white-space: nowrap;
   }
 

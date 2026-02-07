@@ -29,10 +29,10 @@ export function Projects() {
                   ))}
                 </ul>
                 {project.links && (
-                  <div className="card-btns">
+                  <div className="card-btns" role="group" aria-label={`${project.name} links`}>
                     {project.links.map((link) => (
-                      <a href={link.url} target="_blank" rel="noreferrer" key={link.url}>
-                        <IconButton>
+                      <a href={link.url} target="_blank" rel="noreferrer" key={link.url} aria-label={`${project.name} on ${link.name}`}>
+                        <IconButton aria-hidden="true" tabIndex={-1}>
                           <link.icon className="logos" />
                         </IconButton>
                       </a>

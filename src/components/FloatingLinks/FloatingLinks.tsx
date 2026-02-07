@@ -217,7 +217,7 @@ export function FloatingLinks({ onClickLink = () => {} }: { onClickLink?(id: str
     : n));
 
   return (
-    <div ref={wrapRef} className="links-wrap">
+    <nav ref={wrapRef} className="links-wrap" aria-label="Site navigation">
       {nodes.map((n) => (
         <Link
           className={`float-link ${n.id}`}
@@ -227,8 +227,9 @@ export function FloatingLinks({ onClickLink = () => {} }: { onClickLink?(id: str
           onMouseLeave={() => onLeave(n.id)}
           style={{ transform: `translate(-50%, -50%) translate(${n.x}px, ${n.y}px)` }}
           to={n.to}
+          aria-label={n.id.charAt(0).toUpperCase() + n.id.slice(1)}
         />
       ))}
-    </div>
+    </nav>
   );
 }
