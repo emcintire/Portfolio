@@ -1,7 +1,6 @@
 import './Navbar.css';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { includes, join, last, remove, split } from 'lodash';
 import { Grid, IconButton } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { FloatingLinks } from '../FloatingLinks/FloatingLinks.tsx';
@@ -44,7 +43,7 @@ export function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 
-  const activeLink = useMemo(() => last(split(pathname, '/')), [pathname]);
+  const activeLink = useMemo(() => pathname.split('/').at(-1), [pathname]);
 
   const title = useMemo(() => titles[activeLink as keyof typeof titles], [activeLink]);
 
@@ -98,7 +97,7 @@ export function Navbar() {
   }, []);
 
   const handleClickLink = (id: string) => {
-    if (includes(['home', 'about', 'projects'], id)) {
+    if (['home', 'about', 'projects'].includes(id)) {
       window.localStorage.removeItem('category');
       window.localStorage.removeItem('album');
     }
@@ -107,8 +106,9 @@ export function Navbar() {
 
   const goBack = () => {
     setOpen(false);
-    const oneLevelUp = join(remove(split(pathname, '/'), (_, index, array) => array.length - 1 !== index), '/');
-    navigate(oneLevelUp);
+    const parts = pathname.split('/');
+    parts.pop();
+    navigate(parts.join('/'));
   }
 
   if (activeLink === '') { return null; }

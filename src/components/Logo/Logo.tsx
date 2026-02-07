@@ -1,5 +1,4 @@
 import './Logo.css';
-import { map } from 'lodash';
 import { useLayoutEffect, useRef, useState } from 'react';
 
 const layers = [
@@ -69,7 +68,7 @@ export function Logo() {
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden
       >
-        {map(layers, (layer, index) => {
+        {layers.map((layer, index) => {
           const isSmallest = index === layers.length - 1;
           return (
             <path

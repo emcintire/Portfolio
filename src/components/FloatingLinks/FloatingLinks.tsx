@@ -1,7 +1,6 @@
 import './FloatingLinks.css';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { map, noop } from 'lodash';
 import { useMediaQuery } from '@mui/material';
 
 type Node = {
@@ -20,7 +19,7 @@ const START: Omit<Node, 'x' | 'y' | 'vx' | 'vy' | 'frozen'>[] = [
   { id: 'projects', to: '/projects' },
 ];
 
-export function FloatingLinks({ onClickLink = noop }: { onClickLink?(id: string): void }) {
+export function FloatingLinks({ onClickLink = () => {} }: { onClickLink?(id: string): void }) {
   const isMobile = useMediaQuery('(max-width: 700px)');
 
   const wrapRef = useRef<HTMLDivElement | null>(null);
@@ -96,7 +95,7 @@ export function FloatingLinks({ onClickLink = noop }: { onClickLink?(id: string)
 
       setNodes((curr) => {
         if (!curr.length) return curr;
-        const next = map(curr, (n) => ({ ...n }));
+        const next = curr.map((n) => ({ ...n }));
 
         const rect = wrapRef.current!.getBoundingClientRect();
         const minX = radius + 8;
@@ -209,17 +208,17 @@ export function FloatingLinks({ onClickLink = noop }: { onClickLink?(id: string)
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
-  const onEnter = (id: string) => setNodes(ns => map(ns, ((n) => n.id === id
+  const onEnter = (id: string) => setNodes(ns => ns.map((n) => n.id === id
     ? { ...n, frozen: true, vx: 0, vy: 0 }
-    : n)));
+    : n));
 
-  const onLeave = (id: string) => setNodes(ns => map(ns, ((n) => n.id === id
+  const onLeave = (id: string) => setNodes(ns => ns.map((n) => n.id === id
     ? { ...n, frozen: false }
-    : n)));
+    : n));
 
   return (
     <div ref={wrapRef} className="links-wrap">
-      {map(nodes, (n) => (
+      {nodes.map((n) => (
         <Link
           className={`float-link ${n.id}`}
           key={n.id}

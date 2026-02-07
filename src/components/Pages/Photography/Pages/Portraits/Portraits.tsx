@@ -1,7 +1,6 @@
 import './Portraits.css';
 import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { endsWith, map } from 'lodash';
 
 const links = [
   { id: 'teddy-12m', name: 'Teddy One Year', year: '2017', path: 'teddy12m' },
@@ -17,7 +16,7 @@ export function Portraits() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (!endsWith(pathname, 'portraits')) return;
+    if (!pathname.endsWith('portraits')) return;
     const album = sessionStorage.getItem('album');
     if (album) {
       if (!document.getElementById(album)) {
@@ -33,9 +32,9 @@ export function Portraits() {
 
   return (
     <div id='portraits-page'>
-      {endsWith(pathname, 'portraits') && (
+      {pathname.endsWith('portraits') && (
         <ul className='category-list'>
-          {map(links, (link) => (
+          {links.map((link) => (
             <div className='category-container' id={link.id} key={link.id}>
               <Link
                 className='category-link'

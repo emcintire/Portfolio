@@ -8,8 +8,7 @@ import profilePic from '@/assets/images/pp.jpg';
 import resume from '@/assets/images/resume.pdf';
 import Skills from './Skills/Skills';
 import Experience from './Experience/Experience';
-import { map } from 'lodash';
-import { useRevealOnIntersect } from '../../../helpers';
+import { useRevealOnIntersect } from '@/helpers';
 
 const gridSize = { xs: 12, sm: 12, md: 12, lg: 10 };
 
@@ -77,8 +76,8 @@ export function About() {
             </h1>
             <p className="profile-desc">
               I am a full stack software engineer with experience designing and delivering end-to-end features across React,
-              React Native, Node.js, and .NET. I’ve led small development efforts, contributed to large, long-running
-              enterprise systems, and independently launched mobile applications on both major app stores. My work typically
+              React Native, Node.js, and .NET. I’ve led teams through feature development, contributed to large, long-running
+              enterprise systems, and independently launched multiple mobile applications to both iOS and Android app stores. My work typically
               spans the full lifecycle, from translating product requirements into scalable backend services and intuitive
               front-end experiences to deploying, monitoring, and iterating based on real user feedback.
               <br />
@@ -90,11 +89,11 @@ export function About() {
               impact for users.
               <br />
               <br />
-              I spend my free time working on side projects, watching films, listening to music, taking photos,
+              I spend my free time watching films, listening to music, working on side projects, taking photos,
               snowboarding in the winter, and hiking in the summer.
             </p>
             <Grid container spacing={2} display="flex" alignItems="center" justifyContent="space-evenly" paddingTop={2}>
-              {map(links, (link) => (
+              {links.map((link) => (
                 <Grid size={{ xs: 4, md: 2 }} display="flex" justifyContent="center">
                   <a href={link.url} target="_blank" rel="noreferrer" aria-label={link.name}>
                     <IconButton className="btn">

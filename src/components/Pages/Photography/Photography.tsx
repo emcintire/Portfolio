@@ -1,7 +1,6 @@
+import './Photography.css';
 import { useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { endsWith, map } from 'lodash';
-import './Photography.css';
 
 const links = [
   { id: 'landscape', name: 'Landscape' },
@@ -14,7 +13,7 @@ export function Photography() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (!endsWith(pathname, 'photography')) return;
+    if (!pathname.endsWith('photography')) return;
     const category = sessionStorage.getItem('category');
     if (category) {
       document.getElementById(category)?.scrollIntoView();
@@ -25,9 +24,9 @@ export function Photography() {
 
   return (
     <div id="photography-page">
-      {endsWith(pathname, 'photography') && (
+      {pathname.endsWith('photography') && (
         <ul className="category-list">
-          {map(links, (link) => (
+          {links.map((link) => (
             <div className="category-container" id={link.id} key={link.id}>
               <Link
                 className="category-link"

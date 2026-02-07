@@ -1,5 +1,5 @@
-import { useLocation } from 'react-router-dom';
 import "./Footer.css";
+import { useLocation } from 'react-router-dom';
 
 const d = new Date();
 const currentYear = d.getFullYear();

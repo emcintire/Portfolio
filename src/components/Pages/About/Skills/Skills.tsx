@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'react';
 import './Skills.css';
-import { map } from 'lodash';
+import { useEffect, useRef } from 'react';
 import { Stack } from '@mui/material';
-import { skills } from '../../../../data/skills';
+import { skills } from '@/data/skills';
 
 const speed = 10;
 
@@ -61,7 +60,7 @@ export default function Skills() {
       <h1 className="skills-header">Skills</h1>
       <div className='carousel-wrapper'>
         <div className='carousel' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={carouselRef}>
-          {map(duplicatedSkills, (skill, index) => (
+          {duplicatedSkills.map((skill, index) => (
             <div className='skill-box' key={index}>
               <img src={skill.img} alt={skill.name} />
               <p>{skill.name}</p>

@@ -1,7 +1,6 @@
-import "./Landscape.css";
-import { useEffect } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
-import { endsWith, map } from 'lodash';
+import './Landscape.css';
+import { useEffect } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const links = [
   { id: "adirondacks2025", name: "Adirondacks", year: "2025" },
@@ -22,7 +21,7 @@ export function Landscape() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (!endsWith(pathname, 'landscape')) return;
+    if (!pathname.endsWith('landscape')) return;
     const album = sessionStorage.getItem('album');
     if (album) {
       document.getElementById(album)?.scrollIntoView();
@@ -33,9 +32,9 @@ export function Landscape() {
 
   return (
     <div id="landscape-page">
-      {endsWith(pathname, 'landscape') && (
+      {pathname.endsWith('landscape') && (
         <ul className="category-list">
-          {map(links, (link) => (
+          {links.map((link) => (
             <div className="category-container" id={link.id} key={link.id}>
               <Link
                 className="category-link"

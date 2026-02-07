@@ -1,9 +1,8 @@
 import './Experience.css';
 import { useEffect, useRef } from 'react';
 import { Avatar, Box, Paper, Stack } from '@mui/material';
-import { map } from 'lodash';
-import { useRevealOnIntersect } from '../../../../helpers';
-import { experiences } from '../../../../data/experience';
+import { useRevealOnIntersect } from '@/helpers';
+import { experiences } from '@/data/experience';
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
 
@@ -68,7 +67,7 @@ export default function Experience() {
 				<Stack width="100%" alignItems="center">
 					<h1 className="skills-header">Experience</h1>
 					<Box ref={sectionRef} className="timeline">
-						{map(experiences, (exp, index) => (
+						{experiences.map((exp, index) => (
 							<Box
 								key={`${exp.company}-${exp.role}-${index}`}
 								className="timelineRow"
