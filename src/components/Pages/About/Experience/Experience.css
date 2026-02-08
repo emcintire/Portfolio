@@ -42,8 +42,8 @@
   width: 2px;
   background: linear-gradient(
     to bottom,
-    var(--red, #ff5a5f) 0%,
-    var(--red, #ff5a5f) calc(100% - 60px),
+    var(--red) 0%,
+    var(--red) calc(100% - 60px),
     color-mix(in srgb, var(--light, #ffffff) 18%, transparent) 100%
   );
   transform-origin: top;
@@ -86,8 +86,8 @@
 .logoAvatar {
   width: 44px !important;
   height: 44px !important;
-  border: 2px solid color-mix(in srgb, var(--light, #ffffff) 18%, transparent);
-  background: color-mix(in srgb, var(--background, #0b0f1a) 70%, #000000);
+  border: 2px solid color-mix(in srgb, var(--light) 18%, transparent);
+  background: color-mix(in srgb, var(--background) 70%, #000000);
   position: relative;
   z-index: 2;
 }
@@ -185,7 +185,7 @@
   }
 
   .roleText {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 
   .logoAvatar {

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 
-export const useRevealOnIntersect = (options: IntersectionObserverInit = { threshold: 0.2 }) => {
+export const useRevealOnIntersect = (options: IntersectionObserverInit = { threshold: 0.15 }) => {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const getObserver = () => {

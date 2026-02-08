@@ -69,7 +69,7 @@
     max-width: 600px;
     text-align: center;
     padding: 30px 40px;
-    border-left: 6px solid var(--green);
+    border-left: 8px solid var(--green);
     background-color: var(--lt-background);
     border-radius: 12px;
   }
@@ -179,6 +179,12 @@
       display: flex !important;
       justify-content: center !important;
       flex-direction: column !important;
+    }
+
+    .btn {
+      .icon {
+        font-size: 3rem;
+      }
     }
   }
 }

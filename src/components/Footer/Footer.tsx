@@ -1,4 +1,4 @@
-import "./Footer.css";
+import './Footer.css';
 import { useLocation } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { socialLinks } from '@/data/socialLinks';
