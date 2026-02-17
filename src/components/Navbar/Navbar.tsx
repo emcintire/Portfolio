@@ -141,7 +141,7 @@ export function Navbar() {
         <Grid size={8} display="flex" justifyContent="center" alignItems="center">
           <h1 ref={titleRef} className="navbar-header">{title}</h1>
         </Grid>
-        <Grid size={2} display="flex" justifyContent="end" alignItems="center" paddingRight={2}>
+        <Grid size={2} display="flex" justifyContent="end" alignItems="center" paddingRight={3}>
           <Burger open={open} setOpen={setOpen} />
         </Grid>
       </Grid>

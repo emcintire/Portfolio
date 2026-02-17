@@ -40,7 +40,7 @@ export const projects = [
     }, {
       badge: githubBadge,
       name: 'GitHub',
-      url: 'https://github.com/emcintire/unCaged-server',
+      url: 'https://github.com/emcintire/unCaged',
     }],
   }, {
     descriptions: [
