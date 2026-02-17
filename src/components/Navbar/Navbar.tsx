@@ -2,9 +2,10 @@ import './Navbar.css';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Grid, IconButton } from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
+import { ArrowBack, LightMode, DarkMode } from '@mui/icons-material';
 import { FloatingLinks } from '../FloatingLinks/FloatingLinks.tsx';
 import { Burger } from '../Burger/Burger.tsx';
+import { useTheme } from '../../contexts/ThemeContext.tsx';
 
 const titles = {
   '/': 'Home',
@@ -39,6 +40,7 @@ const titles = {
 export function Navbar() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -115,7 +117,14 @@ export function Navbar() {
 
   return (
     <div id="nav">
-      {open && <FloatingLinks onClickLink={handleClickLink} />}
+      {open && (
+        <>
+          <FloatingLinks onClickLink={handleClickLink} />
+          <IconButton className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
+            {theme === 'light' ? <DarkMode className="dark" /> : <LightMode className="light" />}
+          </IconButton>
+        </>
+      )}
       <div id='cover' className={open ? 'covering' : ''} />
       <Grid
         className={`navbar ${(isVisible || open) ? 'visible' : 'hidden'}`}
@@ -132,7 +141,7 @@ export function Navbar() {
         <Grid size={8} display="flex" justifyContent="center" alignItems="center">
           <h1 ref={titleRef} className="navbar-header">{title}</h1>
         </Grid>
-        <Grid size={2}>
+        <Grid size={2} display="flex" justifyContent="end" alignItems="center" paddingRight={2}>
           <Burger open={open} setOpen={setOpen} />
         </Grid>
       </Grid>

@@ -10,8 +10,11 @@ import { About } from '../components/Pages/About/About.tsx'
 import { Navbar } from '../components/Navbar/Navbar.tsx'
 import { PhotographyPage } from '../components/Pages/Photography/PhotographyPage.tsx'
 import { ToastContainer } from 'react-toastify'
+import { useTheme } from '../contexts/ThemeContext.tsx'
 
 export function App() {
+  const { theme } = useTheme();
+
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
@@ -35,7 +38,7 @@ export function App() {
         </Route>
       </Routes>
       </main>
-      <ToastContainer theme="dark" />
+      <ToastContainer theme={theme === 'dark' ? 'dark' : 'light'} />
       <Footer />
     </>
   )

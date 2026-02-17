@@ -5,7 +5,8 @@
       "Bash(git -C \"C:\\\\Users\\\\e_mci\\\\Documents\\\\csc\\\\PortfolioV2\" log --format=\"%H %s\" -5)",
       "Bash(npm uninstall:*)",
       "Bash(npm run build:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npx vite:*)"
     ]
   }
 }

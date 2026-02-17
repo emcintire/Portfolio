@@ -10,8 +10,7 @@
   padding: 0;
   margin: 0;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--text);
   background-color: var(--background);
 
   font-synthesis: none;
@@ -26,6 +25,18 @@
   --red: #e2611d;
   --green: #a0b662;
   --blue: rgb(0, 107, 149);
+  --text: #1e1e1e;
+  --text-muted: #555;
+  --nav-icon: #ffecb4;
+}
+
+[data-theme="dark"] {
+  --background: #1a1a2e;
+  --lt-background: #252540;
+  --light: #2a2a3e;
+  --text: #e0e0e0;
+  --text-muted: #aaa;
+  --nav-icon: #1a1a2e;
 }
 
 a {
@@ -40,6 +51,7 @@ a:hover {
 body {
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--background);
   background-image:
     radial-gradient(1200px 800px at 10% -10%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 60%),
@@ -90,17 +102,14 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+[data-theme="dark"] body {
+  background-image:
+    radial-gradient(1200px 800px at 10% -10%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 60%),
+    radial-gradient(900px 700px at 110% 10%, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 55%);
+}
+
+[data-theme="dark"] button {
+  background-color: #2a2a3e;
 }
 
 .sr-only {

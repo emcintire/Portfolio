@@ -86,7 +86,7 @@
 #photography-page .category-link:hover {
   transition-duration: 0.4s;
   background-color: rgba(0, 0, 0, 0.6);
-  color: var(--background);
+  color: #ffecb4;
 }
 
 #photography-page .category-link {
@@ -102,7 +102,7 @@
   box-sizing: border-box;
   position: relative;
   padding: 0.75em;
-  color: var(--background);
+  color: #ffecb4;
   font-family: var(--allenoire-font);
   transition-duration: 900ms;
 }

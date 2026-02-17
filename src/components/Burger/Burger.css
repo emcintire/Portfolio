@@ -1,18 +1,22 @@
 .burger {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 2rem;
   height: 2rem;
-  background: transparent;
-  border: none;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0;
   cursor: pointer;
   padding: 0;
   z-index: 696969;
   touch-action: manipulation;
+  flex-shrink: 0;
+}
+
+.burger:hover {
+  border-color: transparent !important;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -29,7 +33,7 @@
 .burger div {
   width: 2rem;
   height: 0.25rem;
-  background: var(--background);
+  background: var(--nav-icon);
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -65,8 +69,6 @@
 
 @media (max-width: 700px) {
   .burger {
-    top: 1rem;
-    right: 1.8rem;
     width: auto;
     height: 1.6rem;
   }

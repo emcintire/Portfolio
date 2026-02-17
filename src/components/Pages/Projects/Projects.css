@@ -56,7 +56,7 @@
     list-style-type: disc; 
 
     li {
-      color: black;
+      color: var(--text);
     }
   }
   
@@ -74,18 +74,23 @@
   .card-btns {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    padding-top: 10px;
-    padding-bottom: 5px;
+    gap: 8px;
+    padding-top: 30px;
+    padding-bottom: 10px;
     border-top: 4px solid;
     border-image: linear-gradient(to right, transparent 0%, var(--red) 35%, var(--red) 65%, transparent 100%) 1;
-  
-    .logos {
-      color: var(--green);
-      height: 60px;
+
+    .store-badge {
+      height: 40px;
       width: auto;
-      border-radius: 100%;
+      transition: opacity 0.2s;
+    }
+
+    .store-badge:hover {
+      opacity: 0.8;
     }
   }
   
@@ -113,8 +118,8 @@
     }
 
     .card-btns {
-      .logos {
-        height: 50px;
+      .store-badge {
+        height: 32px;
       }
     }
   }

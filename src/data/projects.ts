@@ -1,8 +1,13 @@
-import { Android, Apple, GitHub, YouTube } from '@mui/icons-material';
-import flappy_frank from '@/assets/images/flappy_frank.gif';
 import tatertap from '@/assets/images/tatertap.gif';
-import unCaged from '@/assets/images/unCaged.png';
+import uncaged1 from '@/assets/images/uncaged-1.png';
+import uncaged2 from '@/assets/images/uncaged-2.png';
+import uncaged3 from '@/assets/images/uncaged-3.png';
+import uncaged4 from '@/assets/images/uncaged-4.png';
 import construction from '@/assets/images/underConstruction.png';
+import appStoreBadge from '@/assets/images/app-store-badge.svg';
+import googlePlayBadge from '@/assets/images/google-play-badge.svg';
+import githubBadge from '@/assets/images/github-badge.svg';
+// import flappy_frank from '@/assets/images/flappy_frank.gif';
 
 export const projects = [
   {
@@ -12,7 +17,8 @@ export const projects = [
     ],
     img: construction,
     name: 'Serve & Protect',
-  }, {
+  },
+  {
     descriptions: [
       'A mobile app for discovering, bookmarking, and rating the entirety of Nicolas Cage\'s prolific filmography.',
       'Engineered a type-safe React Native frontend using TypeScript, implementing reusable component patterns, clean forms with Formik and Zod validation, and TanStack Query based client caching for performant data retrieval',
@@ -21,18 +27,18 @@ export const projects = [
       'Implemented 100+ automated Jest tests, resulting in 99% API coverage and a more reliable, maintainable codebase.',
       'Deployed the application via Expo, ensuring stable, cross-platform delivery across iOS and Android.',
     ],
-    img: unCaged,
+    images: [uncaged1, uncaged2, uncaged3, uncaged4],
     name: 'unCaged',
     links: [{
-      icon: Apple,
+      badge: appStoreBadge,
       name: 'App Store',
       url: 'https://apps.apple.com/us/app/uncaged/id1593978532',
     }, {
-      icon: Android,
+      badge: googlePlayBadge,
       name: 'Google Play',
       url: 'https://play.google.com/store/apps/details?id=uncaged.app&pcampaignid=web_share',
     }, {
-      icon: GitHub,
+      badge: githubBadge,
       name: 'GitHub',
       url: 'https://github.com/emcintire/unCaged-server',
     }],
@@ -47,34 +53,35 @@ export const projects = [
     img: tatertap,
     name: 'Tater Tap',
     links: [{
-      icon: Apple,
+      badge: appStoreBadge,
       name: 'App Store',
       url: 'https://apps.apple.com/us/app/tater-tap/id6742767053',
     }, {
-      icon: Android,
+      badge: googlePlayBadge,
       name: 'Google Play',
       url: 'https://play.google.com/store/apps/details?id=com.greasyfingers.tatertap&pcampaignid=web_share',
     }, {
-      icon: GitHub,
+      badge: githubBadge,
       name: 'GitHub',
       url: 'https://github.com/emcintire/TaterTap',
     }],
-  }, {
-    descriptions: [
-      'An "It\'s Always Sunny in Philadelphia" Flappy Bird clone built with Python and Pygame.',
-      'Created every graphic in Adobe Illustrator and Photoshop.',
-      'Features include scoring, obstacles, and a responsive design.',
-    ],
-    img: flappy_frank,
-    name: 'Flappy Frank',
-    links: [{
-      icon: YouTube,
-      name: 'YouTube',
-      url: 'https://youtu.be/8NHuylK6O78',
-    }, {
-      icon: GitHub,
-      name: 'GitHub',
-      url: 'https://github.com/emcintire/FlappyFrank',
-    }],
   },
+  // {
+  //   descriptions: [
+  //     'An "It\'s Always Sunny in Philadelphia" Flappy Bird clone built with Python and Pygame.',
+  //     'Created every graphic in Adobe Illustrator and Photoshop.',
+  //     'Features include scoring, obstacles, and a responsive design.',
+  //   ],
+  //   img: flappy_frank,
+  //   name: 'Flappy Frank',
+  //   links: [{
+  //     icon: YouTube,
+  //     name: 'YouTube',
+  //     url: 'https://youtu.be/8NHuylK6O78',
+  //   }, {
+  //     icon: GitHub,
+  //     name: 'GitHub',
+  //     url: 'https://github.com/emcintire/FlappyFrank',
+  //   }],
+  // },
 ];

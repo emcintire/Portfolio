@@ -1,7 +1,7 @@
 #footer {
   align-items: center;
   background-color: var(--background);
-  color: #1e1e1e;
+  color: var(--text);
   display: flex;
   flex-direction: column;
   font-family: "Montserrat", sans-serif;
@@ -22,9 +22,9 @@
 }
 
 .footer-icon:hover {
-  color: #1e1e1e;
+  color: var(--text);
 }
 
 .footer-copy {
-  color: #1e1e1e;
+  color: var(--text);
 }
