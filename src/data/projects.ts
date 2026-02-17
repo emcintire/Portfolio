@@ -14,6 +14,30 @@ export const projects = [
     name: 'Serve & Protect',
   }, {
     descriptions: [
+      'A mobile app for discovering, bookmarking, and rating the entirety of Nicolas Cage\'s prolific filmography.',
+      'Engineered a type-safe React Native frontend using TypeScript, implementing reusable component patterns, clean forms with Formik and Zod validation, and TanStack Query based client caching for performant data retrieval',
+      'Built a scalable backend API with Node.js, Express, and MongoDB, including schema design, structured routing, optimized queries, and robust validation layers while being hosted on Heroku',
+      'Reduced bundle size by 600kb and improved API response times by 20% through query optimization and refactoring.',
+      'Implemented 100+ automated Jest tests, resulting in 99% API coverage and a more reliable, maintainable codebase.',
+      'Deployed the application via Expo, ensuring stable, cross-platform delivery across iOS and Android.',
+    ],
+    img: unCaged,
+    name: 'unCaged',
+    links: [{
+      icon: Apple,
+      name: 'App Store',
+      url: 'https://apps.apple.com/us/app/uncaged/id1593978532',
+    }, {
+      icon: Android,
+      name: 'Google Play',
+      url: 'https://play.google.com/store/apps/details?id=uncaged.app&pcampaignid=web_share',
+    }, {
+      icon: GitHub,
+      name: 'GitHub',
+      url: 'https://github.com/emcintire/unCaged-server',
+    }],
+  }, {
+    descriptions: [
       'A fast-paced mobile tapping game where players catch falling potatoes and compete on global leaderboards.',
       'Developed core gameplay systems with Unity and C#, integrating Unity Services for in-app purchases, advertisements, analytics, cloud save, and third party authentication (Google, Apple, Meta).',
       'Reduced average load times by 25% and improved FPS performance by 40% through rendering and asset optimization.',
@@ -34,30 +58,6 @@ export const projects = [
       icon: GitHub,
       name: 'GitHub',
       url: 'https://github.com/emcintire/TaterTap',
-    }],
-  }, {
-    descriptions: [
-      'A mobile app for discovering, bookmarking, and rating the entirety of Nicolas Cage\'s prolific filmography.',
-      'Engineered a type-safe React Native frontend using TypeScript, implementing reusable component patterns, clean forms with Formik, robust validation with Yup, and TanStack Query based client caching for performant data retrieval',
-      'Built a scalable backend API with Node.js, Express, and MongoDB, including schema design, structured routing, optimized queries, and robust validation layers while being hosted on Heroku',
-      'Reduced bundle size by 600kb and improved API response times by 20% through query optimization and refactoring.',
-      'Implemented 100+ automated Jest tests, resulting in 99% API coverage and a more reliable, maintainable codebase.',
-      'Deployed the application via Expo, ensuring stable, cross-platform delivery across iOS and Android.',
-    ],
-    img: unCaged,
-    name: 'unCaged',
-    links: [{
-      icon: Apple,
-      name: 'App Store',
-      url: 'https://apps.apple.com/us/app/uncaged/id1593978532',
-    }, {
-      icon: Android,
-      name: 'Google Play',
-      url: 'https://play.google.com/store/apps/details?id=uncaged.app&pcampaignid=web_share',
-    }, {
-      icon: GitHub,
-      name: 'GitHub',
-      url: 'https://github.com/emcintire/unCaged-server',
     }],
   }, {
     descriptions: [
