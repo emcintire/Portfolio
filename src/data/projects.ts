@@ -20,12 +20,11 @@ export const projects = [
   },
   {
     descriptions: [
-      'A mobile app for discovering, bookmarking, and rating the entirety of Nicolas Cage\'s prolific filmography.',
-      'Engineered a type-safe React Native frontend using TypeScript, implementing reusable component patterns, clean forms with Formik and Zod validation, and TanStack Query based client caching for performant data retrieval',
-      'Built a scalable backend API with Node.js, Express, and MongoDB, including schema design, structured routing, optimized queries, and robust validation layers while being hosted on Heroku',
-      'Reduced bundle size by 600kb and improved API response times by 20% through query optimization and refactoring.',
-      'Implemented 100+ automated Jest tests, resulting in 99% API coverage and a more reliable, maintainable codebase.',
-      'Deployed the application via Expo, ensuring stable, cross-platform delivery across iOS and Android.',
+      'A mobile app for discovering, rating, and bookmarking the entirety of Nicolas Cage\'s prolific filmography.',
+      'Built a React Native / TypeScript frontend and a Node.js / Express / MongoDB backend in an NX Monorepo, delivering a cross-platform experience on iOS and Android via Expo.',
+      'Utilized Orval and OpenAPI to automate the generation of the following for the frontend: types based on backend models, a Zodios API client with schema validation, and Tanstack Query hooks for efficient data retrieval and caching.',
+      'Reduced JavaScript bundle size by 600KB and improved API response times by 20% through query optimization and code refactoring, and achieved full API test coverage with a suite of automated Jest tests',
+      'Owned the full software delivery lifecycle, including schema design, RESTful API architecture, structured routing, and deployment pipeline management.',
     ],
     images: [uncaged1, uncaged2, uncaged3, uncaged4],
     name: 'unCaged',
