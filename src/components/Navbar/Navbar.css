@@ -121,7 +121,7 @@
   .theme-toggle {
     position: fixed;
     bottom: 1rem;
-    right: 1rem;
+    left: 1rem;
     color: #ffecb4;
     z-index: 696969;
     transition: color 0.3s;
