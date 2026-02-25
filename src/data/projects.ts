@@ -60,11 +60,7 @@ export const projects = [
       badge: googlePlayBadge,
       name: 'Google Play',
       url: 'https://play.google.com/store/apps/details?id=com.greasyfingers.tatertap&pcampaignid=web_share',
-    }, {
-      badge: githubBadge,
-      name: 'GitHub',
-      url: 'https://github.com/emcintire/TaterTap',
-    }],
+    },],
   },
   // {
   //   descriptions: [
