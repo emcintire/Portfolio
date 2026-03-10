@@ -29,10 +29,10 @@ export function FloatingLinks({ onClickLink = () => {} }: { onClickLink?(id: str
   const [isLaunching, setIsLaunching] = useState(true);
 
   const radius = isMobile ? 85 : 175;
-  const friction = isLaunching ? 0.99 : 0.96;
+  const friction = isLaunching ? 0.99 : 0.95;
   const maxSpeed = isLaunching ? 5000 : 300;
   const wallBounce = isLaunching ? 0.9 : 0.5;
-  const nudgeRadius = isMobile ? 200 : 400;
+  const nudgeRadius = isMobile ? 200 : 300;
   const nudgeStrength = 2000;
   const restCutoff = 2.5;
 
