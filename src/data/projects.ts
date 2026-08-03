@@ -48,11 +48,11 @@ export const projects: Project[] = [
         label: 'App Store',
         type: 'app-store',
       },
-      // {
-      //   href: 'https://play.google.com/store/apps/details?id=com.greasyfingers.tatertap&pcampaignid=web_share',
-      //   label: 'Google Play',
-      //   type: 'google-play',
-      // },
+      {
+        href: 'https://play.google.com/store/apps/details?id=com.greasyfingers.tatertap&pcampaignid=web_share',
+        label: 'Google Play',
+        type: 'google-play',
+      },
     ],
     name: 'Tater Tap',
     outcomes: [
