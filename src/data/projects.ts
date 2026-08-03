@@ -1,82 +1,86 @@
-import tatertap from '@/assets/images/tatertap.gif';
-import uncaged1 from '@/assets/images/uncaged-1.png';
-import uncaged2 from '@/assets/images/uncaged-2.png';
-import uncaged3 from '@/assets/images/uncaged-3.png';
-import uncaged4 from '@/assets/images/uncaged-4.png';
-import construction from '@/assets/images/underConstruction.png';
-import appStoreBadge from '@/assets/images/app-store-badge.svg';
-import googlePlayBadge from '@/assets/images/google-play-badge.svg';
-import githubBadge from '@/assets/images/github-badge.svg';
-// import flappy_frank from '@/assets/images/flappy_frank.gif';
+import taterTapVideo from '@/assets/optimized/tatertap.mp4';
+import taterTapPoster from '@/assets/optimized/tatertap-poster.webp';
+import uncaged1 from '@/assets/optimized/uncaged-1.webp';
+import uncaged1Small from '@/assets/optimized/uncaged-1-800.webp';
+import type { Project } from '@/types';
 
-export const projects = [
+export const projects: Project[] = [
   {
-    descriptions: [
-      'My most ambitious side project to date, a 3D mall cop simulator made in Unity. Patrol the chaos. Keep the peace.',
-      'Coming to Steam in 2026 — follow for updates!',
+    description:
+      'A cross-platform guide to Nicolas Cage’s complete filmography, designed, engineered, and shipped independently for iOS and Android.',
+    featured: true,
+    image: uncaged1,
+    imageSmall: uncaged1Small,
+    links: [
+      {
+        href: 'https://apps.apple.com/us/app/uncaged/id1593978532',
+        label: 'App Store',
+        type: 'app-store',
+      },
+      {
+        href: 'https://play.google.com/store/apps/details?id=uncaged.app&pcampaignid=web_share',
+        label: 'Google Play',
+        type: 'google-play',
+      },
+      {
+        href: 'https://github.com/emcintire/unCaged',
+        label: 'Source code',
+        type: 'github',
+      },
     ],
-    img: construction,
-    name: 'Serve & Protect',
+    name: 'unCaged',
+    outcomes: [
+      'Built the React Native and TypeScript client plus a Node.js, Express, and MongoDB API in an Nx monorepo.',
+      'Generated typed clients, schemas, and TanStack Query hooks from OpenAPI definitions using Orval and Zodios.',
+      'Reduced the JavaScript bundle by 600 KB, improved API response times by 20%, and added complete API test coverage.',
+    ],
+    slug: 'uncaged',
+    status: 'Shipped on iOS and Android',
+    technologies: ['React Native', 'TypeScript', 'Node.js', 'MongoDB', 'OpenAPI'],
   },
   {
-    descriptions: [
-      'A mobile app for discovering, rating, and bookmarking the entirety of Nicolas Cage\'s prolific filmography.',
-      'Built a React Native / TypeScript frontend and a Node.js / Express / MongoDB backend in an NX Monorepo, delivering a cross-platform experience on iOS and Android via Expo.',
-      'Utilized Orval and OpenAPI to automate the generation of the following for the frontend: types based on backend models, a Zodios API client with schema validation, and Tanstack Query hooks for efficient data retrieval and caching.',
-      'Reduced JavaScript bundle size by 600KB and improved API response times by 20% through query optimization and code refactoring, and achieved full API test coverage with a suite of automated Jest tests',
-      'Owned the full software delivery lifecycle, including schema design, RESTful API architecture, structured routing, and deployment pipeline management.',
+    description:
+      'A fast mobile arcade game where players catch falling potatoes, chase high scores, and compete on global leaderboards.',
+    featured: true,
+    links: [
+      {
+        href: 'https://apps.apple.com/us/app/tater-tap/id6742767053',
+        label: 'App Store',
+        type: 'app-store',
+      },
+      // {
+      //   href: 'https://play.google.com/store/apps/details?id=com.greasyfingers.tatertap&pcampaignid=web_share',
+      //   label: 'Google Play',
+      //   type: 'google-play',
+      // },
     ],
-    images: [uncaged1, uncaged2, uncaged3, uncaged4],
-    name: 'unCaged',
-    links: [{
-      badge: appStoreBadge,
-      name: 'App Store',
-      url: 'https://apps.apple.com/us/app/uncaged/id1593978532',
-    }, {
-      badge: googlePlayBadge,
-      name: 'Google Play',
-      url: 'https://play.google.com/store/apps/details?id=uncaged.app&pcampaignid=web_share',
-    }, {
-      badge: githubBadge,
-      name: 'GitHub',
-      url: 'https://github.com/emcintire/unCaged',
-    }],
-  }, {
-    descriptions: [
-      'A fast-paced mobile tapping game where players catch falling potatoes and compete on global leaderboards.',
-      'Developed core gameplay systems with Unity and C#, integrating Unity Services for in-app purchases, advertisements, analytics, cloud save, and third party authentication (Google, Apple, Meta).',
-      'Reduced average load times by 25% and improved FPS performance by 40% through rendering and asset optimization.',
-      'Created game assets and UI elements in Adobe Illustrator, ensuring a cohesive and consistent user experience.',
-      'Owned the full delivery pipeline, including App Store publishing, platform compliance, and release management.',
-    ],
-    img: tatertap,
     name: 'Tater Tap',
-    links: [{
-      badge: appStoreBadge,
-      name: 'App Store',
-      url: 'https://apps.apple.com/us/app/tater-tap/id6742767053',
-    }, {
-      badge: googlePlayBadge,
-      name: 'Google Play',
-      url: 'https://play.google.com/store/apps/details?id=com.greasyfingers.tatertap&pcampaignid=web_share',
-    },],
+    outcomes: [
+      'Developed gameplay in Unity and C#, including purchases, advertising, analytics, cloud saves, and third-party authentication.',
+      'Reduced average load times by 25% and improved frame-rate performance by 40% through rendering and asset optimization.',
+      'Created the visual system and owned store publishing, platform compliance, and release management.',
+    ],
+    poster: taterTapPoster,
+    slug: 'tater-tap',
+    status: 'Shipped on iOS and Android',
+    technologies: ['Unity', 'C#', 'Unity Services', 'Illustrator'],
+    video: taterTapVideo,
   },
   // {
-  //   descriptions: [
-  //     'An "It\'s Always Sunny in Philadelphia" Flappy Bird clone built with Python and Pygame.',
-  //     'Created every graphic in Adobe Illustrator and Photoshop.',
-  //     'Features include scoring, obstacles, and a responsive design.',
+  //   description:
+  //     'An original 3D mall-cop simulation exploring systemic gameplay, environmental storytelling, and deliberately offbeat humor.',
+  //   featured: false,
+  //   image: construction,
+  //   imageSmall: constructionSmall,
+  //   links: [],
+  //   name: 'Serve & Protect',
+  //   outcomes: [
+  //     'Designing and building the project independently in Unity.',
+  //     'Developing patrol, interaction, and simulation systems for an emergent single-player experience.',
+  //     'Creating a cohesive visual identity and production pipeline for a planned Steam release.',
   //   ],
-  //   img: flappy_frank,
-  //   name: 'Flappy Frank',
-  //   links: [{
-  //     icon: YouTube,
-  //     name: 'YouTube',
-  //     url: 'https://youtu.be/8NHuylK6O78',
-  //   }, {
-  //     icon: GitHub,
-  //     name: 'GitHub',
-  //     url: 'https://github.com/emcintire/FlappyFrank',
-  //   }],
+  //   slug: 'serve-and-protect',
+  //   status: 'In development',
+  //   technologies: ['Unity', 'C#', '3D game development'],
   // },
 ];

@@ -1,27 +1,20 @@
-import ai from '@/assets/images/ai.svg';
-import asp from '@/assets/images/asp.svg';
-import c from '@/assets/images/c.svg';
-import css from '@/assets/images/css.svg';
-import flask from '@/assets/images/flask.svg';
-import ts from '@/assets/images/ts.svg';
-import mongo from '@/assets/images/mongo.svg';
-import node from '@/assets/images/node.svg';
-import post from '@/assets/images/post.svg';
-import ps from '@/assets/images/ps.svg';
-import python from '@/assets/images/python.svg';
-import reactLogo from '@/assets/images/react.svg';
+import type { SkillGroup } from '@/types';
 
-export const skills = [
-  { name: 'React', img: reactLogo },
-  { name: 'Typescript', img: ts },
-  { name: 'Node.js', img: node },
-  { name: 'C#', img: c },
-  { name: 'ASP.Net', img: asp },
-  { name: 'Python', img: python },
-  { name: 'Flask', img: flask },
-  { name: 'CSS', img: css },
-  { name: 'MongoDB', img: mongo },
-  { name: 'SQL', img: post },
-  { name: 'Photoshop', img: ps },
-  { name: 'Illustrator', img: ai },
+export const skillGroups: SkillGroup[] = [
+  {
+    label: 'Frontend',
+    skills: ['React', 'React Native', 'Next.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'TanStack Query', 'Orval', 'Zod', 'Jest'],
+  },
+  {
+    label: 'Backend',
+    skills: ['Python', 'Django', 'C#', 'ASP.NET', 'Node.js', 'Express', 'REST APIs', 'OpenAPI'],
+  },
+  {
+    label: 'Data & delivery',
+    skills: ['SQL Server', 'PostgreSQL', 'MongoDB', 'Azure DevOps', 'Docker', 'CI/CD', 'Jest'],
+  },
+  {
+    label: 'Creative technology',
+    skills: ['Unity', 'Adobe Photoshop', 'Adobe Illustrator', 'Photography'],
+  },
 ];

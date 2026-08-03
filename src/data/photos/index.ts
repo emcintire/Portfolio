@@ -1,11 +1,11 @@
 import type { Photograph } from '../../types';
 import { animals } from './animalsPhotos';
 import {
-  adirondacks2025, alaska2018, alaska2020, malabar2019, mammoth2020, roadtrip2018, roadtrip2022, rockies2024, summer2017,
+  adirondacks2025, alaska2018, alaska2020, malabar2019, mammoth2020, roadtrip2018, rockies2024, summer2017,
   tetons2021, yellowstone2021, yosemite2019,
 } from './landscapePhotos';
 import { misc } from './miscPhotos';
-import { rio15m, rio3m, rio8m, teddy12m, teddy18m, trudybeachmaternity, trudysnowmaternity } from './portraitPhotos';
+import { rio3m, rio8m, rio15m, teddy12m, teddy18m, trudybeachmaternity, trudysnowmaternity } from './portraitPhotos';
 
 export const photographs: Record<string, Array<Photograph>> = {
   adirondacks2025,
@@ -19,7 +19,6 @@ export const photographs: Record<string, Array<Photograph>> = {
   rio3m,
   rio8m,
   roadtrip2018,
-  roadtrip2022,
   rockies2024,
   summer2017,
   teddy12m,

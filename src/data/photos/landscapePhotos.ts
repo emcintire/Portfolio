@@ -1,10 +1,8 @@
 export const adirondacks2025 = [
   { alt: 'Mountain Peak', src: 'https://i.imgur.com/9dbpXidh.jpg' },
-  { alt: 'Night Sky', src: 'https://i.imgur.com/EuZ9XEuh.jpg' },
   { alt: 'Babbling brook', src: 'https://i.imgur.com/pSY0fwOh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/iOpbW0fh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/xjtvk7th.jpg' },
-  { alt: 'Night Sky', src: 'https://i.imgur.com/5AdZqUOh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/f1DJjmZh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/GkQwQZrh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/n8oXwoOh.jpg' },
@@ -13,21 +11,16 @@ export const adirondacks2025 = [
   { alt: 'Mountain Range', src: 'https://i.imgur.com/a4QW7CGh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/gEUV2qNh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/qslXcWyh.jpg' },
-  { alt: 'Night Sky', src: 'https://i.imgur.com/UFFEX41h.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/Ye0iJqah.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/MrV4sRqh.jpg' },
-  { alt: 'Night Sky', src: 'https://i.imgur.com/EUaGBJYh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/3T7PKtUh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/cFQOnBWh.jpg' },
   { alt: 'Mountain Peak', src: 'https://i.imgur.com/CMq0qSRh.jpg' },
-  { alt: 'Night Sky', src: 'https://i.imgur.com/xd1hkMrh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/vCNm0k0h.jpg' },
-  { alt: 'Night Sky', src: 'https://i.imgur.com/OzTzG8kh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/X0xdsx0h.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/CMRxEzdh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/QSx9mGCh.jpg' },
   { alt: 'Mountain Range', src: 'https://i.imgur.com/8RuZLEJh.jpg' },
-  { alt: 'Night Sky', src: 'https://i.imgur.com/7twR6MKh.jpg' },
 ];
 
 export const rockies2024 = [
@@ -149,7 +142,7 @@ export const mammoth2020 = [
   { alt: '', src: 'https://imgur.com/9oTpx67h.jpg' },
   { alt: '', src: 'https://imgur.com/aBlqf1bh.jpg' },
   { alt: '', src: 'https://imgur.com/VAzKPVTh.jpg' },
-  { alt: '', src: 'https://imgur.com/82YBjlhh.jpg' },
+  { alt: '', src: 'https://imgur.com/KigYSmfh.jpg' },
   { alt: '', src: 'https://imgur.com/zk0fPjgh.jpg' },
   { alt: '', src: 'https://imgur.com/XtxSQ7Lh.jpg' },
 ];
@@ -201,18 +194,8 @@ export const roadtrip2018 = [
   { alt: 'Mountain goat in badlands national park', src: 'https://i.imgur.com/PjoaX88h.jpg' },
   { alt: 'Frog in river', src: 'https://i.imgur.com/7n1k0POh.jpg' },
   { alt: 'Tsunami warning sign', src: 'https://i.imgur.com/P45nT1eh.jpg' },
-  { alt: 'Elk in field', src: 'https://i.imgur.com/OUlKrXKh.jpg' },
+  { alt: 'Elk in field', src: 'https://i.imgur.com/btFea1Sh.jpg' },
   { alt: 'Frog in river', src: 'https://i.imgur.com/NVEPX8Ph.jpg' },
-];
-
-export const roadtrip2022 = [
-  { src: 'https://i.imgur.com/XcN5CEVh.jpg', alt: 'Cloudy golden gate bridge' },
-  { src: 'https://i.imgur.com/uCnnyoXh.jpg', alt: 'Golden gate bridge' },
-  { src: 'https://i.imgur.com/0XMHXlVh.jpg', alt: 'Welcome to oregon sign' },
-  { src: 'https://i.imgur.com/C5F5r4uh.jpg', alt: 'No skateboarding sign' },
-  { src: 'https://i.imgur.com/seXglrPh.jpg', alt: 'Mount Rushmore' },
-  { src: 'https://i.imgur.com/wQ8OpUWh.jpg', alt: 'Smoke filled woods' },
-  { src: 'https://i.imgur.com/RTG597Lh.jpg', alt: 'Tree with smoke behind' },
 ];
 
 export const summer2017 = [
@@ -275,13 +258,13 @@ export const tetons2021 = [
   { alt: '', src:'https://imgur.com/ZOYGVQhh.jpg' },
   { alt: '', src:'https://imgur.com/4uk0NHLh.jpg' },
   { alt: '', src:'https://imgur.com/Hh78of6h.jpg' },
-  { alt: '', src:'https://imgur.com/MsNxiNph.jpg' },
+  { alt: '', src:'https://imgur.com/JnmqqTph.jpg' },
   { alt: '', src:'https://imgur.com/6KmGbxhh.jpg' },
 ];
 
 export const yellowstone2021 = [
   { alt: '', src: 'https://imgur.com/gK7Se9vh.jpg' },
-  { alt: '', src: 'https://imgur.com/AvfHwJyh.jpg' },
+  { alt: '', src: 'https://imgur.com/dnHzp1Dh.jpg' },
   { alt: '', src: 'https://imgur.com/hQW8EDxh.jpg' },
   { alt: '', src: 'https://imgur.com/RIZdcvUh.jpg' },
   { alt: '', src: 'https://imgur.com/4kfQYDKh.jpg' },
@@ -315,7 +298,6 @@ export const yellowstone2021 = [
   { alt: '', src: 'https://imgur.com/pbbVLETh.jpg' },
   { alt: '', src: 'https://imgur.com/lM09uBGh.jpg' },
   { alt: '', src: 'https://imgur.com/6oOMd9Oh.jpg' },
-  { alt: '', src: '' },
 ];
 
 export const yosemite2019 = [

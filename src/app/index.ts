@@ -1,1 +1,1 @@
-export { App } from './App.tsx';
+export { App } from './App';

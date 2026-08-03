@@ -2,22 +2,66 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/linkImage.png" />
+    <link rel="icon" type="image/png" href="/linkImage.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Everett McIntire — Full Stack Software Engineer. React, TypeScript, .NET, Node.js. Building scalable web and mobile applications." />
+    <meta
+      name="description"
+      content="Everett McIntire — Full Stack Software Engineer. React, TypeScript, .NET, Node.js. Building scalable web and mobile applications."
+    />
+    <meta name="theme-color" content="#f7f2e8" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="canonical" href="https://everettmcintire.com/" />
+    <link rel="preconnect" href="https://i.imgur.com" crossorigin />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Everett McIntire — Full Stack Software Engineer" />
-    <meta property="og:description" content="Portfolio of Everett McIntire. Full stack engineer with experience across React, TypeScript, .NET, and Node.js." />
-    <meta property="og:image" content="/linkImage.png" />
+    <meta
+      property="og:description"
+      content="Portfolio of Everett McIntire. Full stack engineer with experience across React, TypeScript, .NET, and Node.js."
+    />
+    <meta property="og:image" content="https://everettmcintire.com/linkImage.png" />
+    <meta property="og:image:width" content="1274" />
+    <meta property="og:image:height" content="1274" />
     <meta property="og:url" content="https://everettmcintire.com" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Everett McIntire — Full Stack Software Engineer" />
-    <meta name="twitter:description" content="Portfolio of Everett McIntire. Full stack engineer with experience across React, TypeScript, .NET, and Node.js." />
-    <meta name="twitter:image" content="/linkImage.png" />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Everett McIntire. Full stack engineer with experience across React, TypeScript, .NET, and Node.js."
+    />
+    <meta name="twitter:image" content="https://everettmcintire.com/linkImage.png" />
+
+    <script>
+      (function () {
+        var storedTheme = localStorage.getItem('portfolio-theme');
+        var theme =
+          storedTheme === 'dark' || storedTheme === 'light'
+            ? storedTheme
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Everett McIntire",
+        "url": "https://everettmcintire.com",
+        "jobTitle": "Full Stack Software Engineer",
+        "sameAs": [
+          "https://github.com/emcintire",
+          "https://www.linkedin.com/in/everettgsm",
+          "https://www.instagram.com/greasyfingersphotography"
+        ],
+        "knowsAbout": ["React", "TypeScript", "ASP.NET", "Node.js", "React Native", "Unity"]
+      }
+    </script>
 
     <title>Everett McIntire</title>
   </head>
