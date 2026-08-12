@@ -7,10 +7,20 @@ import { SectionIntro } from '@/components/SectionIntro';
 import { experiences } from '@/data/experience';
 import { siteMetadata } from '@/data/site';
 import { skillGroups } from '@/data/skills';
+import { JsonLd } from '@/lib/JsonLd';
+import { profilePageSchema } from '@/lib/schema';
+import { buildMetadata } from '@/lib/seo';
+
+export const metadata = buildMetadata({
+  description: `${siteMetadata.role} in ${siteMetadata.location}. Experience across React, TypeScript, ASP.NET, Django, Node.js, and Unity — plus the working habits behind it.`,
+  path: '/about',
+  title: 'About',
+});
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={profilePageSchema} />
       <section className="page-hero">
         <div className="page-container page-hero__grid">
           <div>

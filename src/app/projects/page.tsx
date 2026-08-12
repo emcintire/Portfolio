@@ -1,10 +1,20 @@
 import { ProjectCard } from '@/components/ProjectCard';
 import { projects } from '@/data/projects';
 import { siteMetadata } from '@/data/site';
+import { JsonLd } from '@/lib/JsonLd';
+import { projectsSchema } from '@/lib/schema';
+import { buildMetadata } from '@/lib/seo';
+
+export const metadata = buildMetadata({
+  description: `Independently shipped products by ${siteMetadata.name} — mobile apps and games taken from schema and API design through performance work, store submission, and release management.`,
+  path: '/projects',
+  title: 'Selected Work',
+});
 
 export default function ProjectsPage() {
   return (
     <>
+      <JsonLd data={projectsSchema} />
       <section className="page-hero">
         <div className="page-container page-hero__grid">
           <div>

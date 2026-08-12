@@ -2,10 +2,28 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { galleryCategories } from '@/data/galleries';
+import { siteMetadata } from '@/data/site';
+import { JsonLd } from '@/lib/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
+import { buildMetadata } from '@/lib/seo';
+
+const albumCount = galleryCategories.reduce((total, category) => total + category.albums.length, 0);
+const photographCount = galleryCategories.reduce(
+  (total, category) =>
+    total + category.albums.reduce((sum, album) => sum + album.photographs.length, 0),
+  0,
+);
+
+export const metadata = buildMetadata({
+  description: `Landscape, portrait, and wildlife photography by ${siteMetadata.name} — ${photographCount} photographs across ${albumCount} albums, from national parks to family sessions.`,
+  path: '/photography',
+  title: 'Photography',
+});
 
 export default function PhotographyIndexPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: 'Photography', path: '/photography' }])} />
       <section className="page-hero photography-hero">
         <div className="page-container page-hero__grid">
           <div>

@@ -7,12 +7,22 @@ import { SectionIntro } from '@/components/SectionIntro';
 import { galleryCategories } from '@/data/galleries';
 import { projects } from '@/data/projects';
 import { impactStats, siteMetadata } from '@/data/site';
+import { JsonLd } from '@/lib/JsonLd';
+import { personSchema, webSiteSchema } from '@/lib/schema';
+
+// The home page keeps the layout's default title rather than running it through
+// the `%s — Everett McIntire` template.
+export const metadata = {
+  alternates: { canonical: '/' },
+};
 
 export default function HomePage() {
   const featuredProjects = projects.filter((project) => project.featured);
 
   return (
     <>
+      <JsonLd data={personSchema} />
+      <JsonLd data={webSiteSchema} />
       <section className="hero">
         <div className="page-container hero__grid">
           <div className="hero__content">
