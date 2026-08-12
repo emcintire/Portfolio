@@ -3,7 +3,19 @@ import type { SkillGroup } from '@/types';
 export const skillGroups: SkillGroup[] = [
   {
     label: 'Frontend',
-    skills: ['React', 'React Native', 'Next.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'TanStack Query', 'Orval', 'Zod', 'Jest'],
+    skills: [
+      'React',
+      'React Native',
+      'Next.js',
+      'TypeScript',
+      'JavaScript',
+      'HTML',
+      'CSS',
+      'TanStack Query',
+      'Orval',
+      'Zod',
+      'Jest',
+    ],
   },
   {
     label: 'Backend',

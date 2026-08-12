@@ -54,7 +54,11 @@ export type SkillGroup = {
 export type GalleryAlbum = {
   cover: string;
   coverSmall: string;
+  /** Unique per-album copy. Feeds the album page's meta description and JSON-LD. */
+  description?: string;
   id: string;
+  /** Human-readable place, when the album has an unambiguous one. */
+  location?: string;
   photographs: Photograph[];
   title: string;
   year?: string;

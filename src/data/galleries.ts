@@ -47,15 +47,10 @@ import yosemiteCoverSmall from '@/assets/optimized/yosemite-800.webp';
 import { photographs } from '@/data/photos';
 import type { GalleryAlbum, GalleryCategory } from '@/types';
 
-const album = (
-  id: string,
-  title: string,
-  cover: string,
-  coverSmall: string,
-  year?: string,
-): GalleryAlbum => ({
-  cover,
-  coverSmall,
+type AlbumInput = Omit<GalleryAlbum, 'photographs'>;
+
+const album = ({ id, title, ...rest }: AlbumInput): GalleryAlbum => ({
+  ...rest,
   id,
   photographs: (photographs[id] ?? [])
     .filter((photograph) => photograph.src.trim())
@@ -64,23 +59,118 @@ const album = (
       alt: photograph.alt.trim() || `${title} photograph ${index + 1}`,
     })),
   title,
-  year,
 });
 
 export const galleryCategories: GalleryCategory[] = [
   {
     albums: [
-      album('adirondacks2025', 'Adirondacks', adirondacksCover, adirondacksCoverSmall, '2025'),
-      album('rockies2024', 'Rockies', rockiesCover, rockiesCoverSmall, '2024'),
-      album('yellowstone2021', 'Yellowstone', yellowstoneCover, yellowstoneCoverSmall, '2021'),
-      album('tetons2021', 'Grand Tetons', tetonsCover, tetonsCoverSmall, '2021'),
-      album('alaska2020', 'Alaska', alaska2020Cover, alaska2020CoverSmall, '2020'),
-      album('mammoth2020', 'Mammoth', mammothCover, mammothCoverSmall, '2020'),
-      album('yosemite2019', 'Yosemite', yosemiteCover, yosemiteCoverSmall, '2019'),
-      album('malabar2019', 'Malabar', malabarCover, malabarCoverSmall, '2019'),
-      album('roadtrip2018', 'American Roadtrip', roadtripCover, roadtripCoverSmall, '2018'),
-      album('alaska2018', 'Alaska', alaska2018Cover, alaska2018CoverSmall, '2018'),
-      album('summer2017', 'Summer', summerCover, summerCoverSmall, '2017'),
+      album({
+        cover: adirondacksCover,
+        coverSmall: adirondacksCoverSmall,
+        description:
+          'High peaks, still water, and low cloud across the Adirondacks — a week of early starts and long light in northern New York.',
+        id: 'adirondacks2025',
+        location: 'Adirondack Park, New York',
+        title: 'Adirondacks',
+        year: '2025',
+      }),
+      album({
+        cover: rockiesCover,
+        coverSmall: rockiesCoverSmall,
+        description:
+          'Alpine ridgelines, glacial basins, and fast-moving mountain weather photographed across the Rocky Mountains.',
+        id: 'rockies2024',
+        location: 'Rocky Mountains, Colorado',
+        title: 'Rockies',
+        year: '2024',
+      }),
+      album({
+        cover: yellowstoneCover,
+        coverSmall: yellowstoneCoverSmall,
+        description:
+          'Geyser basins, hot springs, and open river valleys — the strange geology and wide horizons of Yellowstone.',
+        id: 'yellowstone2021',
+        location: 'Yellowstone National Park, Wyoming',
+        title: 'Yellowstone',
+        year: '2021',
+      }),
+      album({
+        cover: tetonsCover,
+        coverSmall: tetonsCoverSmall,
+        description:
+          'The Teton range at close range: abrupt granite, glacial lakes, and the light that makes the whole wall legible.',
+        id: 'tetons2021',
+        location: 'Grand Teton National Park, Wyoming',
+        title: 'Grand Tetons',
+        year: '2021',
+      }),
+      album({
+        cover: alaska2020Cover,
+        coverSmall: alaska2020CoverSmall,
+        description:
+          'A second trip north — glaciers, coastline, and the particular scale that only Alaska makes obvious.',
+        id: 'alaska2020',
+        location: 'Alaska',
+        title: 'Alaska',
+        year: '2020',
+      }),
+      album({
+        cover: mammothCover,
+        coverSmall: mammothCoverSmall,
+        description:
+          'Eastern Sierra granite, high desert, and alpine lakes photographed around Mammoth over a long weekend.',
+        id: 'mammoth2020',
+        location: 'Mammoth Lakes, California',
+        title: 'Mammoth',
+        year: '2020',
+      }),
+      album({
+        cover: yosemiteCover,
+        coverSmall: yosemiteCoverSmall,
+        description:
+          'Valley walls, waterfalls, and the granite that made Yosemite the reference point for landscape photography.',
+        id: 'yosemite2019',
+        location: 'Yosemite National Park, California',
+        title: 'Yosemite',
+        year: '2019',
+      }),
+      album({
+        cover: malabarCover,
+        coverSmall: malabarCoverSmall,
+        description:
+          'A short, quiet set — open country, soft light, and the kind of frames that come from slowing down.',
+        id: 'malabar2019',
+        title: 'Malabar',
+        year: '2019',
+      }),
+      album({
+        cover: roadtripCover,
+        coverSmall: roadtripCoverSmall,
+        description:
+          'The largest set here: highways, small towns, national parks, and everything between them across a cross-country drive.',
+        id: 'roadtrip2018',
+        title: 'American Roadtrip',
+        year: '2018',
+      }),
+      album({
+        cover: alaska2018Cover,
+        coverSmall: alaska2018CoverSmall,
+        description:
+          'A first trip to Alaska — ice, water, and coastline, shot with more curiosity than plan.',
+        id: 'alaska2018',
+        location: 'Alaska',
+        title: 'Alaska',
+        year: '2018',
+      }),
+      album({
+        cover: summerCover,
+        coverSmall: summerCoverSmall,
+        description:
+          'Warm evenings, long grass, and water — an unstructured summer set from the early days of shooting.',
+        id: 'summer2017',
+        title: 'Summer',
+        year: '2017',
+      }),
     ],
     cardCover: landscapeCardCover,
     cardCoverHeight: 1066,
@@ -95,13 +185,69 @@ export const galleryCategories: GalleryCategory[] = [
   },
   {
     albums: [
-      album('teddy12m', 'Teddy — One Year', ted1Cover, ted1CoverSmall, '2017'),
-      album('teddy18m', 'Teddy — 18 Months', ted2Cover, ted2CoverSmall, '2018'),
-      album('trudybeachmaternity', 'Trudy — Beach', beachCover, beachCoverSmall, '2019'),
-      album('trudysnowmaternity', 'Trudy — Snow', snowCover, snowCoverSmall, '2019'),
-      album('rio3m', 'Rio — Three Months', rio1Cover, rio1CoverSmall, '2019'),
-      album('rio8m', 'Rio — Eight Months', rio2Cover, rio2CoverSmall, '2019'),
-      album('rio15m', 'Rio — 15 Months', rio3Cover, rio3CoverSmall, '2020'),
+      album({
+        cover: ted1Cover,
+        coverSmall: ted1CoverSmall,
+        description:
+          'A first-birthday session shot in natural light — expressions caught between poses rather than posed for.',
+        id: 'teddy12m',
+        title: 'Teddy — One Year',
+        year: '2017',
+      }),
+      album({
+        cover: ted2Cover,
+        coverSmall: ted2CoverSmall,
+        description:
+          'Six months on and moving constantly. An outdoor session built around keeping up rather than sitting still.',
+        id: 'teddy18m',
+        title: 'Teddy — 18 Months',
+        year: '2018',
+      }),
+      album({
+        cover: beachCover,
+        coverSmall: beachCoverSmall,
+        description:
+          'A maternity session on the coast — open sand, late light, and the quiet between frames.',
+        id: 'trudybeachmaternity',
+        title: 'Trudy — Beach',
+        year: '2019',
+      }),
+      album({
+        cover: snowCover,
+        coverSmall: snowCoverSmall,
+        description:
+          'The winter counterpart to the beach session: bare trees, deep snow, and flat northern light.',
+        id: 'trudysnowmaternity',
+        title: 'Trudy — Snow',
+        year: '2019',
+      }),
+      album({
+        cover: rio1Cover,
+        coverSmall: rio1CoverSmall,
+        description:
+          'Three months old. The longest set in this collection — small gestures, close in, mostly window light.',
+        id: 'rio3m',
+        title: 'Rio — Three Months',
+        year: '2019',
+      }),
+      album({
+        cover: rio2Cover,
+        coverSmall: rio2CoverSmall,
+        description:
+          'Eight months and sitting up. A short session, shot quickly while the mood held.',
+        id: 'rio8m',
+        title: 'Rio — Eight Months',
+        year: '2019',
+      }),
+      album({
+        cover: rio3Cover,
+        coverSmall: rio3CoverSmall,
+        description:
+          'Fifteen months, walking, and entirely uninterested in the camera — which is usually when the good frames arrive.',
+        id: 'rio15m',
+        title: 'Rio — 15 Months',
+        year: '2020',
+      }),
     ],
     cardCover: portraitsCardCover,
     cardCoverHeight: 1066,
@@ -115,7 +261,16 @@ export const galleryCategories: GalleryCategory[] = [
     title: 'Portraits',
   },
   {
-    albums: [album('animals', 'Animals', animalsCover, animalsCoverSmall)],
+    albums: [
+      album({
+        cover: animalsCover,
+        coverSmall: animalsCoverSmall,
+        description:
+          'Wildlife and domestic characters met on the road and close to home — patient waiting, occasionally rewarded.',
+        id: 'animals',
+        title: 'Animals',
+      }),
+    ],
     cardCover: animalsCover,
     cardCoverHeight: 1066,
     cardCoverSmall: animalsCoverSmall,
@@ -129,7 +284,16 @@ export const galleryCategories: GalleryCategory[] = [
     title: 'Animals',
   },
   {
-    albums: [album('misc', 'Miscellaneous', miscCover, miscCoverSmall)],
+    albums: [
+      album({
+        cover: miscCover,
+        coverSmall: miscCoverSmall,
+        description:
+          'Frames that never belonged to a trip or a session — small observations kept because they held up.',
+        id: 'misc',
+        title: 'Miscellaneous',
+      }),
+    ],
     cardCover: miscCover,
     cardCoverHeight: 1030,
     cardCoverSmall: miscCoverSmall,
@@ -149,14 +313,3 @@ export const getGalleryCategory = (categoryId?: string) =>
 
 export const getGalleryAlbum = (categoryId?: string, albumId?: string) =>
   getGalleryCategory(categoryId)?.albums.find((entry) => entry.id === albumId);
-
-export const getAlbumLocation = (albumId?: string) => {
-  if (!albumId) return undefined;
-
-  for (const category of galleryCategories) {
-    const matchingAlbum = category.albums.find((entry) => entry.id === albumId);
-    if (matchingAlbum) return { album: matchingAlbum, category };
-  }
-
-  return undefined;
-};

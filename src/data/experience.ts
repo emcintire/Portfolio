@@ -9,9 +9,7 @@ export const experiences: Experience[] = [
     endDate: 'Present',
     company: "America's Preferred Home Warranty",
     role: 'Full Stack Software Engineer',
-    highlights: [
-      'Building and improving production software.',
-    ],
+    highlights: ['Building and improving production software.'],
     logo: aphw,
     technologies: ['Next.js', 'React', 'TypeScript', 'Django', 'Python', 'PostgreSQL', 'Docker'],
   },

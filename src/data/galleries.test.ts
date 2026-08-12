@@ -25,6 +25,18 @@ describe('gallery catalog', () => {
     }
   });
 
+  it('serves every photograph from the direct image host', () => {
+    // Thumbnails are rendered straight from the catalog with no runtime rewrite,
+    // so a bare imgur.com URL would silently fall back to "Photograph unavailable".
+    for (const category of galleryCategories) {
+      for (const album of category.albums) {
+        for (const photograph of album.photographs) {
+          expect(photograph.src.startsWith('https://i.imgur.com/')).toBe(true);
+        }
+      }
+    }
+  });
+
   it('resolves known routes and rejects unknown routes', () => {
     expect(getGalleryCategory('landscape')?.title).toBe('Landscape');
     expect(getGalleryAlbum('landscape', 'adirondacks2025')?.year).toBe('2025');

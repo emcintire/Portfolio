@@ -1,4 +1,3 @@
-import taterTapVideo from '@/assets/optimized/tatertap.mp4';
 import taterTapPoster from '@/assets/optimized/tatertap-poster.webp';
 import uncaged1 from '@/assets/optimized/uncaged-1.webp';
 import uncaged1Small from '@/assets/optimized/uncaged-1-800.webp';
@@ -64,7 +63,7 @@ export const projects: Project[] = [
     slug: 'tater-tap',
     status: 'Shipped on iOS and Android',
     technologies: ['Unity', 'C#', 'Unity Services', 'Illustrator'],
-    video: taterTapVideo,
+    video: '/tatertap.mp4',
   },
   // {
   //   description:

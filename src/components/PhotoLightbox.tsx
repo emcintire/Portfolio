@@ -97,10 +97,7 @@ export function PhotoLightbox({
             alt={alt}
             decoding="async"
             onError={() => setHasImageFailed(true)}
-            src={fullSizeSource(currentPhoto.src).replace(
-              'https://imgur.com/',
-              'https://i.imgur.com/',
-            )}
+            src={fullSizeSource(currentPhoto.src)}
           />
         )}
         <div className="lightbox__controls">

@@ -1,4 +1,3 @@
-import resume from '@/assets/images/resume.pdf';
 import portraitAvif from '@/assets/optimized/pp.avif';
 import portrait from '@/assets/optimized/pp.webp';
 import portraitAvifSmall from '@/assets/optimized/pp-800.avif';
@@ -68,7 +67,7 @@ export default function AboutPage() {
               <a
                 className="button button--primary"
                 download="Everett-McIntire-Resume.pdf"
-                href={resume}
+                href="/resume.pdf"
               >
                 Download résumé <Icon name="download" size={18} />
               </a>
@@ -147,9 +146,9 @@ export default function AboutPage() {
         <div className="page-container">
           <figure className="testimonial">
             <blockquote>
-              &ldquo;Everett is an excellent developer and a consummate professional. I have seen him
-              rescue foundering projects quickly, structure over a year’s worth of work with ease,
-              and build useful and elegant tools that his coworkers readily adopted.&rdquo;
+              &ldquo;Everett is an excellent developer and a consummate professional. I have seen
+              him rescue foundering projects quickly, structure over a year’s worth of work with
+              ease, and build useful and elegant tools that his coworkers readily adopted.&rdquo;
             </blockquote>
             <figcaption>
               <strong>Aaron McDavid</strong>

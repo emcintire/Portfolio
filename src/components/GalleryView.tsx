@@ -7,9 +7,6 @@ import { PhotoLightbox } from './PhotoLightbox';
 
 const PAGE_SIZE = 24;
 
-const normalizeSource = (source: string) =>
-  source.replace('https://imgur.com/', 'https://i.imgur.com/');
-
 type GalleryViewProps = {
   album: GalleryAlbum;
   category: GalleryCategory;
@@ -28,7 +25,7 @@ function GalleryThumbnail({ alt, source }: { alt: string; source: string }) {
       decoding="async"
       loading="lazy"
       onError={() => setHasFailed(true)}
-      src={normalizeSource(source)}
+      src={source}
     />
   );
 }
