@@ -1,35 +1,47 @@
-import { Link, useParams } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 import { GalleryView } from '@/components/GalleryView';
-import { getGalleryCategory } from '@/data/galleries';
+import { galleryCategories, getGalleryCategory } from '@/data/galleries';
 
-import NotFoundPage from './NotFoundPage';
+type CategoryParams = { categoryId: string };
 
-export default function PhotographyCategoryPage() {
-  const { categoryId } = useParams();
+// Every category is known at build time, so prerender them all and let anything
+// else 404 with a real status instead of rendering not-found content behind 200.
+export const dynamicParams = false;
+
+export function generateStaticParams(): CategoryParams[] {
+  return galleryCategories.map((category) => ({ categoryId: category.id }));
+}
+
+export default async function PhotographyCategoryPage({
+  params,
+}: {
+  params: Promise<CategoryParams>;
+}) {
+  const { categoryId } = await params;
   const category = getGalleryCategory(categoryId);
 
-  if (!category) return <NotFoundPage />;
+  if (!category) notFound();
 
+  // Single-album categories (animals, misc) show the gallery itself rather than
+  // an album grid of one. The nested album URL 301s here (see next.config.ts).
   if (category.directAlbum) {
     const directAlbum = category.albums.find((album) => album.id === category.directAlbum);
-    if (!directAlbum) return <NotFoundPage />;
+    if (!directAlbum) notFound();
     return <GalleryView album={directAlbum} category={category} />;
   }
 
   return (
     <>
       <section className="category-hero">
-        <img
-          alt=""
-          height={category.coverHeight}
-          src={category.cover}
-          width={category.coverWidth}
-        />
+        {/* LCP element: a 4898px-wide source that used to ship unresized. */}
+        <Image alt="" priority sizes="100vw" src={category.cover} />
         <div className="category-hero__overlay">
           <div className="page-container">
             <nav aria-label="Breadcrumb" className="breadcrumb breadcrumb--light">
-              <Link to="/photography">Photography</Link>
+              <Link href="/photography">Photography</Link>
               <span aria-hidden="true">/</span>
               <span aria-current="page">{category.title}</span>
             </nav>
@@ -45,16 +57,11 @@ export default function PhotographyCategoryPage() {
           <ul className="album-grid">
             {category.albums.map((album) => (
               <li key={album.id}>
-                <Link className="album-card" to={`/photography/${category.id}/${album.id}`}>
-                  <img
+                <Link className="album-card" href={`/photography/${category.id}/${album.id}`}>
+                  <Image
                     alt=""
-                    decoding="async"
-                    height="900"
-                    loading="lazy"
                     sizes="(max-width: 576px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     src={album.cover}
-                    srcSet={`${album.coverSmall} 800w, ${album.cover} 1600w`}
-                    width="1600"
                   />
                   <span>
                     <strong>{album.title}</strong>

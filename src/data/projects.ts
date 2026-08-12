@@ -1,6 +1,5 @@
 import taterTapPoster from '@/assets/optimized/tatertap-poster.webp';
 import uncaged1 from '@/assets/optimized/uncaged-1.webp';
-import uncaged1Small from '@/assets/optimized/uncaged-1-800.webp';
 import type { Project } from '@/types';
 
 export const projects: Project[] = [
@@ -9,7 +8,6 @@ export const projects: Project[] = [
       'A cross-platform guide to Nicolas Cage’s complete filmography, designed, engineered, and shipped independently for iOS and Android.',
     featured: true,
     image: uncaged1,
-    imageSmall: uncaged1Small,
     links: [
       {
         href: 'https://apps.apple.com/us/app/uncaged/id1593978532',
@@ -70,7 +68,6 @@ export const projects: Project[] = [
   //     'An original 3D mall-cop simulation exploring systemic gameplay, environmental storytelling, and deliberately offbeat humor.',
   //   featured: false,
   //   image: construction,
-  //   imageSmall: constructionSmall,
   //   links: [],
   //   name: 'Serve & Protect',
   //   outcomes: [

@@ -1,3 +1,5 @@
+import type { StaticImageData } from 'next/image';
+
 import type { Photograph } from './photograph';
 
 export type { Photograph } from './photograph';
@@ -24,15 +26,15 @@ export type ProjectLink = {
 export type Project = {
   description: string;
   featured: boolean;
-  image?: string;
-  imageSmall?: string;
+  image?: StaticImageData;
   links: ProjectLink[];
   name: string;
   outcomes: string[];
-  poster?: string;
+  poster?: StaticImageData;
   slug: string;
   status: string;
   technologies: string[];
+  /** Path under public/ — Next does not resolve video imports as modules. */
   video?: string;
 };
 
@@ -40,7 +42,7 @@ export type Experience = {
   company: string;
   endDate: string;
   highlights: string[];
-  logo: string;
+  logo: StaticImageData;
   role: string;
   startDate: string;
   technologies: string[];
@@ -52,8 +54,7 @@ export type SkillGroup = {
 };
 
 export type GalleryAlbum = {
-  cover: string;
-  coverSmall: string;
+  cover: StaticImageData;
   /** Unique per-album copy. Feeds the album page's meta description and JSON-LD. */
   description?: string;
   id: string;
@@ -66,15 +67,12 @@ export type GalleryAlbum = {
 
 export type GalleryCategory = {
   albums: GalleryAlbum[];
-  cardCover: string;
-  cardCoverHeight: number;
-  cardCoverSmall: string;
-  cardCoverSmallHeight: number;
-  coverHeight: number;
-  coverWidth: number;
+  /** Landscape crop used on the home and photography index cards. */
+  cardCover: StaticImageData;
+  /** Full-bleed hero on the category page. */
+  cover: StaticImageData;
   description: string;
   directAlbum?: string;
   id: string;
-  cover: string;
   title: string;
 };

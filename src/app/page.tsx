@@ -1,9 +1,7 @@
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import portraitAvif from '@/assets/optimized/pp.avif';
 import portrait from '@/assets/optimized/pp.webp';
-import portraitAvifSmall from '@/assets/optimized/pp-800.avif';
-import portraitSmall from '@/assets/optimized/pp-800.webp';
 import { ProjectCard } from '@/components/ProjectCard';
 import { SectionIntro } from '@/components/SectionIntro';
 import { galleryCategories } from '@/data/galleries';
@@ -25,7 +23,7 @@ export default function HomePage() {
               experiences—working across React, Node.js, Django, .NET, and Unity.
             </p>
             <div className="button-row">
-              <Link className="button button--primary" to="/projects">
+              <Link className="button button--primary" href="/projects">
                 View selected work
               </Link>
               <a className="button button--secondary" href={`mailto:${siteMetadata.email}`}>
@@ -40,23 +38,12 @@ export default function HomePage() {
                 <span key={index} />
               ))}
             </div>
-            <picture>
-              <source
-                sizes="(max-width: 768px) 82vw, 35vw"
-                srcSet={`${portraitAvifSmall} 800w, ${portraitAvif} 1600w`}
-                type="image/avif"
-              />
-              <img
-                alt="Everett McIntire outdoors in a mountain landscape"
-                decoding="async"
-                fetchPriority="high"
-                height="1200"
-                sizes="(max-width: 768px) 82vw, 35vw"
-                src={portrait}
-                srcSet={`${portraitSmall} 800w, ${portrait} 1600w`}
-                width="1000"
-              />
-            </picture>
+            <Image
+              alt="Everett McIntire outdoors in a mountain landscape"
+              priority
+              sizes="(max-width: 768px) 82vw, 35vw"
+              src={portrait}
+            />
             <p className="hero-portrait__caption">
               <span>Engineer</span>
               <span>Photographer</span>
@@ -95,7 +82,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="section-action">
-            <Link className="text-link text-link--large" to="/projects">
+            <Link className="text-link text-link--large" href="/projects">
               See every project <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -117,14 +104,11 @@ export default function HomePage() {
           <ul className="gallery-card-grid">
             {galleryCategories.slice(0, 3).map((category) => (
               <li key={category.id}>
-                <Link className="gallery-card" to={`/photography/${category.id}`}>
-                  <img
+                <Link className="gallery-card" href={`/photography/${category.id}`}>
+                  <Image
                     alt=""
-                    decoding="async"
-                    height={category.cardCoverSmallHeight}
-                    loading="lazy"
-                    src={category.cardCoverSmall}
-                    width="800"
+                    sizes="(max-width: 576px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    src={category.cardCover}
                   />
                   <span className="gallery-card__overlay">
                     <strong>{category.title}</strong>

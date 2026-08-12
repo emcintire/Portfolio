@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 
 import type { Photograph } from '@/types';
@@ -93,6 +95,9 @@ export function PhotoLightbox({
             This photograph could not be loaded.
           </div>
         ) : (
+          // Deliberately not next/image: this is a remote full-size Imgur asset
+          // of unknown dimensions, fetched only once the viewer opens.
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             alt={alt}
             decoding="async"

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { siteMetadata } from '@/data/site';
 import { socialLinks } from '@/data/socialLinks';
@@ -10,7 +10,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="site-footer__inner">
         <div>
-          <Link className="site-footer__name" to="/">
+          <Link className="site-footer__name" href="/">
             {siteMetadata.name}
           </Link>
           <p>Engineering thoughtful products and photographing the places between them.</p>

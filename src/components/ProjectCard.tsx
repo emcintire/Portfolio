@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import type { Project } from '@/types';
 
 import { Icon } from './Icon';
@@ -11,7 +13,7 @@ export function ProjectCard({ project }: { project: Project }) {
             aria-label={`${project.name} gameplay preview`}
             controls
             playsInline
-            poster={project.poster}
+            poster={project.poster?.src}
             preload="metadata"
           >
             <source src={project.video} type="video/mp4" />
@@ -19,18 +21,13 @@ export function ProjectCard({ project }: { project: Project }) {
             Your browser does not support embedded video.
           </video>
         ) : (
-          <img
-            alt={`${project.name} project preview`}
-            decoding="async"
-            height="900"
-            loading="lazy"
-            sizes="(max-width: 1024px) 100vw, 45vw"
-            src={project.image}
-            srcSet={
-              project.imageSmall ? `${project.imageSmall} 800w, ${project.image} 1600w` : undefined
-            }
-            width="1600"
-          />
+          project.image && (
+            <Image
+              alt={`${project.name} project preview`}
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              src={project.image}
+            />
+          )
         )}
       </div>
 

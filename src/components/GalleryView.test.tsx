@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 
 import { getGalleryCategory } from '@/data/galleries';
@@ -12,11 +11,7 @@ describe('GalleryView', () => {
     const album = category?.albums.find((entry) => entry.id === 'rockies2024');
     if (!category || !album) throw new Error('Expected test album');
 
-    render(
-      <MemoryRouter>
-        <GalleryView album={album} category={category} />
-      </MemoryRouter>,
-    );
+    render(<GalleryView album={album} category={category} />);
 
     expect(screen.getAllByRole('listitem')).toHaveLength(24);
     fireEvent.click(

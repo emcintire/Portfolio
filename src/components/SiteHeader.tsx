@@ -1,13 +1,24 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
 
 import { navigation } from '@/data/site';
 
 import { Icon } from './Icon';
 import { ThemeToggle } from './ThemeToggle';
 
+/**
+ * Mirrors react-router's `end={href === '/'}`: every nav item except Home stays
+ * active across its nested routes, so Photography reads as active on album and
+ * category pages too.
+ */
+const isActiveHref = (pathname: string, href: string) =>
+  href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
+
 export function SiteHeader() {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -58,23 +69,22 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <NavLink aria-label="Everett McIntire, home" className="wordmark" to="/">
+        <Link aria-label="Everett McIntire, home" className="wordmark" href="/">
           <span className="wordmark__mark" aria-hidden="true">
             EM
           </span>
           <span className="wordmark__text">Everett McIntire</span>
-        </NavLink>
+        </Link>
 
         <nav aria-label="Primary navigation" className="desktop-nav">
           {navigation.map((item) => (
-            <NavLink
-              className={({ isActive }) => `nav-link${isActive ? ' nav-link--active' : ''}`}
-              end={item.href === '/'}
+            <Link
+              className={`nav-link${isActiveHref(pathname, item.href) ? ' nav-link--active' : ''}`}
+              href={item.href}
               key={item.href}
-              to={item.href}
             >
               {item.label}
-            </NavLink>
+            </Link>
           ))}
         </nav>
 
@@ -104,17 +114,16 @@ export function SiteHeader() {
           />
           <nav aria-label="Mobile navigation" className="mobile-nav" id="mobile-navigation">
             {navigation.map((item, index) => (
-              <NavLink
-                className={({ isActive }) =>
-                  `mobile-nav__link${isActive ? ' mobile-nav__link--active' : ''}`
-                }
-                end={item.href === '/'}
+              <Link
+                className={`mobile-nav__link${
+                  isActiveHref(pathname, item.href) ? ' mobile-nav__link--active' : ''
+                }`}
+                href={item.href}
                 key={item.href}
                 ref={index === 0 ? firstLinkRef : undefined}
-                to={item.href}
               >
                 {item.label}
-              </NavLink>
+              </Link>
             ))}
             <a
               className="button button--primary mobile-nav__contact"

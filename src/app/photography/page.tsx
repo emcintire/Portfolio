@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { galleryCategories } from '@/data/galleries';
 
@@ -25,17 +26,8 @@ export default function PhotographyIndexPage() {
           <ul className="gallery-card-grid gallery-card-grid--large">
             {galleryCategories.map((category) => (
               <li key={category.id}>
-                <Link className="gallery-card" to={`/photography/${category.id}`}>
-                  <img
-                    alt=""
-                    decoding="async"
-                    height={category.cardCoverHeight}
-                    loading="lazy"
-                    sizes="(max-width: 576px) 100vw, 50vw"
-                    src={category.cardCover}
-                    srcSet={`${category.cardCoverSmall} 800w, ${category.cardCover} 1600w`}
-                    width="1600"
-                  />
+                <Link className="gallery-card" href={`/photography/${category.id}`}>
+                  <Image alt="" sizes="(max-width: 576px) 100vw, 50vw" src={category.cardCover} />
                   <span className="gallery-card__overlay">
                     <strong>{category.title}</strong>
                     <span>{category.description}</span>

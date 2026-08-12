@@ -1,7 +1,6 @@
-import portraitAvif from '@/assets/optimized/pp.avif';
+import Image from 'next/image';
+
 import portrait from '@/assets/optimized/pp.webp';
-import portraitAvifSmall from '@/assets/optimized/pp-800.avif';
-import portraitSmall from '@/assets/optimized/pp-800.webp';
 import { CopyEmailButton } from '@/components/CopyEmailButton';
 import { Icon } from '@/components/Icon';
 import { SectionIntro } from '@/components/SectionIntro';
@@ -34,22 +33,11 @@ export default function AboutPage() {
 
       <section className="page-section about-profile">
         <div className="page-container about-profile__grid">
-          <picture>
-            <source
-              sizes="(max-width: 768px) 100vw, 40vw"
-              srcSet={`${portraitAvifSmall} 800w, ${portraitAvif} 1600w`}
-              type="image/avif"
-            />
-            <img
-              alt="Everett McIntire standing in a mountain landscape"
-              decoding="async"
-              height="1200"
-              sizes="(max-width: 768px) 100vw, 40vw"
-              src={portrait}
-              srcSet={`${portraitSmall} 800w, ${portrait} 1600w`}
-              width="1000"
-            />
-          </picture>
+          <Image
+            alt="Everett McIntire standing in a mountain landscape"
+            sizes="(max-width: 768px) 100vw, 40vw"
+            src={portrait}
+          />
           <div>
             <p className="eyebrow">A little more context</p>
             <h2>I like working close to the problem.</h2>
@@ -91,7 +79,7 @@ export default function AboutPage() {
             {experiences.map((experience) => (
               <li className="experience-item" key={`${experience.company}-${experience.role}`}>
                 <div className="experience-item__marker">
-                  <img alt="" height="48" src={experience.logo} width="48" />
+                  <Image alt="" height={48} src={experience.logo} width={48} />
                 </div>
                 <div className="experience-item__meta">
                   <p>

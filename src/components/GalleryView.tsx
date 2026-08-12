@@ -1,5 +1,7 @@
+'use client';
+
+import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import type { GalleryAlbum, GalleryCategory } from '@/types';
 
@@ -20,6 +22,11 @@ function GalleryThumbnail({ alt, source }: { alt: string; source: string }) {
   }
 
   return (
+    // Deliberately not next/image: Imgur already serves a sized thumbnail via
+    // the `h` suffix, so routing ~619 photographs per album set through the
+    // optimizer would add cost and latency for no gain. Natural aspect ratio is
+    // also the point here — the grid is masonry, not fixed-ratio tiles.
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       alt={alt}
       decoding="async"
@@ -54,13 +61,13 @@ export function GalleryView({ album, category }: GalleryViewProps) {
     <div className="album-page">
       <div className="page-container album-page__header">
         <nav aria-label="Breadcrumb" className="breadcrumb">
-          <Link to="/photography">Photography</Link>
+          <Link href="/photography">Photography</Link>
           <span aria-hidden="true">/</span>
           {category.directAlbum ? (
             <span aria-current="page">{category.title}</span>
           ) : (
             <>
-              <Link to={`/photography/${category.id}`}>{category.title}</Link>
+              <Link href={`/photography/${category.id}`}>{category.title}</Link>
               <span aria-hidden="true">/</span>
               <span aria-current="page">{album.title}</span>
             </>

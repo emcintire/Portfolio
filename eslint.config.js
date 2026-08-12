@@ -1,9 +1,9 @@
 import js from '@eslint/js';
+import next from '@next/eslint-plugin-next';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -11,9 +11,12 @@ import tseslint from 'typescript-eslint';
 export default [
   {
     ignores: [
+      '.next/**',
       'coverage/**',
       'dist/**',
+      'next-env.d.ts',
       'node_modules/**',
+      'out/**',
       'playwright-report/**',
       'test-results/**',
     ],
@@ -38,17 +41,18 @@ export default [
       },
     },
     plugins: {
+      '@next/next': next,
       'jsx-a11y': jsxA11y,
       react,
       'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
       'simple-import-sort': simpleImportSort,
     },
     rules: {
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      ...reactRefresh.configs.vite.rules,
       ...jsxA11y.configs.recommended.rules,
+      ...next.configs.recommended.rules,
+      ...next.configs['core-web-vitals'].rules,
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       'simple-import-sort/exports': 'error',

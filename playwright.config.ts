@@ -13,9 +13,12 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'npm run dev -- --host 127.0.0.1 --port 4173',
+    // Serve the production build, not the dev server: prerendered HTML and real
+    // 404 statuses are exactly what these tests assert.
+    command: 'npm run build && npm run start -- -H 127.0.0.1 -p 4173',
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    // Generous because the command includes a cold `next build`.
+    timeout: 420_000,
     url: 'http://127.0.0.1:4173',
   },
   projects: [
