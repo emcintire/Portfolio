@@ -1196,10 +1196,14 @@ p {
 }
 
 .photo-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-2);
+  columns: 4;
+  column-gap: var(--space-2);
   padding-inline: var(--space-2);
+}
+
+.photo-grid > li {
+  margin-bottom: var(--space-2);
+  break-inside: avoid;
 }
 
 .photo-grid__button {
@@ -1213,9 +1217,9 @@ p {
 }
 
 .photo-grid__button img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
   transition:
     opacity var(--transition),
     transform 500ms ease;
@@ -1429,7 +1433,7 @@ p {
   }
 
   .photo-grid {
-    grid-template-columns: repeat(3, 1fr);
+    columns: 3;
   }
 }
 
@@ -1606,7 +1610,7 @@ p {
   }
 
   .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
+    columns: 2;
   }
 
   .site-footer__inner,
@@ -1665,9 +1669,13 @@ p {
   }
 
   .photo-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
+    columns: 1;
+    column-gap: var(--space-3);
     padding-inline: var(--space-3);
+  }
+
+  .photo-grid > li {
+    margin-bottom: var(--space-3);
   }
 
   .lightbox {

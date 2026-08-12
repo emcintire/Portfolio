@@ -26,11 +26,9 @@ function GalleryThumbnail({ alt, source }: { alt: string; source: string }) {
     <img
       alt={alt}
       decoding="async"
-      height="768"
       loading="lazy"
       onError={() => setHasFailed(true)}
       src={normalizeSource(source)}
-      width="1024"
     />
   );
 }
