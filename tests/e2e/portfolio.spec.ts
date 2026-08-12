@@ -46,6 +46,17 @@ test('primary navigation, theme persistence, and invalid routes work', async ({ 
   ).toBeVisible();
 });
 
+test('client-side navigation moves focus to the main landmark', async ({ page }) => {
+  // Guards RouteFocus, the one behavior kept from the deleted RouteEffects.
+  // Without it, keyboard and screen-reader users stay on the activated link
+  // after navigating.
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Work' }).first().click();
+  await expect(page).toHaveURL(/\/projects$/);
+
+  await expect(page.locator('#main-content')).toBeFocused();
+});
+
 test('mobile navigation manages state and keyboard dismissal', async ({ page }) => {
   await page.setViewportSize({ height: 800, width: 375 });
   await page.goto('/');
@@ -62,18 +73,21 @@ test('mobile navigation manages state and keyboard dismissal', async ({ page }) 
   await expect(menuButton).toBeFocused();
 });
 
+// Rockies has 26 photographs, so it straddles the 24-per-page boundary. The
+// album this previously used, Adirondacks, holds 22 — under the page size — so
+// it rendered every photograph at once and never showed a "Load more" button.
 test('gallery progressively loads and opens an accessible viewer', async ({ page }) => {
-  await page.goto('/photography/landscape/adirondacks2025');
+  await page.goto('/photography/landscape/rockies2024');
 
-  await expect(page.getByRole('heading', { level: 1, name: 'Adirondacks' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: 'Rockies' })).toBeVisible();
   await expect(page.locator('.photo-grid > li')).toHaveCount(24);
-  await page.getByRole('button', { name: /Open Mountain Peak, photograph 1/i }).click();
-  await expect(page.getByRole('dialog', { name: /Adirondacks image viewer/i })).toBeVisible();
+  await page.getByRole('button', { name: /photograph 1 of 26/i }).click();
+  await expect(page.getByRole('dialog', { name: /Rockies image viewer/i })).toBeVisible();
   await page.keyboard.press('ArrowRight');
   await expect(page.getByText(/2 \//)).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toBeHidden();
 
   await page.getByRole('button', { name: 'Load more photographs' }).click();
-  await expect(page.locator('.photo-grid > li')).toHaveCount(29);
+  await expect(page.locator('.photo-grid > li')).toHaveCount(26);
 });

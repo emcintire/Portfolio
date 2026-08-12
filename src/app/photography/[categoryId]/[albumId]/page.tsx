@@ -45,7 +45,9 @@ export async function generateMetadata({
   return buildMetadata({
     description: albumDescription(album, category),
     path: `/photography/${category.id}/${album.id}`,
-    title: `${album.title} — ${category.title} Photography`,
+    // The year is part of the title, not decoration: two landscape albums are
+    // both called "Alaska", and without it they compete for the same title.
+    title: `${album.title}${album.year ? ` ${album.year}` : ''} — ${category.title} Photography`,
   });
 }
 

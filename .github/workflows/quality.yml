@@ -15,6 +15,13 @@ jobs:
           cache: npm
           node-version: 22
       - run: npm ci
+      # Next's build cache; without it every run recompiles from scratch.
+      - uses: actions/cache@v4
+        with:
+          key: next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
+          path: .next/cache
+          restore-keys: |
+            next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
       - run: npm run check
 
   browser-tests:
@@ -26,5 +33,15 @@ jobs:
           cache: npm
           node-version: 22
       - run: npm ci
+      - uses: actions/cache@v4
+        with:
+          key: next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
+          path: .next/cache
+          restore-keys: |
+            next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
+      # Build here rather than inside Playwright's webServer timeout. The suite
+      # tests prerendered HTML and real status codes, so it needs the production
+      # build, and a cold `next build` can outlast the webServer budget.
+      - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test --project=chromium --project=mobile-chromium

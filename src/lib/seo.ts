@@ -36,6 +36,10 @@ export function buildMetadata({ description, path, title }: PageMetadataInput): 
     },
     title,
     twitter: {
+      // `card` has to be repeated here: Next replaces the parent `twitter`
+      // object wholesale rather than merging field by field, so omitting it
+      // silently downgrades album pages from the root's summary_large_image.
+      card: 'summary_large_image',
       description,
       title,
     },
