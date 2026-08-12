@@ -1,6 +1,7 @@
 import './globals.css';
 
 import type { Metadata, Viewport } from 'next';
+import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 
 import { RouteFocus } from '@/components/RouteFocus';
@@ -10,6 +11,16 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { siteMetadata } from '@/data/site';
 import { absoluteUrl } from '@/lib/seo';
 import { themeScript } from '@/lib/themeScript';
+
+// Replaces the hand-written @font-face: this fingerprints the file, emits a
+// preload, and derives size-adjusted fallback metrics so the swap to Allenoire
+// does not shift layout.
+const allenoire = localFont({
+  display: 'swap',
+  fallback: ['Georgia', 'serif'],
+  src: './fonts/allenoire.woff2',
+  variable: '--font-allenoire',
+});
 
 export const metadata: Metadata = {
   alternates: { canonical: absoluteUrl('/') },
@@ -61,7 +72,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     // The theme script below mutates documentElement before hydration.
-    <html lang="en" suppressHydrationWarning>
+    <html className={allenoire.variable} lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link crossOrigin="anonymous" href="https://i.imgur.com" rel="preconnect" />

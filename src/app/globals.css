@@ -1,11 +1,10 @@
-@font-face {
-  font-display: swap;
-  font-family: 'Allenoire';
-  src: url('/fonts/allenoire.woff2') format('woff2');
-}
-
+/*
+ * The Allenoire @font-face lives in src/app/layout.tsx via next/font/local,
+ * which fingerprints the file, preloads it, and generates size-adjusted
+ * fallback metrics. --font-allenoire is the variable it exposes.
+ */
 :root {
-  --font-display: 'Allenoire', Georgia, serif;
+  --font-display: var(--font-allenoire), Georgia, serif;
   --font-sans:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 

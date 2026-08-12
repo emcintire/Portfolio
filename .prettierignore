@@ -8,4 +8,4 @@ playwright-report
 test-results
 src/data/photos
 src/assets
-public/fonts
+src/app/fonts
