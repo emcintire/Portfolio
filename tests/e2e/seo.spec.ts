@@ -15,7 +15,11 @@ import { expect, test } from '@playwright/test';
  * which Playwright's transpiler cannot parse.)
  */
 
-const SITE = 'https://everettmcintire.com';
+// Hardcoded on purpose rather than read from siteMetadata: the canonical host
+// is a fact about the deployment, and a test that derived it from the same
+// constant it checks would have happily passed while every canonical pointed at
+// a domain that did not resolve.
+const SITE = 'https://everettgsm.com';
 
 const tag = (html: string, pattern: RegExp) => html.match(pattern)?.[1];
 const title = (html: string) => tag(html, /<title>([^<]*)<\/title>/);

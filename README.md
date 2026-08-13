@@ -78,5 +78,5 @@ When cutting over from the previous Vite SPA deployment:
 5. If the build runs out of memory, set `NODE_OPTIONS` as a console environment variable (not in
    `amplify.yml`) and temporarily drop `.next/cache/**/*` from `cache.paths`.
 
-Afterwards, resubmit `https://everettmcintire.com/sitemap.xml` in Search Console and spot-check a
+Afterwards, resubmit `https://everettgsm.com/sitemap.xml` in Search Console and spot-check a
 few album URLs with the URL Inspection tool to confirm the new canonicals.

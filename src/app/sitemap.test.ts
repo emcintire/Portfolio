@@ -24,15 +24,15 @@ describe('sitemap', () => {
           .filter((album) => album.id !== category.directAlbum)
           .map((album) => `/photography/${category.id}/${album.id}`),
       ),
-    ].map((path) => `https://everettmcintire.com${path === '/' ? '/' : path}`);
+    ].map((path) => `https://everettgsm.com${path === '/' ? '/' : path}`);
 
     expect(new Set(urls).size).toBe(urls.length);
     expect(new Set(urls)).toEqual(new Set(expected));
   });
 
   it('omits the direct-album URLs that redirect to their category', () => {
-    expect(urls).not.toContain('https://everettmcintire.com/photography/animals/animals');
-    expect(urls).not.toContain('https://everettmcintire.com/photography/misc/misc');
+    expect(urls).not.toContain('https://everettgsm.com/photography/animals/animals');
+    expect(urls).not.toContain('https://everettgsm.com/photography/misc/misc');
   });
 
   it('attaches every photograph to a listed URL, including the direct-album categories', () => {
@@ -53,7 +53,7 @@ describe('sitemap', () => {
 
   it('lists the direct-album photographs on the category URL', () => {
     const animals = entries.find(
-      (entry) => entry.url === 'https://everettmcintire.com/photography/animals',
+      (entry) => entry.url === 'https://everettgsm.com/photography/animals',
     );
 
     expect(animals?.images ?? []).toHaveLength(24);

@@ -21,7 +21,7 @@ export const siteMetadata = {
   siteName: 'Everett McIntire',
   themeColorDark: '#101713',
   themeColorLight: '#f7f2e8',
-  url: 'https://everettmcintire.com',
+  url: 'https://everettgsm.com',
 } as const;
 
 export const impactStats = [
