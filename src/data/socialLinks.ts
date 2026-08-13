@@ -14,6 +14,6 @@ export const socialLinks: SocialLink[] = [
   {
     icon: 'instagram',
     name: 'Instagram',
-    url: 'https://www.instagram.com/greasyfingersphotography',
+    url: 'https://www.instagram.com/greasy__fingers',
   },
 ];
