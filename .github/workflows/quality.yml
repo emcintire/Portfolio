@@ -14,6 +14,9 @@ jobs:
         with:
           cache: npm
           node-version: 22
+      # Node 22 bundles npm 10, which rejects the npm 11-written lockfile.
+      # See amplify.yml for the full explanation.
+      - run: npm i -g npm@11
       - run: npm ci
       # Next's build cache; without it every run recompiles from scratch.
       - uses: actions/cache@v4
@@ -32,6 +35,9 @@ jobs:
         with:
           cache: npm
           node-version: 22
+      # Node 22 bundles npm 10, which rejects the npm 11-written lockfile.
+      # See amplify.yml for the full explanation.
+      - run: npm i -g npm@11
       - run: npm ci
       - uses: actions/cache@v4
         with:

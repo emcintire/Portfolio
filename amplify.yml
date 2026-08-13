@@ -3,7 +3,13 @@ frontend:
   phases:
     preBuild:
       commands:
+        # Don't use $VERSION_NODE_22 — it is undefined in this build image, so
+        # `nvm use` gets an empty argument, hunts for a .nvmrc, and exits 127.
         - nvm use 22 || nvm install 22
+        # Node 22 bundles npm 10, but the lockfile is written by npm 11, which
+        # omits optional-dependency entries that npm 10's `ci` demands. Mismatch
+        # the majors and `npm ci` fails EUSAGE on @emnapi/* and sass.
+        - npm i -g npm@11
         - npm ci
     build:
       commands:
