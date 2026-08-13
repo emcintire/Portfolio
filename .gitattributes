@@ -1,0 +1,15 @@
+# Check out text files with LF on every platform.
+#
+# Without this, core.autocrlf=true gives Windows working copies CRLF endings,
+# while Prettier defaults to endOfLine: "lf" — so `npm run format:check` fails
+# locally on files that are perfectly fine in the repo and on CI.
+* text=auto eol=lf
+
+# Never normalize binaries.
+*.avif binary
+*.jpg binary
+*.mp4 binary
+*.pdf binary
+*.png binary
+*.webp binary
+*.woff2 binary
