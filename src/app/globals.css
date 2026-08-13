@@ -532,13 +532,10 @@ p {
   justify-self: center;
 }
 
-.hero-portrait picture {
-  position: relative;
-  z-index: 2;
-}
-
 .hero-portrait img {
   position: relative;
+  /* Above .topographic-rings, which is z-index 1 and precedes it in the DOM. */
+  z-index: 2;
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
@@ -919,11 +916,7 @@ p {
   gap: clamp(3rem, 8vw, 8rem);
 }
 
-.about-profile__grid > picture {
-  display: block;
-}
-
-.about-profile__grid > picture img {
+.about-profile__grid > img {
   width: 100%;
   max-height: 44rem;
   object-fit: cover;

@@ -1,19 +1,9 @@
-# AWS Amplify Hosting build spec.
-#
-# Once this file exists it overrides the console's build settings, so
-# baseDirectory has to be set explicitly. It must be `.next` — Amplify's Next.js
-# compute provider reads that layout directly, which is also why next.config.ts
-# sets neither `distDir` nor `output`.
-#
-# The app must run on the WEB_COMPUTE platform. Amplify infers that from the
-# `next build` script, but an app originally created as a static SPA may need
-# the platform changed. See README "Deployment" for the rest of the cutover.
 version: 1
 frontend:
   phases:
     preBuild:
       commands:
-        - nvm use $VERSION_NODE_22
+        - nvm use 22 || nvm install 22
         - npm ci
     build:
       commands:
