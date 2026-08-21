@@ -32,3 +32,7 @@ test-results
 out/
 next-env.d.ts
 *.tsbuildinfo
+
+# Local secrets
+.env*.local
+.next-check/

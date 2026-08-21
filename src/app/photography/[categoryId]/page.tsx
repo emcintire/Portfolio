@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { GalleryView } from '@/components/GalleryView';
 import { galleryCategories, getGalleryCategory } from '@/data/galleries';
 import { siteMetadata } from '@/data/site';
+import { listAlbumCounts, listAlbumPhotographs } from '@/lib/b2';
 import { JsonLd } from '@/lib/JsonLd';
 import { breadcrumbSchema, collectionPageSchema, imageGallerySchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
@@ -15,6 +16,11 @@ type CategoryParams = { categoryId: string };
 // Every category is known at build time, so prerender them all and let anything
 // else 404 with a real status instead of rendering not-found content behind 200.
 export const dynamicParams = false;
+
+/** See the album route: photographs come from B2, so pages refresh in place. */
+// Next statically analyses this, so it must stay a literal —
+// keep it in step with PHOTO_REVALIDATE_SECONDS in src/lib/b2.ts.
+export const revalidate = 3600;
 
 export function generateStaticParams(): CategoryParams[] {
   return galleryCategories.map((category) => ({ categoryId: category.id }));
@@ -29,7 +35,11 @@ export async function generateMetadata({
   const category = getGalleryCategory(categoryId);
   if (!category) return {};
 
-  const photographs = category.albums.reduce((total, album) => total + album.photographs.length, 0);
+  const counts = await listAlbumCounts(
+    category.id,
+    category.albums.map((entry) => entry.id),
+  );
+  const photographs = Object.values(counts).reduce((total, n) => total + n, 0);
   const scope = category.directAlbum
     ? `${photographs} photographs`
     : `${photographs} photographs across ${category.albums.length} albums`;
@@ -61,14 +71,33 @@ export default async function PhotographyCategoryPage({
   if (category.directAlbum) {
     const directAlbum = category.albums.find((album) => album.id === category.directAlbum);
     if (!directAlbum) notFound();
+
+    const sources = await listAlbumPhotographs(category.id, directAlbum.id);
+    const photographs = sources.map((src, index) => ({
+      alt: `${directAlbum.title} photograph ${index + 1}`,
+      src,
+    }));
+
     return (
       <>
-        <JsonLd data={imageGallerySchema(directAlbum, category, `/photography/${category.id}`)} />
+        <JsonLd
+          data={imageGallerySchema(
+            directAlbum,
+            category,
+            `/photography/${category.id}`,
+            photographs,
+          )}
+        />
         <JsonLd data={breadcrumb} />
-        <GalleryView album={directAlbum} category={category} />
+        <GalleryView album={directAlbum} category={category} photographs={photographs} />
       </>
     );
   }
+
+  const counts = await listAlbumCounts(
+    category.id,
+    category.albums.map((entry) => entry.id),
+  );
 
   return (
     <>
@@ -105,7 +134,7 @@ export default async function PhotographyCategoryPage({
                   <span>
                     <strong>{album.title}</strong>
                     <span>
-                      {album.year} · {album.photographs.length} photographs
+                      {album.year} · {counts[album.id] ?? 0} photographs
                     </span>
                   </span>
                 </Link>

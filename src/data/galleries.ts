@@ -1,6 +1,7 @@
 import landscapeCategoryCover from '@/assets/images/landscape.jpg';
 import portraitsCategoryCover from '@/assets/images/portraits.jpg';
 import adirondacksCover from '@/assets/optimized/adks.webp';
+import adirondacks2026Cover from '@/assets/optimized/adks2026.webp';
 import alaska2018Cover from '@/assets/optimized/alaska2018.webp';
 import alaska2020Cover from '@/assets/optimized/alaska2020.webp';
 import animalsCover from '@/assets/optimized/animals.webp';
@@ -14,7 +15,7 @@ import rio1Cover from '@/assets/optimized/rio1.webp';
 import rio2Cover from '@/assets/optimized/rio2.webp';
 import rio3Cover from '@/assets/optimized/rio3.webp';
 import roadtripCover from '@/assets/optimized/roadtrip.webp';
-import rockiesCover from '@/assets/optimized/rockies.webp';
+import rockiesCover from '@/assets/optimized/rockies2024.webp';
 import snowCover from '@/assets/optimized/snow.webp';
 import summerCover from '@/assets/optimized/summer.webp';
 import ted1Cover from '@/assets/optimized/ted1.webp';
@@ -22,26 +23,22 @@ import ted2Cover from '@/assets/optimized/ted2.webp';
 import tetonsCover from '@/assets/optimized/tetons.webp';
 import yellowstoneCover from '@/assets/optimized/yellowstone.webp';
 import yosemiteCover from '@/assets/optimized/yosemite.webp';
-import { photographs } from '@/data/photos';
 import type { GalleryAlbum, GalleryCategory } from '@/types';
 
-type AlbumInput = Omit<GalleryAlbum, 'photographs'>;
-
-const album = ({ id, title, ...rest }: AlbumInput): GalleryAlbum => ({
-  ...rest,
-  id,
-  photographs: (photographs[id] ?? [])
-    .filter((photograph) => photograph.src.trim())
-    .map((photograph, index) => ({
-      ...photograph,
-      alt: photograph.alt.trim() || `${title} photograph ${index + 1}`,
-    })),
-  title,
-});
+const album = (input: GalleryAlbum): GalleryAlbum => input;
 
 export const galleryCategories: GalleryCategory[] = [
   {
     albums: [
+      album({
+        cover: adirondacks2026Cover,
+        description:
+          'An array of stunning views of the Great Range from the view of the hike up Big Slide peak.',
+        id: 'adirondacks2026',
+        location: 'Adirondack Park, New York',
+        title: 'Adirondacks',
+        year: '2026',
+      }),
       album({
         cover: adirondacksCover,
         description:

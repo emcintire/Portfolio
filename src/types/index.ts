@@ -1,7 +1,5 @@
 import type { StaticImageData } from 'next/image';
 
-import type { Photograph } from './photograph';
-
 export type { Photograph } from './photograph';
 
 export type NavigationItem = {
@@ -60,7 +58,6 @@ export type GalleryAlbum = {
   id: string;
   /** Human-readable place, when the album has an unambiguous one. */
   location?: string;
-  photographs: Photograph[];
   title: string;
   year?: string;
 };

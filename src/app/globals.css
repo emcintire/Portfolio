@@ -715,6 +715,11 @@ p {
   gap: var(--space-4);
 }
 
+.project-card__heading > div:first-child {
+  flex: 1;
+  min-width: max-content;
+}
+
 .project-card h2 {
   margin-bottom: var(--space-5);
   font-size: clamp(2.6rem, 5vw, 4.4rem);
@@ -901,7 +906,7 @@ p {
 
 .page-hero h1 {
   margin-bottom: 0;
-  font-size: clamp(3.3rem, 8vw, 6.5rem);
+  font-size: clamp(3.3rem, 8vw, 6rem);
 }
 
 .page-hero__copy {
@@ -967,15 +972,23 @@ p {
 .experience-item__marker {
   position: relative;
   z-index: 1;
+  /* Square from the 3rem grid column, so the logo has a box to fill. */
+  aspect-ratio: 1;
   overflow: hidden;
   background: var(--color-surface);
   border: 1px solid var(--color-line);
   border-radius: 50%;
 }
 
+/*
+ * Fill the marker rather than setting 3rem explicitly. With border-box the
+ * marker's content is 46px, not 48px, so a hard 3rem width was being clamped
+ * by the global max-width: 100% while the height stayed 48px — squashing every
+ * logo by 2px and tripping next/image's aspect-ratio warning.
+ */
 .experience-item__marker img {
-  width: 3rem;
-  height: 3rem;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 

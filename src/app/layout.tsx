@@ -10,11 +10,7 @@ import { SiteHeader } from '@/components/SiteHeader';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { siteMetadata } from '@/data/site';
 import { absoluteUrl } from '@/lib/seo';
-import { themeScript } from '@/lib/themeScript';
 
-// Replaces the hand-written @font-face: this fingerprints the file, emits a
-// preload, and derives size-adjusted fallback metrics so the swap to Allenoire
-// does not shift layout.
 const allenoire = localFont({
   display: 'swap',
   fallback: ['Georgia', 'serif'],
@@ -71,12 +67,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    // The theme script below mutates documentElement before hydration.
     <html className={allenoire.variable} lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <link crossOrigin="anonymous" href="https://i.imgur.com" rel="preconnect" />
-      </head>
       <body>
         <a className="skip-link" href="#main-content">
           Skip to main content

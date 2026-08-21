@@ -8,14 +8,9 @@ import { breadcrumbSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
 
 const albumCount = galleryCategories.reduce((total, category) => total + category.albums.length, 0);
-const photographCount = galleryCategories.reduce(
-  (total, category) =>
-    total + category.albums.reduce((sum, album) => sum + album.photographs.length, 0),
-  0,
-);
 
 export const metadata = buildMetadata({
-  description: `Landscape, portrait, and wildlife photography by ${siteMetadata.name} — ${photographCount} photographs across ${albumCount} albums, from national parks to family sessions.`,
+  description: `Landscape, portrait, and wildlife photography by ${siteMetadata.name} — ${albumCount} albums spanning national parks, road trips, and family sessions.`,
   path: '/photography',
   title: 'Photography',
 });
@@ -28,12 +23,15 @@ export default function PhotographyIndexPage() {
         <div className="page-container page-hero__grid">
           <div>
             <p className="eyebrow">Photography</p>
-            <h1>Places, people, and the moments between plans.</h1>
+            <h1>
+              I came here to chew bubble gum and take pictures... and I&apos;m all out of bubble
+              gum.
+            </h1>
           </div>
           <div className="page-hero__copy">
             <p>
-              A personal archive of landscapes, portraits, wildlife, and smaller observations made
-              while moving through the world with a camera.
+              A personal archive of landscapes, portraits, wildlife, and anything that tickled my
+              fancy.
             </p>
           </div>
         </div>

@@ -53,13 +53,23 @@ describe('SiteHeader', () => {
     expect(primaryNavLink('Home')).not.toHaveClass('nav-link--active');
   });
 
-  it('updates the theme and describes the next available theme', () => {
+  it('cycles system, light and dark, and says which is active', () => {
+    // The matchMedia stub reports no dark preference, so "system" resolves light.
     renderHeader();
-    const themeButton = screen.getByRole('button', { name: 'Use dark theme' });
 
-    fireEvent.click(themeButton);
+    const atSystem = screen.getByRole('button', { name: /Following system theme/i });
+    expect(atSystem).toHaveAccessibleName(/Switch to light theme/i);
 
+    fireEvent.click(atSystem);
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light');
+
+    const atLight = screen.getByRole('button', { name: /Using light theme/i });
+    fireEvent.click(atLight);
     expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
-    expect(screen.getByRole('button', { name: 'Use light theme' })).toBeInTheDocument();
+
+    // Third click returns to system — the state the old toggle could never
+    // reach once a preference had been stored.
+    fireEvent.click(screen.getByRole('button', { name: /Using dark theme/i }));
+    expect(screen.getByRole('button', { name: /Following system theme/i })).toBeInTheDocument();
   });
 });

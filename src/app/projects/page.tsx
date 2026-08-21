@@ -19,7 +19,7 @@ export default function ProjectsPage() {
         <div className="page-container page-hero__grid">
           <div>
             <p className="eyebrow">Selected work</p>
-            <h1>From first schema to final store submission.</h1>
+            <h1>Things that made it off localhost.</h1>
           </div>
           <div className="page-hero__copy">
             <p>

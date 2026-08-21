@@ -10,8 +10,6 @@ import { impactStats, siteMetadata } from '@/data/site';
 import { JsonLd } from '@/lib/JsonLd';
 import { personSchema, webSiteSchema } from '@/lib/schema';
 
-// The home page keeps the layout's default title rather than running it through
-// the `%s — Everett McIntire` template.
 export const metadata = {
   alternates: { canonical: '/' },
 };
@@ -27,10 +25,10 @@ export default function HomePage() {
         <div className="page-container hero__grid">
           <div className="hero__content">
             <p className="eyebrow">Full-stack engineer · Vermont</p>
-            <h1>I build products that stay useful after the demo.</h1>
+            <h1>Come with me if you want to ship.</h1>
             <p className="hero__lede">
-              I turn complex product requirements into reliable web, mobile, and game
-              experiences—working across React, Node.js, Django, .NET, and Unity.
+              I turn complex product requirements into reliable web and mobile experiences—working
+              across React, Node.js, Django, .NET, and Unity.
             </p>
             <div className="button-row">
               <Link className="button button--primary" href="/projects">

@@ -25,7 +25,7 @@ export default function AboutPage() {
         <div className="page-container page-hero__grid">
           <div>
             <p className="eyebrow">About</p>
-            <h1>Ownership, curiosity, and work that earns its complexity.</h1>
+            <h1>Software engineer, photographer, and firm believer in second breakfast.</h1>
           </div>
           <div className="page-hero__copy">
             <p>

@@ -3,18 +3,26 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import type { GalleryAlbum, GalleryCategory } from '@/types';
+import type { GalleryAlbum, GalleryCategory, Photograph } from '@/types';
 
 import { PhotoLightbox } from './PhotoLightbox';
 
 const PAGE_SIZE = 24;
 
+/** Widest a grid column gets, at the four-column desktop layout. */
+const THUMBNAIL_WIDTH = 828;
+const THUMBNAIL_QUALITY = 75;
+
 type GalleryViewProps = {
   album: GalleryAlbum;
   category: GalleryCategory;
+  photographs: Photograph[];
 };
 
-function GalleryThumbnail({ alt, source }: { alt: string; source: string }) {
+const thumbnailUrl = (src: string) =>
+  `/_next/image?url=${encodeURIComponent(src)}&w=${THUMBNAIL_WIDTH}&q=${THUMBNAIL_QUALITY}`;
+
+function GalleryThumbnail({ alt, src }: { alt: string; src: string }) {
   const [hasFailed, setHasFailed] = useState(false);
 
   if (hasFailed) {
@@ -22,29 +30,22 @@ function GalleryThumbnail({ alt, source }: { alt: string; source: string }) {
   }
 
   return (
-    // Deliberately not next/image: Imgur already serves a sized thumbnail via
-    // the `h` suffix, so routing ~619 photographs per album set through the
-    // optimizer would add cost and latency for no gain. Natural aspect ratio is
-    // also the point here — the grid is masonry, not fixed-ratio tiles.
-    // eslint-disable-next-line @next/next/no-img-element
+    // eslint-disable-next-line @next/next/no-img-element -- see thumbnailUrl
     <img
       alt={alt}
       decoding="async"
       loading="lazy"
       onError={() => setHasFailed(true)}
-      src={source}
+      src={thumbnailUrl(src)}
     />
   );
 }
 
-export function GalleryView({ album, category }: GalleryViewProps) {
+export function GalleryView({ album, category, photographs: source }: GalleryViewProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const lastFocusedPhotoRef = useRef<HTMLButtonElement | null>(null);
-  const photographs = useMemo(
-    () => album.photographs.filter((photograph) => photograph.src.trim()),
-    [album.photographs],
-  );
+  const photographs = useMemo(() => source.filter((photograph) => photograph.src.trim()), [source]);
 
   useEffect(() => {
     setSelectedIndex(null);
@@ -92,7 +93,7 @@ export function GalleryView({ album, category }: GalleryViewProps) {
                 }}
                 type="button"
               >
-                <GalleryThumbnail alt={alt} source={photograph.src} />
+                <GalleryThumbnail alt={alt} src={photograph.src} />
               </button>
             </li>
           );

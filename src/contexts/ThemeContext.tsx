@@ -1,54 +1,42 @@
 'use client';
 
-import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { ThemeProvider as NextThemeProvider, useTheme } from 'next-themes';
+import { type ReactNode, useEffect } from 'react';
 
-import { THEME_STORAGE_KEY, themeColorFor } from '@/lib/themeScript';
-
-import { type Theme, ThemeContext, type ThemeContextValue } from './theme';
+import { themeColorFor } from '@/lib/themeColor';
 
 /**
- * The inline script in the root layout has already resolved and applied the
- * theme before hydration, so on the client the DOM is the source of truth.
- * On the server there is no DOM; nothing that renders differently per theme is
- * emitted before mount (see ThemeToggle), so this fallback is never visible.
+ * Keeps <meta name="theme-color"> in step with the resolved theme, which tints
+ * browser chrome on mobile. next-themes owns `data-theme` and `color-scheme`
+ * but not this tag, and Next renders it from the `viewport` export, so it has
+ * to be updated client-side.
  */
-const readAppliedTheme = (): Theme => {
-  if (typeof document === 'undefined') return 'light';
-  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-};
-
-const setThemeColorMeta = (theme: Theme) => {
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColorFor(theme));
-};
-
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(readAppliedTheme);
-  const hasMountedRef = useRef(false);
+function ThemeColorSync() {
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
-    if (!hasMountedRef.current) {
-      hasMountedRef.current = true;
-      // The inline script already applied this exact theme. Re-applying it here
-      // would overwrite it — and write to localStorage — before the user has
-      // touched anything, which is how a stored 'dark' turns into 'light'.
-      // Only the browser-chrome color still needs catching up.
-      setThemeColorMeta(theme);
-      return;
-    }
+    if (resolvedTheme !== 'dark' && resolvedTheme !== 'light') return;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', themeColorFor(resolvedTheme));
+  }, [resolvedTheme]);
 
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme;
-    setThemeColorMeta(theme);
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
-  }, [theme]);
+  return null;
+}
 
-  const value = useMemo<ThemeContextValue>(
-    () => ({
-      theme,
-      toggleTheme: () => setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light')),
-    }),
-    [theme],
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  return (
+    <NextThemeProvider
+      // The stylesheet keys off [data-theme='dark'], not a class.
+      attribute="data-theme"
+      // Follow the OS until the visitor chooses otherwise — and let them choose
+      // it again, which the previous hand-rolled version could not express.
+      defaultTheme="system"
+      enableSystem
+      storageKey="portfolio-theme"
+    >
+      <ThemeColorSync />
+      {children}
+    </NextThemeProvider>
   );
-
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }

@@ -2,7 +2,7 @@ import { experiences } from '@/data/experience';
 import { projects } from '@/data/projects';
 import { siteMetadata } from '@/data/site';
 import { socialLinks } from '@/data/socialLinks';
-import type { GalleryAlbum, GalleryCategory } from '@/types';
+import type { GalleryAlbum, GalleryCategory, Photograph } from '@/types';
 
 import { absoluteUrl } from './seo';
 
@@ -112,6 +112,7 @@ export const imageGallerySchema = (
   album: GalleryAlbum,
   category: GalleryCategory,
   path: string,
+  photographs: Photograph[],
 ) => ({
   '@context': 'https://schema.org',
   '@type': 'ImageGallery',
@@ -119,13 +120,13 @@ export const imageGallerySchema = (
   ...(album.description ? { description: album.description } : {}),
   ...(album.location ? { contentLocation: { '@type': 'Place', name: album.location } } : {}),
   ...(album.year ? { datePublished: album.year } : {}),
-  associatedMedia: album.photographs.map((photograph) => ({
+  associatedMedia: photographs.map((photograph) => ({
     '@type': 'ImageObject',
     contentUrl: photograph.src,
     name: photograph.alt,
   })),
   genre: category.title,
   name: album.title,
-  numberOfItems: album.photographs.length,
+  numberOfItems: photographs.length,
   url: absoluteUrl(path),
 });

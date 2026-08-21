@@ -33,7 +33,17 @@ export const projects: Project[] = [
     ],
     slug: 'uncaged',
     status: 'Shipped on iOS and Android',
-    technologies: ['React Native', 'TypeScript', 'Node.js', 'MongoDB', 'OpenAPI'],
+    technologies: [
+      'React Native',
+      'TypeScript',
+      'Node.js',
+      'MongoDB',
+      'OpenAPI',
+      'Orval',
+      'TanStack Query',
+      'Formik',
+      'Zod',
+    ],
   },
   {
     description:
@@ -60,7 +70,7 @@ export const projects: Project[] = [
     poster: taterTapPoster,
     slug: 'tater-tap',
     status: 'Shipped on iOS and Android',
-    technologies: ['Unity', 'C#', 'Unity Services', 'Illustrator'],
+    technologies: ['Unity', 'C#', 'Unity Services', 'Adobe Illustrator'],
     video: '/tatertap.mp4',
   },
   // {

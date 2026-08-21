@@ -14,9 +14,6 @@ type PhotoLightboxProps = {
   photographs: Photograph[];
 };
 
-const fullSizeSource = (source: string) =>
-  source.replace(/([a-zA-Z0-9]{7})h\.(jpe?g|png)$/i, '$1.$2');
-
 export function PhotoLightbox({
   albumTitle,
   currentIndex,
@@ -95,14 +92,15 @@ export function PhotoLightbox({
             This photograph could not be loaded.
           </div>
         ) : (
-          // Deliberately not next/image: this is a remote full-size Imgur asset
-          // of unknown dimensions, fetched only once the viewer opens.
+          // The bucket original, at full resolution, fetched only once the
+          // viewer opens. Not next/image: its dimensions are unknown, and the
+          // point of the lightbox is the unresized photograph.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             alt={alt}
             decoding="async"
             onError={() => setHasImageFailed(true)}
-            src={fullSizeSource(currentPhoto.src)}
+            src={currentPhoto.src}
           />
         )}
         <div className="lightbox__controls">

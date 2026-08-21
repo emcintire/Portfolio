@@ -15,12 +15,16 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit --pretty"
+    "typecheck": "tsc --noEmit --pretty",
+    "photos:optimize": "node scripts/optimize-bucket.mjs",
+    "assets": "node scripts/optimize-assets.mjs"
   },
   "dependencies": {
     "next": "~15.5.23",
+    "next-themes": "^0.4.6",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
@@ -43,6 +47,7 @@
     "globals": "^16.4.0",
     "jsdom": "^29.1.1",
     "prettier": "^3.9.6",
+    "sharp": "^0.35.3",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.43.0",
     "vitest": "^4.1.10"

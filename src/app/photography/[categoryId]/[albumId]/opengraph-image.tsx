@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 
 import { galleryCategories, getGalleryAlbum, getGalleryCategory } from '@/data/galleries';
 import { siteMetadata } from '@/data/site';
+import { listAlbumPhotographs } from '@/lib/b2';
 
 export const alt = 'Photography album preview';
 export const contentType = 'image/png';
@@ -33,7 +34,8 @@ export default async function Image({
   const album = getGalleryAlbum(params.categoryId, params.albumId);
 
   const title = album?.title ?? 'Photography';
-  const meta = [category?.title, album?.year, album && `${album.photographs.length} photographs`]
+  const count = album ? (await listAlbumPhotographs(params.categoryId, params.albumId)).length : 0;
+  const meta = [category?.title, album?.year, count ? `${count} photographs` : null]
     .filter(Boolean)
     .join('  ·  ');
 
