@@ -1204,6 +1204,7 @@ p {
   columns: 4;
   column-gap: var(--space-2);
   padding-inline: var(--space-2);
+  padding-bottom: var(--space-8);
 }
 
 .photo-grid > li {
@@ -1212,6 +1213,7 @@ p {
 }
 
 .photo-grid__button {
+  position: relative;
   display: block;
   width: 100%;
   padding: 0;
@@ -1221,18 +1223,54 @@ p {
   cursor: zoom-in;
 }
 
+/*
+ * The button carries the photograph's aspect-ratio (set inline from its recorded
+ * size), so the tile has its final shape before the image arrives and filling
+ * it crops nothing. For a photograph with no recorded size the button has no
+ * ratio, 100% resolves to auto, and the image sizes itself as before.
+ */
 .photo-grid__button img {
+  /* Positioned so it paints over the spinner, which precedes it. */
+  position: relative;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  /* Browsers draw alt text in the image's color until it loads; this hides it
+     behind the spinner. Screen readers still get it. */
+  color: transparent;
   transition:
     opacity var(--transition),
     transform 500ms ease;
 }
 
+/*
+ * Shown until the image loads. Under reduced motion the global rule stops the
+ * spin, leaving a still arc — which still reads as loading.
+ */
+.photo-grid__spinner {
+  position: absolute;
+  inset: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: auto;
+  border: 2px solid var(--color-line);
+  border-top-color: var(--color-text-muted);
+  border-radius: 50%;
+  animation: photo-grid-spin 800ms linear infinite;
+}
+
+@keyframes photo-grid-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fills the tile's reserved shape when there is one; 4:3 only when there is not. */
 .photo-grid__fallback {
   display: grid;
   width: 100%;
+  height: 100%;
   aspect-ratio: 4 / 3;
   place-items: center;
   padding: var(--space-4);
@@ -1245,12 +1283,6 @@ p {
 .photo-grid__button:focus-visible img {
   opacity: 0.88;
   transform: scale(1.025);
-}
-
-.load-more {
-  display: flex;
-  justify-content: center;
-  padding-block: var(--space-7) var(--space-9);
 }
 
 .lightbox {

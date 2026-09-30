@@ -7,8 +7,6 @@ import type { GalleryAlbum, GalleryCategory, Photograph } from '@/types';
 
 import { PhotoLightbox } from './PhotoLightbox';
 
-const PAGE_SIZE = 24;
-
 /** Widest a grid column gets, at the four-column desktop layout. */
 const THUMBNAIL_WIDTH = 828;
 const THUMBNAIL_QUALITY = 75;
@@ -24,32 +22,42 @@ const thumbnailUrl = (src: string) =>
 
 function GalleryThumbnail({ alt, src }: { alt: string; src: string }) {
   const [hasFailed, setHasFailed] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  // An image can finish before hydration attaches onLoad, and then the event
+  // never reaches React — so also check on mount whether it already arrived.
+  const detectLoaded = useCallback((image: HTMLImageElement | null) => {
+    if (image?.complete && image.naturalWidth > 0) setHasLoaded(true);
+  }, []);
 
   if (hasFailed) {
     return <span className="photo-grid__fallback">Photograph unavailable</span>;
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- see thumbnailUrl
-    <img
-      alt={alt}
-      decoding="async"
-      loading="lazy"
-      onError={() => setHasFailed(true)}
-      src={thumbnailUrl(src)}
-    />
+    <>
+      {!hasLoaded && <span aria-hidden="true" className="photo-grid__spinner" />}
+      {/* eslint-disable-next-line @next/next/no-img-element -- see thumbnailUrl */}
+      <img
+        alt={alt}
+        decoding="async"
+        loading="lazy"
+        onError={() => setHasFailed(true)}
+        onLoad={() => setHasLoaded(true)}
+        ref={detectLoaded}
+        src={thumbnailUrl(src)}
+      />
+    </>
   );
 }
 
 export function GalleryView({ album, category, photographs: source }: GalleryViewProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const lastFocusedPhotoRef = useRef<HTMLButtonElement | null>(null);
   const photographs = useMemo(() => source.filter((photograph) => photograph.src.trim()), [source]);
 
   useEffect(() => {
     setSelectedIndex(null);
-    setVisibleCount(PAGE_SIZE);
   }, [album.id]);
 
   const closeLightbox = useCallback(() => {
@@ -80,7 +88,7 @@ export function GalleryView({ album, category, photographs: source }: GalleryVie
       </div>
 
       <ul className="photo-grid" aria-label={`${album.title} photographs`}>
-        {photographs.slice(0, visibleCount).map((photograph, index) => {
+        {photographs.map((photograph, index) => {
           const alt = photograph.alt.trim() || `${album.title} photograph ${index + 1}`;
           return (
             <li key={`${photograph.src}-${index}`}>
@@ -91,6 +99,11 @@ export function GalleryView({ album, category, photographs: source }: GalleryVie
                   lastFocusedPhotoRef.current = event.currentTarget;
                   setSelectedIndex(index);
                 }}
+                style={
+                  photograph.width && photograph.height
+                    ? { aspectRatio: `${photograph.width} / ${photograph.height}` }
+                    : undefined
+                }
                 type="button"
               >
                 <GalleryThumbnail alt={alt} src={photograph.src} />
@@ -99,18 +112,6 @@ export function GalleryView({ album, category, photographs: source }: GalleryVie
           );
         })}
       </ul>
-
-      {visibleCount < photographs.length && (
-        <div className="load-more">
-          <button
-            className="button button--secondary"
-            onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
-            type="button"
-          >
-            Load more photographs
-          </button>
-        </div>
-      )}
 
       {selectedIndex !== null && (
         <PhotoLightbox

@@ -1,8 +1,15 @@
 /**
- * Downsizes photographs in the public Backblaze bucket to web dimensions, in place.
+ * Downsizes photographs in the public Backblaze bucket to web dimensions, in place,
+ * and records each one's displayed width and height in its B2 file info.
  *
  *   node scripts/optimize-bucket.mjs --dry-run   # report only, changes nothing
  *   node scripts/optimize-bucket.mjs             # do it
+ *
+ * The site reads that size from the bucket listing to reserve each photograph's
+ * space in the gallery grid before it loads. A photograph without one still
+ * shows, but the grid shifts around it as it arrives — so run this after every
+ * upload. Files optimized before sizes were recorded are measured and re-tagged
+ * with a server-side copy, never re-encoded.
  */
 import { Buffer } from 'node:buffer';
 import { createHash } from 'node:crypto';
@@ -29,6 +36,10 @@ const ALREADY_WEB_BYTES = 1_500_000;
 /** Bump to force a re-run over everything, e.g. after changing MAX_EDGE. */
 const MARKER = 'v1';
 const MARKER_KEY = 'webopt';
+
+/** File info keys the site reads — see src/lib/b2.ts. B2 stores info names lowercase. */
+const WIDTH_KEY = 'width';
+const HEIGHT_KEY = 'height';
 
 /** Whole-file decodes are memory-hungry; a 135 MB PNG needs ~1 GB decoded. */
 const CONCURRENCY = 3;
@@ -117,7 +128,7 @@ async function download(auth, fileName) {
   return Buffer.from(await res.arrayBuffer());
 }
 
-async function upload(auth, fileName, body, contentType) {
+async function upload(auth, fileName, body, contentType, info) {
   // Upload URLs are single-use-at-a-time, so fetch one per upload.
   const slot = await api(auth, 'b2_get_upload_url', { bucketId: auth.bucketId });
   const res = await fetch(slot.uploadUrl, {
@@ -128,12 +139,44 @@ async function upload(auth, fileName, body, contentType) {
       'Content-Type': contentType,
       'X-Bz-Content-Sha1': createHash('sha1').update(body).digest('hex'),
       'X-Bz-File-Name': encodeURIComponent(fileName),
-      [`X-Bz-Info-${MARKER_KEY}`]: MARKER,
+      ...Object.fromEntries(Object.entries(info).map(([k, v]) => [`X-Bz-Info-${k}`, v])),
     },
     method: 'POST',
   });
   if (!res.ok) throw new Error(`upload failed: ${res.status} ${await res.text()}`);
   return res.json();
+}
+
+/** Replaces a file's info without re-uploading it: a server-side copy onto itself. */
+async function retag(auth, file, info) {
+  const res = await fetch(new URL('/b2api/v3/b2_copy_file', auth.apiUrl), {
+    body: JSON.stringify({
+      contentType: file.contentType,
+      fileInfo: { ...file.fileInfo, ...info },
+      fileName: file.fileName,
+      metadataDirective: 'REPLACE',
+      sourceFileId: file.fileId,
+    }),
+    headers: { Authorization: auth.token, 'Content-Type': 'application/json' },
+    method: 'POST',
+  });
+  if (!res.ok) throw new Error(`copy failed: ${res.status} ${await res.text()}`);
+}
+
+/**
+ * Width and height as a browser shows the image. EXIF orientations 5–8 turn it
+ * a quarter turn, which browsers apply — so a portrait stored sideways with
+ * that tag must be recorded as portrait.
+ */
+async function sizeInfo(buffer) {
+  const { height, orientation, width } = await sharp(buffer, {
+    limitInputPixels: 1_000_000_000,
+  }).metadata();
+  const turned = (orientation ?? 1) >= 5;
+  return {
+    [HEIGHT_KEY]: String(turned ? width : height),
+    [WIDTH_KEY]: String(turned ? height : width),
+  };
 }
 
 const deleteVersion = (auth, fileName, fileId) =>
@@ -155,12 +198,16 @@ async function pooled(items, worker) {
 async function main() {
   const auth = await authorize();
   const all = await listAll(auth);
-  const pending = all.filter((f) => f.fileInfo?.[MARKER_KEY] !== MARKER);
+  const isOptimized = (f) => f.fileInfo?.[MARKER_KEY] === MARKER;
+  const isSized = (f) => Boolean(f.fileInfo?.[WIDTH_KEY] && f.fileInfo?.[HEIGHT_KEY]);
+  const pending = all.filter((f) => !isOptimized(f) || !isSized(f));
+  const sizeOnly = pending.filter(isOptimized).length;
 
   const totalBefore = all.reduce((n, f) => n + f.contentLength, 0);
   console.log(
     `${all.length} images, ${mb(totalBefore)} total — ` +
-      `${pending.length} to process, ${all.length - pending.length} already optimized`,
+      `${pending.length} to process (${sizeOnly} only need their size recorded), ` +
+      `${all.length - pending.length} already done`,
   );
   if (DRY_RUN) console.log('DRY RUN: nothing will be written\n');
   if (!pending.length) return;
@@ -177,6 +224,25 @@ async function main() {
   await pooled(pending, async (file) => {
     const label = file.fileName;
     try {
+      // Optimized before sizes were recorded: measure it and re-tag it in place.
+      // Running it back through the encoder would only cost quality.
+      if (isOptimized(file)) {
+        if (DRY_RUN) {
+          console.log(`  would record the size of ${label}`);
+          done += 1;
+          return;
+        }
+
+        const info = await sizeInfo(await download(auth, label));
+        await retag(auth, file, info);
+        done += 1;
+        console.log(
+          `  ${String(done).padStart(3)}/${pending.length} ${label} ` +
+            `sized ${info[WIDTH_KEY]}x${info[HEIGHT_KEY]}`,
+        );
+        return;
+      }
+
       // Convert everything that is not already JPEG; photographs stored as PNG
       // are the largest files in the bucket by a wide margin.
       const targetName = KEEP_EXTENSION_RX.test(label)
@@ -224,7 +290,10 @@ async function main() {
       const body = keepOriginal ? original : optimized;
       const contentType = keepOriginal ? file.contentType : 'image/jpeg';
 
-      await upload(auth, targetName, body, contentType);
+      await upload(auth, targetName, body, contentType, {
+        [MARKER_KEY]: MARKER,
+        ...(await sizeInfo(body)),
+      });
       if (targetName !== label) await deleteVersion(auth, label, file.fileId);
 
       saved += file.contentLength - body.byteLength;

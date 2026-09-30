@@ -92,9 +92,6 @@ export function PhotoLightbox({
             This photograph could not be loaded.
           </div>
         ) : (
-          // The bucket original, at full resolution, fetched only once the
-          // viewer opens. Not next/image: its dimensions are unknown, and the
-          // point of the lightbox is the unresized photograph.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             alt={alt}

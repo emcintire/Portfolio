@@ -2,11 +2,22 @@ import 'server-only';
 
 import { cache } from 'react';
 
+import type { Photograph } from '@/types';
+
 const KEY_ID = process.env.B2_KEY_ID;
 const APP_KEY = process.env.B2_APP_KEY;
 const BUCKET = process.env.B2_BUCKET;
 
-export const PHOTO_REVALIDATE_SECONDS = 300;
+/**
+ * How often photography pages and the sitemap re-read the bucket, in seconds.
+ * The one place to change it.
+ *
+ * The routes deliberately export no `revalidate` of their own. Next only
+ * accepts a literal there, so it could not share this constant — and without
+ * one, a route takes the lowest revalidate of the fetches it makes, which are
+ * all of these below.
+ */
+const PHOTO_REVALIDATE_SECONDS = 300;
 
 const PREFIX = '';
 const IMAGE_RX = /\.(jpe?g|png|webp|avif)$/i;
@@ -16,7 +27,16 @@ const FLAT_CATEGORIES = new Set(['animals', 'misc']);
 
 type Auth = { apiUrl: string; bucketId: string; downloadUrl: string; token: string };
 
-type ListedFile = { action: string; fileName: string };
+type ListedFile = { action: string; fileInfo?: Record<string, string>; fileName: string };
+
+/** A listed photograph: everything but the alt text, which the page writes. */
+export type BucketPhotograph = Omit<Photograph, 'alt'>;
+
+/** A positive whole number from B2 file info, which stores every value as a string. */
+const pixels = (value?: string) => {
+  const n = Number(value);
+  return Number.isInteger(n) && n > 0 ? n : undefined;
+};
 
 const missingConfig = () => !KEY_ID || !APP_KEY || !BUCKET;
 
@@ -61,6 +81,18 @@ async function fetchJson<T>(url: string | URL, init: RequestInit, label: string)
   );
 }
 
+/**
+ * The current UTC hour, e.g. "2026-09-30T03", sent with the authorization request.
+ *
+ * B2 ignores it; Next does not. The Data Cache keys a fetch by its headers,
+ * outlives deploys (Amplify restores .next/cache into every build), and during a
+ * build serves a stale entry rather than waiting for a fresh one. So a token
+ * cached days earlier came straight back, long after B2 expired it (they last
+ * 24h), and every listing failed with expired_auth_token — failing the build.
+ * Keyed by the hour, no cached token is ever much more than an hour old.
+ */
+const tokenHour = () => new Date().toISOString().slice(0, 13);
+
 const authorize = cache(async (): Promise<Auth> => {
   const basic = Buffer.from(`${KEY_ID}:${APP_KEY}`).toString('base64');
   const body = await fetchJson<{
@@ -70,8 +102,7 @@ const authorize = cache(async (): Promise<Auth> => {
   }>(
     'https://api.backblazeb2.com/b2api/v3/b2_authorize_account',
     {
-      headers: { Authorization: `Basic ${basic}` },
-      // B2 tokens last 24h, so reusing one for the revalidation window is safe.
+      headers: { Authorization: `Basic ${basic}`, 'X-Token-Hour': tokenHour() },
       next: { revalidate: PHOTO_REVALIDATE_SECONDS },
     },
     'b2_authorize_account',
@@ -110,8 +141,8 @@ const folderFor = (categoryId: string, albumId: string) =>
     ? `${PREFIX}${categoryId}/`
     : `${PREFIX}${categoryId}/${albumId}/`;
 
-async function listFolder(auth: Auth, folder: string): Promise<string[]> {
-  const names: string[] = [];
+async function listFolder(auth: Auth, folder: string): Promise<ListedFile[]> {
+  const files: ListedFile[] = [];
   let startFileName: string | null = null;
 
   do {
@@ -131,28 +162,45 @@ async function listFolder(auth: Auth, folder: string): Promise<string[]> {
       'b2_list_file_names',
     );
     for (const file of body.files) {
-      if (file.action === 'upload' && IMAGE_RX.test(file.fileName)) names.push(file.fileName);
+      if (file.action === 'upload' && IMAGE_RX.test(file.fileName)) files.push(file);
     }
     startFileName = body.nextFileName;
   } while (startFileName);
 
   // Natural sort, so photo2 precedes photo10 whatever the naming scheme.
-  return names.sort((a, b) => a.localeCompare(b, 'en', { numeric: true, sensitivity: 'base' }));
+  return files.sort((a, b) =>
+    a.fileName.localeCompare(b.fileName, 'en', { numeric: true, sensitivity: 'base' }),
+  );
 }
 
 export const listAlbumPhotographs = cache(
-  async (categoryId: string, albumId: string): Promise<string[]> => {
+  async (categoryId: string, albumId: string): Promise<BucketPhotograph[]> => {
     if (missingConfig()) {
       console.warn('B2_KEY_ID / B2_APP_KEY / B2_BUCKET are unset — galleries will render empty.');
       return [];
     }
 
     const auth = await authorize();
-    const files = await listFolder(auth, folderFor(categoryId, albumId));
-    return files.map(
-      (fileName) =>
-        `${auth.downloadUrl}/file/${BUCKET}/${fileName.split('/').map(encodeURIComponent).join('/')}`,
-    );
+    const folder = folderFor(categoryId, albumId);
+    const photographs = (await listFolder(auth, folder)).map(({ fileInfo, fileName }) => {
+      const width = pixels(fileInfo?.width);
+      const height = pixels(fileInfo?.height);
+      return {
+        src: `${auth.downloadUrl}/file/${BUCKET}/${fileName.split('/').map(encodeURIComponent).join('/')}`,
+        ...(width && height ? { height, width } : {}),
+      };
+    });
+
+    // Sizes are what let the grid hold each photograph's place before it loads.
+    const unsized = photographs.filter((photograph) => !photograph.width).length;
+    if (unsized) {
+      console.warn(
+        `${unsized} photographs in ${folder} have no recorded size, so the grid will shift ` +
+          'as they load. Run `npm run photos:optimize`.',
+      );
+    }
+
+    return photographs;
   },
 );
 

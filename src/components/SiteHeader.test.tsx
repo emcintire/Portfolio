@@ -46,7 +46,7 @@ describe('SiteHeader', () => {
   });
 
   it('keeps a section active on its nested routes but does not match Home everywhere', () => {
-    mockPathname = '/photography/travel/rockies2024';
+    mockPathname = '/photography/some-category/some-album';
     renderHeader();
 
     expect(primaryNavLink('Photography')).toHaveClass('nav-link--active');

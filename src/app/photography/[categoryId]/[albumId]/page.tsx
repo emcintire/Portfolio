@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { GalleryView } from '@/components/GalleryView';
 import { galleryCategories, getGalleryAlbum, getGalleryCategory } from '@/data/galleries';
 import { siteMetadata } from '@/data/site';
-import { listAlbumPhotographs } from '@/lib/b2';
+import { type BucketPhotograph, listAlbumPhotographs } from '@/lib/b2';
 import { JsonLd } from '@/lib/JsonLd';
 import { breadcrumbSchema, imageGallerySchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
@@ -13,8 +13,6 @@ import type { GalleryAlbum, GalleryCategory } from '@/types';
 type AlbumParams = { albumId: string; categoryId: string };
 
 export const dynamicParams = false;
-
-export const revalidate = 300;
 
 export function generateStaticParams(): AlbumParams[] {
   return galleryCategories.flatMap((category) =>
@@ -33,8 +31,8 @@ const albumDescription = (album: GalleryAlbum, category: GalleryCategory, count:
   return `${base}${where}${when}${many}`;
 };
 
-const toPhotographs = (sources: string[], album: GalleryAlbum) =>
-  sources.map((src, index) => ({ alt: `${album.title} photograph ${index + 1}`, src }));
+const toPhotographs = (sources: BucketPhotograph[], album: GalleryAlbum) =>
+  sources.map((source, index) => ({ ...source, alt: `${album.title} photograph ${index + 1}` }));
 
 export async function generateMetadata({
   params,

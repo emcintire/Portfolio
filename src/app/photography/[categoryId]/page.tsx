@@ -15,8 +15,6 @@ type CategoryParams = { categoryId: string };
 
 export const dynamicParams = false;
 
-export const revalidate = 300;
-
 export function generateStaticParams(): CategoryParams[] {
   return galleryCategories.map((category) => ({ categoryId: category.id }));
 }
@@ -66,9 +64,9 @@ export default async function PhotographyCategoryPage({
     if (!directAlbum) notFound();
 
     const sources = await listAlbumPhotographs(category.id, directAlbum.id);
-    const photographs = sources.map((src, index) => ({
+    const photographs = sources.map((source, index) => ({
+      ...source,
       alt: `${directAlbum.title} photograph ${index + 1}`,
-      src,
     }));
 
     return (

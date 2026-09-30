@@ -14,9 +14,14 @@ describe('gallery catalog', () => {
   });
 
   it('resolves known routes and rejects unknown routes', () => {
-    expect(getGalleryCategory('travel')?.title).toBe('Travel');
-    expect(getGalleryAlbum('travel', 'adirondacks2025')?.year).toBe('2025');
+    // Taken from the catalog rather than named, so editing albums cannot break it.
+    for (const category of galleryCategories) {
+      expect(getGalleryCategory(category.id)).toBe(category);
+      for (const album of category.albums) {
+        expect(getGalleryAlbum(category.id, album.id)).toBe(album);
+      }
+      expect(getGalleryAlbum(category.id, 'unknown')).toBeUndefined();
+    }
     expect(getGalleryCategory('unknown')).toBeUndefined();
-    expect(getGalleryAlbum('travel', 'unknown')).toBeUndefined();
   });
 });

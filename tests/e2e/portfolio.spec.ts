@@ -1,6 +1,8 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
+import { albumWithPhotographs } from './albums';
+
 const routes = [
   ['/', 'I build products that stay useful after the demo.'],
   ['/projects', 'From first schema to final store submission.'],
@@ -40,7 +42,7 @@ test('primary navigation, theme persistence, and invalid routes work', async ({ 
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 
-  await page.goto('/photography/travel/not-a-real-album');
+  await page.goto('/photography/not-a-category/not-an-album');
   await expect(
     page.getByRole('heading', { level: 1, name: 'This trail ends here.' }),
   ).toBeVisible();
@@ -73,21 +75,57 @@ test('mobile navigation manages state and keyboard dismissal', async ({ page }) 
   await expect(menuButton).toBeFocused();
 });
 
-// Rockies has 26 photographs, so it straddles the 24-per-page boundary. The
-// album this previously used, Adirondacks, holds 22 — under the page size — so
-// it rendered every photograph at once and never showed a "Load more" button.
-test('gallery progressively loads and opens an accessible viewer', async ({ page }) => {
-  await page.goto('/photography/travel/rockies2024');
+test('a gallery opens and closes an accessible viewer', async ({ page, request }) => {
+  await page.goto(await albumWithPhotographs(request));
 
-  await expect(page.getByRole('heading', { level: 1, name: 'Rockies' })).toBeVisible();
-  await expect(page.locator('.photo-grid > li')).toHaveCount(24);
-  await page.getByRole('button', { name: /photograph 1 of 26/i }).click();
-  await expect(page.getByRole('dialog', { name: /Rockies image viewer/i })).toBeVisible();
-  await page.keyboard.press('ArrowRight');
-  await expect(page.getByText(/2 \//)).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await page.getByRole('button', { name: /photograph 1 of \d+/i }).click();
+  await expect(page.getByRole('dialog', { name: /image viewer/i })).toBeVisible();
+  await expect(page.getByText(/^1 \//)).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toBeHidden();
+});
 
-  await page.getByRole('button', { name: 'Load more photographs' }).click();
-  await expect(page.locator('.photo-grid > li')).toHaveCount(26);
+// Guards the jumping: tiles used to grow from nothing as their images arrived,
+// and the columns rebalanced around each one. Relies on the bucket having
+// recorded sizes (npm run photos:optimize) — without them this fails, rightly.
+test('photographs load in without moving the grid', async ({ page, request }) => {
+  // Hold every thumbnail back until the grid has been measured without them.
+  let openGate = () => {};
+  const gate = new Promise<void>((resolve) => {
+    openGate = resolve;
+  });
+  await page.route('**/_next/image**', async (route) => {
+    await gate;
+    await route.continue();
+  });
+
+  await page.goto(await albumWithPhotographs(request));
+  // Attached, not visible: an unsized tile is zero-height until its image lands.
+  await expect(page.locator('.photo-grid__button').first()).toBeAttached();
+  await page.evaluate(() => document.fonts.ready);
+
+  // Relative to the grid, so nothing above it can move a tile in the reading.
+  const layout = () =>
+    page.locator('.photo-grid').evaluate((grid) => {
+      const origin = grid.getBoundingClientRect();
+      return [...grid.querySelectorAll('.photo-grid__button')].map((tile) => {
+        const box = tile.getBoundingClientRect();
+        return [box.x - origin.x, box.y - origin.y, box.width, box.height];
+      });
+    });
+  const before = await layout();
+
+  openGate();
+  // A few in view is enough to have moved things; the album may hold fewer.
+  await expect
+    .poll(() =>
+      page.locator('.photo-grid img').evaluateAll((images) => {
+        const loaded = images.filter((image) => (image as HTMLImageElement).naturalWidth > 0);
+        return loaded.length >= Math.min(4, images.length);
+      }),
+    )
+    .toBe(true);
+
+  expect(await layout()).toEqual(before);
 });
