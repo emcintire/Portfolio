@@ -44,7 +44,7 @@ test('primary navigation, theme persistence, and invalid routes work', async ({ 
 
   await page.goto('/photography/not-a-category/not-an-album');
   await expect(
-    page.getByRole('heading', { level: 1, name: 'This trail ends here.' }),
+    page.getByRole('heading', { level: 1, name: 'The journey doesn't end here. 404 is just another path, one that we all must take.' }),
   ).toBeVisible();
 });
 

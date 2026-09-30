@@ -8,15 +8,6 @@ const KEY_ID = process.env.B2_KEY_ID;
 const APP_KEY = process.env.B2_APP_KEY;
 const BUCKET = process.env.B2_BUCKET;
 
-/**
- * How often photography pages and the sitemap re-read the bucket, in seconds.
- * The one place to change it.
- *
- * The routes deliberately export no `revalidate` of their own. Next only
- * accepts a literal there, so it could not share this constant — and without
- * one, a route takes the lowest revalidate of the fetches it makes, which are
- * all of these below.
- */
 const PHOTO_REVALIDATE_SECONDS = 300;
 
 const PREFIX = '';
@@ -83,13 +74,7 @@ async function fetchJson<T>(url: string | URL, init: RequestInit, label: string)
 
 /**
  * The current UTC hour, e.g. "2026-09-30T03", sent with the authorization request.
- *
- * B2 ignores it; Next does not. The Data Cache keys a fetch by its headers,
- * outlives deploys (Amplify restores .next/cache into every build), and during a
- * build serves a stale entry rather than waiting for a fresh one. So a token
- * cached days earlier came straight back, long after B2 expired it (they last
- * 24h), and every listing failed with expired_auth_token — failing the build.
- * Keyed by the hour, no cached token is ever much more than an hour old.
+ * B2 ignores it; Next does not. Keyed by the hour, no cached token is ever much more than an hour old.
  */
 const tokenHour = () => new Date().toISOString().slice(0, 13);
 

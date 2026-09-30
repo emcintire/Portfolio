@@ -5,18 +5,6 @@ import { useEffect, useState } from 'react';
 
 import { Icon } from './Icon';
 
-/**
- * Flips between light and dark, always against what is currently on screen.
- *
- * Deliberately binary rather than cycling through "system" as a third state: in
- * one icon button that produced a click that changed nothing visible, because
- * stepping from an explicit dark to system looks identical when the OS is also
- * dark. Toggling `resolvedTheme` means every click has a visible effect.
- *
- * "System" is still the default, so a first-time visitor gets their OS
- * preference and follows it as it changes — up until they express a choice
- * here, which is the point at which they have said what they want.
- */
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   // The server cannot know the visitor's theme, so render theme-neutral until

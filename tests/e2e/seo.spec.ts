@@ -2,25 +2,6 @@ import { expect, test } from '@playwright/test';
 
 import { albumWithPhotographs } from './albums';
 
-/**
- * These assert the point of the Next.js migration: the metadata is in the HTML
- * the server sends, before any JavaScript runs. They fetch with `request`
- * rather than `page` so nothing hydrates — which is what a crawler sees.
- *
- * Under the old Vite SPA every one of these routes returned an identical head,
- * with a canonical pointing at the home page.
- *
- * Routes come from the live sitemap rather than from src/data, which keeps the
- * chain honest end to end: src/app/sitemap.test.ts proves the catalog reaches
- * the sitemap, and these prove every sitemap URL is a real prerendered page.
- * (Importing the catalog here is also not possible — it imports .jpg assets,
- * which Playwright's transpiler cannot parse.)
- */
-
-// Hardcoded on purpose rather than read from siteMetadata: the canonical host
-// is a fact about the deployment, and a test that derived it from the same
-// constant it checks would have happily passed while every canonical pointed at
-// a domain that did not resolve.
 const SITE = 'https://everettgsm.com';
 
 const tag = (html: string, pattern: RegExp) => html.match(pattern)?.[1];
@@ -43,7 +24,6 @@ test('every sitemap route is prerendered with its own title, description, and se
   request,
 }) => {
   const routes = await sitemapRoutes(request);
-  // Not a count: albums come and go. The fixed pages must always be there.
   expect(routes).toEqual(expect.arrayContaining(['/', '/projects', '/about', '/photography']));
 
   const seenTitles = new Map<string, string>();
@@ -96,7 +76,7 @@ test('unknown photography URLs return 404 rather than 200 with not-found content
   for (const route of ['/photography/nope', '/photography/nope/not-a-real-album']) {
     const response = await request.get(route);
     expect(response.status(), `${route} status`).toBe(404);
-    expect(await response.text()).toContain('This trail ends here.');
+    expect(await response.text()).toContain('The journey doesn't end here. 404 is just another path, one that we all must take.');
   }
 });
 

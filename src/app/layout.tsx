@@ -56,8 +56,6 @@ export const metadata: Metadata = {
   },
 };
 
-// theme-color and color-scheme must come from `viewport`, not `metadata`;
-// Next drops them from `metadata` with a build-time warning.
 export const viewport: Viewport = {
   colorScheme: 'light dark',
   initialScale: 1,
