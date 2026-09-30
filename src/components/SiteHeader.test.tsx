@@ -46,30 +46,24 @@ describe('SiteHeader', () => {
   });
 
   it('keeps a section active on its nested routes but does not match Home everywhere', () => {
-    mockPathname = '/photography/landscape/rockies2024';
+    mockPathname = '/photography/travel/rockies2024';
     renderHeader();
 
     expect(primaryNavLink('Photography')).toHaveClass('nav-link--active');
     expect(primaryNavLink('Home')).not.toHaveClass('nav-link--active');
   });
 
-  it('cycles system, light and dark, and says which is active', () => {
-    // The matchMedia stub reports no dark preference, so "system" resolves light.
+  it('flips the visible theme on every click', () => {
+    // The matchMedia stub reports no dark preference, so system resolves light.
     renderHeader();
 
-    const atSystem = screen.getByRole('button', { name: /Following system theme/i });
-    expect(atSystem).toHaveAccessibleName(/Switch to light theme/i);
-
-    fireEvent.click(atSystem);
-    expect(document.documentElement).toHaveAttribute('data-theme', 'light');
-
-    const atLight = screen.getByRole('button', { name: /Using light theme/i });
-    fireEvent.click(atLight);
+    const toLight = screen.getByRole('button', { name: /Switch to dark theme/i });
+    fireEvent.click(toLight);
     expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
 
-    // Third click returns to system — the state the old toggle could never
-    // reach once a preference had been stored.
-    fireEvent.click(screen.getByRole('button', { name: /Using dark theme/i }));
-    expect(screen.getByRole('button', { name: /Following system theme/i })).toBeInTheDocument();
+    // The regression this replaced: a click that changed nothing on screen.
+    const toDark = screen.getByRole('button', { name: /Switch to light theme/i });
+    fireEvent.click(toDark);
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light');
   });
 });

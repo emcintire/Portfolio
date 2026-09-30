@@ -40,7 +40,7 @@ test('primary navigation, theme persistence, and invalid routes work', async ({ 
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 
-  await page.goto('/photography/landscape/not-a-real-album');
+  await page.goto('/photography/travel/not-a-real-album');
   await expect(
     page.getByRole('heading', { level: 1, name: 'This trail ends here.' }),
   ).toBeVisible();
@@ -77,7 +77,7 @@ test('mobile navigation manages state and keyboard dismissal', async ({ page }) 
 // album this previously used, Adirondacks, holds 22 — under the page size — so
 // it rendered every photograph at once and never showed a "Load more" button.
 test('gallery progressively loads and opens an accessible viewer', async ({ page }) => {
-  await page.goto('/photography/landscape/rockies2024');
+  await page.goto('/photography/travel/rockies2024');
 
   await expect(page.getByRole('heading', { level: 1, name: 'Rockies' })).toBeVisible();
   await expect(page.locator('.photo-grid > li')).toHaveCount(24);

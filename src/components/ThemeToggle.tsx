@@ -6,58 +6,38 @@ import { useEffect, useState } from 'react';
 import { Icon } from './Icon';
 
 /**
- * Cycles system -> light -> dark -> system.
+ * Flips between light and dark, always against what is currently on screen.
  *
- * The third state is the point of the switch to next-themes: previously the
- * first click wrote a preference to storage and the OS setting was ignored for
- * good, with no way back. "System" is now both the default and reachable again.
+ * Deliberately binary rather than cycling through "system" as a third state: in
+ * one icon button that produced a click that changed nothing visible, because
+ * stepping from an explicit dark to system looks identical when the OS is also
+ * dark. Toggling `resolvedTheme` means every click has a visible effect.
+ *
+ * "System" is still the default, so a first-time visitor gets their OS
+ * preference and follows it as it changes — up until they express a choice
+ * here, which is the point at which they have said what they want.
  */
-const ORDER = ['system', 'light', 'dark'] as const;
-
-const LABELS = {
-  dark: 'Using dark theme',
-  light: 'Using light theme',
-  system: 'Following system theme',
-} as const;
-
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme, theme } = useTheme();
-  // The server cannot know the visitor's stored preference, so render
-  // theme-neutral until mount. Guessing would mismatch on hydration for anyone
-  // whose theme is not the default.
+  const { resolvedTheme, setTheme } = useTheme();
+  // The server cannot know the visitor's theme, so render theme-neutral until
+  // mount. Guessing would mismatch on hydration for anyone not on the default.
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => setHasMounted(true), []);
 
-  if (!hasMounted) {
-    return (
-      <button
-        aria-label="Toggle theme"
-        className="icon-button theme-toggle"
-        onClick={() => setTheme('light')}
-        title="Toggle theme"
-        type="button"
-      >
-        <Icon name="moon" />
-      </button>
-    );
-  }
-
-  const current = (ORDER as readonly string[]).includes(theme ?? '')
-    ? (theme as (typeof ORDER)[number])
-    : 'system';
-  const next = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length];
+  const isDark = resolvedTheme === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  const label = hasMounted ? `Switch to ${next} theme` : 'Toggle theme';
 
   return (
     <button
-      aria-label={`${LABELS[current]}. Switch to ${next} theme.`}
+      aria-label={label}
       className="icon-button theme-toggle"
-      onClick={() => setTheme(next)}
-      title={`${LABELS[current]} — switch to ${next}`}
+      onClick={() => setTheme(hasMounted ? next : 'dark')}
+      title={label}
       type="button"
     >
-      {/* System shows whichever theme it resolved to, so the icon stays honest. */}
-      <Icon name={(current === 'system' ? resolvedTheme : current) === 'dark' ? 'sun' : 'moon'} />
+      <Icon name={hasMounted && isDark ? 'sun' : 'moon'} />
     </button>
   );
 }

@@ -18,7 +18,7 @@ import { absoluteUrl } from '@/lib/seo';
  */
 // Next statically analyses this, so it must stay a literal —
 // keep it in step with PHOTO_REVALIDATE_SECONDS in src/lib/b2.ts.
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();

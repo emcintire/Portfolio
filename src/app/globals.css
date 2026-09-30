@@ -906,7 +906,7 @@ p {
 
 .page-hero h1 {
   margin-bottom: 0;
-  font-size: clamp(3.3rem, 8vw, 6rem);
+  font-size: clamp(3.3rem, 8vw, 5rem);
 }
 
 .page-hero__copy {
@@ -929,8 +929,8 @@ p {
   box-shadow: var(--shadow-large);
 }
 
-.about-profile h2 {
-  font-size: clamp(2.8rem, 5vw, 4.8rem);
+.about-profile h3 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
 }
 
 .about-profile p:not(.eyebrow, .contact-note) {

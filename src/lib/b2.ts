@@ -6,7 +6,7 @@ const KEY_ID = process.env.B2_KEY_ID;
 const APP_KEY = process.env.B2_APP_KEY;
 const BUCKET = process.env.B2_BUCKET;
 
-export const PHOTO_REVALIDATE_SECONDS = 3600;
+export const PHOTO_REVALIDATE_SECONDS = 300;
 
 const PREFIX = '';
 const IMAGE_RX = /\.(jpe?g|png|webp|avif)$/i;
@@ -28,16 +28,6 @@ const wait = (ms: number) =>
     setTimeout(resolve, ms);
   });
 
-/**
- * A fetch that survives a flaky moment.
- *
- * Retries connection failures, 5xx and 429, and — the one that actually bit —
- * a 200 whose body is empty or truncated, where `res.json()` throws
- * "Unexpected end of JSON input" and would otherwise 500 the whole page.
- *
- * A 4xx other than 429 is not retried: that is a wrong key or a missing
- * bucket, and repeating it just delays a failure that needs a human.
- */
 async function fetchJson<T>(url: string | URL, init: RequestInit, label: string): Promise<T> {
   let lastError: unknown;
 

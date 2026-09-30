@@ -51,10 +51,10 @@ describe('sitemap', () => {
     const entries = await sitemap();
     const at = (url: string) => entries.find((entry) => entry.url === `${SITE}${url}`);
 
-    expect(at('/photography/landscape/rockies2024')?.images).toHaveLength(2);
+    expect(at('/photography/travel/rockies2024')?.images).toHaveLength(2);
     // A directAlbum renders at its category URL, so its photographs ride there.
     expect(at('/photography/animals')?.images).toHaveLength(2);
     // A category with real albums has no photographs of its own.
-    expect(at('/photography/landscape')?.images).toBeUndefined();
+    expect(at('/photography/travel')?.images).toBeUndefined();
   });
 });

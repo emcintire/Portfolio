@@ -10,7 +10,7 @@ import { buildMetadata } from '@/lib/seo';
 const albumCount = galleryCategories.reduce((total, category) => total + category.albums.length, 0);
 
 export const metadata = buildMetadata({
-  description: `Landscape, portrait, and wildlife photography by ${siteMetadata.name} — ${albumCount} albums spanning national parks, road trips, and family sessions.`,
+  description: `Travel, portrait, and wildlife photography by ${siteMetadata.name} — ${albumCount} albums spanning national parks, road trips, and family sessions.`,
   path: '/photography',
   title: 'Photography',
 });
@@ -23,10 +23,10 @@ export default function PhotographyIndexPage() {
         <div className="page-container page-hero__grid">
           <div>
             <p className="eyebrow">Photography</p>
-            <h1>
+            <h2>
               I came here to chew bubble gum and take pictures... and I&apos;m all out of bubble
               gum.
-            </h1>
+            </h2>
           </div>
           <div className="page-hero__copy">
             <p>

@@ -11,12 +11,12 @@ import { GalleryView } from './GalleryView';
 const makePhotographs = (count: number): Photograph[] =>
   Array.from({ length: count }, (_, index) => ({
     alt: index === 0 ? 'Mountain Range' : `Rockies photograph ${index + 1}`,
-    src: `https://f000.backblazeb2.com/file/bucket/photos/landscape/rockies2024/${index}.jpg`,
+    src: `https://f000.backblazeb2.com/file/bucket/photos/travel/rockies2024/${index}.jpg`,
   }));
 
 describe('GalleryView', () => {
   it('progressively reveals photographs and supports the lightbox keyboard flow', () => {
-    const category = getGalleryCategory('landscape');
+    const category = getGalleryCategory('travel');
     const album = category?.albums.find((entry) => entry.id === 'rockies2024');
     if (!category || !album) throw new Error('Expected test album');
 
@@ -42,7 +42,7 @@ describe('GalleryView', () => {
   });
 
   it('routes thumbnails through the image optimizer rather than the bucket', () => {
-    const category = getGalleryCategory('landscape');
+    const category = getGalleryCategory('travel');
     const album = category?.albums.find((entry) => entry.id === 'rockies2024');
     if (!category || !album) throw new Error('Expected test album');
 

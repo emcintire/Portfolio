@@ -13,14 +13,9 @@ import { buildMetadata } from '@/lib/seo';
 
 type CategoryParams = { categoryId: string };
 
-// Every category is known at build time, so prerender them all and let anything
-// else 404 with a real status instead of rendering not-found content behind 200.
 export const dynamicParams = false;
 
-/** See the album route: photographs come from B2, so pages refresh in place. */
-// Next statically analyses this, so it must stay a literal —
-// keep it in step with PHOTO_REVALIDATE_SECONDS in src/lib/b2.ts.
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export function generateStaticParams(): CategoryParams[] {
   return galleryCategories.map((category) => ({ categoryId: category.id }));
@@ -61,8 +56,6 @@ export default async function PhotographyCategoryPage({
 
   if (!category) notFound();
 
-  // Single-album categories (animals, misc) show the gallery itself rather than
-  // an album grid of one. The nested album URL 301s here (see next.config.ts).
   const breadcrumb = breadcrumbSchema([
     { name: 'Photography', path: '/photography' },
     { name: category.title, path: `/photography/${category.id}` },
@@ -104,7 +97,6 @@ export default async function PhotographyCategoryPage({
       <JsonLd data={collectionPageSchema(category)} />
       <JsonLd data={breadcrumb} />
       <section className="category-hero">
-        {/* LCP element: a 4898px-wide source that used to ship unresized. */}
         <Image alt="" priority sizes="100vw" src={category.cover} />
         <div className="category-hero__overlay">
           <div className="page-container">

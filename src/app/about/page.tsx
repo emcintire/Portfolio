@@ -25,7 +25,7 @@ export default function AboutPage() {
         <div className="page-container page-hero__grid">
           <div>
             <p className="eyebrow">About</p>
-            <h1>Software engineer, photographer, and firm believer in second breakfast.</h1>
+            <h2>Software engineer, photographer, and firm believer in second breakfast.</h2>
           </div>
           <div className="page-hero__copy">
             <p>
@@ -50,7 +50,7 @@ export default function AboutPage() {
           />
           <div>
             <p className="eyebrow">A little more context</p>
-            <h2>I like working close to the problem.</h2>
+            <h3>I like working close to the problem.</h3>
             <p>
               The projects I enjoy most require both technical depth and product judgment:
               understanding the real constraint, choosing an appropriately simple design, measuring

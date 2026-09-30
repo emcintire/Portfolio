@@ -12,6 +12,8 @@ export default [
   {
     ignores: [
       '.next/**',
+      // NEXT_DIST_DIR builds, e.g. .next-check
+      '.next-*/**',
       'coverage/**',
       'dist/**',
       'next-env.d.ts',

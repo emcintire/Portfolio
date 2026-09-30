@@ -1,15 +1,16 @@
-import landscapeCategoryCover from '@/assets/images/landscape.jpg';
 import portraitsCategoryCover from '@/assets/images/portraits.jpg';
+import travelCategoryCover from '@/assets/images/travel.jpg';
 import adirondacksCover from '@/assets/optimized/adks.webp';
 import adirondacks2026Cover from '@/assets/optimized/adks2026.webp';
 import alaska2018Cover from '@/assets/optimized/alaska2018.webp';
 import alaska2020Cover from '@/assets/optimized/alaska2020.webp';
 import animalsCover from '@/assets/optimized/animals.webp';
 import beachCover from '@/assets/optimized/beach.webp';
-import landscapeCardCover from '@/assets/optimized/landscape.webp';
+import italy2026Cover from '@/assets/optimized/italy2026.webp';
 import malabarCover from '@/assets/optimized/malabar.webp';
 import mammothCover from '@/assets/optimized/mammoth.webp';
 import miscCover from '@/assets/optimized/misc.webp';
+import paris2026Cover from '@/assets/optimized/paris2026.webp';
 import portraitsCardCover from '@/assets/optimized/portraits.webp';
 import rio1Cover from '@/assets/optimized/rio1.webp';
 import rio2Cover from '@/assets/optimized/rio2.webp';
@@ -18,9 +19,11 @@ import roadtripCover from '@/assets/optimized/roadtrip.webp';
 import rockiesCover from '@/assets/optimized/rockies2024.webp';
 import snowCover from '@/assets/optimized/snow.webp';
 import summerCover from '@/assets/optimized/summer.webp';
+import switzerland2026Cover from '@/assets/optimized/switzerland2026.webp';
 import ted1Cover from '@/assets/optimized/ted1.webp';
 import ted2Cover from '@/assets/optimized/ted2.webp';
 import tetonsCover from '@/assets/optimized/tetons.webp';
+import travelCardCover from '@/assets/optimized/travel.webp';
 import yellowstoneCover from '@/assets/optimized/yellowstone.webp';
 import yosemiteCover from '@/assets/optimized/yosemite.webp';
 import type { GalleryAlbum, GalleryCategory } from '@/types';
@@ -30,6 +33,30 @@ const album = (input: GalleryAlbum): GalleryAlbum => input;
 export const galleryCategories: GalleryCategory[] = [
   {
     albums: [
+      album({
+        cover: paris2026Cover,
+        description: '',
+        id: 'paris2026',
+        location: 'Paris',
+        title: 'Paris',
+        year: '2026',
+      }),
+      album({
+        cover: switzerland2026Cover,
+        description: '',
+        id: 'switzerland2026',
+        location: 'Switzerland',
+        title: 'Switzerland',
+        year: '2026',
+      }),
+      album({
+        cover: italy2026Cover,
+        description: '',
+        id: 'italy2026',
+        location: 'Italy',
+        title: 'Italy',
+        year: '2026',
+      }),
       album({
         cover: adirondacks2026Cover,
         description:
@@ -136,11 +163,11 @@ export const galleryCategories: GalleryCategory[] = [
         year: '2017',
       }),
     ],
-    cardCover: landscapeCardCover,
-    cover: landscapeCategoryCover,
-    description: 'Roads, mountains, weather, and the quiet scale of the American landscape.',
-    id: 'landscape',
-    title: 'Landscape',
+    cardCover: travelCardCover,
+    cover: travelCategoryCover,
+    description: 'Mountains, forests, lakes, and occasionally basic tourist destinations.',
+    id: 'travel',
+    title: 'Travel',
   },
   {
     albums: [
@@ -203,7 +230,7 @@ export const galleryCategories: GalleryCategory[] = [
     ],
     cardCover: portraitsCardCover,
     cover: portraitsCategoryCover,
-    description: 'Families, milestones, and candid moments shaped by natural light.',
+    description: 'Every time my sisters have forced me to take family photos.',
     id: 'portraits',
     title: 'Portraits',
   },
@@ -211,15 +238,14 @@ export const galleryCategories: GalleryCategory[] = [
     albums: [
       album({
         cover: animalsCover,
-        description:
-          'Wildlife and domestic characters met on the road and close to home — patient waiting, occasionally rewarded.',
+        description: 'Lil creatures I come across.',
         id: 'animals',
         title: 'Animals',
       }),
     ],
     cardCover: animalsCover,
     cover: animalsCover,
-    description: 'Wildlife and domestic characters encountered close to home and far away.',
+    description: 'Lil creatures I come across.',
     directAlbum: 'animals',
     id: 'animals',
     title: 'Animals',
@@ -236,7 +262,7 @@ export const galleryCategories: GalleryCategory[] = [
     ],
     cardCover: miscCover,
     cover: miscCover,
-    description: 'Small visual observations that do not need a category to earn their place.',
+    description: 'Random shit.',
     directAlbum: 'misc',
     id: 'misc',
     title: 'Miscellaneous',

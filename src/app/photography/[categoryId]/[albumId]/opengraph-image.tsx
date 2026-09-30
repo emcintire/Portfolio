@@ -8,8 +8,6 @@ export const alt = 'Photography album preview';
 export const contentType = 'image/png';
 export const size = { height: 630, width: 1200 };
 
-// Without this the route is server-rendered on demand. The album set is fixed
-// at build time, so enumerate it and let every card be prerendered.
 export function generateStaticParams() {
   return galleryCategories.flatMap((category) =>
     category.albums
@@ -18,13 +16,6 @@ export function generateStaticParams() {
   );
 }
 
-/**
- * Per-album share card. Statically generated at build time — it touches no
- * request-time APIs — so it costs nothing at runtime.
- *
- * ImageResponse supports only a subset of CSS (flexbox, solid fills, no
- * shorthand `background`), so keep the composition plain.
- */
 export default async function Image({
   params,
 }: {

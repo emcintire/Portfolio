@@ -14,9 +14,9 @@ describe('gallery catalog', () => {
   });
 
   it('resolves known routes and rejects unknown routes', () => {
-    expect(getGalleryCategory('landscape')?.title).toBe('Landscape');
-    expect(getGalleryAlbum('landscape', 'adirondacks2025')?.year).toBe('2025');
+    expect(getGalleryCategory('travel')?.title).toBe('Travel');
+    expect(getGalleryAlbum('travel', 'adirondacks2025')?.year).toBe('2025');
     expect(getGalleryCategory('unknown')).toBeUndefined();
-    expect(getGalleryAlbum('landscape', 'unknown')).toBeUndefined();
+    expect(getGalleryAlbum('travel', 'unknown')).toBeUndefined();
   });
 });

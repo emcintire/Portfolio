@@ -6,9 +6,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    remotePatterns: [
-      { hostname: '*.backblazeb2.com', protocol: 'https' },
-    ],
+    remotePatterns: [{ hostname: '*.backblazeb2.com', protocol: 'https' }],
   },
   async redirects() {
     return [
@@ -20,6 +18,13 @@ const nextConfig: NextConfig = {
       {
         destination: '/photography/misc',
         source: '/photography/misc/misc',
+        statusCode: 301,
+      },
+      // Landscape was renamed Travel. :path* also matches the bare category
+      // URL, so this one rule covers the category, its albums and share images.
+      {
+        destination: '/photography/travel/:path*',
+        source: '/photography/landscape/:path*',
         statusCode: 301,
       },
     ];
