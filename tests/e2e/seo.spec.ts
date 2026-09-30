@@ -76,7 +76,9 @@ test('unknown photography URLs return 404 rather than 200 with not-found content
   for (const route of ['/photography/nope', '/photography/nope/not-a-real-album']) {
     const response = await request.get(route);
     expect(response.status(), `${route} status`).toBe(404);
-    expect(await response.text()).toContain('The journey doesn't end here. 404 is just another path, one that we all must take.');
+    expect(await response.text()).toContain(
+      "The journey doesn't end here. 404 is just another path, one that we all must take.",
+    );
   }
 });
 
