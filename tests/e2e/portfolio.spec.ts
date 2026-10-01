@@ -53,8 +53,7 @@ test('primary navigation, theme persistence, and invalid routes work', async ({ 
 
 test('client-side navigation moves focus to the main landmark', async ({ page }) => {
   // Guards RouteFocus, the one behavior kept from the deleted RouteEffects.
-  // Without it, keyboard and screen-reader users stay on the activated link
-  // after navigating.
+  // Without it, keyboard and screen-reader users stay on the activated link after navigating.
   await page.goto('/');
   await page.getByRole('link', { name: 'Work' }).first().click();
   await expect(page).toHaveURL(/\/projects$/);

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import portrait from '@/assets/optimized/pp.webp';
+import { CategoryCard } from '@/components/CategoryCard';
 import { ProjectCard } from '@/components/ProjectCard';
 import { SectionIntro } from '@/components/SectionIntro';
 import { galleryCategories } from '@/data/galleries';
@@ -112,20 +113,10 @@ export default function HomePage() {
           <ul className="gallery-card-grid">
             {galleryCategories.slice(0, 3).map((category) => (
               <li key={category.id}>
-                <Link className="gallery-card" href={`/photography/${category.id}`}>
-                  <Image
-                    alt=""
-                    sizes="(max-width: 576px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    src={category.cardCover}
-                  />
-                  <span className="gallery-card__overlay">
-                    <strong>{category.title}</strong>
-                    <span>
-                      {category.albums.length}{' '}
-                      {category.albums.length === 1 ? 'collection' : 'albums'}
-                    </span>
-                  </span>
-                </Link>
+                <CategoryCard
+                  category={category}
+                  sizes="(max-width: 576px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
               </li>
             ))}
           </ul>

@@ -13,7 +13,7 @@ export function SiteFooter() {
           <Link className="site-footer__name" href="/">
             {siteMetadata.name}
           </Link>
-          <p>Engineering thoughtful products and photographing the places between them.</p>
+          <p>Shipping software between snowboard runs and movie nights.</p>
         </div>
 
         <div className="social-links" aria-label="Social profiles">
@@ -33,7 +33,7 @@ export function SiteFooter() {
       </div>
       <div className="site-footer__legal">
         <span>© {new Date().getFullYear()} Everett McIntire</span>
-        <span>Built with React, TypeScript, and restraint.</span>
+        <span>Built with React, TypeScript, and caffeine.</span>
       </div>
     </footer>
   );

@@ -18,6 +18,7 @@
   --color-accent-strong: #742b0f;
   --color-brand: #28513e;
   --color-brand-strong: #173d2e;
+  --color-on-brand-strong: #fff;
   --color-line: rgba(24, 36, 30, 0.16);
   --color-overlay: rgba(12, 22, 17, 0.78);
   --color-focus: #075fca;
@@ -65,6 +66,7 @@
   --color-accent-strong: #ffc09d;
   --color-brand: #92c7a9;
   --color-brand-strong: #b9dec9;
+  --color-on-brand-strong: #102018;
   --color-line: rgba(244, 240, 231, 0.16);
   --color-overlay: rgba(5, 10, 7, 0.82);
   --color-focus: #77b9ff;
@@ -245,7 +247,7 @@ p {
   left: var(--space-3);
   z-index: 1000;
   padding: var(--space-3) var(--space-4);
-  color: #fff;
+  color: var(--color-on-brand-strong);
   background: var(--color-brand-strong);
   border-radius: var(--radius-small);
   font-weight: 700;
@@ -602,7 +604,7 @@ p {
 }
 
 .impact-strip {
-  color: #fff;
+  color: var(--color-on-brand-strong);
   background: var(--color-brand-strong);
 }
 
@@ -617,7 +619,7 @@ p {
   flex-direction: column;
   justify-content: center;
   padding: var(--space-5) clamp(1rem, 4vw, 3rem);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid color-mix(in srgb, var(--color-on-brand-strong) 20%, transparent);
 }
 
 .impact-stat:first-child {
@@ -638,7 +640,7 @@ p {
 .impact-stat span {
   max-width: 15rem;
   margin-top: var(--space-3);
-  color: rgba(255, 255, 255, 0.78);
+  color: color-mix(in srgb, var(--color-on-brand-strong) 78%, transparent);
   font-size: 0.88rem;
 }
 
@@ -865,6 +867,32 @@ p {
   font-size: 0.88rem;
 }
 
+/* Two lines held either way, so a one-line description doesn't drop its card's
+   title below its neighbors' — the overlay is anchored to the card's bottom. */
+.gallery-card__description {
+  min-height: 2lh;
+}
+
+/* Pinned over the photograph, so it needs its own dark, frosted backing to stay
+   legible whatever the cover looks like at that corner. */
+.gallery-card__badge {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 1;
+  padding: var(--space-1) var(--space-3);
+  color: #fff;
+  background: rgba(4, 13, 8, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(8px);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
 .gallery-card-grid--large .gallery-card {
   min-height: 36rem;
 }
@@ -1055,7 +1083,7 @@ p {
 
 .testimonial-section {
   padding-block: var(--space-9);
-  color: #fff;
+  color: var(--color-on-brand-strong);
   background: var(--color-brand-strong);
 }
 
@@ -1078,12 +1106,12 @@ p {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  color: rgba(255, 255, 255, 0.72);
+  color: color-mix(in srgb, var(--color-on-brand-strong) 72%, transparent);
   font-size: 0.86rem;
 }
 
 .testimonial figcaption strong {
-  color: #fff;
+  color: var(--color-on-brand-strong);
   font-size: 1rem;
 }
 
@@ -1113,6 +1141,11 @@ p {
 .category-hero h1 {
   margin-bottom: var(--space-4);
   color: #fff;
+}
+
+.category-hero .eyebrow {
+  color: #ff9a63;
+  text-shadow: 0 1px 3px rgba(4, 12, 8, 0.85);
 }
 
 .category-hero p:last-child {
@@ -1285,13 +1318,23 @@ p {
   transform: scale(1.025);
 }
 
+/*
+ * Sized to the dynamic viewport — what is actually visible right now. Mobile
+ * browsers with a collapsing toolbar (Firefox on Android) could otherwise make
+ * the overlay taller than the screen and centre the photograph off-screen.
+ * touch-action stops a swipe scrolling the page or sliding the toolbar behind
+ * it, while still letting the photograph be pinch-zoomed.
+ */
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: 500;
   display: grid;
+  height: 100dvh;
   place-items: center;
   padding: var(--space-5);
+  overscroll-behavior: contain;
+  touch-action: pinch-zoom;
 }
 
 .lightbox__backdrop {
@@ -1310,7 +1353,7 @@ p {
   z-index: 1;
   display: flex;
   width: min(90rem, 100%);
-  height: calc(100svh - 5rem);
+  height: calc(100dvh - 5rem);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -1452,6 +1495,10 @@ p {
 }
 
 @media (max-width: 64rem) {
+  h2 {
+    font-size: clamp(2.3rem, 5vw, 3.6rem);
+  }
+
   .project-card {
     grid-template-columns: 1fr;
   }
@@ -1548,7 +1595,7 @@ p {
     transition:
       color var(--transition),
       background-color var(--transition),
-      transform var(--transition);
+      translate var(--transition);
     animation: mobile-menu-item-enter 360ms cubic-bezier(0.22, 1, 0.36, 1) var(--menu-item-delay)
       backwards;
   }
@@ -1565,11 +1612,14 @@ p {
     --menu-item-delay: 210ms;
   }
 
+  /* The indent uses `translate`, not `transform`: the entrance animation drives
+     transform and overrides it while running, so the active link slid in flush
+     and then snapped 0.25rem right when the animation ended. */
   .mobile-nav__link:hover,
   .mobile-nav__link--active {
     color: var(--color-accent);
     background: var(--color-surface-tinted);
-    transform: translateX(0.25rem);
+    translate: 0.25rem 0;
   }
 
   .mobile-nav__contact {
@@ -1600,7 +1650,7 @@ p {
     min-height: auto;
     padding: var(--space-6) 0;
     border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-on-brand-strong) 20%, transparent);
   }
 
   .impact-stat:last-child {
@@ -1624,6 +1674,12 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .testimonial blockquote {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: clamp(1.4rem, 4vw, 2.5rem);
+  }
+
   .contact-banner__inner {
     display: flex;
   }
@@ -1639,7 +1695,7 @@ p {
 
   .experience-card {
     grid-column: 1 / -1;
-    margin-left: 1rem;
+    margin-left: 0;
   }
 
   .skill-grid {

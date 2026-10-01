@@ -1,6 +1,4 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
+import { CategoryCard } from '@/components/CategoryCard';
 import { galleryCategories } from '@/data/galleries';
 import { siteMetadata } from '@/data/site';
 import { JsonLd } from '@/lib/JsonLd';
@@ -42,13 +40,7 @@ export default function PhotographyIndexPage() {
           <ul className="gallery-card-grid gallery-card-grid--large">
             {galleryCategories.map((category) => (
               <li key={category.id}>
-                <Link className="gallery-card" href={`/photography/${category.id}`}>
-                  <Image alt="" sizes="(max-width: 576px) 100vw, 50vw" src={category.cardCover} />
-                  <span className="gallery-card__overlay">
-                    <strong>{category.title}</strong>
-                    <span>{category.description}</span>
-                  </span>
-                </Link>
+                <CategoryCard category={category} sizes="(max-width: 576px) 100vw, 50vw" />
               </li>
             ))}
           </ul>

@@ -31,8 +31,10 @@ export function PhotoLightbox({
   }, [currentPhoto?.src]);
 
   useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const { body, documentElement: root } = document;
+    const previousOverflow = { body: body.style.overflow, root: root.style.overflow };
+    body.style.overflow = 'hidden';
+    root.style.overflow = 'hidden';
     closeButtonRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -62,7 +64,8 @@ export function PhotoLightbox({
 
     document.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
+      body.style.overflow = previousOverflow.body;
+      root.style.overflow = previousOverflow.root;
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [currentIndex, onClose, onSelect, photographs.length]);

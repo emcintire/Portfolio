@@ -262,7 +262,7 @@ export const galleryCategories: GalleryCategory[] = [
     ],
     cardCover: miscCover,
     cover: miscCover,
-    description: 'Random shit.',
+    description: '¯\\_(ツ)_/¯',
     directAlbum: 'misc',
     id: 'misc',
     title: 'Miscellaneous',

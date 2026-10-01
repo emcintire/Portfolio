@@ -29,13 +29,13 @@ export default function AboutPage() {
           </div>
           <div className="page-hero__copy">
             <p>
-              I’m a full-stack software engineer who enjoys taking ambiguous product ideas from
-              first conversation to dependable production software.
+              I’m a full-stack software engineer who likes owning a product end to end: shaping the
+              idea, building it, shipping it, and keeping it happy after launch.
             </p>
             <p>
-              My work spans React and React Native interfaces, typed Node.js and .NET APIs, data
-              modeling, performance, CI/CD, release management, and the feedback loops that keep a
-              product improving.
+              My work spans React and React Native interfaces, typed Node.js, .NET, and Django APIs,
+              data modeling, performance, CI/CD, release management, and the feedback loops that
+              keep a product improving.
             </p>
           </div>
         </div>
@@ -52,9 +52,14 @@ export default function AboutPage() {
             <p className="eyebrow">A little more context</p>
             <h3>I like working close to the problem.</h3>
             <p>
-              The projects I enjoy most require both technical depth and product judgment:
-              understanding the real constraint, choosing an appropriately simple design, measuring
-              the result, and staying involved after launch.
+              I’m happiest when a problem needs both a careful engineer and someone asking whether
+              we’re solving the right thing.
+            </p>
+            <p>
+              Some of my favorite work has been the unglamorous kind. At my last job, one
+              high-traffic endpoint took about ten seconds to respond, and after digging into the
+              queries and indexes I got it down to a quarter of a second. Finding the actual cause,
+              instead of piling another workaround on top, is the part of the job I enjoy most.
             </p>
             <p>
               Away from a keyboard, I watch films, listen to music, take photographs, snowboard
