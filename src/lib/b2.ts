@@ -31,13 +31,35 @@ const pixels = (value?: string) => {
 
 const missingConfig = () => !KEY_ID || !APP_KEY || !BUCKET;
 
-/** Attempts per request, including the first. */
-const MAX_ATTEMPTS = 3;
+/**
+ * Attempts per request, including the first.
+ *
+ * A build fires dozens of listings at once, and a dropped connection mid-burst
+ * ("fetch failed") outlasted the old three tries inside 0.6s and failed a
+ * deploy. Five tries backing off from 0.5s span about eight seconds — long
+ * enough for a blip to clear, and the wait never reaches a visitor: at runtime
+ * pages regenerate in the background.
+ */
+const MAX_ATTEMPTS = 5;
+const BASE_DELAY_MS = 500;
 
 const wait = (ms: number) =>
   new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
+
+/** Exponential, with jitter so a burst of failed requests doesn't retry in lockstep. */
+const backoff = (attempt: number) =>
+  BASE_DELAY_MS * 2 ** (attempt - 1) * (0.75 + Math.random() / 2);
+
+/** fetch() reports every network failure as just "fetch failed"; the real error is its cause. */
+const describe = (error: unknown) => {
+  if (!(error instanceof Error)) return String(error);
+  const cause = error.cause;
+  if (!(cause instanceof Error)) return error.message;
+  const code = (cause as Error & { code?: string }).code;
+  return `${error.message} (${code ? `${code}: ` : ''}${cause.message})`;
+};
 
 async function fetchJson<T>(url: string | URL, init: RequestInit, label: string): Promise<T> {
   let lastError: unknown;
@@ -62,14 +84,10 @@ async function fetchJson<T>(url: string | URL, init: RequestInit, label: string)
       lastError = error;
     }
 
-    if (attempt < MAX_ATTEMPTS) await wait(200 * 2 ** (attempt - 1));
+    if (attempt < MAX_ATTEMPTS) await wait(backoff(attempt));
   }
 
-  throw new Error(
-    `${label} failed after ${MAX_ATTEMPTS} attempts: ${
-      lastError instanceof Error ? lastError.message : String(lastError)
-    }`,
-  );
+  throw new Error(`${label} failed after ${MAX_ATTEMPTS} attempts: ${describe(lastError)}`);
 }
 
 /**
@@ -179,9 +197,11 @@ export const listAlbumPhotographs = cache(
     // Sizes are what let the grid hold each photograph's place before it loads.
     const unsized = photographs.filter((photograph) => !photograph.width).length;
     if (unsized) {
+      const [noun, verb, pronoun] =
+        unsized === 1 ? ['photograph', 'has', 'it loads'] : ['photographs', 'have', 'they load'];
       console.warn(
-        `${unsized} photographs in ${folder} have no recorded size, so the grid will shift ` +
-          'as they load. Run `npm run photos:optimize`.',
+        `${unsized} ${noun} in ${folder} ${verb} no recorded size, so the grid will shift ` +
+          `as ${pronoun}. Run \`npm run photos:optimize\`.`,
       );
     }
 
