@@ -23,12 +23,9 @@ export function PhotoLightbox({
 }: PhotoLightboxProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
-  const [hasImageFailed, setHasImageFailed] = useState(false);
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const currentPhoto = photographs[currentIndex];
-
-  useEffect(() => {
-    setHasImageFailed(false);
-  }, [currentPhoto?.src]);
+  const hasImageFailed = currentPhoto !== undefined && failedSrc === currentPhoto.src;
 
   useEffect(() => {
     const { body, documentElement: root } = document;
@@ -99,7 +96,7 @@ export function PhotoLightbox({
           <img
             alt={alt}
             decoding="async"
-            onError={() => setHasImageFailed(true)}
+            onError={() => setFailedSrc(currentPhoto.src)}
             src={currentPhoto.src}
           />
         )}

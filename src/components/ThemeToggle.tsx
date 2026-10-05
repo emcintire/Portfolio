@@ -1,17 +1,19 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
 import { Icon } from './Icon';
 
+const subscribeToNothing = () => () => {};
+
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  // The server cannot know the visitor's theme, so render theme-neutral until
-  // mount. Guessing would mismatch on hydration for anyone not on the default.
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => setHasMounted(true), []);
+  const hasMounted = useSyncExternalStore(
+    subscribeToNothing,
+    () => true,
+    () => false,
+  );
 
   const isDark = resolvedTheme === 'dark';
   const next = isDark ? 'light' : 'dark';

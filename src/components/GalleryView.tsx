@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 import type { GalleryAlbum, GalleryCategory, Photograph } from '@/types';
 
@@ -53,12 +53,14 @@ function GalleryThumbnail({ alt, src }: { alt: string; src: string }) {
 
 export function GalleryView({ album, category, photographs: source }: GalleryViewProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [viewedAlbumId, setViewedAlbumId] = useState(album.id);
   const lastFocusedPhotoRef = useRef<HTMLButtonElement | null>(null);
   const photographs = useMemo(() => source.filter((photograph) => photograph.src.trim()), [source]);
 
-  useEffect(() => {
+  if (album.id !== viewedAlbumId) {
+    setViewedAlbumId(album.id);
     setSelectedIndex(null);
-  }, [album.id]);
+  }
 
   const closeLightbox = useCallback(() => {
     setSelectedIndex(null);

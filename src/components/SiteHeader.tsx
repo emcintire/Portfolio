@@ -20,12 +20,14 @@ const isActiveHref = (pathname: string, href: string) =>
 export function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuPathname, setMenuPathname] = useState(pathname);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
+  if (pathname !== menuPathname) {
+    setMenuPathname(pathname);
     setIsMenuOpen(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     if (!isMenuOpen) return undefined;
