@@ -2,6 +2,7 @@ import portraitsCategoryCover from '@/assets/images/portraits.jpg';
 import travelCategoryCover from '@/assets/images/travel.jpg';
 import adirondacksCover from '@/assets/optimized/adks.webp';
 import adirondacks2026Cover from '@/assets/optimized/adks2026.webp';
+import adirondacks2026pt2Cover from '@/assets/optimized/adks2026pt2.webp';
 import alaska2018Cover from '@/assets/optimized/alaska2018.webp';
 import alaska2020Cover from '@/assets/optimized/alaska2020.webp';
 import animalsCover from '@/assets/optimized/animals.webp';
@@ -34,8 +35,18 @@ export const galleryCategories: GalleryCategory[] = [
   {
     albums: [
       album({
+        cover: adirondacks2026pt2Cover,
+        description:
+          'An array of stunning views of the Adirondacks from the view of the hike up Giant peak and Rocky Peak.',
+        id: 'adirondacks2026pt2',
+        location: 'Adirondack Park, New York',
+        title: 'Giant & Rocky, ADKs',
+        year: '2026',
+      }),
+      album({
         cover: paris2026Cover,
-        description: '',
+        description:
+          'Up close with the Louvre, Notre-Dame, and Sacré-Cœur, then the whole city from the top of the Eiffel Tower at sunset.',
         id: 'paris2026',
         location: 'Paris',
         title: 'Paris',
@@ -43,7 +54,8 @@ export const galleryCategories: GalleryCategory[] = [
       }),
       album({
         cover: switzerland2026Cover,
-        description: '',
+        description:
+          'Alpine trails under glaciated peaks, valleys walled in by sheer cliffs, and a lot of very photogenic cows.',
         id: 'switzerland2026',
         location: 'Switzerland',
         title: 'Switzerland',
@@ -51,7 +63,8 @@ export const galleryCategories: GalleryCategory[] = [
       }),
       album({
         cover: italy2026Cover,
-        description: '',
+        description:
+          'Tuscan hills and the Leaning Tower of Pisa, then Rome: the Vatican, the Colosseum, the Pantheon, and the Trevi Fountain.',
         id: 'italy2026',
         location: 'Italy',
         title: 'Italy',
@@ -63,7 +76,7 @@ export const galleryCategories: GalleryCategory[] = [
           'An array of stunning views of the Great Range from the view of the hike up Big Slide peak.',
         id: 'adirondacks2026',
         location: 'Adirondack Park, New York',
-        title: 'Adirondacks',
+        title: 'Big Slide, ADKs',
         year: '2026',
       }),
       album({
@@ -72,7 +85,7 @@ export const galleryCategories: GalleryCategory[] = [
           'High peaks, still water, and low cloud across the Adirondacks — a week of early starts and long light in northern New York.',
         id: 'adirondacks2025',
         location: 'Adirondack Park, New York',
-        title: 'Adirondacks',
+        title: 'Great Range, ADKs',
         year: '2025',
       }),
       album({
