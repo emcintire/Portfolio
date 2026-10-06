@@ -6,7 +6,7 @@ import { Icon } from './Icon';
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="project-card" id={project.slug}>
+    <article className="project-card" data-reveal="" id={project.slug}>
       <div className="project-card__media">
         {project.video ? (
           <video

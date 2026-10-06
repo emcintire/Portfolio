@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { GalleryView } from '@/components/GalleryView';
+import { SplitWords } from '@/components/SplitWords';
 import { galleryCategories, getGalleryCategory } from '@/data/galleries';
 import { siteMetadata } from '@/data/site';
 import { listAlbumCounts, listAlbumPhotographs } from '@/lib/b2';
@@ -104,7 +105,9 @@ export default async function PhotographyCategoryPage({
               <span aria-current="page">{category.title}</span>
             </nav>
             <p className="eyebrow">Collection</p>
-            <h1>{category.title}</h1>
+            <h1>
+              <SplitWords text={category.title} />
+            </h1>
             <p>{category.description}</p>
           </div>
         </div>
@@ -114,8 +117,12 @@ export default async function PhotographyCategoryPage({
         <div className="page-container">
           <ul className="album-grid">
             {category.albums.map((album) => (
-              <li key={album.id}>
-                <Link className="album-card" href={`/photography/${category.id}/${album.id}`}>
+              <li data-reveal="" key={album.id}>
+                <Link
+                  className="album-card"
+                  data-cursor-label="Open"
+                  href={`/photography/${category.id}/${album.id}`}
+                >
                   <Image
                     alt=""
                     sizes="(max-width: 576px) 100vw, (max-width: 1024px) 50vw, 33vw"

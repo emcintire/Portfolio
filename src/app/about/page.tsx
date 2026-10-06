@@ -4,6 +4,7 @@ import portrait from '@/assets/optimized/pp.webp';
 import { CopyEmailButton } from '@/components/CopyEmailButton';
 import { Icon } from '@/components/Icon';
 import { SectionIntro } from '@/components/SectionIntro';
+import { SplitWords } from '@/components/SplitWords';
 import { experiences } from '@/data/experience';
 import { siteMetadata } from '@/data/site';
 import { skillGroups } from '@/data/skills';
@@ -25,7 +26,9 @@ export default function AboutPage() {
         <div className="page-container page-hero__grid">
           <div>
             <p className="eyebrow">About</p>
-            <h2>Software engineer, photographer, and firm believer in second breakfast.</h2>
+            <h2>
+              <SplitWords text="Software engineer, photographer, and firm believer in second breakfast." />
+            </h2>
           </div>
           <div className="page-hero__copy">
             <p>
@@ -45,10 +48,11 @@ export default function AboutPage() {
         <div className="page-container about-profile__grid">
           <Image
             alt="Everett McIntire standing in a mountain landscape"
+            data-reveal="unveil"
             sizes="(max-width: 768px) 100vw, 40vw"
             src={portrait}
           />
-          <div>
+          <div data-reveal="">
             <p className="eyebrow">A little more context</p>
             <h3>I like working close to the problem.</h3>
             <p>
@@ -92,7 +96,11 @@ export default function AboutPage() {
           />
           <ol className="experience-list">
             {experiences.map((experience) => (
-              <li className="experience-item" key={`${experience.company}-${experience.role}`}>
+              <li
+                className="experience-item"
+                data-reveal=""
+                key={`${experience.company}-${experience.role}`}
+              >
                 <div className="experience-item__marker">
                   <Image alt="" height={48} src={experience.logo} width={48} />
                 </div>
@@ -132,7 +140,7 @@ export default function AboutPage() {
           />
           <div className="skill-grid">
             {skillGroups.map((group) => (
-              <section className="skill-group" key={group.label}>
+              <section className="skill-group" data-reveal="" key={group.label}>
                 <h3>{group.label}</h3>
                 <ul>
                   {group.skills.map((skill) => (
@@ -147,7 +155,7 @@ export default function AboutPage() {
 
       <section className="testimonial-section">
         <div className="page-container">
-          <figure className="testimonial">
+          <figure className="testimonial" data-reveal="">
             <blockquote>
               &ldquo;Everett is an excellent developer and a consummate professional. I have seen
               him rescue foundering projects quickly, structure over a year’s worth of work with

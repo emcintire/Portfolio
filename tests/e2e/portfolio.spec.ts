@@ -23,13 +23,20 @@ for (const [route, heading] of routes) {
   });
 }
 
-test('core pages have no automatically detectable accessibility violations', async ({ page }) => {
-  for (const [route] of routes) {
-    await page.goto(route);
-    await page.locator('h1').waitFor();
-    const results = await new AxeBuilder({ page }).analyze();
-    expect(results.violations, `${route} accessibility violations`).toEqual([]);
-  }
+test.describe(() => {
+  // Audit the settled page, not a frame of the entrance animations: text caught
+  // mid-fade has partial opacity and can fail contrast. Reduced motion lands
+  // every animation on its final frame at once.
+  test.use({ reducedMotion: 'reduce' });
+
+  test('core pages have no automatically detectable accessibility violations', async ({ page }) => {
+    for (const [route] of routes) {
+      await page.goto(route);
+      await page.locator('h1').waitFor();
+      const results = await new AxeBuilder({ page }).analyze();
+      expect(results.violations, `${route} accessibility violations`).toEqual([]);
+    }
+  });
 });
 
 test('primary navigation, theme persistence, and invalid routes work', async ({ page }) => {

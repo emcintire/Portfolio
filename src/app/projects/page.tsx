@@ -1,4 +1,5 @@
 import { ProjectCard } from '@/components/ProjectCard';
+import { SplitWords } from '@/components/SplitWords';
 import { projects } from '@/data/projects';
 import { siteMetadata } from '@/data/site';
 import { JsonLd } from '@/lib/JsonLd';
@@ -19,7 +20,9 @@ export default function ProjectsPage() {
         <div className="page-container page-hero__grid">
           <div>
             <p className="eyebrow">Selected work</p>
-            <h1>Things that made it off localhost.</h1>
+            <h1>
+              <SplitWords text="Things that made it off localhost." />
+            </h1>
           </div>
           <div className="page-hero__copy">
             <p>

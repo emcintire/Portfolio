@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { type CSSProperties, useEffect, useRef, useState } from 'react';
 
 import type { Photograph } from '@/types';
 
@@ -24,8 +24,15 @@ export function PhotoLightbox({
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  // Which way the last step went, so the next photograph slides in from that side.
+  const [direction, setDirection] = useState<-1 | 0 | 1>(0);
   const currentPhoto = photographs[currentIndex];
   const hasImageFailed = currentPhoto !== undefined && failedSrc === currentPhoto.src;
+
+  const step = (by: -1 | 1) => {
+    setDirection(by);
+    onSelect((currentIndex + by + photographs.length) % photographs.length);
+  };
 
   useEffect(() => {
     const { body, documentElement: root } = document;
@@ -37,9 +44,11 @@ export function PhotoLightbox({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
       if (event.key === 'ArrowLeft') {
+        setDirection(-1);
         onSelect((currentIndex - 1 + photographs.length) % photographs.length);
       }
       if (event.key === 'ArrowRight') {
+        setDirection(1);
         onSelect((currentIndex + 1) % photographs.length);
       }
       if (event.key === 'Tab') {
@@ -78,6 +87,7 @@ export function PhotoLightbox({
       className="lightbox"
       ref={dialogRef}
       role="dialog"
+      style={{ '--lightbox-direction': direction } as CSSProperties}
     >
       <button
         aria-label="Close image viewer"
@@ -92,10 +102,12 @@ export function PhotoLightbox({
             This photograph could not be loaded.
           </div>
         ) : (
+          // Keyed so each photograph mounts fresh and plays its entrance.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             alt={alt}
             decoding="async"
+            key={currentPhoto.src}
             onError={() => setFailedSrc(currentPhoto.src)}
             src={currentPhoto.src}
           />
@@ -104,7 +116,7 @@ export function PhotoLightbox({
           <button
             aria-label="Previous photograph"
             className="icon-button"
-            onClick={() => onSelect((currentIndex - 1 + photographs.length) % photographs.length)}
+            onClick={() => step(-1)}
             type="button"
           >
             <Icon name="arrow-left" />
@@ -115,7 +127,7 @@ export function PhotoLightbox({
           <button
             aria-label="Next photograph"
             className="icon-button"
-            onClick={() => onSelect((currentIndex + 1) % photographs.length)}
+            onClick={() => step(1)}
             type="button"
           >
             <Icon name="arrow-right" />

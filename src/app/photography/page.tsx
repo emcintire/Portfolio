@@ -1,4 +1,5 @@
 import { CategoryCard } from '@/components/CategoryCard';
+import { SplitWords } from '@/components/SplitWords';
 import { galleryCategories } from '@/data/galleries';
 import { siteMetadata } from '@/data/site';
 import { JsonLd } from '@/lib/JsonLd';
@@ -22,8 +23,7 @@ export default function PhotographyIndexPage() {
           <div>
             <p className="eyebrow">Photography</p>
             <h2>
-              I came here to chew bubble gum and take pictures... and I&apos;m all out of bubble
-              gum.
+              <SplitWords text="I came here to chew bubble gum and take pictures... and I'm all out of bubble gum." />
             </h2>
           </div>
           <div className="page-hero__copy">
@@ -39,7 +39,7 @@ export default function PhotographyIndexPage() {
         <div className="page-container">
           <ul className="gallery-card-grid gallery-card-grid--large">
             {galleryCategories.map((category) => (
-              <li key={category.id}>
+              <li data-reveal="" key={category.id}>
                 <CategoryCard category={category} sizes="(max-width: 576px) 100vw, 50vw" />
               </li>
             ))}

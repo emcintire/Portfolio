@@ -70,6 +70,7 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
+      <span aria-hidden="true" className="scroll-progress" />
       <div className="site-header__inner">
         <Link aria-label="Everett McIntire, home" className="wordmark" href="/">
           <span className="wordmark__mark" aria-hidden="true">
@@ -85,7 +86,10 @@ export function SiteHeader() {
               href={item.href}
               key={item.href}
             >
-              {item.label}
+              <span className="text-roll">
+                <span>{item.label}</span>
+                <span aria-hidden="true">{item.label}</span>
+              </span>
             </Link>
           ))}
         </nav>

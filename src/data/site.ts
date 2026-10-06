@@ -24,6 +24,16 @@ export const siteMetadata = {
   url: 'https://everettgsm.com',
 } as const;
 
+/** The words drifting through the home page marquee. An even count keeps the solid/outline alternation steady across the seam. */
+export const marqueeWords = [
+  'Full-stack engineer',
+  'Photographer',
+  'Snowboarder',
+  'Film buff',
+  'Explorer',
+  'Second-breakfast enthusiast',
+] as const;
+
 export const impactStats = [
   { label: 'people using shipped product features', value: '10k+' },
   { label: 'faster high-traffic API response', value: '40×' },

@@ -46,6 +46,14 @@
   --reading-width: 44rem;
   --transition: 180ms ease;
 
+  /* Motion. Expo-out for things arriving, in-out for things crossing the
+     screen, and a damped spring for things let go of. */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-elastic: var(--ease-spring);
+  --word-stagger: 45ms;
+
   color: var(--color-text);
   background: var(--color-background);
   font-family: var(--font-sans);
@@ -300,6 +308,14 @@ p {
   font-size: 0.95rem;
   font-weight: 500;
   padding-top: 4px;
+  transition:
+    rotate 800ms var(--ease-elastic),
+    scale 800ms var(--ease-elastic);
+}
+
+.wordmark:hover .wordmark__mark {
+  rotate: -14deg;
+  scale: 1.1;
 }
 
 .desktop-nav {
@@ -328,7 +344,8 @@ p {
   background: var(--color-surface);
 }
 
-.nav-link--active::after {
+/* Draws in from the left on hover and retracts to the right on leave. */
+.nav-link::after {
   position: absolute;
   right: 0.8rem;
   bottom: 0.38rem;
@@ -336,6 +353,43 @@ p {
   height: 2px;
   background: var(--color-accent);
   content: '';
+  scale: 0 1;
+  transform-origin: right;
+  transition: scale 450ms var(--ease-out-expo);
+}
+
+.nav-link:hover::after,
+.nav-link--active::after {
+  scale: 1 1;
+  transform-origin: left;
+}
+
+/* Two stacked copies of a label in a one-line window; hover rolls the first
+   out the top and the second up into place. */
+.text-roll {
+  display: inline-grid;
+  overflow: hidden;
+  line-height: 1.35;
+  vertical-align: top;
+}
+
+.text-roll > span {
+  grid-area: 1 / 1;
+  transition: translate 500ms var(--ease-out-expo);
+}
+
+.text-roll > span + span {
+  translate: 0 105%;
+}
+
+.nav-link:hover .text-roll > span:first-child,
+.nav-link:focus-visible .text-roll > span:first-child {
+  translate: 0 -105%;
+}
+
+.nav-link:hover .text-roll > span + span,
+.nav-link:focus-visible .text-roll > span + span {
+  translate: 0 0;
 }
 
 .site-header__actions {
@@ -359,15 +413,13 @@ p {
   transition:
     color var(--transition),
     background-color var(--transition),
-    border-color var(--transition),
-    transform var(--transition);
+    border-color var(--transition);
 }
 
 .icon-button:hover {
   color: var(--color-background);
   background: var(--color-brand);
   border-color: var(--color-brand);
-  transform: translateY(-2px);
 }
 
 .menu-toggle,
@@ -423,12 +475,17 @@ p {
 }
 
 .button {
+  position: relative;
+  /* Keeps the hover fill (::before, z-index -1) above the button's own
+     background but below its label. */
+  isolation: isolate;
   display: inline-flex;
   min-height: 3rem;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
   padding: 0.75rem 1.15rem;
+  overflow: hidden;
   border: 1px solid transparent;
   border-radius: var(--radius-pill);
   cursor: pointer;
@@ -439,15 +496,32 @@ p {
   transition:
     color var(--transition),
     background-color var(--transition),
-    border-color var(--transition),
-    transform var(--transition);
+    border-color var(--transition);
 }
 
-.button:hover {
-  transform: translateY(-2px);
+/* The hover fill: a dome of color that rises from below and flattens as it
+   fills the button. */
+.button::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background: var(--button-fill);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  content: '';
+  translate: 0 102%;
+  transition:
+    translate 550ms var(--ease-out-expo),
+    border-radius 550ms var(--ease-out-expo);
+}
+
+.button:hover::before {
+  border-radius: 0;
+  translate: 0 0;
 }
 
 .button--primary {
+  --button-fill: var(--color-accent-strong);
+
   color: #fff;
   background: var(--color-brand-strong);
 }
@@ -457,23 +531,28 @@ p {
   background: var(--color-brand);
 }
 
-.button--primary:hover {
-  background: var(--color-accent-strong);
-}
-
 .button--secondary {
+  --button-fill: var(--color-text);
+
   color: var(--color-text);
   background: transparent;
   border-color: var(--color-line);
 }
 
 .button--secondary:hover {
+  color: var(--color-background);
   border-color: var(--color-text);
 }
 
 .button--light {
+  --button-fill: #173d2e;
+
   color: #173d2e;
   background: #fffdf8;
+}
+
+.button--light:hover {
+  color: #fffdf8;
 }
 
 .button-row {
@@ -538,6 +617,10 @@ p {
   position: relative;
   /* Above .topographic-rings, which is z-index 1 and precedes it in the DOM. */
   z-index: 2;
+  /* Leans toward the cursor; --pointer-* come from PointerEffects. */
+  transform: perspective(1200px) rotateY(calc(var(--pointer-x, 0) * 5deg))
+    rotateX(calc(var(--pointer-y, 0) * -5deg));
+  transition: transform 1200ms var(--ease-out-expo);
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
@@ -559,6 +642,18 @@ p {
   border: 2px solid color-mix(in srgb, var(--color-accent) 32%, transparent);
   border-radius: 46% 54% 48% 52% / 55% 44% 56% 45%;
   transform: rotate(calc(var(--ring, 0) * 7deg));
+  /* Inner rings sit nearer, so they shift further against the cursor. */
+  translate: calc(var(--pointer-x, 0) * (var(--ring, 0) + 1) * -0.4rem)
+    calc(var(--pointer-y, 0) * (var(--ring, 0) + 1) * -0.4rem);
+  transition: translate 1400ms var(--ease-out-expo);
+  /* Ripple outward on load, then drift like contours on a slow-turning map. */
+  animation:
+    ring-in 1600ms var(--ease-out-expo) calc(250ms + var(--ring, 0) * 90ms) backwards,
+    ring-drift calc(70s + var(--ring, 0) * 12s) linear infinite;
+}
+
+.topographic-rings span:nth-child(even) {
+  animation-direction: normal, reverse;
 }
 
 .topographic-rings span:nth-child(1) {
@@ -637,7 +732,7 @@ p {
   line-height: 1;
 }
 
-.impact-stat span {
+.impact-stat > span {
   max-width: 15rem;
   margin-top: var(--space-3);
   color: color-mix(in srgb, var(--color-on-brand-strong) 78%, transparent);
@@ -701,6 +796,14 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.project-card__media img {
+  transition: scale 1200ms var(--ease-out-expo);
+}
+
+.project-card:hover .project-card__media img {
+  scale: 1.04;
 }
 
 .project-card__content {
@@ -828,7 +931,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 600ms ease;
+  transition: transform 1000ms var(--ease-out-expo);
 }
 
 .gallery-card::after {
@@ -840,7 +943,7 @@ p {
 
 .gallery-card:hover img,
 .gallery-card:focus-visible img {
-  transform: scale(1.035);
+  transform: scale(1.06);
 }
 
 .gallery-card__overlay {
@@ -853,6 +956,12 @@ p {
   flex-direction: column;
   gap: var(--space-2);
   padding: var(--space-6);
+  transition: translate 700ms var(--ease-out-expo);
+}
+
+.gallery-card:hover .gallery-card__overlay,
+.gallery-card:focus-visible .gallery-card__overlay {
+  translate: 0 -0.5rem;
 }
 
 .gallery-card__overlay strong {
@@ -1118,6 +1227,8 @@ p {
 .category-hero {
   position: relative;
   min-height: min(42rem, 75svh);
+  /* The cover settles from a slight zoom on arrival; keep the zoom inside. */
+  overflow: clip;
   color: #fff;
 }
 
@@ -1426,6 +1537,7 @@ p {
 
 .not-found h1 {
   margin-bottom: var(--space-4);
+  animation: rise-in 1100ms var(--ease-out-expo) 150ms backwards;
 }
 
 .not-found p:not(.eyebrow) {
@@ -1492,6 +1604,536 @@ p {
   background: var(--color-brand);
   border-radius: 50%;
   font-family: var(--font-display);
+}
+
+/* ==========================================================================
+   Motion
+   Everything below is decoration over a page that already works without it.
+   Under prefers-reduced-motion the global rule at the end of this file cuts
+   every animation and transition to an instant, and the JS-driven effects
+   (page wipes, the cursor bubble, the marquee, count-ups) don't start at all.
+   ========================================================================== */
+
+/* A real damped spring — overshoot, settle, a little wobble — where linear()
+   easing exists. --ease-spring stands in elsewhere. */
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --ease-elastic: linear(
+      0,
+      0.24 4%,
+      0.78 12%,
+      1.1 19%,
+      1.18 24%,
+      1.12 30%,
+      0.99 40%,
+      0.96 46%,
+      1.005 60%,
+      1.01 68%,
+      1
+    );
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* --- Headings: masked word-by-word rise (SplitWords) --------------------- */
+
+/* The mask is a clip-path rather than overflow: hidden, so the word keeps its
+   text baseline, and it is pushed out past the glyphs so ascenders, descenders
+   and italic overhangs aren't shaved off at rest. */
+.split-word {
+  display: inline-block;
+  clip-path: inset(-0.25em -0.2em -0.3em -0.1em);
+}
+
+.split-word > span {
+  display: inline-block;
+  transform-origin: 0 100%;
+  animation: word-rise 1100ms var(--ease-out-expo)
+    calc(120ms + var(--word-index, 0) * var(--word-stagger)) backwards;
+}
+
+/* Far enough down to clear the extended bottom of the mask. */
+@keyframes word-rise {
+  from {
+    rotate: 5deg;
+    translate: 0 150%;
+  }
+}
+
+/* --- Home hero ------------------------------------------------------------ */
+
+.hero__content > .eyebrow {
+  animation: rise-in 900ms var(--ease-out-expo) 40ms backwards;
+}
+
+.hero__lede {
+  animation: rise-in 1000ms var(--ease-out-expo) 650ms backwards;
+}
+
+.hero__content > .button-row {
+  animation: rise-in 1000ms var(--ease-out-expo) 780ms backwards;
+}
+
+.hero-portrait {
+  animation: portrait-in 1500ms var(--ease-out-expo) 150ms backwards;
+}
+
+@keyframes portrait-in {
+  from {
+    opacity: 0;
+    scale: 0.92;
+    translate: 0 2rem;
+  }
+}
+
+/* "ship." gets the accent and a hand-drawn underline that signs itself once
+   the words have landed. */
+.hero__highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--color-accent);
+}
+
+.hero__squiggle {
+  position: absolute;
+  bottom: -0.14em;
+  left: -2%;
+  width: 104%;
+  height: 0.32em;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+/* Starts invisible as well as undrawn: a round cap on the empty dash would
+   otherwise leave a dot under the word while it waits to draw. */
+.hero__squiggle path {
+  opacity: 0;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: squiggle-draw 900ms var(--ease-in-out) 900ms forwards;
+}
+
+@keyframes squiggle-draw {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ring-in {
+  from {
+    opacity: 0;
+    scale: 0.7;
+  }
+}
+
+/* rotate, not transform, so it composes with each ring's fixed tilt. */
+@keyframes ring-drift {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* --- Other page heroes ---------------------------------------------------- */
+
+.page-hero .eyebrow,
+.category-hero .eyebrow,
+.album-page__header .eyebrow {
+  animation: rise-in 800ms var(--ease-out-expo) backwards;
+}
+
+.breadcrumb {
+  animation: fade-in 800ms ease-out backwards;
+}
+
+.page-hero__copy,
+.category-hero p:last-child,
+.album-page__header > p:last-child {
+  animation: rise-in 1000ms var(--ease-out-expo) 450ms backwards;
+}
+
+.category-hero > img {
+  animation: cover-settle 2200ms var(--ease-out-expo) backwards;
+}
+
+@keyframes cover-settle {
+  from {
+    scale: 1.14;
+  }
+}
+
+/* --- Scroll reveals (ScrollReveal) ---------------------------------------- */
+
+/* Only ever set by script, and only on elements still below the fold. */
+[data-reveal][data-reveal-state='hidden'] {
+  opacity: 0;
+  translate: 0 3rem;
+}
+
+[data-reveal][data-reveal-state='shown'] {
+  animation: reveal-rise 1100ms var(--ease-out-expo) var(--reveal-delay, 0ms) backwards;
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    translate: 0 3rem;
+  }
+}
+
+/* Photographs are uncovered from the bottom edge, like a print pulled from
+   under a mask, settling from a slight zoom as they go. */
+[data-reveal='unveil'][data-reveal-state='hidden'] {
+  clip-path: inset(100% 0 0 0);
+  opacity: 1;
+  translate: none;
+}
+
+[data-reveal='unveil'][data-reveal-state='shown'] {
+  animation: reveal-unveil 1400ms var(--ease-in-out) var(--reveal-delay, 0ms) backwards;
+}
+
+@keyframes reveal-unveil {
+  from {
+    clip-path: inset(100% 0 0 0);
+    scale: 1.08;
+  }
+
+  to {
+    clip-path: inset(0);
+    scale: 1;
+  }
+}
+
+/* Timeline markers pop as their entry arrives. */
+.experience-item[data-reveal-state='shown'] .experience-item__marker {
+  animation: marker-pop 900ms var(--ease-elastic) calc(var(--reveal-delay, 0ms) + 150ms) backwards;
+}
+
+@keyframes marker-pop {
+  from {
+    scale: 0.4;
+  }
+}
+
+/* --- Scroll-linked extras, where the browser supports them ---------------- */
+
+.scroll-progress {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--color-accent);
+  pointer-events: none;
+  scale: 0 1;
+  transform-origin: 0 50%;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: scroll-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+
+  /* The timeline's spine draws itself down the page as you read it. */
+  .experience-list {
+    view-timeline: --experience block;
+  }
+
+  .experience-list::before {
+    transform-origin: top;
+    animation: spine-draw linear both;
+    animation-range: cover 5% cover 55%;
+    animation-timeline: --experience;
+  }
+}
+
+@keyframes scroll-progress {
+  to {
+    scale: 1 1;
+  }
+}
+
+@keyframes spine-draw {
+  from {
+    scale: 1 0;
+  }
+}
+
+/* --- Marquee -------------------------------------------------------------- */
+
+.marquee {
+  padding-block: clamp(1rem, 2.5vw, 2rem);
+  overflow: clip;
+  background: var(--color-surface);
+  border-block: 1px solid var(--color-line);
+  user-select: none;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee__run {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+
+.marquee__item {
+  padding-inline: 0.3em;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 8vw, 7rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.marquee__item--outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-text);
+}
+
+.marquee__star {
+  color: var(--color-accent);
+  font-size: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+/* --- Cursor bubble (PointerEffects) --------------------------------------- */
+
+.cursor-bubble {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 400;
+  display: none;
+  pointer-events: none;
+}
+
+.cursor-bubble__label {
+  position: absolute;
+  display: grid;
+  width: 5.75rem;
+  height: 5.75rem;
+  place-items: center;
+  color: var(--color-on-brand-strong);
+  background: var(--color-brand-strong);
+  border-radius: 50%;
+  box-shadow: var(--shadow-large);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  scale: 0.2;
+  text-transform: uppercase;
+  transition:
+    opacity 250ms ease,
+    scale 550ms var(--ease-out-expo);
+  translate: -50% -50%;
+}
+
+.cursor-bubble[data-state='visible'] .cursor-bubble__label {
+  opacity: 1;
+  scale: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor-bubble {
+    display: block;
+  }
+
+  /* The bubble stands in for the cursor over the cards that summon it — but
+     only once script is running to draw it. */
+  [data-motion='full'] [data-cursor-label] {
+    cursor: none;
+  }
+}
+
+/* --- Page and theme transitions (View Transitions API) -------------------- */
+
+/* Opaque images, so no plus-lighter cross-fade blending between them. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+/* The header stays put while the page beneath it changes. */
+html[data-transition='page'] .site-header {
+  view-transition-name: site-header;
+}
+
+/* The old page lifts and dims; the new one rises over it behind a curved edge. */
+html[data-transition='page']::view-transition-old(root) {
+  animation: page-out 800ms var(--ease-in-out) both;
+}
+
+html[data-transition='page']::view-transition-new(root) {
+  animation: page-in 800ms var(--ease-in-out) both;
+}
+
+@keyframes page-out {
+  to {
+    filter: brightness(0.7);
+    transform: translateY(-8vh) scale(0.96);
+  }
+}
+
+@keyframes page-in {
+  from {
+    clip-path: ellipse(160% 60% at 50% 165%);
+  }
+
+  to {
+    clip-path: ellipse(160% 160% at 50% 100%);
+  }
+}
+
+/* The theme reveal is a circle driven from ThemeToggle; hold both images
+   still, and don't let colors tween underneath it. */
+html[data-transition='theme']::view-transition-old(root),
+html[data-transition='theme']::view-transition-new(root) {
+  animation: none;
+}
+
+html[data-transition='theme'] *,
+html[data-transition='theme'] *::before,
+html[data-transition='theme'] *::after {
+  transition: none !important;
+}
+
+/* --- Gallery -------------------------------------------------------------- */
+
+/* Thumbnails develop like a print in the tray: from pale and soft to sharp. */
+[data-motion='full'] .photo-grid__button img[data-load='pending'] {
+  opacity: 0;
+}
+
+.photo-grid__button img[data-load='fresh'] {
+  animation: photo-develop 1200ms var(--ease-out-expo) backwards;
+}
+
+@keyframes photo-develop {
+  from {
+    filter: blur(14px) saturate(0.2) brightness(1.15);
+    opacity: 0;
+    scale: 1.06;
+  }
+}
+
+.lightbox__backdrop {
+  animation: fade-in 350ms ease-out backwards;
+}
+
+.lightbox__close,
+.lightbox__controls {
+  animation: fade-in 400ms ease-out 150ms backwards;
+}
+
+/* Each photograph slides in from the side it was stepped toward. */
+.lightbox__content img,
+.lightbox__fallback {
+  animation: lightbox-photo-in 650ms var(--ease-out-expo) backwards;
+}
+
+@keyframes lightbox-photo-in {
+  from {
+    opacity: 0;
+    scale: 0.96;
+    translate: calc(var(--lightbox-direction, 0) * 4rem) 0;
+  }
+}
+
+/* --- 404 ------------------------------------------------------------------ */
+
+.not-found__trail {
+  width: min(26rem, 80vw);
+  height: auto;
+  margin-bottom: var(--space-5);
+  overflow: visible;
+}
+
+/* Round-capped dots marching along the path read as footprints. */
+.not-found__trail-path {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-dasharray: 0.5 11;
+  stroke-linecap: round;
+  stroke-width: 4;
+  animation: trail-march 1.4s linear infinite;
+}
+
+@keyframes trail-march {
+  to {
+    stroke-dashoffset: -11.5;
+  }
+}
+
+.not-found__hiker {
+  fill: var(--color-brand);
+}
+
+/* --- Powder day (PowderDay) ----------------------------------------------- */
+
+.powder-day {
+  position: fixed;
+  inset: 0;
+  z-index: 450;
+  width: 100%;
+  height: 100%;
+  color: rgba(126, 154, 172, 0.85);
+  pointer-events: none;
+}
+
+[data-theme='dark'] .powder-day {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.powder-day__note {
+  position: fixed;
+  bottom: var(--space-5);
+  left: 50%;
+  z-index: 460;
+  margin: 0;
+  padding: var(--space-3) var(--space-5);
+  color: var(--color-on-brand-strong);
+  background: var(--color-brand-strong);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-large);
+  font-weight: 800;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 300ms ease,
+    translate 800ms var(--ease-elastic);
+  translate: -50% 150%;
+}
+
+.powder-day__note[data-visible='true'] {
+  opacity: 1;
+  translate: -50% 0;
 }
 
 @media (max-width: 64rem) {
@@ -1798,9 +2440,29 @@ p {
   .photo-grid__button:focus-visible img {
     transform: none;
   }
+
+  .gallery-card:hover .gallery-card__overlay,
+  .gallery-card:focus-visible .gallery-card__overlay,
+  .project-card:hover .project-card__media img,
+  .wordmark:hover .wordmark__mark {
+    rotate: none;
+    scale: none;
+    translate: none;
+  }
+
+  /* The hiker's walk is SMIL, which this media query can't slow down. */
+  .not-found__hiker {
+    display: none;
+  }
 }
 
 @media (forced-colors: active) {
+  /* Outlined marquee words are transparent text; give them ink. */
+  .marquee__item--outline {
+    color: CanvasText;
+    -webkit-text-stroke: 0;
+  }
+
   .button,
   .icon-button,
   .project-card,

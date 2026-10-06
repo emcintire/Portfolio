@@ -6,6 +6,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import type { GalleryAlbum, GalleryCategory, Photograph } from '@/types';
 
 import { PhotoLightbox } from './PhotoLightbox';
+import { SplitWords } from './SplitWords';
 
 /** Widest a grid column gets, at the four-column desktop layout. */
 const THUMBNAIL_WIDTH = 828;
@@ -20,14 +21,16 @@ type GalleryViewProps = {
 const thumbnailUrl = (src: string) =>
   `/_next/image?url=${encodeURIComponent(src)}&w=${THUMBNAIL_WIDTH}&q=${THUMBNAIL_QUALITY}`;
 
+type LoadState = 'pending' | 'cached' | 'fresh';
+
 function GalleryThumbnail({ alt, src }: { alt: string; src: string }) {
   const [hasFailed, setHasFailed] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
+  const [loadState, setLoadState] = useState<LoadState>('pending');
 
   // An image can finish before hydration attaches onLoad, and then the event
   // never reaches React — so also check on mount whether it already arrived.
   const detectLoaded = useCallback((image: HTMLImageElement | null) => {
-    if (image?.complete && image.naturalWidth > 0) setHasLoaded(true);
+    if (image?.complete && image.naturalWidth > 0) setLoadState('cached');
   }, []);
 
   if (hasFailed) {
@@ -36,14 +39,15 @@ function GalleryThumbnail({ alt, src }: { alt: string; src: string }) {
 
   return (
     <>
-      {!hasLoaded && <span aria-hidden="true" className="photo-grid__spinner" />}
+      {loadState === 'pending' && <span aria-hidden="true" className="photo-grid__spinner" />}
       {/* eslint-disable-next-line @next/next/no-img-element -- see thumbnailUrl */}
       <img
         alt={alt}
+        data-load={loadState}
         decoding="async"
         loading="lazy"
         onError={() => setHasFailed(true)}
-        onLoad={() => setHasLoaded(true)}
+        onLoad={() => setLoadState((state) => (state === 'pending' ? 'fresh' : state))}
         ref={detectLoaded}
         src={thumbnailUrl(src)}
       />
@@ -85,7 +89,9 @@ export function GalleryView({ album, category, photographs: source }: GalleryVie
           )}
         </nav>
         <p className="eyebrow">{album.year ?? category.title}</p>
-        <h1>{album.title}</h1>
+        <h1>
+          <SplitWords text={album.title} />
+        </h1>
         <p>{photographs.length} photographs</p>
       </div>
 
@@ -97,6 +103,7 @@ export function GalleryView({ album, category, photographs: source }: GalleryVie
               <button
                 aria-label={`Open ${alt}, photograph ${index + 1} of ${photographs.length}`}
                 className="photo-grid__button"
+                data-cursor-label="View"
                 onClick={(event) => {
                   lastFocusedPhotoRef.current = event.currentTarget;
                   setSelectedIndex(index);

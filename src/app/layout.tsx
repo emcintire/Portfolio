@@ -4,7 +4,11 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 
+import { PageTransitions } from '@/components/PageTransitions';
+import { PointerEffects } from '@/components/PointerEffects';
+import { PowderDay } from '@/components/PowderDay';
 import { RouteFocus } from '@/components/RouteFocus';
+import { ScrollReveal } from '@/components/ScrollReveal';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SiteHeader } from '@/components/SiteHeader';
 import { ThemeProvider } from '@/contexts/ThemeContext';
@@ -77,6 +81,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </main>
           <SiteFooter />
           <RouteFocus />
+          <PageTransitions />
+          <ScrollReveal />
+          <PointerEffects />
+          <PowderDay />
         </ThemeProvider>
       </body>
     </html>

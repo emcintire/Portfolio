@@ -3,11 +3,14 @@ import Link from 'next/link';
 
 import portrait from '@/assets/optimized/pp.webp';
 import { CategoryCard } from '@/components/CategoryCard';
+import { CountUp } from '@/components/CountUp';
+import { Marquee } from '@/components/Marquee';
 import { ProjectCard } from '@/components/ProjectCard';
 import { SectionIntro } from '@/components/SectionIntro';
+import { SplitWords } from '@/components/SplitWords';
 import { galleryCategories } from '@/data/galleries';
 import { projects } from '@/data/projects';
-import { impactStats, siteMetadata } from '@/data/site';
+import { impactStats, marqueeWords, siteMetadata } from '@/data/site';
 import { JsonLd } from '@/lib/JsonLd';
 import { personSchema, webSiteSchema } from '@/lib/schema';
 
@@ -26,7 +29,20 @@ export default function HomePage() {
         <div className="page-container hero__grid">
           <div className="hero__content">
             <p className="eyebrow">Full-stack engineer · Vermont</p>
-            <h1>Come with me if you want to ship.</h1>
+            <h1 className="hero__title">
+              <SplitWords text="Come with me if you want to" />{' '}
+              <span className="hero__highlight">
+                <SplitWords from={7} text="ship." />
+                <svg
+                  aria-hidden="true"
+                  className="hero__squiggle"
+                  preserveAspectRatio="none"
+                  viewBox="0 0 200 24"
+                >
+                  <path d="M4 16C30 6 52 21 82 12s50-8 78 1 30 4 36-4" pathLength="1" />
+                </svg>
+              </span>
+            </h1>
             <p className="hero__lede">
               I turn complex product requirements into reliable web and mobile experiences—working
               across React, Node.js, Django, .NET, and Unity.
@@ -41,7 +57,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="hero-portrait">
+          <div className="hero-portrait pointer-field">
             <div className="topographic-rings" aria-hidden="true">
               {Array.from({ length: 7 }, (_, index) => (
                 <span key={index} />
@@ -62,11 +78,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Marquee items={marqueeWords} />
+
       <section aria-label="Selected impact" className="impact-strip">
         <div className="page-container impact-strip__grid">
           {impactStats.map((stat) => (
-            <div className="impact-stat" key={stat.value}>
-              <strong>{stat.value}</strong>
+            <div className="impact-stat" data-reveal="" key={stat.value}>
+              <strong>
+                <CountUp value={stat.value} />
+              </strong>
               <span>{stat.label}</span>
             </div>
           ))}
@@ -112,7 +132,7 @@ export default function HomePage() {
           />
           <ul className="gallery-card-grid">
             {galleryCategories.slice(0, 3).map((category) => (
-              <li key={category.id}>
+              <li data-reveal="" key={category.id}>
                 <CategoryCard
                   category={category}
                   sizes="(max-width: 576px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -124,7 +144,7 @@ export default function HomePage() {
       </section>
 
       <section className="contact-banner">
-        <div className="page-container contact-banner__inner">
+        <div className="page-container contact-banner__inner" data-reveal="">
           <div>
             <p className="eyebrow">Let’s build something durable</p>
             <h2>Have a product problem worth owning?</h2>

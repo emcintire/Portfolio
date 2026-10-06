@@ -14,7 +14,7 @@ export function CategoryCard({ category, sizes }: CategoryCardProps) {
   const albumCount = category.albums.length;
 
   return (
-    <Link className="gallery-card" href={`/photography/${category.id}`}>
+    <Link className="gallery-card" data-cursor-label="Explore" href={`/photography/${category.id}`}>
       <Image alt="" sizes={sizes} src={category.cardCover} />
       <span className="gallery-card__overlay">
         <strong>{category.title}</strong>
