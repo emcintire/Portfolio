@@ -2423,6 +2423,72 @@ html[data-transition='theme'] *::after {
   }
 }
 
+@supports (-moz-appearance: none) {
+  @media (hover: none) and (pointer: coarse) {
+    .site-header {
+      background: color-mix(in srgb, var(--color-background) 96%, transparent);
+      backdrop-filter: none;
+    }
+
+    .split-word {
+      clip-path: none;
+    }
+
+    .split-word > span {
+      animation-name: word-fade-rise;
+    }
+
+    [data-reveal='unveil'][data-reveal-state='hidden'] {
+      clip-path: none;
+      opacity: 0;
+      translate: 0 3rem;
+    }
+
+    [data-reveal='unveil'][data-reveal-state='shown'] {
+      animation-name: reveal-rise;
+    }
+
+    .photo-grid__button img[data-load='fresh'] {
+      animation-name: photo-develop-light;
+    }
+
+    html[data-transition='page']::view-transition-old(root) {
+      animation: page-fade-out 300ms ease-out both;
+    }
+
+    html[data-transition='page']::view-transition-new(root) {
+      animation: page-fade-in 500ms var(--ease-out-expo) both;
+    }
+  }
+}
+
+@keyframes word-fade-rise {
+  from {
+    opacity: 0;
+    translate: 0 0.35em;
+  }
+}
+
+@keyframes photo-develop-light {
+  from {
+    opacity: 0;
+    scale: 1.06;
+  }
+}
+
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    translate: 0 4vh;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
