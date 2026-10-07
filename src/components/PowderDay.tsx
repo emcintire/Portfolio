@@ -82,7 +82,7 @@ function letItSnow(canvas: HTMLCanvasElement, until: number) {
  */
 export function PowderDay() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isSnowing, setIsSnowing] = useState(true);
+  const [isSnowing, setIsSnowing] = useState(false);
 
   useEffect(() => {
     console.info(
