@@ -1,7 +1,9 @@
-import Image from 'next/image';
+import Image, { getImageProps } from 'next/image';
 import Link from 'next/link';
 
 import type { GalleryCategory } from '@/types';
+
+import { CATEGORY_HERO_SIZES, HeroPreload } from './HeroPreload';
 
 type CategoryCardProps = {
   category: GalleryCategory;
@@ -12,6 +14,10 @@ type CategoryCardProps = {
 /** A photography category card, shared by the home and photography index pages. */
 export function CategoryCard({ category, sizes }: CategoryCardProps) {
   const albumCount = category.albums.length;
+  // Only a category with albums opens on a cover hero; a direct album opens on its grid.
+  const hero = category.directAlbum
+    ? null
+    : getImageProps({ alt: '', sizes: CATEGORY_HERO_SIZES, src: category.cover }).props;
 
   return (
     <Link className="gallery-card" data-cursor-label="Explore" href={`/photography/${category.id}`}>
@@ -26,6 +32,7 @@ export function CategoryCard({ category, sizes }: CategoryCardProps) {
           {albumCount} {albumCount === 1 ? 'album' : 'albums'}
         </span>
       )}
+      {hero?.srcSet && <HeroPreload sizes={CATEGORY_HERO_SIZES} srcSet={hero.srcSet} />}
     </Link>
   );
 }

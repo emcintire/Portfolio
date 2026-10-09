@@ -122,7 +122,7 @@ export default function HomePage() {
         <div className="page-container">
           <SectionIntro
             eyebrow="Beyond the screen"
-            heading="Photography keeps me attentive."
+            heading="Proof I occasionally go outside."
             text={
               <p>
                 Landscapes and portraits sharpen the same instincts I use in product work:

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { GalleryView } from '@/components/GalleryView';
+import { CATEGORY_HERO_SIZES } from '@/components/HeroPreload';
 import { SplitWords } from '@/components/SplitWords';
 import { galleryCategories, getGalleryCategory } from '@/data/galleries';
 import { siteMetadata } from '@/data/site';
@@ -96,7 +97,13 @@ export default async function PhotographyCategoryPage({
       <JsonLd data={collectionPageSchema(category)} />
       <JsonLd data={breadcrumb} />
       <section className="category-hero">
-        <Image alt="" priority sizes="100vw" src={category.cover} />
+        <Image
+          alt=""
+          placeholder="blur"
+          priority
+          sizes={CATEGORY_HERO_SIZES}
+          src={category.cover}
+        />
         <div className="category-hero__overlay">
           <div className="page-container">
             <nav aria-label="Breadcrumb" className="breadcrumb breadcrumb--light">
