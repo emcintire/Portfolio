@@ -1340,8 +1340,54 @@ p {
   margin-bottom: var(--space-3);
 }
 
-.album-page__header > p:last-child {
+.album-page__meta {
+  display: flex;
+  min-height: 2.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
   color: var(--color-text-muted);
+}
+
+.album-page__meta > p {
+  margin: 0;
+}
+
+/* The columns slider (PhotoGridSize): one-tile icon, range, four-tile icon. */
+.photo-size {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.photo-size label {
+  margin-right: var(--space-2);
+}
+
+.photo-size input {
+  width: clamp(6rem, 18vw, 10rem);
+  margin: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.photo-size__icon {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  fill: currentColor;
+}
+
+/* Fixed width, so 1 to 6 doesn't nudge the slider. */
+.photo-size__value {
+  min-width: 1ch;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
 }
 
 .photo-grid {
@@ -1349,6 +1395,12 @@ p {
   column-gap: var(--space-2);
   padding-inline: var(--space-2);
   padding-bottom: var(--space-2);
+}
+
+/* A count chosen with the slider, already clamped to what the width can hold;
+   outranks the responsive counts below. */
+.photo-grid[data-columns] {
+  columns: var(--photo-columns);
 }
 
 .photo-grid > li {
@@ -1767,7 +1819,7 @@ p {
 
 .page-hero__copy,
 .category-hero p:last-child,
-.album-page__header > p:last-child {
+.album-page__meta {
   animation: rise-in 1000ms var(--ease-out-expo) 450ms backwards;
 }
 

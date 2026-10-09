@@ -13,9 +13,10 @@ export const hasFinePointer = () =>
 /**
  * Which transition is running, as `html[data-transition]`. The stylesheet keys
  * the page wipe and the theme reveal off it, since both animate the same
- * ::view-transition-*(root) pseudo-elements.
+ * ::view-transition-*(root) pseudo-elements. `grid` (the photo grid's column
+ * slider) has no rules of its own and gets the browser's default cross-fade.
  */
-export type TransitionKind = 'page' | 'theme';
+export type TransitionKind = 'grid' | 'page' | 'theme';
 
 type ViewTransitionLike = { finished: Promise<void>; ready: Promise<void> };
 type DocumentWithViewTransitions = Document & {

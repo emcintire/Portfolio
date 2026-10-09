@@ -93,5 +93,60 @@ describe('GalleryView', () => {
     const src = screen.getByRole('img').getAttribute('src') ?? '';
     expect(src).toMatch(/^\/_next\/image\?url=/);
     expect(src).toContain(encodeURIComponent('https://f000.backblazeb2.com'));
+    // Every srcset candidate goes through the optimizer too.
+    const candidates = (screen.getByRole('img').getAttribute('srcset') ?? '').split(', ');
+    expect(candidates.length).toBeGreaterThan(1);
+    candidates.forEach((candidate) => expect(candidate).toMatch(/^\/_next\/image\?url=\S+ \d+w$/));
+  });
+
+  describe('columns slider', () => {
+    const grid = () => screen.getByRole('list', { name: `${album.title} photographs` });
+    const slider = () => screen.getByRole('slider', { name: 'Columns' });
+
+    it('leaves the grid to the stylesheet until the visitor picks a count', () => {
+      render(<GalleryView album={album} category={category} photographs={makePhotographs(3)} />);
+
+      // The matchMedia stub matches no breakpoint, so this is the widest layout.
+      expect(slider()).toHaveValue('4');
+      expect(slider()).toHaveAttribute('max', '6');
+      expect(grid()).not.toHaveAttribute('data-columns');
+    });
+
+    it('applies a chosen count, resizes thumbnails to match, and remembers it', () => {
+      const { unmount } = render(
+        <GalleryView album={album} category={category} photographs={makePhotographs(3)} />,
+      );
+
+      fireEvent.change(slider(), { target: { value: '2' } });
+
+      expect(grid()).toHaveAttribute('data-columns', '2');
+      expect(grid().style.getPropertyValue('--photo-columns')).toBe('2');
+      expect(slider()).toHaveAttribute('aria-valuetext', '2 columns');
+      // Two columns make each tile half the viewport, so the browser fetches sharper copies.
+      screen.getAllByRole('img').forEach((image) => expect(image).toHaveAttribute('sizes', '50vw'));
+
+      // Another album opens with the same choice.
+      unmount();
+      render(<GalleryView album={album} category={category} photographs={makePhotographs(3)} />);
+      expect(grid()).toHaveAttribute('data-columns', '2');
+    });
+
+    it('caps a remembered count at what a narrow screen can hold', () => {
+      localStorage.setItem('portfolio-photo-columns', '6');
+      const matchMedia = window.matchMedia;
+      // A phone: only the narrowest breakpoint matches.
+      window.matchMedia = (query: string) => ({
+        ...matchMedia(query),
+        matches: query === '(max-width: 36rem)',
+      });
+
+      try {
+        render(<GalleryView album={album} category={category} photographs={makePhotographs(3)} />);
+        expect(slider()).toHaveAttribute('max', '2');
+        expect(grid()).toHaveAttribute('data-columns', '2');
+      } finally {
+        window.matchMedia = matchMedia;
+      }
+    });
   });
 });

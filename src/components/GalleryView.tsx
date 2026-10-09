@@ -1,15 +1,22 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { type CSSProperties, useCallback, useMemo, useRef, useState } from 'react';
 
 import type { GalleryAlbum, GalleryCategory, Photograph } from '@/types';
 
+import { PhotoGridSize, usePhotoColumns } from './PhotoGridSize';
 import { PhotoLightbox } from './PhotoLightbox';
 import { SplitWords } from './SplitWords';
 
-/** Widest a grid column gets, at the four-column desktop layout. */
-const THUMBNAIL_WIDTH = 828;
+/**
+ * Thumbnail widths on offer, so the browser can fetch sharper copies when the
+ * columns slider makes tiles larger. Each must be one of Next's configured
+ * image sizes, or the optimizer rejects it.
+ */
+const THUMBNAIL_WIDTHS = [384, 640, 828, 1080, 1200, 1920];
+/** The `src` fallback for browsers without srcset: the four-column desktop tile. */
+const FALLBACK_WIDTH = 828;
 const THUMBNAIL_QUALITY = 75;
 
 type GalleryViewProps = {
@@ -18,12 +25,15 @@ type GalleryViewProps = {
   photographs: Photograph[];
 };
 
-const thumbnailUrl = (src: string) =>
-  `/_next/image?url=${encodeURIComponent(src)}&w=${THUMBNAIL_WIDTH}&q=${THUMBNAIL_QUALITY}`;
+const thumbnailUrl = (src: string, width: number) =>
+  `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=${THUMBNAIL_QUALITY}`;
+
+const thumbnailSrcSet = (src: string) =>
+  THUMBNAIL_WIDTHS.map((width) => `${thumbnailUrl(src, width)} ${width}w`).join(', ');
 
 type LoadState = 'pending' | 'cached' | 'fresh';
 
-function GalleryThumbnail({ alt, src }: { alt: string; src: string }) {
+function GalleryThumbnail({ alt, sizes, src }: { alt: string; sizes: string; src: string }) {
   const [hasFailed, setHasFailed] = useState(false);
   const [loadState, setLoadState] = useState<LoadState>('pending');
 
@@ -49,7 +59,9 @@ function GalleryThumbnail({ alt, src }: { alt: string; src: string }) {
         onError={() => setHasFailed(true)}
         onLoad={() => setLoadState((state) => (state === 'pending' ? 'fresh' : state))}
         ref={detectLoaded}
-        src={thumbnailUrl(src)}
+        sizes={sizes}
+        src={thumbnailUrl(src, FALLBACK_WIDTH)}
+        srcSet={thumbnailSrcSet(src)}
       />
     </>
   );
@@ -59,6 +71,7 @@ export function GalleryView({ album, category, photographs: source }: GalleryVie
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [viewedAlbumId, setViewedAlbumId] = useState(album.id);
   const lastFocusedPhotoRef = useRef<HTMLButtonElement | null>(null);
+  const { columns, sizes, ...gridSize } = usePhotoColumns();
   const photographs = useMemo(() => source.filter((photograph) => photograph.src.trim()), [source]);
 
   if (album.id !== viewedAlbumId) {
@@ -92,10 +105,18 @@ export function GalleryView({ album, category, photographs: source }: GalleryVie
         <h1>
           <SplitWords text={album.title} />
         </h1>
-        <p>{photographs.length} photographs</p>
+        <div className="album-page__meta">
+          <p>{photographs.length} photographs</p>
+          <PhotoGridSize {...gridSize} />
+        </div>
       </div>
 
-      <ul className="photo-grid" aria-label={`${album.title} photographs`}>
+      <ul
+        aria-label={`${album.title} photographs`}
+        className="photo-grid"
+        data-columns={columns ?? undefined}
+        style={columns ? ({ '--photo-columns': columns } as CSSProperties) : undefined}
+      >
         {photographs.map((photograph, index) => {
           const alt = photograph.alt.trim() || `${album.title} photograph ${index + 1}`;
           return (
@@ -115,7 +136,7 @@ export function GalleryView({ album, category, photographs: source }: GalleryVie
                 }
                 type="button"
               >
-                <GalleryThumbnail alt={alt} src={photograph.src} />
+                <GalleryThumbnail alt={alt} sizes={sizes} src={photograph.src} />
               </button>
             </li>
           );
