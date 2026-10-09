@@ -16,8 +16,15 @@ const nextConfig: NextConfig = {
         statusCode: 301,
       },
       {
-        destination: '/photography/misc',
-        source: '/photography/misc/misc',
+        destination: '/photography/favorites',
+        source: '/photography/favorites/favorites',
+        statusCode: 301,
+      },
+      // Miscellaneous was retired. :path* also matches the bare category URL,
+      // so old links and share images land on the photography index.
+      {
+        destination: '/photography',
+        source: '/photography/misc/:path*',
         statusCode: 301,
       },
       // Landscape was renamed Travel. :path* also matches the bare category

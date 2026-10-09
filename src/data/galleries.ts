@@ -5,10 +5,10 @@ import alaska2018Cover from '@/assets/optimized/alaska2018.webp';
 import alaska2020Cover from '@/assets/optimized/alaska2020.webp';
 import animalsCover from '@/assets/optimized/animals.webp';
 import beachCover from '@/assets/optimized/beach.webp';
+import favoritesCover from '@/assets/optimized/favorites.webp';
 import italy2026Cover from '@/assets/optimized/italy2026.webp';
 import malabarCover from '@/assets/optimized/malabar.webp';
 import mammothCover from '@/assets/optimized/mammoth.webp';
-import miscCover from '@/assets/optimized/misc.webp';
 import paris2026Cover from '@/assets/optimized/paris2026.webp';
 import portraitsCardCover from '@/assets/optimized/portraits.webp';
 import portraitsCategoryCover from '@/assets/optimized/portraits-hero.webp';
@@ -32,6 +32,22 @@ import type { GalleryAlbum, GalleryCategory } from '@/types';
 const album = (input: GalleryAlbum): GalleryAlbum => input;
 
 export const galleryCategories: GalleryCategory[] = [
+  {
+    albums: [
+      album({
+        cover: favoritesCover,
+        description: 'Crème de la crème.',
+        id: 'favorites',
+        title: 'Favorites',
+      }),
+    ],
+    cardCover: favoritesCover,
+    cover: favoritesCover,
+    description: 'Crème de la crème.',
+    directAlbum: 'favorites',
+    id: 'favorites',
+    title: 'Favorites',
+  },
   {
     albums: [
       album({
@@ -251,34 +267,17 @@ export const galleryCategories: GalleryCategory[] = [
     albums: [
       album({
         cover: animalsCover,
-        description: 'Lil creatures I come across.',
+        description: 'Lil creatures I have come across.',
         id: 'animals',
         title: 'Animals',
       }),
     ],
     cardCover: animalsCover,
     cover: animalsCover,
-    description: 'Lil creatures I come across.',
+    description: 'Lil creatures I have come across.',
     directAlbum: 'animals',
     id: 'animals',
     title: 'Animals',
-  },
-  {
-    albums: [
-      album({
-        cover: miscCover,
-        description:
-          'Frames that never belonged to a trip or a session — small observations kept because they held up.',
-        id: 'misc',
-        title: 'Miscellaneous',
-      }),
-    ],
-    cardCover: miscCover,
-    cover: miscCover,
-    description: '¯\\_(ツ)_/¯',
-    directAlbum: 'misc',
-    id: 'misc',
-    title: 'Miscellaneous',
   },
 ];
 

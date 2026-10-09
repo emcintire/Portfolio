@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { albumWithPhotographs } from './albums';
+import { albumWithPhotographs, singleAlbumCategories } from './albums';
 
 const SITE = 'https://everettgsm.com';
 
@@ -85,14 +85,22 @@ test('unknown photography URLs return 404 rather than 200 with not-found content
 test('single-album categories 301 their duplicate nested URL to the category', async ({
   request,
 }) => {
-  for (const category of ['animals', 'misc']) {
+  for (const path of await singleAlbumCategories(request)) {
+    const category = path.split('/').at(-1);
     // maxRedirects: 0, or Playwright follows the redirect and reports 200.
-    const response = await request.get(`/photography/${category}/${category}`, {
-      maxRedirects: 0,
-    });
+    const response = await request.get(`${path}/${category}`, { maxRedirects: 0 });
 
-    expect(response.status(), `${category} status`).toBe(301);
-    expect(response.headers().location).toBe(`/photography/${category}`);
+    expect(response.status(), `${path} status`).toBe(301);
+    expect(response.headers().location).toBe(path);
+  }
+});
+
+test('the retired miscellaneous URLs 301 to the photography index', async ({ request }) => {
+  for (const suffix of ['', '/misc', '/misc/opengraph-image']) {
+    const response = await request.get(`/photography/misc${suffix}`, { maxRedirects: 0 });
+
+    expect(response.status(), `misc${suffix} status`).toBe(301);
+    expect(response.headers().location).toBe('/photography');
   }
 });
 
@@ -109,8 +117,10 @@ test('the old landscape URLs 301 to their travel equivalents', async ({ request 
 test('sitemap lists no redirecting URLs and includes photographs', async ({ request }) => {
   const xml = await (await request.get('/sitemap.xml')).text();
 
-  expect(xml).not.toContain(`${SITE}/photography/animals/animals`);
-  expect(xml).not.toContain(`${SITE}/photography/misc/misc`);
+  for (const path of await singleAlbumCategories(request)) {
+    expect(xml).not.toContain(`${SITE}${path}/${path.split('/').at(-1)}<`);
+  }
+  expect(xml).not.toContain(`${SITE}/photography/misc`);
   expect(xml).not.toContain(`${SITE}/photography/landscape`);
   expect(xml).toContain('<image:loc>');
 

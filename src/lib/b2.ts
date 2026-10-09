@@ -14,7 +14,7 @@ const PREFIX = '';
 const IMAGE_RX = /\.(jpe?g|png|webp|avif)$/i;
 
 /** Categories whose gallery renders at the category URL, so the bucket is flat. */
-const FLAT_CATEGORIES = new Set(['animals', 'misc']);
+const FLAT_CATEGORIES = new Set(['animals', 'favorites']);
 
 type Auth = { apiUrl: string; bucketId: string; downloadUrl: string; token: string };
 
